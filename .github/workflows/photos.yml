@@ -20,4 +20,4 @@ jobs:
           git config user.name "former. bot"
           git config user.email "noreply@github.com"
           git add docs/photos
-          git diff --cached --quiet || (git commit -m "Update Geograph thumbnails" && git push)
+          git diff --cached --quiet || (git commit -m "Update Geograph thumbnails" && git pull --rebase && git push)
