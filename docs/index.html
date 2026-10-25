@@ -1,0 +1,289 @@
+<title>former.</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Schibsted+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single narrow register of buildings, read like a parish gazetteer. Each entry leads with what it was. */
+:root{
+  --bg:#ECEEEA;        /* weathered stone */
+  --surface:#F7F8F5;
+  --ink:#1D2224;
+  --muted:#5D6766;
+  --rule:#CDD3CE;
+  --accent:#2C6B65;    /* verdigris, as on old copper roofs */
+  --accent-soft:#D6E6E2;
+  --flag:#8A5A12;
+  --flag-soft:#F1E5CF;
+  --display:"Young Serif", Georgia, "Times New Roman", serif;
+  --body:"Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#151A1B; --surface:#1C2223; --ink:#E6EAE7; --muted:#9AA5A3; --rule:#2E3739;
+    --accent:#7FC0B6; --accent-soft:#1F3532; --flag:#E2B567; --flag-soft:#3A2F1C; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#151A1B; --surface:#1C2223; --ink:#E6EAE7; --muted:#9AA5A3; --rule:#2E3739;
+  --accent:#7FC0B6; --accent-soft:#1F3532; --flag:#E2B567; --flag-soft:#3A2F1C; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));}
+.wrap{max-width:780px;margin:0 auto;padding-block:40px 64px;display:grid;gap:32px}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.proto{font-family:var(--mono);font-size:12.5px;line-height:1.5;color:var(--flag);background:var(--flag-soft);border-radius:6px;padding:10px 14px}
+
+header{display:grid;gap:10px}
+.mark{font-family:var(--display);font-size:clamp(56px, 12vw, 96px);line-height:.9;letter-spacing:-.02em;margin:0;font-weight:400}
+.mark span{color:var(--accent)}
+.tag{font-size:18px;color:var(--muted);margin:0;max-width:36ch;text-wrap:balance}
+.lede{margin:0;max-width:62ch}
+.stats{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.stats b{color:var(--ink);font-weight:500}
+
+.controls{display:grid;gap:14px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding-block:16px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.label{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:4px;min-width:5.5em}
+.chip{font:inherit;font-size:13.5px;border:1px solid var(--rule);background:transparent;color:var(--ink);border-radius:999px;padding:4px 11px;cursor:pointer;display:inline-flex;gap:6px;align-items:baseline}
+.chip small{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip[aria-pressed="true"] small{color:var(--bg);opacity:.75}
+.chip:hover{border-color:var(--ink)}
+select{font:inherit;font-size:14px;color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:5px 8px;max-width:100%}
+.selects{display:flex;flex-wrap:wrap;gap:8px}
+.count{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-left:auto}
+
+.list{display:grid;list-style:none;margin:0;padding:0}
+.entry{display:grid;grid-template-columns:64px minmax(0,1fr);gap:18px;padding-block:22px;border-bottom:1px solid var(--rule)}
+.icon{width:64px;height:64px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center}
+.icon svg{width:42px;height:42px}
+.body{display:grid;gap:6px;min-width:0}
+.was{font-family:var(--display);font-size:15px;color:var(--accent);margin:0}
+.was b{font-weight:400;color:var(--ink)}
+.place{font-family:var(--display);font-size:22px;line-height:1.2;margin:0;font-weight:400;text-wrap:balance}
+.facts{display:flex;flex-wrap:wrap;gap:4px 14px;font-family:var(--mono);font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.facts .price{color:var(--ink);font-weight:500}
+.note{margin:0;max-width:60ch}
+.badges{display:flex;flex-wrap:wrap;gap:6px}
+.badge{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:4px;background:var(--flag-soft);color:var(--flag)}
+.go{font-weight:500;font-size:14.5px;text-decoration:none;justify-self:start}
+.go:hover{text-decoration:underline}
+.empty{color:var(--muted);padding-block:24px}
+.more{justify-self:center;font:inherit;font-weight:500;background:transparent;color:var(--accent);border:1px solid var(--accent);border-radius:6px;padding:8px 18px;cursor:pointer}
+
+.how{display:grid;gap:14px}
+.how h2,.sub h2{font-family:var(--display);font-weight:400;font-size:26px;margin:0}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:0;padding:0;list-style:none}
+.steps li{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px;display:grid;gap:4px;align-content:start}
+.steps b{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);font-weight:500}
+.steps p{margin:0;font-size:15px}
+.sub{display:grid;gap:12px;background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:22px}
+.sub p{margin:0;color:var(--muted)}
+form{display:flex;flex-wrap:wrap;gap:8px}
+input[type=email]{flex:1 1 220px;min-width:0;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--rule);border-radius:6px;padding:9px 12px}
+button.primary{font:inherit;font-weight:500;background:var(--accent);color:var(--surface);border:0;border-radius:6px;padding:9px 18px;cursor:pointer}
+.formnote{font-family:var(--mono);font-size:12.5px;color:var(--flag)}
+footer{font-size:13.5px;color:var(--muted);display:grid;gap:6px;border-top:1px solid var(--rule);padding-top:18px}
+footer p{margin:0;max-width:64ch}
+@media (max-width:480px){
+  .entry{grid-template-columns:48px minmax(0,1fr);gap:14px}
+  .icon{width:48px;height:48px}.icon svg{width:32px;height:32px}
+  .place{font-size:20px}
+  .label{min-width:0;width:100%}
+  .count{margin-left:0}
+}
+@media (prefers-reduced-motion: no-preference){ .entry{animation:in .25s ease both} @keyframes in{from{opacity:.4}to{opacity:1}} }
+</style>
+
+<div class="wrap">
+  <div class="proto">PROTOTYPE · built from a one-off sweep of Zoopla on 25 October 2026. Some listings will since have sold. Sign-ups are not live.</div>
+
+  <header>
+    <h1 class="mark">former<span>.</span></h1>
+    <p class="tag">Buildings for sale in England that started life as something other than a home.</p>
+    <p class="lede">Chapels, mills, schools, pubs, stations, oast houses and more, checked by hand. Whole buildings, or a substantial part of one. No barn conversions, no flats in big developments, and no houses that just happen to be on Chapel Lane.</p>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <section class="controls" aria-label="Filter buildings">
+    <div class="row" id="types"><span class="label">Was a</span></div>
+    <div class="row">
+      <span class="label">Where</span>
+      <div class="selects">
+        <select id="region" aria-label="Region"><option value="">All of England</option></select>
+        <select id="county" aria-label="County"><option value="">All counties</option></select>
+      </div>
+    </div>
+    <div class="row">
+      <span class="label">Show</span>
+      <div class="selects">
+        <select id="price" aria-label="Maximum price">
+          <option value="">Any price</option>
+          <option value="250000">Up to £250,000</option>
+          <option value="400000">Up to £400,000</option>
+          <option value="600000">Up to £600,000</option>
+          <option value="1000000">Up to £1 million</option>
+        </select>
+        <select id="kind" aria-label="Condition">
+          <option value="">Converted and projects</option>
+          <option value="done">Converted only</option>
+          <option value="Project">Projects to take on</option>
+          <option value="Auction">At auction</option>
+        </select>
+        <select id="sort" aria-label="Sort order">
+          <option value="new">Newest listed</option>
+          <option value="low">Lowest price</option>
+          <option value="high">Highest price</option>
+        </select>
+      </div>
+      <span class="count" id="count"></span>
+    </div>
+  </section>
+
+  <ol class="list" id="list"><li class="empty">Loading buildings…</li></ol>
+  <button class="more" id="more" type="button" hidden>Show 30 more</button>
+
+  <section class="how">
+    <h2>How it works</h2>
+    <ul class="steps">
+      <li><b>Found</b><p>New listings that mention a former use are collected from England's property portals every week.</p></li>
+      <li><b>Checked</b><p>Each one is tested: was this building, or a whole part of it, built for something other than living in?</p></li>
+      <li><b>Published</b><p>What passes appears here, in the weekly email and on social media, with a link to the original listing.</p></li>
+    </ul>
+  </section>
+
+  <section class="sub">
+    <h2>Get the weekly list</h2>
+    <p>One email a week. Choose your county, or take all of England.</p>
+    <form id="signup">
+      <input type="email" id="email" placeholder="you@example.com" aria-label="Email address" required>
+      <button class="primary" type="submit">Subscribe</button>
+    </form>
+    <div class="formnote" id="formnote" hidden>This is a prototype, so nothing has been sent or saved.</div>
+  </section>
+
+  <footer>
+    <p>former. is a free, not-for-profit listing. <a href="privacy.html">Privacy</a> · <a href="feed.xml">RSS feed</a></p>
+    <p>former. is a free, not-for-profit listing. We are not an estate agent. Every listing belongs to the agent who advertises it, and all enquiries go to them.</p>
+    <p>Building illustrations are our own. Where a photo appears, it comes from Geograph under a Creative Commons licence and is credited to its photographer.</p>
+  </footer>
+</div>
+
+<script>
+const S = 'fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"';
+const ICON = {
+  chapel:`<svg viewBox="0 0 64 64" ${S}><path d="M8 56h48"/><path d="M14 56V30L32 14l18 16v26"/><path d="M29 14V7h6v7"/><path d="M27 42v-8q5-8 10 0v8z"/><path d="M29 56v-7h6v7"/></svg>`,
+  church:`<svg viewBox="0 0 64 64" ${S}><path d="M6 56h52"/><path d="M10 56V34l14-9 14 9v22"/><path d="M38 56V24l7-14 7 14v32"/><path d="M45 4v6"/><path d="M20 56v-8q4-6 8 0v8"/><path d="M43 34h4"/></svg>`,
+  school:`<svg viewBox="0 0 64 64" ${S}><path d="M6 56h52"/><path d="M10 56V30h44v26"/><path d="M8 30l24-14 24 14"/><path d="M28 16V9h8v7"/><path d="M15 38h8v8h-8z"/><path d="M41 38h8v8h-8z"/><path d="M28 56V44h8v12"/></svg>`,
+  mill:`<svg viewBox="0 0 64 64" ${S}><path d="M4 56h56"/><path d="M8 56V26l14-10 14 10v30"/><circle cx="46" cy="40" r="12"/><path d="M46 28v24M34 40h24M38 32l16 16M54 32L38 48"/><path d="M16 34h6v6h-6z"/></svg>`,
+  windmill:`<svg viewBox="0 0 64 64" ${S}><path d="M10 58h44"/><path d="M22 58l4-30h12l4 30"/><path d="M26 28l6-8 6 8"/><path d="M32 20L14 4M32 20L50 4M32 20L14 36M32 20L50 36"/><path d="M29 58v-8h6v8"/></svg>`,
+  station:`<svg viewBox="0 0 64 64" ${S}><path d="M4 56h56"/><path d="M4 50h56"/><path d="M12 50V30h40v20"/><path d="M6 30l8-8h36l8 8z"/><path d="M20 50V38h8v12"/><path d="M36 38h10v6H36z"/><circle cx="32" cy="16" r="4"/></svg>`,
+  pub:`<svg viewBox="0 0 64 64" ${S}><path d="M6 56h44"/><path d="M10 56V28l18-12 18 12v28"/><path d="M24 56V44h8v12"/><path d="M14 34h7v7h-7z"/><path d="M35 34h7v7h-7z"/><path d="M46 30h10"/><path d="M53 30v4"/><path d="M48 34h10v12H48z"/></svg>`,
+  oast:`<svg viewBox="0 0 64 64" ${S}><path d="M4 56h56"/><path d="M26 56V34h30v22"/><path d="M24 34l17-10 17 10"/><path d="M8 56V30h16v26"/><path d="M6 30L16 6l10 24"/><path d="M14 6h4l-2-4z"/><path d="M36 44h8v12h-8z"/></svg>`,
+  tower:`<svg viewBox="0 0 64 64" ${S}><path d="M10 58h44"/><path d="M14 8h36v16H14z"/><path d="M20 24l-2 34M44 24l2 34"/><path d="M19 38h26M18 48h28"/><path d="M14 14h36"/></svg>`,
+  coach:`<svg viewBox="0 0 64 64" ${S}><path d="M6 56h52"/><path d="M10 56V30l22-14 22 14v26"/><path d="M20 56V44a12 12 0 0 1 24 0v12"/><path d="M32 44v12"/><path d="M29 24h6v6h-6z"/></svg>`,
+  toll:`<svg viewBox="0 0 64 64" ${S}><path d="M6 56h52"/><path d="M14 56V30l8-8h20l8 8v26"/><path d="M12 30l20-18 20 18"/><path d="M22 34h6v8h-6z"/><path d="M36 34h6v8h-6z"/><path d="M28 56v-8h8v8"/></svg>`,
+  civic:`<svg viewBox="0 0 64 64" ${S}><path d="M6 56h52"/><path d="M8 26h48"/><path d="M10 26L32 12l22 14"/><path d="M14 30v22M24 30v22M40 30v22M50 30v22"/><path d="M10 52h44"/><path d="M29 52V40h6v12"/></svg>`,
+  works:`<svg viewBox="0 0 64 64" ${S}><path d="M6 56h52"/><path d="M8 56V32l12-8v8l12-8v8l12-8v32"/><path d="M48 56V12h6v44"/><path d="M14 42h6v6h-6z"/><path d="M26 42h6v6h-6z"/><path d="M38 42h6v6h-6z"/></svg>`
+};
+const ICON_FOR = {chapel:'chapel',church:'church',school:'school',mill:'mill',windmill:'windmill',station:'station',pub:'pub',oast:'oast',tower:'tower',coach:'coach',toll:'toll',police:'civic',fire:'civic',bank:'civic',postoffice:'civic',hall:'civic',dairy:'works',forge:'works',granary:'works',malthouse:'works',bakery:'works',works:'works',other:'works'};
+const GROUPS = [
+  ['chapel','Chapels',['chapel']],['church','Churches',['church']],['school','Schools',['school']],
+  ['mill','Mills',['mill','windmill']],['pub','Pubs and inns',['pub']],['oast','Oast houses',['oast']],
+  ['coach','Coach houses',['coach']],['transport','Stations and toll houses',['station','toll']],
+  ['civic','Banks, post offices, police and fire',['bank','postoffice','police','fire','hall']],
+  ['trade','Bakeries, dairies, forges and granaries',['bakery','dairy','forge','granary','malthouse']],
+  ['works','Towers and industrial',['tower','works','other']]
+];
+const $ = id => document.getElementById(id);
+let ALL = [], shown = 30, group = 'all';
+
+const fmtDate = iso => iso ? new Date(iso+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) : '';
+const esc = s => String(s??'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function filtered(){
+  const region = $('region').value, county = $('county').value, max = +$('price').value || Infinity, kind = $('kind').value;
+  const types = group==='all' ? null : new Set(GROUPS.find(g=>g[0]===group)[2]);
+  let out = ALL.filter(e =>
+    (!types || types.has(e.type)) && (!region || e.region===region) && (!county || e.county===county) &&
+    (e.price==null || e.price<=max) &&
+    (!kind || (kind==='done' ? !e.badges.includes('Project') : e.badges.includes(kind))));
+  const s = $('sort').value;
+  out.sort((a,b)=> s==='low' ? (a.price??9e9)-(b.price??9e9) : s==='high' ? (b.price??0)-(a.price??0) : (b.listed||'').localeCompare(a.listed||''));
+  return out;
+}
+
+function renderChips(){
+  const row = $('types');
+  const base = ALL.filter(e => (!$('region').value || e.region===$('region').value) && (!$('county').value || e.county===$('county').value));
+  row.querySelectorAll('.chip').forEach(c=>c.remove());
+  [['all','All',null]].concat(GROUPS).forEach(([key,label,types])=>{
+    const n = types ? base.filter(e=>types.includes(e.type)).length : base.length;
+    if (!n && key!=='all' && key!==group) return;
+    const b = document.createElement('button');
+    b.className='chip'; b.type='button'; b.id='chip-'+key; b.setAttribute('aria-pressed', key===group);
+    b.innerHTML = `${esc(label)} <small>${n}</small>`;
+    b.addEventListener('click',()=>{group=key; shown=30; renderChips(); render();});
+    row.appendChild(b);
+  });
+}
+
+function render(){
+  const list = filtered();
+  $('count').textContent = list.length + (list.length===1?' building':' buildings');
+  const rows = list.slice(0, shown).map(e=>{
+    const facts = [
+      e.price!=null?`<span class="price">${esc(e.priceText)}</span>`:'<span class="price">Price on application</span>',
+      e.beds?`<span>${e.beds} bed</span>`:'',
+      `<span>${esc(e.county)}</span>`,
+      `<span>${esc(e.postcode)}</span>`,
+      e.listed?`<span>Listed ${fmtDate(e.listed)}</span>`:''
+    ].join('');
+    const badges = e.badges.length?`<div class="badges">${e.badges.map(b=>`<span class="badge">${esc(b)}</span>`).join('')}</div>`:'';
+    return `<li class="entry">
+      <div class="icon">${ICON[ICON_FOR[e.type]||'works']}</div>
+      <div class="body">
+        <p class="was">former. <b>${esc(e.was)}</b></p>
+        <h3 class="place">${esc(e.place)}</h3>
+        <div class="facts">${facts}</div>
+        ${e.note?`<p class="note">${esc(e.note)}</p>`:''}
+        ${badges}
+        <a class="go" href="${esc(e.url)}" target="_blank" rel="noopener">View listing on ${esc(e.source)} →</a>
+      </div></li>`;
+  });
+  $('list').innerHTML = rows.length ? rows.join('') : '<li class="empty">Nothing matches those filters yet. Try a wider area or another building type.</li>';
+  const left = list.length - shown;
+  $('more').hidden = left <= 0;
+  $('more').textContent = `Show ${Math.min(30,left)} more`;
+}
+
+function fillCounties(){
+  const region = $('region').value, cur = $('county').value;
+  const counties = [...new Set(ALL.filter(e=>!region||e.region===region).map(e=>e.county))].sort();
+  $('county').innerHTML = '<option value="">All counties</option>' + counties.map(c=>`<option ${c===cur?'selected':''}>${esc(c)}</option>`).join('');
+}
+
+async function boot(){
+  let data;
+  try { data = await fetch('data/listings.json').then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); }); }
+  catch(err){ $('list').innerHTML = '<li class="empty">The list of buildings could not be loaded. Refresh the page to try again.</li>'; return; }
+  ALL = data.listings;
+  const regions = [...new Set(ALL.map(e=>e.region))].sort();
+  $('region').innerHTML += regions.map(r=>`<option>${esc(r)}</option>`).join('');
+  fillCounties();
+  const n = ALL.length, projects = ALL.filter(e=>e.badges.includes('Project')).length, counties = new Set(ALL.map(e=>e.county)).size;
+  $('stats').innerHTML = `<span><b>${n}</b> buildings</span><span><b>${counties}</b> counties</span><span><b>${projects}</b> projects to take on</span><span>Updated ${fmtDate(data.updated)}</span>`;
+  renderChips(); render();
+}
+
+$('region').addEventListener('change',()=>{ $('county').value=''; fillCounties(); shown=30; renderChips(); render(); });
+$('county').addEventListener('change',()=>{ shown=30; renderChips(); render(); });
+['price','kind','sort'].forEach(id=>$(id).addEventListener('change',()=>{ shown=30; render(); }));
+$('more').addEventListener('click',()=>{ shown+=30; render(); });
+$('signup').addEventListener('submit',ev=>{ev.preventDefault(); $('formnote').hidden=false;});
+boot();
+</script>
