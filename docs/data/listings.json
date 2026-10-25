@@ -25,7 +25,7 @@
   "works": "Industrial and civic",
   "other": "Other"
  },
- "count": 521,
+ "count": 520,
  "listings": [
   {
    "id": "74595263",
@@ -4082,26 +4082,6 @@
    "badges": [],
    "lat": 51.04606,
    "lng": 0.56314,
-   "added": "2026-10-25"
-  },
-  {
-   "id": "74045887",
-   "url": "https://www.zoopla.co.uk/for-sale/details/74045887/",
-   "source": "Zoopla",
-   "type": "coach",
-   "was": "coach house",
-   "note": "",
-   "place": "High Garrett, Braintree",
-   "postcode": "CM7",
-   "county": "Essex",
-   "region": "East of England",
-   "price": 290000,
-   "priceText": "£290,000",
-   "beds": 2,
-   "listed": "2026-08-22",
-   "badges": [],
-   "lat": 51.91413,
-   "lng": 0.58079,
    "added": "2026-10-25"
   },
   {
