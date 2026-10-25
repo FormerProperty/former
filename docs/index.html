@@ -1,315 +1,350 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>former.</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Buildings for sale in England that began life as something other than a home: chapels, mills, schools, pubs, stations and oast houses.">
+<link rel="alternate" type="application/rss+xml" title="former." href="feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Schibsted+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@400;500;600&display=swap">
 <style>
-/* Layout: a single narrow register of buildings, read like a parish gazetteer. Each entry leads with what it was. */
+/* Layout: a photo-led register. Each building carries the shorthand an old Ordnance Survey map would have printed beside it. */
 :root{
-  --bg:#ECEEEA;        /* weathered stone */
-  --surface:#F7F8F5;
-  --ink:#1D2224;
-  --muted:#5D6766;
-  --rule:#CDD3CE;
-  --accent:#2C6B65;    /* verdigris, as on old copper roofs */
-  --accent-soft:#D6E6E2;
-  --flag:#8A5A12;
-  --flag-soft:#F1E5CF;
-  --display:"Young Serif", Georgia, "Times New Roman", serif;
-  --body:"Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --paper:#F3F2EE;      /* limewashed stone, not cream */
+  --ink:#1B1D1C;
+  --muted:#5E625F;
+  --rule:#D3D1CA;
+  --stone:#E2DFD6;      /* panel for buildings without a photo */
+  --livery:#1E4D3B;     /* Brunswick green, railway and chapel railings */
+  --livery-soft:#DCE5DF;
+  --oxblood:#7B2D26;
+  --display:"Libre Caslon Display", "Libre Caslon Text", Georgia, serif;
+  --serif:"Libre Caslon Text", Georgia, "Times New Roman", serif;
+  --sans:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme:light;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#151A1B; --surface:#1C2223; --ink:#E6EAE7; --muted:#9AA5A3; --rule:#2E3739;
-    --accent:#7FC0B6; --accent-soft:#1F3532; --flag:#E2B567; --flag-soft:#3A2F1C; color-scheme:dark;
+    --paper:#121413; --ink:#ECEDEA; --muted:#A0A5A1; --rule:#2C302E; --stone:#1D201E;
+    --livery:#86BFA4; --livery-soft:#1B2A23; --oxblood:#E1958B; color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#151A1B; --surface:#1C2223; --ink:#E6EAE7; --muted:#9AA5A3; --rule:#2E3739;
-  --accent:#7FC0B6; --accent-soft:#1F3532; --flag:#E2B567; --flag-soft:#3A2F1C; color-scheme:dark;
+  --paper:#121413; --ink:#ECEDEA; --muted:#A0A5A1; --rule:#2C302E; --stone:#1D201E;
+  --livery:#86BFA4; --livery-soft:#1B2A23; --oxblood:#E1958B; color-scheme:dark;
 }
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;
-  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));}
-.wrap{max-width:1080px;margin:0 auto;padding-block:40px 64px;display:grid;gap:32px}
-a{color:var(--accent)}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 var(--sans);
+  padding-left:max(20px, env(safe-area-inset-left, 0px));padding-right:max(20px, env(safe-area-inset-right, 0px))}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--livery);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding-block:0 72px}
 
-.proto{font-family:var(--mono);font-size:12.5px;line-height:1.5;color:var(--flag);background:var(--flag-soft);border-radius:6px;padding:10px 14px}
+/* Masthead */
+.mast{border-top:6px solid var(--ink);padding-top:22px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,26rem);gap:20px 48px;align-items:end;padding-bottom:26px;border-bottom:1px solid var(--ink)}
+.mark{font:400 clamp(64px, 11vw, 132px)/.82 var(--display);letter-spacing:-.025em;margin:0}
+.mark span{color:var(--livery)}
+.intro{display:grid;gap:12px}
+.intro p{margin:0;font:400 19px/1.45 var(--serif);text-wrap:pretty}
+.stats{display:flex;flex-wrap:wrap;gap:4px 20px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.stats b{color:var(--ink);font-weight:600}
 
-header{display:grid;gap:10px}
-.mark{font-family:var(--display);font-size:clamp(56px, 12vw, 96px);line-height:.9;letter-spacing:-.02em;margin:0;font-weight:400}
-.mark span{color:var(--accent)}
-.tag{font-size:18px;color:var(--muted);margin:0;max-width:36ch;text-wrap:balance}
-.lede{margin:0;max-width:62ch}
-.stats{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
-.stats b{color:var(--ink);font-weight:500}
+/* Filters */
+.filters{display:grid;gap:14px;padding-block:18px 16px;border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:5;background:var(--paper)}
+.types{display:flex;flex-wrap:wrap;gap:4px 22px}
+.tab{font:500 15px/1.3 var(--sans);background:none;border:0;padding:6px 0;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;display:inline-flex;gap:6px;align-items:baseline}
+.tab small{font-size:12px;font-variant-numeric:tabular-nums;color:var(--muted)}
+.tab:hover{color:var(--ink)}
+.tab[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--livery)}
+.row{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center}
+.field{display:flex;flex-direction:column;gap:2px}
+.field label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+select{font:500 14.5px var(--sans);color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--ink);border-radius:0;padding:4px 22px 4px 0;max-width:100%;
+  appearance:none;background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);background-position:calc(100% - 9px) 55%,calc(100% - 4px) 55%;background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+select option{background:var(--paper);color:var(--ink)}
+.views{margin-left:auto;display:flex;gap:2px;align-self:end}
+.views button{font:500 13px var(--sans);background:none;border:1px solid var(--ink);color:var(--ink);padding:6px 12px;cursor:pointer}
+.views button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.count{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;align-self:end;padding-bottom:6px}
 
-.controls{display:grid;gap:14px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding-block:16px}
-.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.label{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:4px;min-width:5.5em}
-.chip{font:inherit;font-size:13.5px;border:1px solid var(--rule);background:transparent;color:var(--ink);border-radius:999px;padding:4px 11px;cursor:pointer;display:inline-flex;gap:6px;align-items:baseline}
-.chip small{font-family:var(--mono);font-size:11px;color:var(--muted)}
-.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.chip[aria-pressed="true"] small{color:var(--bg);opacity:.75}
-.chip:hover{border-color:var(--ink)}
-select{font:inherit;font-size:14px;color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:5px 8px;max-width:100%}
-.selects{display:flex;flex-wrap:wrap;gap:8px}
-.count{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-left:auto}
+/* Listings */
+.list{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:40px 28px}
+.card{display:grid;gap:12px;align-content:start;min-width:0}
+.frame{position:relative;aspect-ratio:4/3;background:var(--stone);overflow:hidden}
+.frame img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.card:hover .frame img{transform:scale(1.025)}
+.os{position:absolute;left:10px;top:10px;font:italic 400 15px/1 var(--serif);background:var(--paper);color:var(--ink);padding:5px 8px 6px}
+.blank{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:16px}
+.blank span{font:italic 400 clamp(40px, 4.5vw, 58px)/1 var(--serif);color:var(--muted);opacity:.6}
+.blank::after{content:"";position:absolute;inset:10px;border:1px solid var(--rule)}
+.was{font:600 11.5px/1.35 var(--sans);letter-spacing:.11em;text-transform:uppercase;color:var(--livery);margin:0}
+.place{font:400 21px/1.2 var(--serif);margin:0;text-wrap:balance}
+.place a{text-decoration:none}
+.place a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.meta{display:flex;flex-wrap:wrap;gap:2px 0;font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.meta > span + span::before{content:"·";padding:0 8px;color:var(--muted);opacity:.5}
+.meta .price{color:var(--ink);font-weight:600}
+.flags{font:600 11px/1 var(--sans);letter-spacing:.11em;text-transform:uppercase;color:var(--oxblood);display:flex;gap:12px}
+.note{margin:0;font:italic 400 15px/1.45 var(--serif);color:var(--muted)}
+.credit{font-size:11.5px;line-height:1.4;color:var(--muted);margin:0}
+.credit a{text-decoration-color:var(--rule);text-underline-offset:2px}
+.list:not(.rows) .note{display:none}
 
-.list{display:grid;list-style:none;margin:0;padding:0}
-.entry{display:grid;grid-template-columns:150px minmax(0,1fr);gap:20px;padding-block:22px;border-bottom:1px solid var(--rule)}
-.media{display:grid;gap:4px;align-content:start;min-width:0}
-.icon{width:100%;aspect-ratio:4/3;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center}
-.icon svg{width:46%;height:auto}
-.photo{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;background:var(--accent-soft);display:block}
-.credit{font-size:11px;line-height:1.35;color:var(--muted)}
-.credit a{color:var(--muted)}
-.list.grid{grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
-.list.grid .entry{grid-template-columns:1fr;gap:12px;padding:0 0 16px;border:1px solid var(--rule);border-radius:12px;background:var(--surface);overflow:hidden}
-.list.grid .icon,.list.grid .photo{border-radius:0}
-.list.grid .credit{padding-inline:14px}
-.list.grid .body{padding-inline:14px}
-.list.grid .note{display:none}
-.list.grid .place{font-size:19px}
-.body{display:grid;gap:6px;min-width:0}
-.was{font-family:var(--display);font-size:15px;color:var(--accent);margin:0}
-.was b{font-weight:400;color:var(--ink)}
-.place{font-family:var(--display);font-size:22px;line-height:1.2;margin:0;font-weight:400;text-wrap:balance}
-.facts{display:flex;flex-wrap:wrap;gap:4px 14px;font-family:var(--mono);font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
-.facts .price{color:var(--ink);font-weight:500}
-.note{margin:0;max-width:60ch}
-.badges{display:flex;flex-wrap:wrap;gap:6px}
-.badge{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:4px;background:var(--flag-soft);color:var(--flag)}
-.go{font-weight:500;font-size:14.5px;text-decoration:none;justify-self:start}
-.go:hover{text-decoration:underline}
-.empty{color:var(--muted);padding-block:24px}
-.more{justify-self:center;font:inherit;font-weight:500;background:transparent;color:var(--accent);border:1px solid var(--accent);border-radius:6px;padding:8px 18px;cursor:pointer}
+/* List view */
+.list.rows{grid-template-columns:1fr;gap:0}
+.list.rows .card{grid-template-columns:240px minmax(0,1fr);column-gap:28px;padding-block:24px;border-bottom:1px solid var(--rule)}
+.list.rows .media{grid-row:span 6}
+.list.rows .card:first-child{padding-top:0}
 
-.how{display:grid;gap:14px}
-.how h2,.sub h2{font-family:var(--display);font-weight:400;font-size:26px;margin:0}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:0;padding:0;list-style:none}
-.steps li{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px;display:grid;gap:4px;align-content:start}
-.steps b{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);font-weight:500}
-.steps p{margin:0;font-size:15px}
-.sub{display:grid;gap:12px;background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:22px}
+.empty{color:var(--muted);font:italic 18px var(--serif);padding-block:32px;grid-column:1/-1}
+.more{display:block;margin:40px auto 0;font:500 15px var(--sans);background:none;color:var(--ink);border:1px solid var(--ink);padding:10px 26px;cursor:pointer}
+.more:hover{background:var(--ink);color:var(--paper)}
+
+/* Lower sections */
+.lower{margin-top:80px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px;border-top:1px solid var(--ink);padding-top:28px}
+.lower h2{font:400 30px/1.15 var(--serif);margin:0 0 14px}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.steps li{display:grid;grid-template-columns:2.2em 1fr;gap:8px;font-size:15.5px}
+.steps li span{font:italic 400 22px/1 var(--serif);color:var(--livery)}
+.steps p{margin:0}
+.key{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13.5px;color:var(--muted)}
+.key i{font:italic 400 15px var(--serif);color:var(--ink);margin-right:4px}
+form{display:flex;gap:0;margin-top:14px}
+input[type=email]{flex:1 1 auto;min-width:0;font:15px var(--sans);color:var(--ink);background:transparent;border:1px solid var(--ink);border-right:0;padding:11px 12px;border-radius:0}
+button.primary{font:600 15px var(--sans);background:var(--livery);color:var(--paper);border:1px solid var(--livery);padding:11px 20px;cursor:pointer;border-radius:0}
 .sub p{margin:0;color:var(--muted)}
-form{display:flex;flex-wrap:wrap;gap:8px}
-input[type=email]{flex:1 1 220px;min-width:0;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--rule);border-radius:6px;padding:9px 12px}
-button.primary{font:inherit;font-weight:500;background:var(--accent);color:var(--surface);border:0;border-radius:6px;padding:9px 18px;cursor:pointer}
-.formnote{font-family:var(--mono);font-size:12.5px;color:var(--flag)}
-footer{font-size:13.5px;color:var(--muted);display:grid;gap:6px;border-top:1px solid var(--rule);padding-top:18px}
-footer p{margin:0;max-width:64ch}
-@media (max-width:480px){
-  .list:not(.grid) .entry{grid-template-columns:96px minmax(0,1fr);gap:14px}
-  .list:not(.grid) .credit{display:none}
-  .place{font-size:20px}
-  .label{min-width:0;width:100%}
-  .count{margin-left:0}
+.formnote{margin-top:8px;font-size:13px;color:var(--oxblood)}
+footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-size:13px;color:var(--muted);display:grid;gap:6px}
+footer p{margin:0;max-width:78ch}
+
+@media (max-width:820px){
+  .mast,.lower{grid-template-columns:1fr}
+  .list.rows .card{grid-template-columns:120px minmax(0,1fr);column-gap:16px}
+  .list.rows .credit{display:none}
+  .views{margin-left:0}
 }
-@media (prefers-reduced-motion: no-preference){ .entry{animation:in .25s ease both} @keyframes in{from{opacity:.4}to{opacity:1}} }
+@media (max-width:480px){
+  .list{grid-template-columns:1fr;gap:32px}
+  .filters{position:static}
+  .types{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-16px;padding-inline:16px;-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent)}
+  .types::-webkit-scrollbar{display:none}
+  .tab{flex:0 0 auto}
+}
+@media (prefers-reduced-motion: reduce){ .frame img{transition:none} .card:hover .frame img{transform:none} }
 </style>
-
+</head>
+<body>
 <div class="wrap">
-  <div class="proto">PROTOTYPE · built from a one-off sweep of Zoopla on 25 October 2026. Some listings will since have sold. Sign-ups are not live.</div>
-
-  <header>
+  <header class="mast">
     <h1 class="mark">former<span>.</span></h1>
-    <p class="tag">Buildings for sale in England that started life as something other than a home.</p>
-    <p class="lede">Chapels, mills, schools, pubs, stations, oast houses and more, checked by hand. Whole buildings, or a substantial part of one. No barn conversions, no flats in big developments, and no houses that just happen to be on Chapel Lane.</p>
-    <div class="stats" id="stats"></div>
+    <div class="intro">
+      <p>Chapels, mills, schools, pubs, stations and oast houses for sale across England. Every one began life as something other than a home.</p>
+      <div class="stats" id="stats"></div>
+    </div>
   </header>
 
-  <section class="controls" aria-label="Filter buildings">
-    <div class="row" id="types"><span class="label">Was a</span></div>
+  <section class="filters" aria-label="Filter buildings">
+    <div class="types" id="types"></div>
     <div class="row">
-      <span class="label">Where</span>
-      <div class="selects">
-        <select id="region" aria-label="Region"><option value="">All of England</option></select>
-        <select id="county" aria-label="County"><option value="">All counties</option></select>
-      </div>
-    </div>
-    <div class="row">
-      <span class="label">Show</span>
-      <div class="selects">
-        <select id="price" aria-label="Maximum price">
+      <div class="field"><label for="region">Region</label><select id="region"><option value="">All of England</option></select></div>
+      <div class="field"><label for="county">County</label><select id="county"><option value="">All counties</option></select></div>
+      <div class="field"><label for="price">Price</label>
+        <select id="price">
           <option value="">Any price</option>
           <option value="250000">Up to £250,000</option>
           <option value="400000">Up to £400,000</option>
           <option value="600000">Up to £600,000</option>
           <option value="1000000">Up to £1 million</option>
-        </select>
-        <select id="kind" aria-label="Condition">
+        </select></div>
+      <div class="field"><label for="kind">Condition</label>
+        <select id="kind">
           <option value="">Converted and projects</option>
           <option value="done">Converted only</option>
           <option value="Project">Projects to take on</option>
           <option value="Auction">At auction</option>
-        </select>
-        <select id="view" aria-label="Layout">
-          <option value="list">List</option>
-          <option value="grid">Grid</option>
-        </select>
-        <select id="sort" aria-label="Sort order">
+        </select></div>
+      <div class="field"><label for="sort">Order</label>
+        <select id="sort">
           <option value="new">Newest listed</option>
           <option value="low">Lowest price</option>
           <option value="high">Highest price</option>
-        </select>
-      </div>
+        </select></div>
       <span class="count" id="count"></span>
+      <div class="views" role="group" aria-label="Layout">
+        <button type="button" id="view-grid" aria-pressed="true">Grid</button>
+        <button type="button" id="view-rows" aria-pressed="false">List</button>
+      </div>
     </div>
   </section>
 
-  <ol class="list" id="list"><li class="empty">Loading buildings…</li></ol>
-  <button class="more" id="more" type="button" hidden>Show 30 more</button>
+  <ol class="list" id="list"><li class="empty">Opening the register…</li></ol>
+  <button class="more" id="more" type="button" hidden>Show more</button>
 
-  <section class="how">
-    <h2>How it works</h2>
-    <ul class="steps">
-      <li><b>Found</b><p>New listings that mention a former use are collected from England's property portals every week.</p></li>
-      <li><b>Checked</b><p>Each one is tested: was this building, or a whole part of it, built for something other than living in?</p></li>
-      <li><b>Published</b><p>What passes appears here, in the weekly email and on social media, with a link to the original listing.</p></li>
-    </ul>
-  </section>
-
-  <section class="sub">
-    <h2>Get the weekly list</h2>
-    <p>One email a week. Choose your county, or take all of England.</p>
-    <form id="signup">
-      <input type="email" id="email" placeholder="you@example.com" aria-label="Email address" required>
-      <button class="primary" type="submit">Subscribe</button>
-    </form>
-    <div class="formnote" id="formnote" hidden>This is a prototype, so nothing has been sent or saved.</div>
+  <section class="lower">
+    <div>
+      <h2>How it works</h2>
+      <ol class="steps">
+        <li><span>i.</span><p>New listings that mention a former use are gathered from England's property portals each week.</p></li>
+        <li><span>ii.</span><p>Each is checked by hand: was this building, or a substantial part of it, built for something other than living in? Barn conversions, flats in larger developments and houses that merely stand on Chapel Lane are left out.</p></li>
+        <li><span>iii.</span><p>What passes appears here, in the weekly email and on social media, with a link to the agent's own listing.</p></li>
+      </ol>
+      <div class="key" aria-label="Map labels used on this site">
+        <span><i>Chap</i>chapel</span><span><i>Ch</i>church</span><span><i>Sch</i>school</span><span><i>PH</i>public house</span>
+        <span><i>PO</i>post office</span><span><i>Smy</i>smithy</span><span><i>Sta</i>station</span><span><i>Wks</i>works</span>
+      </div>
+    </div>
+    <div class="sub">
+      <h2>The weekly list</h2>
+      <p>One email each week with the newest buildings. All of England, or just your county.</p>
+      <form id="signup">
+        <input type="email" id="email" placeholder="you@example.com" aria-label="Email address" required>
+        <button class="primary" type="submit">Subscribe</button>
+      </form>
+      <div class="formnote" id="formnote" hidden>Sign-ups open soon. Nothing has been sent or saved.</div>
+    </div>
   </section>
 
   <footer>
-    <p>former. is a free, not-for-profit listing. <a href="privacy.html">Privacy</a> · <a href="feed.xml">RSS feed</a></p>
-    <p>former. is a free, not-for-profit listing. We are not an estate agent. Every listing belongs to the agent who advertises it, and all enquiries go to them.</p>
-    <p>Building illustrations are our own. Photos come from <a href="https://www.geograph.org.uk/">Geograph</a>, used under the Creative Commons Attribution-ShareAlike 2.0 licence, and are credited to their photographers. A photo may show the building before or during its conversion.</p>
+    <p>former. is a free, not-for-profit listing. We are not an estate agent: every building is advertised by its own agent, and all enquiries go to them. <a href="privacy.html">Privacy</a> · <a href="feed.xml">RSS</a></p>
+    <p>Map labels follow the abbreviations of old Ordnance Survey maps. Photographs come from <a href="https://www.geograph.org.uk/">Geograph</a> under the Creative Commons Attribution-ShareAlike 2.0 licence and are credited to their photographers; a photo may show a building before or during its conversion.</p>
   </footer>
 </div>
 
 <script>
-const S = 'fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"';
-const ICON = {
-  chapel:`<svg viewBox="0 0 64 64" ${S}><path d="M8 56h48"/><path d="M14 56V30L32 14l18 16v26"/><path d="M29 14V7h6v7"/><path d="M27 42v-8q5-8 10 0v8z"/><path d="M29 56v-7h6v7"/></svg>`,
-  church:`<svg viewBox="0 0 64 64" ${S}><path d="M6 56h52"/><path d="M10 56V34l14-9 14 9v22"/><path d="M38 56V24l7-14 7 14v32"/><path d="M45 4v6"/><path d="M20 56v-8q4-6 8 0v8"/><path d="M43 34h4"/></svg>`,
-  school:`<svg viewBox="0 0 64 64" ${S}><path d="M6 56h52"/><path d="M10 56V30h44v26"/><path d="M8 30l24-14 24 14"/><path d="M28 16V9h8v7"/><path d="M15 38h8v8h-8z"/><path d="M41 38h8v8h-8z"/><path d="M28 56V44h8v12"/></svg>`,
-  mill:`<svg viewBox="0 0 64 64" ${S}><path d="M4 56h56"/><path d="M8 56V26l14-10 14 10v30"/><circle cx="46" cy="40" r="12"/><path d="M46 28v24M34 40h24M38 32l16 16M54 32L38 48"/><path d="M16 34h6v6h-6z"/></svg>`,
-  windmill:`<svg viewBox="0 0 64 64" ${S}><path d="M10 58h44"/><path d="M22 58l4-30h12l4 30"/><path d="M26 28l6-8 6 8"/><path d="M32 20L14 4M32 20L50 4M32 20L14 36M32 20L50 36"/><path d="M29 58v-8h6v8"/></svg>`,
-  station:`<svg viewBox="0 0 64 64" ${S}><path d="M4 56h56"/><path d="M4 50h56"/><path d="M12 50V30h40v20"/><path d="M6 30l8-8h36l8 8z"/><path d="M20 50V38h8v12"/><path d="M36 38h10v6H36z"/><circle cx="32" cy="16" r="4"/></svg>`,
-  pub:`<svg viewBox="0 0 64 64" ${S}><path d="M6 56h44"/><path d="M10 56V28l18-12 18 12v28"/><path d="M24 56V44h8v12"/><path d="M14 34h7v7h-7z"/><path d="M35 34h7v7h-7z"/><path d="M46 30h10"/><path d="M53 30v4"/><path d="M48 34h10v12H48z"/></svg>`,
-  oast:`<svg viewBox="0 0 64 64" ${S}><path d="M4 56h56"/><path d="M26 56V34h30v22"/><path d="M24 34l17-10 17 10"/><path d="M8 56V30h16v26"/><path d="M6 30L16 6l10 24"/><path d="M14 6h4l-2-4z"/><path d="M36 44h8v12h-8z"/></svg>`,
-  tower:`<svg viewBox="0 0 64 64" ${S}><path d="M10 58h44"/><path d="M14 8h36v16H14z"/><path d="M20 24l-2 34M44 24l2 34"/><path d="M19 38h26M18 48h28"/><path d="M14 14h36"/></svg>`,
-  coach:`<svg viewBox="0 0 64 64" ${S}><path d="M6 56h52"/><path d="M10 56V30l22-14 22 14v26"/><path d="M20 56V44a12 12 0 0 1 24 0v12"/><path d="M32 44v12"/><path d="M29 24h6v6h-6z"/></svg>`,
-  toll:`<svg viewBox="0 0 64 64" ${S}><path d="M6 56h52"/><path d="M14 56V30l8-8h20l8 8v26"/><path d="M12 30l20-18 20 18"/><path d="M22 34h6v8h-6z"/><path d="M36 34h6v8h-6z"/><path d="M28 56v-8h8v8"/></svg>`,
-  civic:`<svg viewBox="0 0 64 64" ${S}><path d="M6 56h52"/><path d="M8 26h48"/><path d="M10 26L32 12l22 14"/><path d="M14 30v22M24 30v22M40 30v22M50 30v22"/><path d="M10 52h44"/><path d="M29 52V40h6v12"/></svg>`,
-  works:`<svg viewBox="0 0 64 64" ${S}><path d="M6 56h52"/><path d="M8 56V32l12-8v8l12-8v8l12-8v32"/><path d="M48 56V12h6v44"/><path d="M14 42h6v6h-6z"/><path d="M26 42h6v6h-6z"/><path d="M38 42h6v6h-6z"/></svg>`
-};
-const ICON_FOR = {chapel:'chapel',church:'church',school:'school',mill:'mill',windmill:'windmill',station:'station',pub:'pub',oast:'oast',tower:'tower',coach:'coach',toll:'toll',police:'civic',fire:'civic',bank:'civic',postoffice:'civic',hall:'civic',dairy:'works',forge:'works',granary:'works',malthouse:'works',bakery:'works',works:'works',other:'works'};
 const GROUPS = [
   ['chapel','Chapels',['chapel']],['church','Churches',['church']],['school','Schools',['school']],
   ['mill','Mills',['mill','windmill']],['pub','Pubs and inns',['pub']],['oast','Oast houses',['oast']],
-  ['coach','Coach houses',['coach']],['transport','Stations and toll houses',['station','toll']],
-  ['civic','Banks, post offices, police and fire',['bank','postoffice','police','fire','hall']],
-  ['trade','Bakeries, dairies, forges and granaries',['bakery','dairy','forge','granary','malthouse']],
-  ['works','Towers and industrial',['tower','works','other']]
+  ['coach','Coach houses',['coach']],['transport','Stations and tolls',['station','toll']],
+  ['civic','Civic',['bank','postoffice','police','fire','hall']],
+  ['trade','Trades',['bakery','dairy','forge','granary','malthouse']],
+  ['works','Towers and works',['tower','works','other']]
 ];
+// Ordnance Survey style shorthand, refined by what the building was
+function osLabel(e){
+  const w = (e.was||'').toLowerCase();
+  const by = [
+    [/signal box/,'SB'],[/sunday school/,'S Sch'],[/convent/,'Convent'],[/priory/,'Priory'],
+    [/library/,'Liby'],[/court ?house/,'Court Ho'],[/pumping/,'Pumping Sta'],[/telephone/,'Tel Exch'],
+    [/engine house/,'Engine Ho'],[/watermill|corn mill/,'Mill'],[/smock|tower mill|windmill/,'Windmill'],
+    [/\binn\b/,'Inn'],[/meeting house/,'Meeting Ho'],[/\bhall\b/,'Hall'],[/warehouse|factory|works|commercial/,'Wks']
+  ];
+  for (const [re,l] of by) if (re.test(w)) return l;
+  return ({chapel:'Chap',church:'Ch',school:'Sch',mill:'Mill',windmill:'Windmill',station:'Sta',pub:'PH',oast:'Oast',
+    tower:'Water Tower',coach:'Coach Ho',toll:'Toll Ho',police:'Police Sta',fire:'Fire Sta',bank:'Bank',postoffice:'PO',
+    dairy:'Dairy',forge:'Smy',granary:'Granary',malthouse:'Malt Ho',bakery:'Bakehouse',hall:'Hall',works:'Wks'})[e.type] || 'Bldg';
+}
 const $ = id => document.getElementById(id);
-let ALL = [], shown = 30, group = 'all';
-
+const PAGE = 24;
+let ALL = [], shown = PAGE, group = 'all', view = 'grid';
 const fmtDate = iso => iso ? new Date(iso+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) : '';
 const esc = s => String(s??'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 function filtered(){
-  const region = $('region').value, county = $('county').value, max = +$('price').value || Infinity, kind = $('kind').value;
+  const region=$('region').value, county=$('county').value, max=+$('price').value||Infinity, kind=$('kind').value;
   const types = group==='all' ? null : new Set(GROUPS.find(g=>g[0]===group)[2]);
-  let out = ALL.filter(e =>
-    (!types || types.has(e.type)) && (!region || e.region===region) && (!county || e.county===county) &&
-    (e.price==null || e.price<=max) &&
-    (!kind || (kind==='done' ? !e.badges.includes('Project') : e.badges.includes(kind))));
-  const s = $('sort').value;
+  const out = ALL.filter(e => (!types||types.has(e.type)) && (!region||e.region===region) && (!county||e.county===county) &&
+    (e.price==null||e.price<=max) && (!kind || (kind==='done' ? !e.badges.includes('Project') : e.badges.includes(kind))));
+  const s=$('sort').value;
   out.sort((a,b)=> s==='low' ? (a.price??9e9)-(b.price??9e9) : s==='high' ? (b.price??0)-(a.price??0) : (b.listed||'').localeCompare(a.listed||''));
   return out;
 }
 
-function renderChips(){
-  const row = $('types');
-  const base = ALL.filter(e => (!$('region').value || e.region===$('region').value) && (!$('county').value || e.county===$('county').value));
-  row.querySelectorAll('.chip').forEach(c=>c.remove());
-  [['all','All',null]].concat(GROUPS).forEach(([key,label,types])=>{
+function renderTabs(){
+  const row=$('types');
+  const base=ALL.filter(e=>(!$('region').value||e.region===$('region').value)&&(!$('county').value||e.county===$('county').value));
+  row.innerHTML='';
+  [['all','Everything',null]].concat(GROUPS).forEach(([key,label,types])=>{
     const n = types ? base.filter(e=>types.includes(e.type)).length : base.length;
     if (!n && key!=='all' && key!==group) return;
-    const b = document.createElement('button');
-    b.className='chip'; b.type='button'; b.id='chip-'+key; b.setAttribute('aria-pressed', key===group);
-    b.innerHTML = `${esc(label)} <small>${n}</small>`;
-    b.addEventListener('click',()=>{group=key; shown=30; renderChips(); render();});
+    const b=document.createElement('button');
+    b.className='tab'; b.type='button'; b.setAttribute('aria-pressed', key===group);
+    b.innerHTML=`${esc(label)} <small>${n}</small>`;
+    b.addEventListener('click',()=>{group=key; shown=PAGE; renderTabs(); render();});
     row.appendChild(b);
   });
 }
 
-function media(e){
-  const ic = `<div class="icon">${ICON[ICON_FOR[e.type]||'works']}</div>`;
-  const p = e.photo; if (!p) return ic;
-  const alt = `${p.title} by ${p.author}`;
-  return `<img class="photo" loading="lazy" src="${esc(p.src)}" data-fallback="${esc(p.thumb)}" alt="${esc(alt)}" onerror="if(this.dataset.fallback&&this.src!==this.dataset.fallback){this.src=this.dataset.fallback}else{this.replaceWith(Object.assign(document.createElement('div'),{className:'icon',innerHTML:ICON[ICON_FOR['${e.type}']||'works']}))}">
-    <span class="credit">Photo: <a href="https://www.geograph.org.uk/photo/${esc(p.id)}" target="_blank" rel="noopener">${esc(p.author)}${p.year?', '+esc(p.year):''}</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a>, via Geograph</span>`;
+function blankHTML(e){ return `<div class="blank" aria-hidden="true"><span>${esc(osLabel(e))}</span></div>`; }
+function frame(e){
+  const p=e.photo;
+  if (!p) return `<div class="frame">${blankHTML(e)}</div>`;
+  return `<div class="frame"><img loading="lazy" src="${esc(p.src)}" data-fallback="${esc(p.thumb)}" data-label="${esc(osLabel(e))}" alt="${esc(p.title)}, photographed by ${esc(p.author)}"><span class="os">${esc(osLabel(e))}</span></div>`;
+}
+// Fall back to Geograph's copy, then to the map label, if a stored thumbnail is missing
+document.addEventListener('error', ev => {
+  const img = ev.target;
+  if (!(img instanceof HTMLImageElement) || !img.closest('.frame')) return;
+  if (img.dataset.fallback && img.src !== img.dataset.fallback) { img.src = img.dataset.fallback; return; }
+  const f = img.closest('.frame'); f.innerHTML = `<div class="blank" aria-hidden="true"><span>${esc(img.dataset.label||'')}</span></div>`;
+}, true);
+
+function card(e){
+  const meta=[
+    `<span class="price">${e.price!=null?esc(e.priceText):'Price on application'}</span>`,
+    e.beds?`<span>${e.beds} bed</span>`:'',
+    `<span>${esc(e.county)}</span>`
+  ].join('');
+  const flags=e.badges.length?`<div class="flags">${e.badges.map(b=>`<span>${esc(b)}</span>`).join('')}</div>`:'';
+  const credit=e.photo?`<p class="credit">Photo: <a href="https://www.geograph.org.uk/photo/${esc(e.photo.id)}" target="_blank" rel="noopener">${esc(e.photo.author)}${e.photo.year?', '+esc(e.photo.year):''}</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a></p>`:'';
+  return `<li class="card">
+    <div class="media">${frame(e)}</div>
+    <p class="was">Former ${esc(e.was)}</p>
+    <h3 class="place"><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.place)}</a></h3>
+    <div class="meta">${meta}</div>
+    ${e.note?`<p class="note">${esc(e.note)}.</p>`:''}
+    ${flags}
+    ${credit}
+  </li>`;
 }
 
 function render(){
-  $('list').classList.toggle('grid', $('view').value==='grid');
-  const list = filtered();
+  const list=filtered();
+  $('list').classList.toggle('rows', view==='rows');
   $('count').textContent = list.length + (list.length===1?' building':' buildings');
-  const rows = list.slice(0, shown).map(e=>{
-    const facts = [
-      e.price!=null?`<span class="price">${esc(e.priceText)}</span>`:'<span class="price">Price on application</span>',
-      e.beds?`<span>${e.beds} bed</span>`:'',
-      `<span>${esc(e.county)}</span>`,
-      `<span>${esc(e.postcode)}</span>`,
-      e.listed?`<span>Listed ${fmtDate(e.listed)}</span>`:''
-    ].join('');
-    const badges = e.badges.length?`<div class="badges">${e.badges.map(b=>`<span class="badge">${esc(b)}</span>`).join('')}</div>`:'';
-    return `<li class="entry">
-      <div class="media">${media(e)}</div>
-      <div class="body">
-        <p class="was">former. <b>${esc(e.was)}</b></p>
-        <h3 class="place">${esc(e.place)}</h3>
-        <div class="facts">${facts}</div>
-        ${e.note?`<p class="note">${esc(e.note)}</p>`:''}
-        ${badges}
-        <a class="go" href="${esc(e.url)}" target="_blank" rel="noopener">View listing on ${esc(e.source)} →</a>
-      </div></li>`;
-  });
-  $('list').innerHTML = rows.length ? rows.join('') : '<li class="empty">Nothing matches those filters yet. Try a wider area or another building type.</li>';
-  const left = list.length - shown;
-  $('more').hidden = left <= 0;
-  $('more').textContent = `Show ${Math.min(30,left)} more`;
+  $('list').innerHTML = list.length ? list.slice(0,shown).map(card).join('')
+    : '<li class="empty">Nothing on the register matches that yet. Try a wider area or another kind of building.</li>';
+  const left=list.length-shown;
+  $('more').hidden = left<=0;
+  $('more').textContent = `Show ${Math.min(PAGE,left)} more of ${left}`;
+}
+
+function setView(v){
+  view=v; $('view-grid').setAttribute('aria-pressed', v==='grid'); $('view-rows').setAttribute('aria-pressed', v==='rows');
+  try{ localStorage.setItem('former-view', v); }catch(e){}
+  render();
 }
 
 function fillCounties(){
-  const region = $('region').value, cur = $('county').value;
-  const counties = [...new Set(ALL.filter(e=>!region||e.region===region).map(e=>e.county))].sort();
-  $('county').innerHTML = '<option value="">All counties</option>' + counties.map(c=>`<option ${c===cur?'selected':''}>${esc(c)}</option>`).join('');
+  const region=$('region').value, cur=$('county').value;
+  const counties=[...new Set(ALL.filter(e=>!region||e.region===region).map(e=>e.county))].sort();
+  $('county').innerHTML='<option value="">All counties</option>'+counties.map(c=>`<option ${c===cur?'selected':''}>${esc(c)}</option>`).join('');
 }
 
 async function boot(){
+  try{ const v=localStorage.getItem('former-view'); if(v==='rows'||v==='grid') view=v; }catch(e){}
+  $('view-grid').setAttribute('aria-pressed', view==='grid'); $('view-rows').setAttribute('aria-pressed', view==='rows');
   let data;
-  try { data = await fetch('data/listings.json').then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); }); }
-  catch(err){ $('list').innerHTML = '<li class="empty">The list of buildings could not be loaded. Refresh the page to try again.</li>'; return; }
-  ALL = data.listings;
-  const regions = [...new Set(ALL.map(e=>e.region))].sort();
-  $('region').innerHTML += regions.map(r=>`<option>${esc(r)}</option>`).join('');
+  try{ data = await fetch('data/listings.json').then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); }); }
+  catch(err){ $('list').innerHTML='<li class="empty">The register could not be loaded. Refresh the page to try again.</li>'; return; }
+  ALL=data.listings;
+  $('region').innerHTML += [...new Set(ALL.map(e=>e.region))].sort().map(r=>`<option>${esc(r)}</option>`).join('');
   fillCounties();
-  const n = ALL.length, projects = ALL.filter(e=>e.badges.includes('Project')).length, counties = new Set(ALL.map(e=>e.county)).size;
-  $('stats').innerHTML = `<span><b>${n}</b> buildings</span><span><b>${counties}</b> counties</span><span><b>${projects}</b> projects to take on</span><span>Updated ${fmtDate(data.updated)}</span>`;
-  renderChips(); render();
+  const projects=ALL.filter(e=>e.badges.includes('Project')).length, counties=new Set(ALL.map(e=>e.county)).size;
+  $('stats').innerHTML=`<span><b>${ALL.length}</b> buildings</span><span><b>${counties}</b> counties</span><span><b>${projects}</b> still to convert</span><span>Updated ${fmtDate(data.updated)}</span>`;
+  renderTabs(); render();
 }
 
-$('region').addEventListener('change',()=>{ $('county').value=''; fillCounties(); shown=30; renderChips(); render(); });
-$('county').addEventListener('change',()=>{ shown=30; renderChips(); render(); });
-try{ const v=localStorage.getItem('former-view'); if(v) $('view').value=v; }catch(e){}
-$('view').addEventListener('change',()=>{ try{localStorage.setItem('former-view',$('view').value);}catch(e){} render(); });
-['price','kind','sort'].forEach(id=>$(id).addEventListener('change',()=>{ shown=30; render(); }));
-$('more').addEventListener('click',()=>{ shown+=30; render(); });
-$('signup').addEventListener('submit',ev=>{ev.preventDefault(); $('formnote').hidden=false;});
+$('region').addEventListener('change',()=>{ $('county').value=''; fillCounties(); shown=PAGE; renderTabs(); render(); });
+$('county').addEventListener('change',()=>{ shown=PAGE; renderTabs(); render(); });
+['price','kind','sort'].forEach(id=>$(id).addEventListener('change',()=>{ shown=PAGE; render(); }));
+$('view-grid').addEventListener('click',()=>setView('grid'));
+$('view-rows').addEventListener('click',()=>setView('rows'));
+$('more').addEventListener('click',()=>{ shown+=PAGE; render(); });
+$('signup').addEventListener('submit',ev=>{ ev.preventDefault(); $('formnote').hidden=false; });
 boot();
 </script>
+</body>
+</html>
