@@ -96,7 +96,7 @@ select option{background:var(--paper);color:var(--ink)}
 /* List view */
 .list.rows{grid-template-columns:1fr;gap:0}
 .list.rows .card{grid-template-columns:240px minmax(0,1fr);column-gap:28px;padding-block:24px;border-bottom:1px solid var(--rule)}
-.list.rows .media{grid-row:span 6}
+.list.rows .media{grid-row:span 8}
 .list.rows .card:first-child{padding-top:0}
 
 .empty{color:var(--muted);font:italic 18px var(--serif);padding-block:32px;grid-column:1/-1}
@@ -117,6 +117,35 @@ input[type=email]{flex:1 1 auto;min-width:0;font:15px var(--sans);color:var(--in
 button.primary{font:600 15px var(--sans);background:var(--livery);color:var(--paper);border:1px solid var(--livery);padding:11px 20px;cursor:pointer;border-radius:0}
 .sub p{margin:0;color:var(--muted)}
 .formnote{margin-top:8px;font-size:13px;color:var(--oxblood)}
+.sources{margin:10px 0 0;font-size:13.5px;color:var(--muted)}
+.sources a{color:var(--ink);text-underline-offset:3px;text-decoration-color:var(--rule)}
+.actions{display:flex;gap:18px;align-items:baseline;font-size:13.5px;padding-top:2px}
+.actions a{color:var(--livery);font-weight:600;text-underline-offset:3px;text-decoration-thickness:1px}
+.actions a::after{content:" \2197";font-weight:400}
+.report{font:500 13px var(--sans);background:none;border:0;padding:0;color:var(--muted);cursor:pointer;text-decoration:underline;text-decoration-color:var(--rule);text-underline-offset:3px}
+.report:hover{color:var(--oxblood)}
+.credits{margin-top:56px;border-top:1px solid var(--ink);padding-top:24px}
+.credits h2{font:400 30px/1.15 var(--serif);margin:0 0 16px}
+.credits dl{margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px 40px}
+.credits dt{font:italic 400 21px var(--serif);margin-bottom:6px}
+.credits dt a{text-underline-offset:3px;text-decoration-thickness:1px}
+.credits dd{margin:0;font-size:14.5px;color:var(--muted)}
+dialog{border:1px solid var(--ink);border-radius:0;background:var(--paper);color:var(--ink);padding:24px;width:min(520px,calc(100vw - 32px));max-height:calc(100vh - 32px)}
+dialog::backdrop{background:rgba(20,20,20,.45)}
+dialog h2{font:400 26px/1.15 var(--serif);margin:0 0 6px}
+dialog form{display:grid;gap:14px;margin:0}
+.rp-what{margin:0;font:600 12px/1.35 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--livery)}
+.rp-why{margin:0;font-size:14.5px;color:var(--muted)}
+dialog fieldset{border:0;margin:0;padding:0;display:grid;gap:8px}
+dialog legend{font-weight:600;margin-bottom:6px}
+dialog fieldset label{display:flex;gap:10px;align-items:baseline;font-size:15px;cursor:pointer}
+dialog input[type=radio]{accent-color:var(--livery)}
+.rp-note{display:grid;gap:6px;font-size:15px}
+.rp-note span{color:var(--muted)}
+dialog textarea{font:15px var(--sans);color:var(--ink);background:transparent;border:1px solid var(--ink);border-radius:0;padding:8px;resize:vertical}
+.rp-status{margin:0;min-height:1.3em;font-size:14px;color:var(--oxblood)}
+.rp-actions{display:flex;justify-content:flex-end;gap:10px}
+.rp-cancel{font:500 15px var(--sans);background:none;color:var(--ink);border:1px solid var(--ink);padding:11px 18px;cursor:pointer}
 footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-size:13px;color:var(--muted);display:grid;gap:6px}
 footer p{margin:0;max-width:78ch}
 
@@ -143,6 +172,7 @@ footer p{margin:0;max-width:78ch}
     <div class="intro">
       <p>Chapels, mills, schools, pubs, stations and oast houses for sale across England. Every one began life as something other than a home.</p>
       <div class="stats" id="stats"></div>
+      <p class="sources">Listings from <a href="https://www.zoopla.co.uk/" target="_blank" rel="noopener">Zoopla</a>. Photographs from <a href="https://www.geograph.org.uk/" target="_blank" rel="noopener">Geograph</a>.</p>
     </div>
   </header>
 
@@ -188,8 +218,8 @@ footer p{margin:0;max-width:78ch}
       <h2>How it works</h2>
       <ol class="steps">
         <li><span>i.</span><p>Listings that mention a former use are gathered from Zoopla each week.</p></li>
-        <li><span>ii.</span><p>Each is judged against one test: was this building, or a substantial part of it, built for something other than living in? Barn conversions, flats in larger developments and houses that merely stand on Chapel Lane are left out. Most of the sorting is done by software, so the odd mistake will slip through.</p></li>
-        <li><span>iii.</span><p>What passes appears here, with a link to the listing itself.</p></li>
+        <li><span>ii.</span><p>Each is judged against one test: was this building, or a substantial part of it, built for something other than living in? Barn conversions, flats in larger developments and houses that merely stand on Chapel Lane are left out. Most of the sorting is done by software, so the odd mistake will slip through. If you spot one, press <em>Report</em> on the listing and we will take another look.</p></li>
+        <li><span>iii.</span><p>What passes appears here, in the weekly email and on social media, with a link to the full listing on Zoopla.</p></li>
       </ol>
       <div class="key" aria-label="Map labels used on this site">
         <span><i>Chap</i>chapel</span><span><i>Ch</i>church</span><span><i>Sch</i>school</span><span><i>PH</i>public house</span>
@@ -207,13 +237,46 @@ footer p{margin:0;max-width:78ch}
     </div>
   </section>
 
+  <section class="credits" aria-labelledby="credits-h">
+    <h2 id="credits-h">Sources</h2>
+    <dl>
+      <div><dt><a href="https://www.zoopla.co.uk/" target="_blank" rel="noopener">Zoopla</a></dt><dd>Every listing here was found on Zoopla, and every link goes back to it. Prices, bedrooms and locations come from the listing; the descriptions are our own words. Agents' photographs and text are not copied.</dd></div>
+      <div><dt><a href="https://www.geograph.org.uk/" target="_blank" rel="noopener">Geograph</a></dt><dd>Photographs are from the Geograph project, which aims to photograph every square kilometre of Britain. Each is credited to its photographer and used under the <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">Creative Commons Attribution-ShareAlike 2.0</a> licence. A photo may show a building before or during its conversion.</dd></div>
+      <div><dt>Ordnance Survey</dt><dd>The labels on each picture borrow the abbreviations printed on old Ordnance Survey maps. No Ordnance Survey data is used.</dd></div>
+    </dl>
+  </section>
+
   <footer>
     <p>former. is a free, not-for-profit listing. We are not an estate agent: every building is advertised by its own agent, and all enquiries go to them. <a href="privacy.html">Privacy</a> · <a href="feed.xml">RSS</a></p>
-    <p>Map labels follow the abbreviations of old Ordnance Survey maps. Photographs come from <a href="https://www.geograph.org.uk/">Geograph</a> under the Creative Commons Attribution-ShareAlike 2.0 licence and are credited to their photographers; a photo may show a building before or during its conversion.</p>
   </footer>
 </div>
 
+<dialog id="report" aria-labelledby="report-h">
+  <form method="dialog" id="report-form">
+    <h2 id="report-h">Report this listing</h2>
+    <p class="rp-what" id="report-what"></p>
+    <p class="rp-why">former. only lists buildings that were built for something other than living in. Tell us if this one does not belong, and we will check it and take it down if we got it wrong. We do not ask for your name or email.</p>
+    <fieldset>
+      <legend>What is wrong?</legend>
+      <label><input type="radio" name="reason" value="Always a house" required> It was always a house</label>
+      <label><input type="radio" name="reason" value="Flat in a larger building"> It is a flat within a larger building</label>
+      <label><input type="radio" name="reason" value="Barn conversion"> It is a barn conversion</label>
+      <label><input type="radio" name="reason" value="Sold or withdrawn"> It is sold or no longer listed</label>
+      <label><input type="radio" name="reason" value="Wrong details"> The details or photo are wrong</label>
+      <label><input type="radio" name="reason" value="Other"> Something else</label>
+    </fieldset>
+    <label class="rp-note"><span class="rp-q">Anything to add? <span>(optional)</span></span><textarea name="note" rows="3" maxlength="500"></textarea></label>
+    <p class="rp-status" id="report-status" role="status"></p>
+    <div class="rp-actions">
+      <button type="button" class="rp-cancel" id="report-cancel">Cancel</button>
+      <button type="submit" class="primary" id="report-send">Send report</button>
+    </div>
+  </form>
+</dialog>
+
 <script>
+// Where reports go. Set REPORT.action to a Google Form's formResponse address and the entry ids of its three questions.
+const REPORT = { action: '', fields: { id: 'entry.0', reason: 'entry.0', note: 'entry.0' } };
 const GROUPS = [
   ['chapel','Chapels',['chapel']],['church','Churches',['church']],['school','Schools',['school']],
   ['mill','Mills',['mill','windmill']],['pub','Pubs and inns',['pub']],['oast','Oast houses',['oast']],
@@ -297,6 +360,7 @@ function card(e){
     ${e.note?`<p class="note">${esc(e.note)}.</p>`:''}
     ${flags}
     ${credit}
+    <div class="actions"><a href="${esc(e.url)}" target="_blank" rel="noopener">View on Zoopla</a><button type="button" class="report" data-id="${esc(e.id)}">Report</button></div>
   </li>`;
 }
 
@@ -344,6 +408,27 @@ $('view-grid').addEventListener('click',()=>setView('grid'));
 $('view-rows').addEventListener('click',()=>setView('rows'));
 $('more').addEventListener('click',()=>{ shown+=PAGE; render(); });
 $('signup').addEventListener('submit',ev=>{ ev.preventDefault(); $('formnote').hidden=false; });
+let reporting=null;
+$('list').addEventListener('click',ev=>{
+  const b=ev.target.closest('button.report'); if(!b) return;
+  reporting=ALL.find(e=>e.id===b.dataset.id); if(!reporting) return;
+  $('report-form').reset(); $('report-status').textContent=''; $('report-send').disabled=false;
+  $('report-what').textContent=`Former ${reporting.was}, ${reporting.place}`;
+  $('report').showModal();
+});
+$('report-cancel').addEventListener('click',()=>$('report').close());
+$('report-form').addEventListener('submit',async ev=>{
+  ev.preventDefault();
+  const f=new FormData(ev.target), st=$('report-status');
+  if(!REPORT.action){ st.textContent='Reporting opens soon. Nothing has been sent.'; return; }
+  const body=new FormData();
+  body.append(REPORT.fields.id, reporting.id+' '+reporting.url);
+  body.append(REPORT.fields.reason, f.get('reason'));
+  body.append(REPORT.fields.note, (f.get('note')||'').slice(0,500));
+  $('report-send').disabled=true; st.textContent='Sending…';
+  try{ await fetch(REPORT.action,{method:'POST',mode:'no-cors',body}); st.textContent='Thank you. We will take a look.'; setTimeout(()=>$('report').close(),1600); }
+  catch(e){ st.textContent='That did not send. Please try again.'; $('report-send').disabled=false; }
+});
 boot();
 </script>
 </body>
