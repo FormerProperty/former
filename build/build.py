@@ -2,6 +2,8 @@
 
 Input:  export/*.json   judged entries (later files override earlier ones)
         removed.json    ids to leave out, with a reason (flats, sold, misjudged)
+        overrides.json  corrections to individual entries (w, n, g fields)
+        coords.json     [lat, lng] for each listing, from its listing page
 Output: docs/data/listings.json, docs/feed.xml and docs/feeds/<region>.xml
 
 Each export row:
@@ -132,6 +134,10 @@ def main():
     if os.path.exists(rp):
         with open(rp) as fh:
             removed = json.load(fh)
+    def load(name):
+        fp = os.path.join(ROOT, name)
+        return json.load(open(fp)) if os.path.exists(fp) else {}
+    overrides, coords = load("overrides.json"), load("coords.json")
     # keep the date each building was first published
     prev = {}
     lp = os.path.join(ROOT, "docs", "data", "listings.json")
@@ -142,6 +148,7 @@ def main():
     for r in rows.values():
         if str(r["id"]) in removed:
             continue
+        r = {**r, **overrides.get(str(r["id"]), {})}
         loc = locate(r["a"])
         if loc is None:
             dropped.append((r["id"], r["a"], "outside England"))
@@ -167,6 +174,8 @@ def main():
             "beds": int(r["b"]) if str(r.get("b") or "").isdigit() else None,
             "listed": parse_date(r["l"]),
             "badges": badges,
+            "lat": (coords.get(str(r["id"])) or [None, None])[0],
+            "lng": (coords.get(str(r["id"])) or [None, None])[1],
             "added": prev.get(str(r["id"])) or datetime.date.today().isoformat(),
         })
     out.sort(key=lambda x: x["listed"] or "", reverse=True)
