@@ -4,6 +4,7 @@ Input:  export/*.json   judged entries (later files override earlier ones)
         removed.json    ids to leave out, with a reason (flats, sold, misjudged)
         overrides.json  corrections to individual entries (w, n, g fields)
         coords.json     [lat, lng] for each listing, from its listing page
+        photos.json     best Geograph match per listing; last field 1 = approved for the site, 0 = awaiting review
 Output: docs/data/listings.json, docs/feed.xml and docs/feeds/<region>.xml
 
 Each export row:
@@ -123,6 +124,16 @@ def write_feeds(out):
             fh.write(rss(f"former. - {region}", [x for x in newest if x["region"] == region][:40]))
 
 
+def photo_for(m):
+    """photos.json rows: [photo id, title, author, year, server, path, ok]. ok=1 is used on the site."""
+    if not m or not m[6]:
+        return None
+    pid, title, author, year, server, path, _ = m
+    base = f"https://s{server}.geograph.org.uk/{path}"
+    return {"id": str(pid), "title": title.strip(), "author": author, "year": year,
+            "src": f"photos/{pid}.jpg", "thumb": base + "_213x160.jpg"}
+
+
 def main():
     rows = {}
     for f in sorted(glob.glob(os.path.join(ROOT, "export", "*.json"))):
@@ -137,7 +148,7 @@ def main():
     def load(name):
         fp = os.path.join(ROOT, name)
         return json.load(open(fp)) if os.path.exists(fp) else {}
-    overrides, coords = load("overrides.json"), load("coords.json")
+    overrides, coords, photos = load("overrides.json"), load("coords.json"), load("photos.json")
     # keep the date each building was first published
     prev = {}
     lp = os.path.join(ROOT, "docs", "data", "listings.json")
@@ -174,6 +185,7 @@ def main():
             "beds": int(r["b"]) if str(r.get("b") or "").isdigit() else None,
             "listed": parse_date(r["l"]),
             "badges": badges,
+            "photo": photo_for(photos.get(str(r["id"]))),
             "lat": (coords.get(str(r["id"])) or [None, None])[0],
             "lng": (coords.get(str(r["id"])) or [None, None])[1],
             "added": prev.get(str(r["id"])) or datetime.date.today().isoformat(),

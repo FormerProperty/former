@@ -1,0 +1,23 @@
+name: Fetch Geograph thumbnails
+on:
+  push:
+    branches: [main]
+    paths: ["docs/data/listings.json"]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  photos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python build/fetch_photos.py
+      - name: Commit new thumbnails
+        run: |
+          git config user.name "former. bot"
+          git config user.email "noreply@github.com"
+          git add docs/photos
+          git diff --cached --quiet || (git commit -m "Update Geograph thumbnails" && git push)
