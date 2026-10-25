@@ -143,7 +143,14 @@
    "beds": 4,
    "listed": "2026-10-23",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "4312672",
+    "title": "House at Lintzford",
+    "author": "Robert Graham",
+    "year": "2014",
+    "src": "photos/4312672.jpg",
+    "thumb": "https://s0.geograph.org.uk/geophotos/04/31/26/4312672_519a330e_213x160.jpg"
+   },
    "lat": 54.90904,
    "lng": -1.7669,
    "added": "2026-10-25"
@@ -376,7 +383,14 @@
    "beds": 4,
    "listed": "2026-10-19",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "3525763",
+    "title": "St John's Church",
+    "author": "Roger Templeman",
+    "year": "2013",
+    "src": "photos/3525763.jpg",
+    "thumb": "https://s3.geograph.org.uk/geophotos/03/52/57/3525763_31d49a68_213x160.jpg"
+   },
    "lat": 53.46425,
    "lng": -1.47009,
    "added": "2026-10-25"
@@ -920,7 +934,14 @@
    "beds": 6,
    "listed": "2026-10-13",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "2713171",
+    "title": "Former school, former public library",
+    "author": "Peter Barr",
+    "year": "2011",
+    "src": "photos/2713171.jpg",
+    "thumb": "https://s3.geograph.org.uk/geophotos/02/71/31/2713171_f91e9584_213x160.jpg"
+   },
    "lat": 53.30174,
    "lng": -1.3189,
    "added": "2026-10-25"
@@ -1395,7 +1416,14 @@
    "beds": 1,
    "listed": "2026-10-06",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "2928429",
+    "title": "Methodist Chapel",
+    "author": "Michael Dibb",
+    "year": "2012",
+    "src": "photos/2928429.jpg",
+    "thumb": "https://s1.geograph.org.uk/geophotos/02/92/84/2928429_6828c9e6_213x160.jpg"
+   },
    "lat": 52.11432,
    "lng": -1.7972,
    "added": "2026-10-25"
@@ -2485,7 +2513,14 @@
    "beds": 5,
    "listed": "2026-09-25",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "4185160",
+    "title": "Old Bakehouse Cottage, The Street, Bolney",
+    "author": "Simon Carey",
+    "year": "2014",
+    "src": "photos/4185160.jpg",
+    "thumb": "https://s0.geograph.org.uk/geophotos/04/18/51/4185160_2da27b76_213x160.jpg"
+   },
    "lat": 50.99503,
    "lng": -0.20337,
    "added": "2026-10-25"
@@ -2788,7 +2823,14 @@
    "beds": 4,
    "listed": "2026-09-23",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "4321752",
+    "title": "Former Oast House at Fosters Farm, Hayesden Lane, Bidborough",
+    "author": "Oast House Archive",
+    "year": "2015",
+    "src": "photos/4321752.jpg",
+    "thumb": "https://s0.geograph.org.uk/geophotos/04/32/17/4321752_722031e8_213x160.jpg"
+   },
    "lat": 51.17905,
    "lng": 0.23259,
    "added": "2026-10-25"
@@ -3000,7 +3042,14 @@
    "beds": 4,
    "listed": "2026-09-18",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "5423863",
+    "title": "Shop on House on Baldock Road, Letchworth",
+    "author": "JThomas",
+    "year": "2017",
+    "src": "photos/5423863.jpg",
+    "thumb": "https://s3.geograph.org.uk/geophotos/05/42/38/5423863_6f82fb6a_213x160.jpg"
+   },
    "lat": 51.96864,
    "lng": -0.23101,
    "added": "2026-10-25"
@@ -3049,7 +3098,14 @@
    "beds": 4,
    "listed": "2026-09-18",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "8034874",
+    "title": "Former Methodist chapel",
+    "author": "Derek Harper",
+    "year": "2025",
+    "src": "photos/8034874.jpg",
+    "thumb": "https://s2.geograph.org.uk/geophotos/08/03/48/8034874_b860d208_213x160.jpg"
+   },
    "lat": 51.24494,
    "lng": -2.47399,
    "added": "2026-10-25"
@@ -3175,7 +3231,14 @@
    "beds": 2,
    "listed": "2026-09-16",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "6448499",
+    "title": "Level crossing on the Rice Lane, Flaxton",
+    "author": "JThomas",
+    "year": "2020",
+    "src": "photos/6448499.jpg",
+    "thumb": "https://s3.geograph.org.uk/geophotos/06/44/84/6448499_5e080aed_213x160.jpg"
+   },
    "lat": 54.0607,
    "lng": -0.97149,
    "added": "2026-10-25"
@@ -3725,7 +3788,14 @@
    "badges": [
     "Project"
    ],
-   "photo": null,
+   "photo": {
+    "id": "6147416",
+    "title": "Buildings, Atherington",
+    "author": "Derek Harper",
+    "year": "2019",
+    "src": "photos/6147416.jpg",
+    "thumb": "https://s0.geograph.org.uk/geophotos/06/14/74/6147416_21a11a3f_213x160.jpg"
+   },
    "lat": 50.99069,
    "lng": -4.00916,
    "added": "2026-10-25"
@@ -4355,7 +4425,14 @@
    "beds": 4,
    "listed": "2026-09-02",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "763350",
+    "title": "Wesleyan chapel",
+    "author": "Keith Evans",
+    "year": "2008",
+    "src": "photos/763350.jpg",
+    "thumb": "https://s2.geograph.org.uk/photos/76/33/763350_94bcc9f3_213x160.jpg"
+   },
    "lat": 52.77305,
    "lng": 0.66391,
    "added": "2026-10-25"
@@ -4376,7 +4453,14 @@
    "beds": 4,
    "listed": "2026-09-02",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "7227028",
+    "title": "Oast House",
+    "author": "Oast House Archive",
+    "year": "2022",
+    "src": "photos/7227028.jpg",
+    "thumb": "https://s0.geograph.org.uk/geophotos/07/22/70/7227028_3a9709d6_213x160.jpg"
+   },
    "lat": 52.11477,
    "lng": -2.61928,
    "added": "2026-10-25"
@@ -5035,7 +5119,14 @@
    "beds": 3,
    "listed": "2026-08-13",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "7409735",
+    "title": "Bible Christian chapel",
+    "author": "Paul Barnett",
+    "year": "",
+    "src": "photos/7409735.jpg",
+    "thumb": "https://s3.geograph.org.uk/geophotos/07/40/97/7409735_b8d2faa5_213x160.jpg"
+   },
    "lat": 50.32087,
    "lng": -5.07951,
    "added": "2026-10-25"
@@ -5709,7 +5800,14 @@
    "beds": 2,
    "listed": "2026-07-22",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "880649",
+    "title": "Chapel Place the old Chapel",
+    "author": "jeff collins",
+    "year": "2008",
+    "src": "photos/880649.jpg",
+    "thumb": "https://s1.geograph.org.uk/photos/88/06/880649_9929562e_213x160.jpg"
+   },
    "lat": 50.39108,
    "lng": -3.92151,
    "added": "2026-10-25"
@@ -5914,7 +6012,14 @@
    "beds": 4,
    "listed": "2026-07-14",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "3642402",
+    "title": "Chingley Manor Oast",
+    "author": "Julian P Guffogg",
+    "year": "2013",
+    "src": "photos/3642402.jpg",
+    "thumb": "https://s2.geograph.org.uk/geophotos/03/64/24/3642402_491120c6_213x160.jpg"
+   },
    "lat": 51.07348,
    "lng": 0.41611,
    "added": "2026-10-25"
@@ -6242,7 +6347,14 @@
    "badges": [
     "Project"
    ],
-   "photo": null,
+   "photo": {
+    "id": "6515605",
+    "title": "Ailsworth Methodist Chapel",
+    "author": "Tim Heaton",
+    "year": "2020",
+    "src": "photos/6515605.jpg",
+    "thumb": "https://s1.geograph.org.uk/geophotos/06/51/56/6515605_fc8f7df6_213x160.jpg"
+   },
    "lat": 52.57744,
    "lng": -0.35247,
    "added": "2026-10-25"
@@ -6312,7 +6424,14 @@
    "beds": 5,
    "listed": "2026-07-01",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "386118",
+    "title": "Building at Brook Mill",
+    "author": "Derek Harper",
+    "year": "2007",
+    "src": "photos/386118.jpg",
+    "thumb": "https://s2.geograph.org.uk/photos/38/61/386118_8a2d1107_213x160.jpg"
+   },
    "lat": 50.53692,
    "lng": -4.14976,
    "added": "2026-10-25"
@@ -6396,7 +6515,14 @@
    "beds": 4,
    "listed": "2026-06-30",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "4502691",
+    "title": "Cowl of Oast Cottage",
+    "author": "Oast House Archive",
+    "year": "2015",
+    "src": "photos/4502691.jpg",
+    "thumb": "https://s3.geograph.org.uk/geophotos/04/50/26/4502691_9b102707_213x160.jpg"
+   },
    "lat": 51.0797,
    "lng": 0.77619,
    "added": "2026-10-25"
@@ -6962,7 +7088,14 @@
    "beds": 6,
    "listed": "2026-06-15",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "3909636",
+    "title": "The Old Mill House, Bramshott",
+    "author": "David960",
+    "year": "2014",
+    "src": "photos/3909636.jpg",
+    "thumb": "https://s0.geograph.org.uk/geophotos/03/90/96/3909636_7e786e18_213x160.jpg"
+   },
    "lat": 51.0923,
    "lng": -0.80605,
    "added": "2026-10-25"
@@ -7573,7 +7706,14 @@
    "beds": 4,
    "listed": "2026-06-04",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "4429006",
+    "title": "Former Wesleyan Chapel in Cinderford",
+    "author": "Jaggery",
+    "year": "2015",
+    "src": "photos/4429006.jpg",
+    "thumb": "https://s2.geograph.org.uk/geophotos/04/42/90/4429006_71f24232_213x160.jpg"
+   },
    "lat": 51.82412,
    "lng": -2.48959,
    "added": "2026-10-25"
@@ -8080,7 +8220,14 @@
    "beds": 6,
    "listed": "2026-05-19",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "1263688",
+    "title": "Whitepost Farm Oast, Chiddingstone Causeway",
+    "author": "N Chadwick",
+    "year": "2009",
+    "src": "photos/1263688.jpg",
+    "thumb": "https://s0.geograph.org.uk/geophotos/01/26/36/1263688_20d0f8b6_213x160.jpg"
+   },
    "lat": 51.19851,
    "lng": 0.17889,
    "added": "2026-10-25"
@@ -8301,7 +8448,14 @@
    "badges": [
     "Project"
    ],
-   "photo": null,
+   "photo": {
+    "id": "6810405",
+    "title": "Catalyst Church, Saxondale",
+    "author": "Jonathan Thacker",
+    "year": "2021",
+    "src": "photos/6810405.jpg",
+    "thumb": "https://s1.geograph.org.uk/geophotos/06/81/04/6810405_0f638ccb_213x160.jpg"
+   },
    "lat": 52.94586,
    "lng": -1.00489,
    "added": "2026-10-25"
@@ -8620,7 +8774,14 @@
    "beds": 4,
    "listed": "2026-05-05",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "229641",
+    "title": "An Old Methodist Chapel on Trevellas Downs",
+    "author": "Tony Atkin",
+    "year": "2006",
+    "src": "photos/229641.jpg",
+    "thumb": "https://s1.geograph.org.uk/photos/22/96/229641_bced0c61_213x160.jpg"
+   },
    "lat": 50.32253,
    "lng": -5.17583,
    "added": "2026-10-25"
@@ -9040,7 +9201,14 @@
    "beds": 6,
    "listed": "2026-04-15",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "5921591",
+    "title": "The Methodist Chapel in Bradwell",
+    "author": "Neil Theasby",
+    "year": "2018",
+    "src": "photos/5921591.jpg",
+    "thumb": "https://s3.geograph.org.uk/geophotos/05/92/15/5921591_11017872_213x160.jpg"
+   },
    "lat": 53.32818,
    "lng": -1.74206,
    "added": "2026-10-25"
@@ -9380,7 +9548,14 @@
    "beds": 5,
    "listed": "2026-03-30",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "1861285",
+    "title": "Windmill Farm, Tollerton",
+    "author": "Gordon Hatton",
+    "year": "2010",
+    "src": "photos/1861285.jpg",
+    "thumb": "https://s1.geograph.org.uk/geophotos/01/86/12/1861285_051c2a4a_213x160.jpg"
+   },
    "lat": 54.06759,
    "lng": -1.2163,
    "added": "2026-10-25"
@@ -9695,7 +9870,14 @@
    "beds": 3,
    "listed": "2026-03-19",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "6053020",
+    "title": "Former Methodist Chapel",
+    "author": "Les Hull",
+    "year": "2019",
+    "src": "photos/6053020.jpg",
+    "thumb": "https://s0.geograph.org.uk/geophotos/06/05/30/6053020_37ce80f4_213x160.jpg"
+   },
    "lat": 55.34153,
    "lng": -1.7317,
    "added": "2026-10-25"
@@ -10141,7 +10323,14 @@
    "beds": 4,
    "listed": "2026-02-20",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "563031",
+    "title": "The Oast, Gate Court Farm, Station Road, Northiam, East Sussex",
+    "author": "Oast House Archive",
+    "year": "2007",
+    "src": "photos/563031.jpg",
+    "thumb": "https://s3.geograph.org.uk/photos/56/30/563031_3598a615_213x160.jpg"
+   },
    "lat": 51.00856,
    "lng": 0.61398,
    "added": "2026-10-25"
@@ -10559,7 +10748,14 @@
     "Auction",
     "Project"
    ],
-   "photo": null,
+   "photo": {
+    "id": "214635",
+    "title": "Victorian Water",
+    "author": "Michael Patterson",
+    "year": "2006",
+    "src": "photos/214635.jpg",
+    "thumb": "https://s3.geograph.org.uk/photos/21/46/214635_74249589_213x160.jpg"
+   },
    "lat": 53.40177,
    "lng": -0.77002,
    "added": "2026-10-25"
@@ -10708,7 +10904,14 @@
    "beds": 5,
    "listed": "2025-12-16",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "81215",
+    "title": "The Travellers Rest",
+    "author": "Phil Gravell",
+    "year": "2005",
+    "src": "photos/81215.jpg",
+    "thumb": "https://s3.geograph.org.uk/photos/08/12/081215_c1a8f502_213x160.jpg"
+   },
    "lat": 54.6361,
    "lng": -3.53603,
    "added": "2026-10-25"
@@ -11002,7 +11205,14 @@
    "beds": 4,
    "listed": "2025-10-10",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "2439431",
+    "title": "Eastlea Oast, Bull Lane, Boughton Under Blean, Kent",
+    "author": "Oast House Archive",
+    "year": "2011",
+    "src": "photos/2439431.jpg",
+    "thumb": "https://s3.geograph.org.uk/geophotos/02/43/94/2439431_fb431110_213x160.jpg"
+   },
    "lat": 51.30028,
    "lng": 0.94909,
    "added": "2026-10-25"
@@ -11393,7 +11603,14 @@
    "beds": 4,
    "listed": "2025-08-26",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "614791",
+    "title": "Hall Chapel",
+    "author": "David M Jones",
+    "year": "2007",
+    "src": "photos/614791.jpg",
+    "thumb": "https://s3.geograph.org.uk/photos/61/47/614791_b97d9f1c_213x160.jpg"
+   },
    "lat": 52.33799,
    "lng": -0.66436,
    "added": "2026-10-25"
@@ -11806,7 +12023,14 @@
    "beds": 3,
    "listed": "2025-05-30",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "851924",
+    "title": "Martham Level Drainage Mill",
+    "author": "Evelyn Simak",
+    "year": "2008",
+    "src": "photos/851924.jpg",
+    "thumb": "https://s0.geograph.org.uk/photos/85/19/851924_ae5f5e9e_213x160.jpg"
+   },
    "lat": 52.71601,
    "lng": 1.6145,
    "added": "2026-10-25"
@@ -11827,7 +12051,14 @@
    "beds": 5,
    "listed": "2025-05-23",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "6463760",
+    "title": "Church or house?",
+    "author": "Malcolm Neal",
+    "year": "2020",
+    "src": "photos/6463760.jpg",
+    "thumb": "https://s0.geograph.org.uk/geophotos/06/46/37/6463760_bd460112_213x160.jpg"
+   },
    "lat": 52.89593,
    "lng": -1.56011,
    "added": "2026-10-25"
@@ -12130,7 +12361,14 @@
    "beds": 5,
    "listed": "2024-04-30",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "1724918",
+    "title": "Oast house by the Darent Valley Path, Otford (2)",
+    "author": "N Chadwick",
+    "year": "2010",
+    "src": "photos/1724918.jpg",
+    "thumb": "https://s2.geograph.org.uk/geophotos/01/72/49/1724918_ddda0edc_213x160.jpg"
+   },
    "lat": 51.31187,
    "lng": 0.18503,
    "added": "2026-10-25"
@@ -12306,7 +12544,14 @@
    "beds": 1,
    "listed": "2023-02-08",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "3865812",
+    "title": "Heath Road, Polstead Heath (with chapel on left)",
+    "author": "Hamish Griffin",
+    "year": "2014",
+    "src": "photos/3865812.jpg",
+    "thumb": "https://s0.geograph.org.uk/geophotos/03/86/58/3865812_17b74a03_213x160.jpg"
+   },
    "lat": 52.02233,
    "lng": 0.91103,
    "added": "2026-10-25"
