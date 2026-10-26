@@ -122,6 +122,27 @@ def label(was):
     return f"Formerly {art} {noun}{tail}"
 
 
+OS_BY_WAS = [
+    (r"signal box", "SB"), (r"sunday school", "S Sch"), (r"convent", "Convent"), (r"priory", "Priory"),
+    (r"library", "Liby"), (r"court ?house", "Court Ho"), (r"pumping", "Pumping Sta"), (r"telephone", "Tel Exch"),
+    (r"engine house", "Engine Ho"), (r"watermill|corn mill", "Mill"), (r"smock|tower mill|windmill", "Windmill"),
+    (r"\binn\b", "Inn"), (r"meeting house", "Meeting Ho"), (r"\bhall\b", "Hall"), (r"warehouse|factory|works|commercial", "Wks"),
+]
+OS_BY_TYPE = {"chapel": "Chap", "church": "Ch", "school": "Sch", "mill": "Mill", "windmill": "Windmill", "station": "Sta",
+              "pub": "PH", "oast": "Oast", "tower": "Water Tower", "coach": "Coach Ho", "toll": "Toll Ho", "police": "Police Sta",
+              "fire": "Fire Sta", "bank": "Bank", "postoffice": "PO", "dairy": "Dairy", "forge": "Smy", "granary": "Granary",
+              "malthouse": "Malt Ho", "bakery": "Bakehouse", "hall": "Hall", "works": "Wks"}
+
+
+def os_label(was, typ):
+    """Old Ordnance Survey map shorthand for the building (mirrors osLabel() in docs/index.html)."""
+    w = (was or "").lower()
+    for pat, lab in OS_BY_WAS:
+        if re.search(pat, w):
+            return lab
+    return OS_BY_TYPE.get(typ, "Bldg")
+
+
 def rss(title, items):
     def item(x):
         bits = [x["priceText"] or "Price on application"]
@@ -211,6 +232,7 @@ def main():
             "type": t,
             "was": was,
             "label": label(was),
+            "os": os_label(was, t),
             "note": r.get("n") or "",
             "place": place,
             "postcode": district,
