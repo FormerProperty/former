@@ -1,0 +1,24 @@
+name: Weekly email draft
+on:
+  schedule:
+    - cron: "23 7 * * 5"   # Fridays 07:23 UTC: draft only, Tanya presses Send in Buttondown
+  workflow_dispatch:
+    inputs:
+      test:
+        description: "Mark the draft as a test"
+        type: boolean
+        default: true
+permissions:
+  contents: read
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Create Buttondown draft
+        env:
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+        run: python build/newsletter.py ${{ (github.event_name == 'workflow_dispatch' && inputs.test) && '--test' || '' }}

@@ -3,58 +3,82 @@
 <head>
 <meta charset="utf-8">
 <script>if(location.hostname.endsWith("github.io"))location.replace("https://formerly.uk"+location.pathname.replace(/^\/former/,"")+location.search);</script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Privacy | formerly.</title>
 <link rel="canonical" href="https://formerly.uk/privacy.html">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Schibsted+Grotesk:wght@400;500&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@400;500;600&display=swap">
 <style>
-:root{--bg:#ECEEEA;--ink:#1D2224;--muted:#5D6766;--rule:#CDD3CE;--accent:#2C6B65;--flag:#8A5A12;--flag-soft:#F1E5CF}
-@media (prefers-color-scheme: dark){:root{--bg:#151A1B;--ink:#E6EAE7;--muted:#9AA5A3;--rule:#2E3739;--accent:#7FC0B6;--flag:#E2B567;--flag-soft:#3A2F1C;color-scheme:dark}}
+:root{
+  --paper:#F3F2EE;      /* limewashed stone, not cream */
+  --ink:#1B1D1C;
+  --muted:#5E625F;
+  --rule:#D3D1CA;
+  --stone:#E2DFD6;      /* panel for buildings without a photo */
+  --livery:#1E4D3B;     /* Brunswick green, railway and chapel railings */
+  --livery-soft:#DCE5DF;
+  --oxblood:#7B2D26;
+  --display:"Libre Caslon Display", "Libre Caslon Text", Georgia, serif;
+  --serif:"Libre Caslon Text", Georgia, "Times New Roman", serif;
+  --sans:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#121413; --ink:#ECEDEA; --muted:#A0A5A1; --rule:#2C302E; --stone:#1D201E;
+    --livery:#86BFA4; --livery-soft:#1B2A23; --oxblood:#E1958B; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#121413; --ink:#ECEDEA; --muted:#A0A5A1; --rule:#2C302E; --stone:#1D201E;
+  --livery:#86BFA4; --livery-soft:#1B2A23; --oxblood:#E1958B; color-scheme:dark;
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Schibsted Grotesk",system-ui,sans-serif;padding:40px max(16px,env(safe-area-inset-left,0px)) 64px}
-main{max-width:680px;margin:0 auto;display:grid;gap:14px}
-h1{font:400 44px/1 "Young Serif",Georgia,serif;margin:0 0 8px}
-h1 span{color:var(--accent)}
-h2{font:400 22px/1.3 "Young Serif",Georgia,serif;margin:18px 0 0}
-p,li{margin:0;max-width:64ch}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);padding:0 max(16px, env(safe-area-inset-left, 0px)) 64px}
+main{max-width:680px;margin:0 auto;display:grid;gap:14px;border-top:6px solid var(--ink);padding-top:22px}
+a{color:var(--livery);text-underline-offset:3px}
+.back{font-size:14px}
+h1{font:400 clamp(40px,8vw,56px)/1 var(--display);margin:6px 0 10px;letter-spacing:-.02em}
+h1 span{color:var(--livery)}
+h1 small{font:italic 400 .5em var(--serif);color:var(--muted);letter-spacing:0}
+h2{font:400 22px/1.3 var(--serif);margin:22px 0 0;padding-top:14px;border-top:1px solid var(--rule)}
+p,li{margin:0;max-width:66ch}
 ul{margin:0;padding-left:20px;display:grid;gap:6px}
-a{color:var(--accent)}
-.draft{font-size:13px;color:var(--flag);background:var(--flag-soft);border-radius:6px;padding:10px 14px}
+.updated{color:var(--muted);font-size:14px;margin-top:20px}
 </style>
 </head>
 <body>
 <main>
-<p class="draft">DRAFT. Fill in the bracketed details and check this against your own circumstances before the sign-up form goes live.</p>
-<p><a href="./">← Back to formerly.</a></p>
-<h1>formerly<span>.</span> privacy</h1>
-<p>formerly. is a free listing of buildings for sale in England that were originally built as something other than homes. It is run by [your name] as a not-for-profit project. This page explains what personal information we hold and what we do with it.</p>
+<p class="back"><a href="./">&larr; Back to formerly.</a></p>
+<h1>formerly<span>.</span> <small>privacy</small></h1>
+<p>formerly. is a free, not-for-profit listing of buildings for sale in England that were originally built as something other than homes. It is run by Tanya Park, who is responsible for the personal information described here. You can contact her at <a href="mailto:hello@formerly.uk">hello@formerly.uk</a>.</p>
 
-<h2>What we collect</h2>
-<p>The website itself does not collect personal information, use cookies or track visitors. We only hold personal information if you sign up for the weekly email. Then we hold:</p>
+<h2>The weekly email</h2>
+<p>If you sign up for the weekly email, we hold:</p>
 <ul>
   <li>your email address</li>
-  <li>the areas or building types you choose to hear about, if you choose any</li>
-  <li>basic delivery records, such as whether an email was delivered or opened</li>
+  <li>basic delivery records, such as whether an email was delivered</li>
 </ul>
+<p>We use your address only to send you the weekly email you asked for. Our lawful basis is your consent, which you give when you subscribe and confirm your address by clicking the link we send you.</p>
+<p>The mailing list is run for us by Buttondown, which stores your address and sends the emails on our behalf (<a href="https://buttondown.com/legal/privacy" rel="noopener">Buttondown's privacy policy</a>). Buttondown is based in the United States, so your address is stored outside the UK under safeguards approved for international transfers.</p>
+<p>We never sell, share or rent your address, and we never use it for anything else. We keep it until you unsubscribe, which you can do at any time with the link at the bottom of every email.</p>
 
-<h2>Why we hold it</h2>
-<p>We hold your email address only to send you the formerly. weekly email you asked for. Our lawful basis is your consent, which you give when you subscribe and confirm your address.</p>
+<h2>Reporting a listing</h2>
+<p>If you use <em>Report</em> on a listing, we store the listing, the reason you chose and any note you write. We do not ask for your name or email, so please do not put personal details in the note. Reports are kept until we have dealt with them, and for a short while after as a record.</p>
 
-<h2>Who processes it</h2>
-<p>Our mailing list is run by [Buttondown, Inc.], which stores your details and sends the emails on our behalf. Their privacy policy is at [link]. Your details may be stored outside the UK, under safeguards approved for international transfers.</p>
-<p>We never sell, share or rent your details, and we never use them for anything else.</p>
-
-<h2>How long we keep it</h2>
-<p>We keep your details until you unsubscribe. When you do, we delete them, except for a record that the address has unsubscribed, which stops it being added again by mistake.</p>
+<h2>Visiting the website</h2>
+<p>The website does not use advertising or tracking cookies, and we do not run analytics. It remembers whether you prefer the grid or list view, in your own browser only.</p>
+<p>Like any website, it has to be delivered to you. It is hosted by Cloudflare, whose systems briefly process your IP address to deliver pages and protect the site from attack. The typefaces are loaded from Google Fonts, which also receives your IP address when the page loads.</p>
 
 <h2>Your rights</h2>
-<p>You can unsubscribe at any time using the link at the bottom of every email. You also have the right to see the information we hold about you, to have it corrected or deleted, and to withdraw your consent. To do any of these, email [contact address].</p>
-<p>If you are unhappy with how we have handled your information, you can complain to the Information Commissioner's Office at ico.org.uk.</p>
+<p>You have the right to see the information we hold about you, to have it corrected or deleted, and to withdraw your consent at any time. To do any of these, email <a href="mailto:hello@formerly.uk">hello@formerly.uk</a>.</p>
+<p>If you are unhappy with how we have handled your information, you can complain to the Information Commissioner's Office at <a href="https://ico.org.uk/" rel="noopener">ico.org.uk</a>.</p>
 
 <h2>Listings</h2>
-<p>Each building on formerly. links to its original advert. We are not an estate agent and we do not handle enquiries or sales. Any information you give an agent is held by that agent under their own privacy policy.</p>
+<p>Each building on formerly. links to its advert on Zoopla. We are not an estate agent and we do not handle enquiries or sales. Any information you give an agent is held by that agent under their own privacy policy.</p>
 
-<p style="color:var(--muted);font-size:14px">Last updated [date].</p>
+<p class="updated">Last updated 26 October 2026.</p>
 </main>
 </body>
 </html>

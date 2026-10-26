@@ -118,7 +118,8 @@ form{display:flex;gap:0;margin-top:14px}
 input[type=email]{flex:1 1 auto;min-width:0;font:15px var(--sans);color:var(--ink);background:transparent;border:1px solid var(--ink);border-right:0;padding:11px 12px;border-radius:0}
 button.primary{font:600 15px var(--sans);background:var(--livery);color:var(--paper);border:1px solid var(--livery);padding:11px 20px;cursor:pointer;border-radius:0}
 .sub p{margin:0;color:var(--muted)}
-.formnote{margin-top:8px;font-size:13px;color:var(--oxblood)}
+.formnote{margin-top:8px;font-size:14px;color:var(--livery)}
+.signup-small{margin-top:8px !important;font-size:13px;color:var(--muted)}
 .sources{margin:10px 0 0;font-size:13.5px;color:var(--muted)}
 .sources a{color:var(--ink);text-underline-offset:3px;text-decoration-color:var(--rule)}
 .actions{display:flex;gap:18px;align-items:baseline;font-size:13.5px;padding-top:2px}
@@ -230,12 +231,15 @@ footer p{margin:0;max-width:78ch}
     </div>
     <div class="sub">
       <h2>The weekly list</h2>
-      <p>One email each week with the newest buildings. All of England, or just your county.</p>
-      <form id="signup">
-        <input type="email" id="email" placeholder="you@example.com" aria-label="Email address" required>
+      <p>One email each week with the newest buildings across England. If you only want one region, its <a href="#feeds">RSS feed</a> is free.</p>
+      <form id="signup" action="https://buttondown.com/api/emails/embed-subscribe/formerly" method="post" target="bd-signup">
+        <input type="email" id="email" name="email" placeholder="you@example.com" aria-label="Email address" autocomplete="email" required>
+        <input type="hidden" name="embed" value="1">
         <button class="primary" type="submit">Subscribe</button>
       </form>
-      <div class="formnote" id="formnote" hidden>Sign-ups open soon. Nothing has been sent or saved.</div>
+      <p class="signup-small">We'll email you a link to confirm. Your address is held by our mailing service, Buttondown, and used for nothing else. <a href="privacy.html">Privacy</a></p>
+      <div class="formnote" id="formnote" role="status" hidden></div>
+      <iframe name="bd-signup" title="Sign-up confirmation" hidden></iframe>
     </div>
   </section>
 
@@ -249,7 +253,8 @@ footer p{margin:0;max-width:78ch}
   </section>
 
   <footer>
-    <p>formerly. is a free, not-for-profit listing. We are not an estate agent: every building is advertised by its own agent, and all enquiries go to them. <a href="privacy.html">Privacy</a> · <a href="feed.xml">RSS</a></p>
+    <p>formerly. is a free, not-for-profit listing. We are not an estate agent: every building is advertised by its own agent, and all enquiries go to them. <a href="privacy.html">Privacy</a> · <a href="mailto:hello@formerly.uk">hello@formerly.uk</a></p>
+    <p id="feeds">RSS feeds: <a href="feed.xml">All of England</a> · <a href="feeds/east-midlands.xml">East Midlands</a> · <a href="feeds/east-of-england.xml">East of England</a> · <a href="feeds/london.xml">London</a> · <a href="feeds/north-east.xml">North East</a> · <a href="feeds/north-west.xml">North West</a> · <a href="feeds/south-east.xml">South East</a> · <a href="feeds/south-west.xml">South West</a> · <a href="feeds/west-midlands.xml">West Midlands</a> · <a href="feeds/yorkshire-and-the-humber.xml">Yorkshire and the Humber</a></p>
   </footer>
 </div>
 
@@ -411,7 +416,11 @@ $('county').addEventListener('change',()=>{ shown=PAGE; renderTabs(); render(); 
 $('view-grid').addEventListener('click',()=>setView('grid'));
 $('view-rows').addEventListener('click',()=>setView('rows'));
 $('more').addEventListener('click',()=>{ shown+=PAGE; render(); });
-$('signup').addEventListener('submit',ev=>{ ev.preventDefault(); $('formnote').hidden=false; });
+// Posts to Buttondown in a hidden frame, so visitors stay on the page
+$('signup').addEventListener('submit',()=>{
+  const n=$('formnote'); n.textContent='Thank you. Check your inbox for a link to confirm your subscription.'; n.hidden=false;
+  setTimeout(()=>{ $('email').value=''; },50);
+});
 let reporting=null;
 $('list').addEventListener('click',ev=>{
   const b=ev.target.closest('button.report'); if(!b) return;
