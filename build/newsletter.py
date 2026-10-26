@@ -122,6 +122,7 @@ def build(listings, today, test=False):
     rest.sort(key=lambda x: (x["region"], -(x.get("price") or 0)))
     date = today.strftime("%-d %B %Y")
     subject = f"{'[TEST] ' if test else ''}formerly. · {n} new building{'s' if n != 1 else ''} this week"
+    total = len(listings)
     lead = summary(new)
     lead = lead[0].upper() + lead[1:]
 
@@ -146,7 +147,10 @@ def build(listings, today, test=False):
 <tr><td><a href="{SITE}"><img src="{SITE}/email/wordmark.png" width="600" height="150" alt="formerly." style="display:block;width:100%;max-width:600px;height:auto;border:0"></a></td></tr>
 <tr><td class="pad" style="padding:4px 30px 0"><p style="margin:0;font:bold 11px {SANS};letter-spacing:2px;text-transform:uppercase;color:{MUTED}">The weekly list &middot; {h(date)}</p></td></tr>
 <tr><td class="pad" style="padding:14px 30px 22px"><p style="margin:0;font:22px/1.4 {SERIF};color:{INK}">{h(lead)} came up for sale in England this week, every one built for something other than living in.</p>
-<p style="margin:12px 0 0;font:15px/1.5 {SANS};color:{MUTED}">Each links to the full listing on Zoopla. Enquiries go to the agent.</p></td></tr>
+<p style="margin:12px 0 0;font:15px/1.5 {SANS};color:{MUTED}">Each links to the full listing on Zoopla. Enquiries go to the agent.</p>
+<table role="presentation" cellpadding="0" cellspacing="0" style="margin-top:18px"><tr><td bgcolor="{GREEN}" style="background:{GREEN}">
+<a href="{SITE}" style="display:inline-block;padding:11px 20px;font:bold 15px {SANS};color:#ffffff;text-decoration:none">See all {total} buildings on formerly.uk &rarr;</a>
+</td></tr></table></td></tr>
 {pick(featured) if featured else ""}
 {"".join(blocks)}
 {more}
