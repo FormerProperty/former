@@ -1,0 +1,19 @@
+# Weekly review summary email for formerly.uk
+name = "formerly-digest"
+main = "index.js"
+compatibility_date = "2026-10-01"
+workers_dev = false
+preview_urls = false
+
+[[d1_databases]]
+binding = "DB"
+database_name = "formerly"
+database_id = "70c96256-724e-4f94-854c-4dc891104e7d"
+
+# Can only send to this verified address
+[[send_email]]
+name = "MAIL"
+destination_address = "tanya@tanyapark.com"
+
+[triggers]
+crons = ["43 7 * * 1"]   # Mondays 07:43 UTC
