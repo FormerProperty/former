@@ -71,12 +71,50 @@ def text_for(x, total):
     return text, facets
 
 
+POST_HOURS = (8, 12, 18)  # UK time
+SLOTS = os.path.join(ROOT, "social", "bluesky-slot.json")
+
+
+def uk_now():
+    """Current UK time, without relying on the system time-zone database."""
+    now = datetime.datetime.now(datetime.timezone.utc)
+    try:
+        from zoneinfo import ZoneInfo
+        return now.astimezone(ZoneInfo("Europe/London"))
+    except Exception:
+        def last_sunday(year, month):
+            d = datetime.date(year, month, 31)
+            return d - datetime.timedelta(days=(d.weekday() + 1) % 7)
+        y = now.year
+        start = datetime.datetime.combine(last_sunday(y, 3), datetime.time(1), datetime.timezone.utc)
+        end = datetime.datetime.combine(last_sunday(y, 10), datetime.time(1), datetime.timezone.utc)
+        return now + (datetime.timedelta(hours=1) if start <= now < end else datetime.timedelta())
+
+
+def due_slot():
+    """The latest posting slot (e.g. '2026-10-26 18') if under 3 hours old and not yet used.
+    GitHub often starts scheduled runs late, so a slot is honoured for a while, not only in its own hour."""
+    now = uk_now()
+    slots = [now.replace(hour=h, minute=0, second=0, microsecond=0) for h in POST_HOURS]
+    slots += [x - datetime.timedelta(days=1) for x in slots]
+    latest = max(x for x in slots if x <= now)
+    if now - latest > datetime.timedelta(hours=3):
+        return None
+    key = latest.strftime("%Y-%m-%d %H")
+    try:
+        with open(SLOTS) as fh:
+            if json.load(fh).get("last") == key:
+                return None
+    except FileNotFoundError:
+        pass
+    return key
+
+
 def main():
     dry = "--dry-run" in sys.argv
-    from zoneinfo import ZoneInfo
-    hour = datetime.datetime.now(ZoneInfo("Europe/London")).hour
-    if "--now" not in sys.argv and hour not in POST_HOURS:
-        print(f"It is {hour}:00 in London; posts go out at 8am, 12pm and 6pm. Skipping.")
+    slot = due_slot()
+    if "--now" not in sys.argv and not slot:
+        print(f"No posting slot due at {uk_now():%H:%M} UK time; posts go out at 8am, 12pm and 6pm.")
         return 0
     with open(os.path.join(ROOT, "docs", "data", "listings.json")) as fh:
         data = json.load(fh)
@@ -117,6 +155,8 @@ def main():
     os.makedirs(os.path.dirname(POSTED), exist_ok=True)
     with open(POSTED, "w") as fh:
         json.dump(sorted(posted), fh, indent=0)
+    with open(SLOTS, "w") as fh:
+        json.dump({"last": slot or uk_now().strftime("%Y-%m-%d %H")}, fh)
     return 0
 
 
