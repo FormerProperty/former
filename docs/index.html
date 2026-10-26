@@ -305,11 +305,12 @@ let ALL = [], shown = PAGE, group = 'all', view = 'grid';
 const fmtDate = iso => iso ? new Date(iso+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) : '';
 const esc = s => String(s??'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
+const isProject = e => e.badges.includes('Project') || e.badges.includes('Unconverted');
 function filtered(){
   const region=$('region').value, county=$('county').value, max=+$('price').value||Infinity, kind=$('kind').value;
   const types = group==='all' ? null : new Set(GROUPS.find(g=>g[0]===group)[2]);
   const out = ALL.filter(e => (!types||types.has(e.type)) && (!region||e.region===region) && (!county||e.county===county) &&
-    (e.price==null||e.price<=max) && (!kind || (kind==='done' ? !e.badges.includes('Project') : e.badges.includes(kind))));
+    (e.price==null||e.price<=max) && (!kind || (kind==='done' ? !isProject(e) : kind==='Project' ? isProject(e) : e.badges.includes(kind))));
   const s=$('sort').value;
   out.sort((a,b)=> s==='low' ? (a.price??9e9)-(b.price??9e9) : s==='high' ? (b.price??0)-(a.price??0) : (b.listed||'').localeCompare(a.listed||''));
   return out;
@@ -396,7 +397,7 @@ async function boot(){
   ALL=data.listings;
   $('region').innerHTML += [...new Set(ALL.map(e=>e.region))].sort().map(r=>`<option>${esc(r)}</option>`).join('');
   fillCounties();
-  const projects=ALL.filter(e=>e.badges.includes('Project')).length, counties=new Set(ALL.map(e=>e.county)).size;
+  const projects=ALL.filter(isProject).length, counties=new Set(ALL.map(e=>e.county)).size;
   $('stats').innerHTML=`<span><b>${ALL.length}</b> buildings</span><span><b>${counties}</b> counties</span><span><b>${projects}</b> still to convert</span><span>Updated ${fmtDate(data.updated)}</span>`;
   renderTabs(); render();
 }

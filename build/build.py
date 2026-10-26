@@ -196,14 +196,21 @@ def main():
         badges = [b for b in (r.get("g") or "").split("|") if b]
         if r.get("au") and "Auction" not in badges:
             badges.append("Auction")
+        was = r["w"]
+        if re.search(r",\s*unconverted\b", was):
+            # Condition belongs in the flag, not the history line
+            was = re.sub(r",\s*unconverted\b", "", was).strip()
+            badges = ["Unconverted" if b == "Project" else b for b in badges]
+            if "Unconverted" not in badges:
+                badges.insert(0, "Unconverted")
         t = r["t"] if r["t"] in TYPE_LABELS else "other"
         out.append({
             "id": str(r["id"]),
             "url": f"https://www.zoopla.co.uk/for-sale/details/{r['id']}/",
             "source": "Zoopla",
             "type": t,
-            "was": r["w"],
-            "label": label(r["w"]),
+            "was": was,
+            "label": label(was),
             "note": r.get("n") or "",
             "place": place,
             "postcode": district,

@@ -303,8 +303,8 @@
    "url": "https://www.zoopla.co.uk/for-sale/details/74569099/",
    "source": "Zoopla",
    "type": "church",
-   "was": "Methodist church, unconverted",
-   "label": "Formerly a Methodist church, unconverted",
+   "was": "Methodist church",
+   "label": "Formerly a Methodist church",
    "note": "",
    "place": "Timsbury Methodist Church, South Road, Timsbury",
    "postcode": "BA2",
@@ -315,7 +315,7 @@
    "beds": 4,
    "listed": "2026-10-21",
    "badges": [
-    "Project"
+    "Unconverted"
    ],
    "photo": {
     "id": "4344257",
@@ -791,8 +791,8 @@
    "url": "https://www.zoopla.co.uk/for-sale/details/74506613/",
    "source": "Zoopla",
    "type": "chapel",
-   "was": "chapel, unconverted",
-   "label": "Formerly a chapel, unconverted",
+   "was": "chapel",
+   "label": "Formerly a chapel",
    "note": "Village chapel ready for conversion",
    "place": "Threshfield",
    "postcode": "BD23",
@@ -803,7 +803,7 @@
    "beds": 2,
    "listed": "2026-10-14",
    "badges": [
-    "Project"
+    "Unconverted"
    ],
    "photo": {
     "id": "3759264",
@@ -880,8 +880,8 @@
    "url": "https://www.zoopla.co.uk/for-sale/details/74511203/",
    "source": "Zoopla",
    "type": "church",
-   "was": "Bethel Church, unconverted",
-   "label": "Formerly Bethel Church, unconverted",
+   "was": "Bethel Church",
+   "label": "Formerly Bethel Church",
    "note": "",
    "place": "The Bethel Church, High Brooms Road, Tunbridge Wells",
    "postcode": "TN4",
@@ -893,7 +893,7 @@
    "listed": "2026-10-14",
    "badges": [
     "Auction",
-    "Project"
+    "Unconverted"
    ],
    "photo": {
     "id": "4428606",
@@ -912,8 +912,8 @@
    "url": "https://www.zoopla.co.uk/for-sale/details/74511249/",
    "source": "Zoopla",
    "type": "granary",
-   "was": "granary, unconverted",
-   "label": "Formerly a granary, unconverted",
+   "was": "granary",
+   "label": "Formerly a granary",
    "note": "With outbuildings and about 14 acres",
    "place": "Cowstead Road, Stockbury, Sittingbourne",
    "postcode": "ME9",
@@ -925,7 +925,7 @@
    "listed": "2026-10-14",
    "badges": [
     "Auction",
-    "Project"
+    "Unconverted"
    ],
    "photo": null,
    "lat": 51.33311,
@@ -988,8 +988,8 @@
    "url": "https://www.zoopla.co.uk/for-sale/details/74481001/",
    "source": "Zoopla",
    "type": "chapel",
-   "was": "chapel, unconverted",
-   "label": "Formerly a chapel, unconverted",
+   "was": "chapel",
+   "label": "Formerly a chapel",
    "note": "Original pews still in place",
    "place": "Longburton, Sherborne",
    "postcode": "DT9",
@@ -1001,7 +1001,7 @@
    "listed": "2026-10-12",
    "badges": [
     "Auction",
-    "Project"
+    "Unconverted"
    ],
    "photo": {
     "id": "316858",
@@ -5087,8 +5087,8 @@
    "url": "https://www.zoopla.co.uk/for-sale/details/74027950/",
    "source": "Zoopla",
    "type": "oast",
-   "was": "oast house, unconverted",
-   "label": "Formerly an oast house, unconverted",
+   "was": "oast house",
+   "label": "Formerly an oast house",
    "note": "Approval for a three-bedroom home",
    "place": "Water Lane Farm Oast, Headcorn, Ashford",
    "postcode": "TN27",
@@ -5099,7 +5099,7 @@
    "beds": 3,
    "listed": "2026-08-20",
    "badges": [
-    "Project"
+    "Unconverted"
    ],
    "photo": {
     "id": "4395125",
@@ -8755,8 +8755,8 @@
    "url": "https://www.zoopla.co.uk/for-sale/details/73182623/",
    "source": "Zoopla",
    "type": "school",
-   "was": "school, unconverted",
-   "label": "Formerly a school, unconverted",
+   "was": "school",
+   "label": "Formerly a school",
    "note": "Scope for redevelopment",
    "place": "Vicarage Hill, Loxwood, Billingshurst",
    "postcode": "RH14",
@@ -8767,7 +8767,7 @@
    "beds": null,
    "listed": "2026-05-13",
    "badges": [
-    "Project"
+    "Unconverted"
    ],
    "photo": {
     "id": "1894229",
@@ -8786,8 +8786,8 @@
    "url": "https://www.zoopla.co.uk/for-sale/details/73183980/",
    "source": "Zoopla",
    "type": "chapel",
-   "was": "chapel, unconverted",
-   "label": "Formerly a chapel, unconverted",
+   "was": "chapel",
+   "label": "Formerly a chapel",
    "note": "",
    "place": "Westminster Drive, Upper Saxondale, Radcliffe On Trent",
    "postcode": "NG12",
@@ -8798,7 +8798,7 @@
    "beds": null,
    "listed": "2026-05-13",
    "badges": [
-    "Project"
+    "Unconverted"
    ],
    "photo": {
     "id": "6810405",
@@ -11105,8 +11105,8 @@
    "url": "https://www.zoopla.co.uk/for-sale/details/72132197/",
    "source": "Zoopla",
    "type": "church",
-   "was": "church, unconverted",
-   "label": "Formerly a church, unconverted",
+   "was": "church",
+   "label": "Formerly a church",
    "note": "With about 0.9 acres",
    "place": "Braybrooke Road, Wargrave, Reading",
    "postcode": "RG10",
@@ -11117,7 +11117,7 @@
    "beds": null,
    "listed": "2026-01-08",
    "badges": [
-    "Project"
+    "Unconverted"
    ],
    "photo": {
     "id": "3663102",
@@ -11314,8 +11314,8 @@
    "url": "https://www.zoopla.co.uk/for-sale/details/64807530/",
    "source": "Zoopla",
    "type": "church",
-   "was": "Methodist church, unconverted",
-   "label": "Formerly a Methodist church, unconverted",
+   "was": "Methodist church",
+   "label": "Formerly a Methodist church",
    "note": "Planning permission for conversion",
    "place": "Main Road, Conisholme, Louth",
    "postcode": "LN11",
@@ -11326,7 +11326,7 @@
    "beds": null,
    "listed": "2025-12-16",
    "badges": [
-    "Project"
+    "Unconverted"
    ],
    "photo": {
     "id": "432167",
@@ -11557,8 +11557,8 @@
    "url": "https://www.zoopla.co.uk/for-sale/details/73710007/",
    "source": "Zoopla",
    "type": "chapel",
-   "was": "Methodist chapel, unconverted",
-   "label": "Formerly a Methodist chapel, unconverted",
+   "was": "Methodist chapel",
+   "label": "Formerly a Methodist chapel",
    "note": "Lapsed residential planning",
    "place": "Tinkle Street, Grimoldby",
    "postcode": "LN11",
@@ -11569,7 +11569,7 @@
    "beds": 2,
    "listed": "2025-11-01",
    "badges": [
-    "Project"
+    "Unconverted"
    ],
    "photo": null,
    "lat": 53.36912,
@@ -11581,8 +11581,8 @@
    "url": "https://www.zoopla.co.uk/for-sale/details/73976777/",
    "source": "Zoopla",
    "type": "mill",
-   "was": "watermill, unconverted",
-   "label": "Formerly a watermill, unconverted",
+   "was": "watermill",
+   "label": "Formerly a watermill",
    "note": "Planning permission granted",
    "place": "Widewath Mill Barn, Helton, Penrith",
    "postcode": "CA10",
@@ -11593,7 +11593,7 @@
    "beds": 1,
    "listed": "2025-11-01",
    "badges": [
-    "Project"
+    "Unconverted"
    ],
    "photo": null,
    "lat": 54.5823,
@@ -11741,8 +11741,8 @@
    "url": "https://www.zoopla.co.uk/for-sale/details/70448631/",
    "source": "Zoopla",
    "type": "church",
-   "was": "St Andrew's Church, unconverted",
-   "label": "Formerly St Andrew's Church, unconverted",
+   "was": "St Andrew's Church",
+   "label": "Formerly St Andrew's Church",
    "note": "",
    "place": "Great Fencote, Northallerton",
    "postcode": "DL7",
@@ -11753,7 +11753,7 @@
    "beds": null,
    "listed": "2025-10-07",
    "badges": [
-    "Project"
+    "Unconverted"
    ],
    "photo": {
     "id": "7767722",
@@ -12374,8 +12374,8 @@
    "url": "https://www.zoopla.co.uk/for-sale/details/70736633/",
    "source": "Zoopla",
    "type": "chapel",
-   "was": "Methodist chapel, Grade II, unconverted",
-   "label": "Formerly a Methodist chapel, Grade II, unconverted",
+   "was": "Methodist chapel, Grade II",
+   "label": "Formerly a Methodist chapel, Grade II",
    "note": "",
    "place": "The Chare, Wall, Hexham",
    "postcode": "NE46",
@@ -12386,7 +12386,7 @@
    "beds": 2,
    "listed": "2025-07-10",
    "badges": [
-    "Project"
+    "Unconverted"
    ],
    "photo": null,
    "lat": 55.01508,
@@ -12486,8 +12486,8 @@
    "url": "https://www.zoopla.co.uk/for-sale/details/70422197/",
    "source": "Zoopla",
    "type": "chapel",
-   "was": "chapel, unconverted",
-   "label": "Formerly a chapel, unconverted",
+   "was": "chapel",
+   "label": "Formerly a chapel",
    "note": "Development site with the chapel and land",
    "place": "Vowchurch",
    "postcode": "HR2",
@@ -12498,7 +12498,7 @@
    "beds": null,
    "listed": "2025-06-06",
    "badges": [
-    "Project"
+    "Unconverted"
    ],
    "photo": null,
    "lat": 52.02389,
@@ -12600,8 +12600,8 @@
    "url": "https://www.zoopla.co.uk/for-sale/details/70215961/",
    "source": "Zoopla",
    "type": "tower",
-   "was": "water tower, unconverted",
-   "label": "Formerly a water tower, unconverted",
+   "was": "water tower",
+   "label": "Formerly a water tower",
    "note": "Four storeys",
    "place": "Main Street, Wheldrake, York",
    "postcode": "YO19",
@@ -12612,7 +12612,7 @@
    "beds": null,
    "listed": "2025-05-14",
    "badges": [
-    "Project"
+    "Unconverted"
    ],
    "photo": {
     "id": "2379332",
@@ -12733,8 +12733,8 @@
    "url": "https://www.zoopla.co.uk/for-sale/details/73710192/",
    "source": "Zoopla",
    "type": "chapel",
-   "was": "chapel, unconverted",
-   "label": "Formerly a chapel, unconverted",
+   "was": "chapel",
+   "label": "Formerly a chapel",
    "note": "Planning permission for a two-bedroom home",
    "place": "Chapel Lane, Great Carlton",
    "postcode": "LN11",
@@ -12745,7 +12745,7 @@
    "beds": 2,
    "listed": "2025-01-27",
    "badges": [
-    "Project"
+    "Unconverted"
    ],
    "photo": {
     "id": "3278608",
@@ -13019,8 +13019,8 @@
    "url": "https://www.zoopla.co.uk/for-sale/details/63969915/",
    "source": "Zoopla",
    "type": "church",
-   "was": "church, Grade II, unconverted",
-   "label": "Formerly a church, Grade II, unconverted",
+   "was": "church, Grade II",
+   "label": "Formerly a church, Grade II",
    "note": "",
    "place": "Thorverton, Exeter",
    "postcode": "EX5",
@@ -13032,7 +13032,7 @@
    "listed": "2023-02-16",
    "badges": [
     "Auction",
-    "Project"
+    "Unconverted"
    ],
    "photo": {
     "id": "4534309",
