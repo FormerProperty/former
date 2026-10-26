@@ -38,3 +38,11 @@ and houses that are merely on Chapel Lane or Mill Road.
 Listings link to their original advert. We don't copy agents' photos or descriptions; the
 short notes are our own words. Building illustrations are original. Any photos come from
 Geograph under Creative Commons, credited to the photographer.
+
+## Review and reports (Cloudflare)
+
+- The site is served by Cloudflare Pages from `docs/`, with small server functions in `functions/` (config in `wrangler.toml`).
+- **Report button** → `POST /api/report` → `reports` table in the D1 database `formerly`. No personal data is stored.
+- **Review page** at https://formerly.uk/review, behind Cloudflare Access (email code login, allowed address in `wrangler.toml`). The admin API also checks the Access signature itself.
+- **New candidates** go in `pending/*.json` (judging format: id, p, b, a, l, t, w, n, g, au, plus optional `why`).
+- **Hourly sync** (`.github/workflows/sync.yml`, `build/sync.py`) queues pending candidates for review, then applies approvals (to `export/90-approved.json`) and take-downs (to `removed.json`), rebuilds and pushes. It proves its identity with a GitHub OIDC token, so no secret is stored anywhere.
