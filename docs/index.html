@@ -188,10 +188,11 @@ footer p{margin:0;max-width:78ch}
       <div class="field"><label for="price">Price</label>
         <select id="price">
           <option value="">Any price</option>
-          <option value="250000">Up to £250,000</option>
-          <option value="400000">Up to £400,000</option>
-          <option value="600000">Up to £600,000</option>
-          <option value="1000000">Up to £1 million</option>
+          <option value="0-300000">Under £300,000</option>
+          <option value="300000-500000">£300,000 to £500,000</option>
+          <option value="500000-750000">£500,000 to £750,000</option>
+          <option value="750000-1000000">£750,000 to £1 million</option>
+          <option value="1000000-">Over £1 million</option>
         </select></div>
       <div class="field"><label for="kind">Condition</label>
         <select id="kind">
@@ -315,11 +316,24 @@ const fmtDate = iso => iso ? new Date(iso+'T12:00:00').toLocaleDateString('en-GB
 const esc = s => String(s??'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 const isProject = e => e.badges.includes('Project') || e.badges.includes('Unconverted');
+function priceRange(){ const [a,b]=($('price').value||'-').split('-'); return [+a||0, +b||Infinity]; }
+// Show how many buildings fall in each price band, given the other filters
+function priceCounts(){
+  const region=$('region').value, county=$('county').value, kind=$('kind').value;
+  const types = group==='all' ? null : new Set(GROUPS.find(g=>g[0]===group)[2]);
+  const base=ALL.filter(e=>(!types||types.has(e.type))&&(!region||e.region===region)&&(!county||e.county===county)&&(!kind||(kind==='done'?!isProject(e):kind==='Project'?isProject(e):e.badges.includes(kind))));
+  [...$('price').options].forEach(o=>{
+    if(!o.dataset.label) o.dataset.label=o.textContent;
+    if(!o.value){ o.textContent=`${o.dataset.label} (${base.length})`; return; }
+    const [a,b]=o.value.split('-'); const lo=+a||0, hi=+b||Infinity;
+    o.textContent=`${o.dataset.label} (${base.filter(e=>e.price!=null&&e.price>lo&&e.price<=hi).length})`;
+  });
+}
 function filtered(){
-  const region=$('region').value, county=$('county').value, max=+$('price').value||Infinity, kind=$('kind').value;
+  const region=$('region').value, county=$('county').value, [pmin,pmax]=priceRange(), kind=$('kind').value;
   const types = group==='all' ? null : new Set(GROUPS.find(g=>g[0]===group)[2]);
   const out = ALL.filter(e => (!types||types.has(e.type)) && (!region||e.region===region) && (!county||e.county===county) &&
-    (e.price==null||e.price<=max) && (!kind || (kind==='done' ? !isProject(e) : kind==='Project' ? isProject(e) : e.badges.includes(kind))));
+    (!$('price').value||(e.price!=null&&e.price>pmin&&e.price<=pmax)) && (!kind || (kind==='done' ? !isProject(e) : kind==='Project' ? isProject(e) : e.badges.includes(kind))));
   const s=$('sort').value;
   out.sort((a,b)=> s==='low' ? (a.price??9e9)-(b.price??9e9) : s==='high' ? (b.price??0)-(a.price??0) : (b.listed||'').localeCompare(a.listed||''));
   return out;
@@ -378,6 +392,7 @@ function card(e){
 }
 
 function render(){
+  priceCounts();
   const list=filtered();
   $('list').classList.toggle('rows', view==='rows');
   $('count').textContent = list.length + (list.length===1?' building':' buildings');
