@@ -58,8 +58,16 @@ def text_for(x):
     return text[:290]
 
 
+POST_HOURS = {8, 12, 18}  # UK time
+
+
 def main():
     dry = "--dry-run" in sys.argv
+    from zoneinfo import ZoneInfo
+    hour = datetime.datetime.now(ZoneInfo("Europe/London")).hour
+    if "--now" not in sys.argv and hour not in POST_HOURS:
+        print(f"It is {hour}:00 in London; posts go out at 8am, 12pm and 6pm. Skipping.")
+        return 0
     with open(os.path.join(ROOT, "docs", "data", "listings.json")) as fh:
         data = json.load(fh)
     try:

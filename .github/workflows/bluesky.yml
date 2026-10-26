@@ -1,9 +1,9 @@
 name: Post to Bluesky
 on:
   schedule:
-    - cron: "12 8 * * *"    # three posts a day (UTC)
-    - cron: "37 12 * * *"
-    - cron: "48 18 * * *"
+    # 8am, 12pm and 6pm UK time all year: runs in both the GMT and BST hours,
+    # and the script only posts when it is the right hour in London
+    - cron: "2 7,8,11,12,17,18 * * *"
   workflow_dispatch:
 permissions:
   contents: write
@@ -25,10 +25,10 @@ jobs:
         run: |
           if [ -z "$BLUESKY_HANDLE" ] || [ -z "$BLUESKY_APP_PASSWORD" ]; then
             echo "Bluesky secrets not set yet; showing what would be posted."
-            python build/bluesky.py --dry-run
+            python build/bluesky.py --dry-run --now
             exit 0
           fi
-          python build/bluesky.py
+          python build/bluesky.py $([ "${{ github.event_name }}" = "workflow_dispatch" ] && echo --now)
       - name: Record what was posted
         run: |
           git config user.name "formerly. bot"
