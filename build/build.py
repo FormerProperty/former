@@ -91,7 +91,7 @@ def locate(addr):
     return place, district or "", county or "Unknown", region or "Unknown"
 
 
-SITE_URL = os.environ.get("FORMER_SITE_URL", "https://example.github.io/former/")
+SITE_URL = os.environ.get("FORMER_SITE_URL", "https://formerly.uk/")
 
 
 PROPER_END = re.compile(r"\b(Church|Chapel|Inn|Tavern|Mill)$")
