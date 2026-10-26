@@ -76,7 +76,7 @@ def main():
     out_path = os.path.join(ROOT, "export", "90-approved.json")
     out = {str(r["id"]): r for r in load(out_path, [])}
     for pid, row in approved.items():
-        row = {k: v for k, v in row.items() if k in ("id", "p", "b", "a", "l", "t", "w", "n", "g", "au")}
+        row = {k: v for k, v in row.items() if k in ("id", "p", "b", "a", "l", "t", "w", "n", "g", "au", "h", "sq", "ac", "gr", "bt", "ag", "ll")}
         row["id"] = pid
         out[pid] = row
     save(out_path, list(out.values()))

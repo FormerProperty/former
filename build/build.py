@@ -18,6 +18,13 @@ Each export row:
   w    what the building was, in our words
   n    optional short note, in our words
   g    optional badges, "|" separated (Project, Auction ...)
+  h    optional headline in our own words, e.g. "Grade II village post office, needing modernisation"
+  sq   optional floor area in square feet (number)
+  ac   optional plot size as text, e.g. "0.4 acres"
+  gr   optional listed grade, e.g. "II", "II*"
+  bt   optional date built as text, e.g. "1872", "c.1840"
+  ag   optional agent name (kept for photo-permission requests; not shown on the site)
+  ll   optional [lat, lng] when coords.json has no entry
 """
 import json, re, sys, glob, datetime, os
 from xml.sax.saxutils import escape
@@ -42,6 +49,8 @@ PC_RE = re.compile(r"\b([A-Z]{1,2})(\d[\dA-Z]?)\s*$")
 
 
 def parse_date(s):
+    if re.match(r"^\d{4}-\d{2}-\d{2}$", s or ""):
+        return s
     m = re.match(r"(\d{1,2})\w*\s+([A-Za-z]{3})\w*\s+(\d{2,4})", s or "")
     if not m:
         return None
@@ -234,6 +243,11 @@ def main():
             "label": label(was),
             "os": os_label(was, t),
             "note": r.get("n") or "",
+            "headline": (r.get("h") or "").strip(),
+            "sqft": int(r["sq"]) if str(r.get("sq") or "").isdigit() else None,
+            "plot": (r.get("ac") or "").strip(),
+            "grade": (r.get("gr") or "").strip(),
+            "built": (r.get("bt") or "").strip(),
             "place": place,
             "postcode": district,
             "county": county,
@@ -244,8 +258,8 @@ def main():
             "listed": parse_date(r["l"]),
             "badges": badges,
             "photo": photo_for(photos.get(str(r["id"]))),
-            "lat": (coords.get(str(r["id"])) or [None, None])[0],
-            "lng": (coords.get(str(r["id"])) or [None, None])[1],
+            "lat": (coords.get(str(r["id"])) or r.get("ll") or [None, None])[0],
+            "lng": (coords.get(str(r["id"])) or r.get("ll") or [None, None])[1],
             "added": prev.get(str(r["id"])) or datetime.date.today().isoformat(),
         })
     out.sort(key=lambda x: x["listed"] or "", reverse=True)

@@ -65,6 +65,8 @@ button.act{font:600 14.5px var(--sans);padding:9px 16px;border:1px solid var(--i
 button.yes{background:var(--livery);border-color:var(--livery);color:var(--paper)}
 button.danger{background:var(--oxblood);border-color:var(--oxblood);color:var(--paper)}
 button.act:disabled{opacity:.5;cursor:default}
+.hl{display:grid;gap:4px;font:600 11.5px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.hl input{font:400 18px var(--serif);letter-spacing:0;text-transform:none;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--ink);padding:6px 0}
 input.reason{font:14.5px var(--sans);color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--rule);padding:6px 0;min-width:0;flex:1 1 220px}
 .done{font-size:14px;color:var(--muted)}
 .tag{display:inline-block;font:600 11px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:4px 6px;margin-right:8px}
@@ -120,11 +122,14 @@ document.querySelectorAll('nav.tabs button').forEach(b=>b.addEventListener('clic
 // Pending rows use the judging format: id, p price, b beds, a address, t type, w was, n note, g flags, why
 function pendingCard(r){
   const d=r.data||{};
-  const meta=[`<span class="price">${esc(d.p||'Price on application')}</span>`, d.b?`<span>${esc(d.b)} bed</span>`:'', d.t?`<span>${esc(d.t)}</span>`:'', d.g?`<span>${esc(String(d.g).replace(/\|/g,', '))}</span>`:''].join('');
+  const meta=[`<span class="price">${esc(d.p||'Price on application')}</span>`, d.b?`<span>${esc(d.b)} bed</span>`:'', d.sq?`<span>${Number(d.sq).toLocaleString('en-GB')} sq ft</span>`:'', d.ac?`<span>${esc(d.ac)}</span>`:'', d.t?`<span>${esc(d.t)}</span>`:'', d.g?`<span>${esc(String(d.g).replace(/\|/g,', '))}</span>`:''].join('');
+  const facts=[d.gr?`Grade ${esc(d.gr)}`:'', d.bt?`Built ${esc(d.bt)}`:'', d.ag?`Agent: ${esc(d.ag)}`:''].filter(Boolean).join(' · ');
   return `<article class="item" data-id="${esc(r.id)}">
     <p class="was">${esc(formerly(d.w||'?'))}</p>
     <h2 class="place">${esc(d.a||r.id)}</h2>
     <div class="meta">${meta}</div>
+    ${facts?`<div class="meta">${facts}</div>`:''}
+    <label class="hl">Headline on the site <input class="headline" value="${esc(d.h||'')}" maxlength="90" placeholder="e.g. Grade II village post office, needing modernisation"></label>
     ${d.n?`<p class="why">${esc(d.n)}</p>`:''}
     ${d.why?`<p class="why">Why it was picked: ${esc(d.why)}</p>`:''}
     <div class="row">
@@ -195,10 +200,11 @@ document.addEventListener('click', async ev=>{
   const b=ev.target.closest('button.act'); if(!b) return;
   const card=b.closest('.item'); const id=card.dataset.id;
   const reason=card.querySelector('input.reason')?.value.trim() || '';
+  const headline=card.querySelector('input.headline')?.value.trim();
   card.querySelectorAll('button.act').forEach(x=>x.disabled=true);
   try{
     const r=await fetch('/api/admin/decide',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({type:b.dataset.type,action:b.dataset.action,id,reason})});
+      body:JSON.stringify({type:b.dataset.type,action:b.dataset.action,id,reason,...(headline!==undefined?{edits:{h:headline}}:{})})});
     const j=await r.json();
     if(!j.ok){ toast(j.error||'That did not work.'); card.querySelectorAll('button.act').forEach(x=>x.disabled=false); return; }
     toast({approve:'Approved',reject:'Rejected',remove:'Will be taken down',dismiss:'Dismissed',undo:'Undone'}[b.dataset.action]);

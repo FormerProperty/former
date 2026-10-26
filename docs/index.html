@@ -86,6 +86,7 @@ select option{background:var(--paper);color:var(--ink)}
 .place{font:400 21px/1.2 var(--serif);margin:0;text-wrap:balance}
 .place a{text-decoration:none}
 .place a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.where{margin:-6px 0 0;font-size:14.5px;color:var(--ink)}
 .meta{display:flex;flex-wrap:wrap;gap:2px 0;font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
 .meta > span + span::before{content:"·";padding:0 8px;color:var(--muted);opacity:.5}
 .meta .price{color:var(--ink);font-weight:600}
@@ -357,6 +358,8 @@ function card(e){
   const meta=[
     `<span class="price">${e.price!=null?esc(e.priceText):'Price on application'}</span>`,
     e.beds?`<span>${e.beds} bed</span>`:'',
+    e.sqft?`<span>${e.sqft.toLocaleString('en-GB')} sq ft</span>`:'',
+    e.plot?`<span>${esc(e.plot)}</span>`:'',
     `<span>${esc(e.county)}</span>`
   ].join('');
   const flags=e.badges.length?`<div class="flags">${e.badges.map(b=>`<span>${esc(b)}</span>`).join('')}</div>`:'';
@@ -364,7 +367,8 @@ function card(e){
   return `<li class="card">
     <div class="media">${frame(e)}</div>
     <p class="was">${esc(e.label||('Former '+e.was))}</p>
-    <h3 class="place"><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.place)}</a></h3>
+    <h3 class="place"><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.headline||e.place)}</a></h3>
+    ${e.headline?`<p class="where">${esc(e.place)}</p>`:''}
     <div class="meta">${meta}</div>
     ${e.note?`<p class="note">${esc(e.note)}.</p>`:''}
     ${flags}

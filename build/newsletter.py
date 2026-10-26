@@ -64,12 +64,14 @@ def picture(x, w=270, hgt=203):
 
 
 def details(x, place_size=19):
-    bits = [x["priceText"] or "Price on application"] + ([f'{x["beds"]} bed'] if x.get("beds") else []) + [x["county"]]
+    bits = ([x["priceText"] or "Price on application"] + ([f'{x["beds"]} bed'] if x.get("beds") else [])
+            + ([f'{x["sqft"]:,} sq ft'] if x.get("sqft") else []) + ([x["plot"]] if x.get("plot") else []) + [x["county"]])
     meta = f' <span style="color:{RULE}">&middot;</span> '.join(
         [f'<b style="color:{INK}">{h(bits[0])}</b>'] + [h(b) for b in bits[1:]])
     out = [
         f'<p style="margin:12px 0 4px;font:bold 11px/1.4 {SANS};letter-spacing:1.6px;text-transform:uppercase;color:{GREEN}">{h(x.get("label") or "Former " + x["was"])}</p>',
-        f'<p style="margin:0 0 6px;font:{place_size}px/1.25 {SERIF}"><a href="{h(x["url"])}" style="color:{INK};text-decoration:none">{h(x["place"])}</a></p>',
+        f'<p style="margin:0 0 6px;font:{place_size}px/1.25 {SERIF}"><a href="{h(x["url"])}" style="color:{INK};text-decoration:none">{h(x.get("headline") or x["place"])}</a></p>',
+        (f'<p style="margin:0 0 4px;font:14px/1.4 {SANS};color:{INK}">{h(x["place"])}</p>' if x.get("headline") else ""),
         f'<p style="margin:0;font:14px/1.5 {SANS};color:{MUTED}">{meta}</p>',
     ]
     if x.get("badges"):

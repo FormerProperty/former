@@ -51,7 +51,7 @@ def text_for(x, total):
     bits = [x["place"], x["priceText"] or "Price on application"]
     if x.get("beds"):
         bits.append(f'{x["beds"]} bed')
-    head = [x.get("label") or "Former " + x["was"], " · ".join(bits)]
+    head = [x.get("label") or "Former " + x["was"]] + ([x["headline"]] if x.get("headline") else []) + [" · ".join(bits)]
     if x.get("badges"):
         head.append(" · ".join(x["badges"]))
     link_line = f"View all {total} buildings on {SITE_LABEL}"
@@ -62,7 +62,7 @@ def text_for(x, total):
     lines = head + ["", link_line] + ([credit] if credit else [])
     text = "\n".join(lines)
     if len(text) > 295:  # keep within Bluesky's 300-character limit, dropping the flags line first
-        lines = head[:2] + ["", link_line] + ([credit] if credit else [])
+        lines = [l for l in head if l not in (" · ".join(x.get("badges") or []),)] + ["", link_line] + ([credit] if credit else [])
         text = "\n".join(lines)[:295]
     raw = text.encode("utf-8")
     start = raw.find(f"on {SITE_LABEL}".encode()) + 3
@@ -101,7 +101,7 @@ def main():
         "identifier": os.environ["BLUESKY_HANDLE"], "password": os.environ["BLUESKY_APP_PASSWORD"]})
     token, did = s["accessJwt"], s["did"]
     embed = {"$type": "app.bsky.embed.external", "external": {
-        "uri": x["url"], "title": f'{x.get("label") or "Former " + x["was"]}: {x["place"]}',
+        "uri": x["url"], "title": x.get("headline") or f'{x.get("label") or "Former " + x["was"]}: {x["place"]}',
         "description": "Full listing on Zoopla. Found by formerly.uk, buildings that began life as something else."}}
     if os.path.exists(img_path):
         with open(img_path, "rb") as fh:
