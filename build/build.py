@@ -5,6 +5,9 @@ Input:  export/*.json   judged entries (later files override earlier ones)
         overrides.json  corrections to individual entries (w, n, g fields)
         coords.json     [lat, lng] for each listing, from its listing page
         photos.json     best Geograph match per listing; last field 1 = approved for the site, 0 = awaiting review
+        status.json     availability from the weekly rolling check: {id: {"state": "live"|"offer"|"gone",
+                        "since": date the state began, "checked": date last checked}}.
+                        "gone" is left out; "offer" shows an "Under offer" flag for up to OFFER_DAYS, then is left out
 Output: docs/data/listings.json, docs/feed.xml and docs/feeds/<region>.xml
 
 Each export row:
@@ -192,6 +195,9 @@ def photo_for(m):
             "src": f"photos/{pid}.jpg", "thumb": base + "_213x160.jpg"}
 
 
+OFFER_DAYS = 31  # how long an under-offer building stays listed with its flag
+
+
 def main():
     rows = {}
     for f in sorted(glob.glob(os.path.join(ROOT, "export", "*.json"))):
@@ -207,6 +213,8 @@ def main():
         fp = os.path.join(ROOT, name)
         return json.load(open(fp)) if os.path.exists(fp) else {}
     overrides, coords, photos = load("overrides.json"), load("coords.json"), load("photos.json")
+    status = load("status.json")
+    today = datetime.date.today()
     # keep the date each building was first published
     prev = {}
     lp = os.path.join(ROOT, "docs", "data", "listings.json")
@@ -217,6 +225,17 @@ def main():
     for r in rows.values():
         if str(r["id"]) in removed:
             continue
+        st = status.get(str(r["id"])) or {}
+        under_offer = False
+        if st.get("state") == "gone":
+            dropped.append((r["id"], r["a"], "no longer on Zoopla"))
+            continue
+        if st.get("state") == "offer":
+            since = datetime.date.fromisoformat(st.get("since") or today.isoformat())
+            if (today - since).days > OFFER_DAYS:
+                dropped.append((r["id"], r["a"], f"under offer since {since}"))
+                continue
+            under_offer = True
         r = {**r, **overrides.get(str(r["id"]), {})}
         loc = locate(r["a"])
         if loc is None:
@@ -233,6 +252,8 @@ def main():
             badges = ["Unconverted" if b == "Project" else b for b in badges]
             if "Unconverted" not in badges:
                 badges.insert(0, "Unconverted")
+        if under_offer:
+            badges.insert(0, "Under offer")
         t = r["t"] if r["t"] in TYPE_LABELS else "other"
         out.append({
             "id": str(r["id"]),

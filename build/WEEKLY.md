@@ -105,8 +105,39 @@ One JSON object per building, in the judging format:
 3. Commit and push to `main`, with the session's usual attribution lines. The push starts the
    sync job, which puts the buildings in the review queue within a few minutes.
 
-## 6. Tell Tanya
+## 6. Rolling availability check
 
-Send one short message: how many listings were checked, how many were queued, how many were
-left out and why (in a line), and the link https://formerly.uk/review. Mention that the
-weekly email draft is built on Friday morning from whatever has been approved by then.
+Every building on the site is rechecked about once a month, a quarter of them each week.
+
+1. Read `status.json` (`{id: {"state", "since", "checked"}}`) and the ids in
+   `docs/data/listings.json`. Pick the **130** listed ids with the oldest `checked` date
+   (ids with no entry count as never checked, so they go first).
+2. Fetch each listing page at the same gentle pace as above and decide its state:
+   - **gone:** the page returns 404 or 410, redirects away from `/for-sale/details/<id>/`,
+     or says the property is no longer on the market / has been removed;
+   - **offer:** the page shows "Sold STC", "Under offer" or "Sale agreed";
+   - **live:** otherwise.
+   If a fetch fails for any other reason (403, timeout), skip that id this week and leave
+   its entry unchanged.
+3. Update `status.json` for each id checked: always set `checked` to today. Set `since` to
+   today only when the state has changed (keep the old `since` when an under-offer building is
+   still under offer, so the 31-day clock keeps running).
+4. The build does the rest: **gone** buildings leave the site; **offer** buildings show an
+   "Under offer" flag for up to 31 days and then leave the site; a building that comes back on
+   the market simply loses its flag. Under-offer buildings are never posted to Bluesky or put
+   in the email.
+5. Commit `status.json` together with the week's pending file (one commit is fine). Run
+   `FORMER_SITE_URL=https://formerly.uk/ python3 build/build.py` before committing so the live
+   site updates straight away, and include `docs/` in the commit.
+
+## 7. Tell Tanya
+
+Send one short message with:
+- new listings: how many were checked, how many queued for review, how many left out and the
+  main reasons, and the link https://formerly.uk/review;
+- availability: how many existing buildings were checked, which have gone (name and place),
+  which are newly under offer, and which dropped off after a month under offer.
+
+Mention that the weekly email draft is built on Friday morning from whatever has been
+approved by then. If something was taken down in error, Tanya can ask for it to be put back
+(set its `status.json` state to `live`).

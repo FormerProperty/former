@@ -34,7 +34,7 @@ def xrpc(method, token=None, body=None, raw=None, content_type="application/json
 
 def choose(listings, posted, today):
     """Newest additions first; then the backlog, photographed and most recently listed first."""
-    live = [x for x in listings if x["id"] not in posted]
+    live = [x for x in listings if x["id"] not in posted and "Under offer" not in (x.get("badges") or [])]
     since = (today - datetime.timedelta(days=7)).isoformat()
     fresh = [x for x in live if (x.get("added") or "") > since]
     fresh.sort(key=lambda x: (x.get("added") or "", x.get("listed") or ""), reverse=True)

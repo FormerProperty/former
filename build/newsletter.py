@@ -113,7 +113,7 @@ def region_block(name, items):
 
 def build(listings, today, test=False):
     since = (today - datetime.timedelta(days=7)).isoformat()
-    new = [x for x in listings if (x.get("added") or "") > since]
+    new = [x for x in listings if (x.get("added") or "") > since and "Under offer" not in (x.get("badges") or [])]
     if not new:
         return None
     new.sort(key=lambda x: (x.get("added") or "", x.get("listed") or ""), reverse=True)
