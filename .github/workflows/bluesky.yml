@@ -1,0 +1,37 @@
+name: Post to Bluesky
+on:
+  schedule:
+    - cron: "12 8 * * *"    # three posts a day (UTC)
+    - cron: "37 12 * * *"
+    - cron: "48 18 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: bluesky
+  cancel-in-progress: false
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Post the next building
+        env:
+          BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+        run: |
+          if [ -z "$BLUESKY_HANDLE" ] || [ -z "$BLUESKY_APP_PASSWORD" ]; then
+            echo "Bluesky secrets not set yet; showing what would be posted."
+            python build/bluesky.py --dry-run
+            exit 0
+          fi
+          python build/bluesky.py
+      - name: Record what was posted
+        run: |
+          git config user.name "formerly. bot"
+          git config user.email "noreply@github.com"
+          git add social
+          git diff --cached --quiet || (git commit -m "Record Bluesky post" && for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done)
