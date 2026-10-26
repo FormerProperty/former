@@ -1,0 +1,18 @@
+# Cloudflare Pages configuration for formerly.uk
+name = "formerly"
+pages_build_output_dir = "docs"
+compatibility_date = "2026-10-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "formerly"
+database_id = "70c96256-724e-4f94-854c-4dc891104e7d"
+
+[vars]
+# Cloudflare Access (login for /review and /api/admin). Not secrets: they identify, they do not grant.
+ACCESS_TEAM = "small-truth-248b"
+ACCESS_AUD = "7601d4ab64bf23e1d25d7df346d4a16a67f4d5d0149755a3866a2bbdafe422e9"
+ADMIN_EMAILS = "tanya@tanyapark.com"
+# GitHub Actions sync job identity
+GH_REPO = "FormerProperty/former"
+SYNC_AUDIENCE = "https://formerly.uk"

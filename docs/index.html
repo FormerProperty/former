@@ -266,6 +266,7 @@ footer p{margin:0;max-width:78ch}
       <label><input type="radio" name="reason" value="Other"> Something else</label>
     </fieldset>
     <label class="rp-note"><span class="rp-q">Anything to add? <span>(optional)</span></span><textarea name="note" rows="3" maxlength="500"></textarea></label>
+    <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
     <p class="rp-status" id="report-status" role="status"></p>
     <div class="rp-actions">
       <button type="button" class="rp-cancel" id="report-cancel">Cancel</button>
@@ -275,8 +276,8 @@ footer p{margin:0;max-width:78ch}
 </dialog>
 
 <script>
-// Where reports go. Set REPORT.action to a Google Form's formResponse address and the entry ids of its three questions.
-const REPORT = { action: '', fields: { id: 'entry.0', reason: 'entry.0', note: 'entry.0' } };
+// Reports go to formerly.'s own small database (see functions/api/report.js)
+const REPORT_URL = '/api/report';
 const GROUPS = [
   ['chapel','Chapels',['chapel']],['church','Churches',['church']],['school','Schools',['school']],
   ['mill','Mills',['mill','windmill']],['pub','Pubs and inns',['pub']],['oast','Oast houses',['oast']],
@@ -421,14 +422,13 @@ $('report-cancel').addEventListener('click',()=>$('report').close());
 $('report-form').addEventListener('submit',async ev=>{
   ev.preventDefault();
   const f=new FormData(ev.target), st=$('report-status');
-  if(!REPORT.action){ st.textContent='Reporting opens soon. Nothing has been sent.'; return; }
-  const body=new FormData();
-  body.append(REPORT.fields.id, reporting.id+' '+reporting.url);
-  body.append(REPORT.fields.reason, f.get('reason'));
-  body.append(REPORT.fields.note, (f.get('note')||'').slice(0,500));
+  const body={id:reporting.id, reason:f.get('reason'), note:(f.get('note')||'').slice(0,500), website:f.get('website')||''};
   $('report-send').disabled=true; st.textContent='Sending…';
-  try{ await fetch(REPORT.action,{method:'POST',mode:'no-cors',body}); st.textContent='Thank you. We will take a look.'; setTimeout(()=>$('report').close(),1600); }
-  catch(e){ st.textContent='That did not send. Please try again.'; $('report-send').disabled=false; }
+  try{
+    const r=await fetch(REPORT_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    if(!r.ok) throw new Error(r.status);
+    st.textContent='Thank you. We will take a look.'; setTimeout(()=>$('report').close(),1600);
+  }catch(e){ st.textContent='That did not send. Please try again.'; $('report-send').disabled=false; }
 });
 boot();
 </script>

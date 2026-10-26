@@ -1,0 +1,35 @@
+name: Sync review decisions
+on:
+  schedule:
+    - cron: "17 * * * *"   # hourly
+  push:
+    branches: [main]
+    paths: ["pending/**"]
+  workflow_dispatch:
+permissions:
+  contents: write
+  id-token: write          # lets the job prove to formerly.uk that it is this repository
+concurrency:
+  group: sync
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch decisions and rebuild
+        run: python build/sync.py
+      - name: Commit and push
+        run: |
+          git config user.name "formerly. bot"
+          git config user.email "noreply@github.com"
+          git add -A export removed.json pending docs
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -m "Apply review decisions"
+          for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done
+      - name: Mark decisions as live
+        if: hashFiles('.sync-applied.json') != ''
+        run: python build/sync.py ack

@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Review · formerly.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#F3F2EE; --ink:#1B1D1C; --muted:#5E625F; --rule:#D3D1CA; --stone:#E2DFD6;
+  --livery:#1E4D3B; --livery-soft:#DCE5DF; --oxblood:#7B2D26; --oxblood-soft:#F1E1DE;
+  --display:"Libre Caslon Display","Libre Caslon Text",Georgia,serif;
+  --serif:"Libre Caslon Text",Georgia,"Times New Roman",serif;
+  --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#121413; --ink:#ECEDEA; --muted:#A0A5A1; --rule:#2C302E; --stone:#1D201E;
+    --livery:#86BFA4; --livery-soft:#1B2A23; --oxblood:#E1958B; --oxblood-soft:#2E1D1B; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#121413; --ink:#ECEDEA; --muted:#A0A5A1; --rule:#2C302E; --stone:#1D201E;
+  --livery:#86BFA4; --livery-soft:#1B2A23; --oxblood:#E1958B; --oxblood-soft:#2E1D1B; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 var(--sans);
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--livery);outline-offset:3px}
+.wrap{max-width:980px;margin:0 auto;padding-bottom:72px}
+header{border-top:6px solid var(--ink);padding-top:18px;display:flex;flex-wrap:wrap;gap:8px 24px;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--ink);padding-bottom:16px}
+.mark{font:400 44px/.9 var(--display);margin:0;letter-spacing:-.02em}
+.mark span{color:var(--livery)}
+.mark small{font:italic 400 22px var(--serif);color:var(--muted);letter-spacing:0;margin-left:10px}
+.who{font-size:13.5px;color:var(--muted)}
+.who a{margin-left:12px}
+.note-bar{margin:16px 0 0;font-size:14px;color:var(--muted)}
+nav.tabs{display:flex;flex-wrap:nowrap;gap:4px 24px;margin-top:22px;border-bottom:1px solid var(--rule)}
+nav.tabs button{font:500 15.5px var(--sans);background:none;border:0;border-bottom:2px solid transparent;padding:8px 0;color:var(--muted);cursor:pointer}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--livery)}
+nav.tabs b{font-variant-numeric:tabular-nums;margin-left:4px}
+section{margin-top:8px}
+.empty{color:var(--muted);font:italic 18px var(--serif);padding:28px 0}
+.item{display:grid;gap:8px;padding:22px 0;border-bottom:1px solid var(--rule)}
+.was{font:600 11.5px/1.35 var(--sans);letter-spacing:.11em;text-transform:uppercase;color:var(--livery);margin:0}
+.place{font:400 22px/1.2 var(--serif);margin:0}
+.meta{display:flex;flex-wrap:wrap;font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.meta > span + span::before{content:"·";padding:0 8px;opacity:.5}
+.meta .price{color:var(--ink);font-weight:600}
+.why{margin:0;font:italic 15px/1.5 var(--serif);color:var(--muted)}
+.reps{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.reps li{font-size:14.5px;padding-left:12px;border-left:2px solid var(--oxblood)}
+.reps b{font-weight:600}
+.reps time{color:var(--muted);font-size:13px;margin-left:6px}
+.reps q{font-style:italic}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:4px}
+.row a.out{font-size:14px;color:var(--livery);font-weight:600;text-underline-offset:3px;margin-right:auto}
+button.act{font:600 14.5px var(--sans);padding:9px 16px;border:1px solid var(--ink);background:none;color:var(--ink);cursor:pointer;border-radius:0}
+button.yes{background:var(--livery);border-color:var(--livery);color:var(--paper)}
+button.danger{background:var(--oxblood);border-color:var(--oxblood);color:var(--paper)}
+button.act:disabled{opacity:.5;cursor:default}
+input.reason{font:14.5px var(--sans);color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--rule);padding:6px 0;min-width:0;flex:1 1 220px}
+.done{font-size:14px;color:var(--muted)}
+.tag{display:inline-block;font:600 11px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:4px 6px;margin-right:8px}
+.tag.ok{background:var(--livery-soft);color:var(--livery)}
+.tag.no{background:var(--oxblood-soft);color:var(--oxblood)}
+.tag.live{background:var(--stone);color:var(--muted)}
+.recent .item{padding:14px 0;gap:4px}
+.recent .place{font-size:17px}
+.err{margin-top:20px;padding:14px;border:1px solid var(--oxblood);color:var(--oxblood)}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 16px;font-size:14px;max-width:calc(100vw - 32px)}
+@media (max-width:520px){ .mark{font-size:36px} .row a.out{flex-basis:100%} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1 class="mark">formerly<span>.</span><small>review</small></h1>
+    <div class="who"><span id="who"></span><a href="/">Site</a><a href="/cdn-cgi/access/logout">Sign out</a></div>
+  </header>
+  <p class="note-bar">Your decisions go live at the next hourly update. Until then you can undo them under <em>Decided</em>.</p>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="t-pending" aria-selected="true" aria-controls="pending">To approve<b id="n-pending"></b></button>
+    <button role="tab" id="t-reports" aria-selected="false" aria-controls="reports">Reported<b id="n-reports"></b></button>
+    <button role="tab" id="t-recent" aria-selected="false" aria-controls="recent">Decided</button>
+  </nav>
+
+  <section id="pending" role="tabpanel"></section>
+  <section id="reports" role="tabpanel" hidden></section>
+  <section id="recent" role="tabpanel" class="recent" hidden></section>
+  <div id="err" class="err" hidden></div>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const zoopla = id => `https://www.zoopla.co.uk/for-sale/details/${encodeURIComponent(id)}/`;
+const when = s => s ? new Date(s.replace(' ','T')+'Z').toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}) : '';
+let LISTINGS = new Map();
+// Rough version of the site's wording; the published label comes from build.py
+const formerly = w => /^[aeio]/i.test(w) ? `Formerly an ${w}` : /^[A-Z]/.test(w) && !/^(Methodist|Primitive|Wesleyan|Baptist|Cornish|Sunday|United)/.test(w) ? `Formerly ${w}` : `Formerly a ${w}`;
+
+function toast(msg){ const t=$('toast'); t.textContent=msg; t.hidden=false; clearTimeout(toast.t); toast.t=setTimeout(()=>t.hidden=true,2600); }
+function fail(msg){ const e=$('err'); e.textContent=msg; e.hidden=false; }
+
+// Tabs
+document.querySelectorAll('nav.tabs button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('nav.tabs button').forEach(x=>x.setAttribute('aria-selected', x===b));
+  document.querySelectorAll('section[role=tabpanel]').forEach(p=>p.hidden = p.id!==b.getAttribute('aria-controls'));
+}));
+
+// Pending rows use the judging format: id, p price, b beds, a address, t type, w was, n note, g flags, why
+function pendingCard(r){
+  const d=r.data||{};
+  const meta=[`<span class="price">${esc(d.p||'Price on application')}</span>`, d.b?`<span>${esc(d.b)} bed</span>`:'', d.t?`<span>${esc(d.t)}</span>`:'', d.g?`<span>${esc(String(d.g).replace(/\|/g,', '))}</span>`:''].join('');
+  return `<article class="item" data-id="${esc(r.id)}">
+    <p class="was">${esc(formerly(d.w||'?'))}</p>
+    <h2 class="place">${esc(d.a||r.id)}</h2>
+    <div class="meta">${meta}</div>
+    ${d.n?`<p class="why">${esc(d.n)}</p>`:''}
+    ${d.why?`<p class="why">Why it was picked: ${esc(d.why)}</p>`:''}
+    <div class="row">
+      <a class="out" href="${zoopla(r.id)}" target="_blank" rel="noopener">Open on Zoopla ↗</a>
+      <button class="act yes" data-type="pending" data-action="approve">Approve</button>
+      <button class="act" data-type="pending" data-action="reject">Reject</button>
+    </div>
+    <div class="row"><input class="reason" placeholder="Reason for rejecting (optional)" maxlength="300" aria-label="Reason for rejecting"></div>
+  </article>`;
+}
+
+function reportCard(id, reps){
+  const l=LISTINGS.get(id);
+  const meta = l ? [`<span class="price">${esc(l.priceText||'Price on application')}</span>`, l.beds?`<span>${l.beds} bed</span>`:'', `<span>${esc(l.county)}</span>`].join('') : '';
+  return `<article class="item" data-id="${esc(id)}">
+    <p class="was">${esc(l ? (l.label||'Former '+l.was) : 'Listing '+id)}</p>
+    <h2 class="place">${esc(l ? l.place : id)}</h2>
+    <div class="meta">${meta}</div>
+    <ul class="reps">${reps.map(r=>`<li><b>${esc(r.reason)}</b>${r.note?` <q>${esc(r.note)}</q>`:''}<time>${when(r.created)}</time></li>`).join('')}</ul>
+    <div class="row">
+      <a class="out" href="${l?esc(l.url):zoopla(id)}" target="_blank" rel="noopener">Open on Zoopla ↗</a>
+      <button class="act danger" data-type="report" data-action="remove">Take it down</button>
+      <button class="act" data-type="report" data-action="dismiss">Dismiss</button>
+    </div>
+  </article>`;
+}
+
+function recentRow(kind, id, title, sub, ok, applied, undoType){
+  const tag = applied ? '<span class="tag live">Live</span>' : (ok ? '<span class="tag ok">Approved</span>' : '<span class="tag no">'+(kind)+'</span>');
+  return `<article class="item" data-id="${esc(id)}">
+    <div>${tag}<span class="done">${esc(sub)}</span></div>
+    <h3 class="place">${esc(title)}</h3>
+    ${!applied && undoType ? `<div class="row"><button class="act" data-type="${undoType}" data-action="undo">Undo</button></div>` : ''}
+  </article>`;
+}
+
+async function load(){
+  $('err').hidden=true;
+  let q;
+  try{
+    const [qr, lr] = await Promise.all([
+      fetch('/api/admin/queue',{credentials:'same-origin',cache:'no-store'}),
+      LISTINGS.size ? null : fetch('/data/listings.json',{cache:'no-store'})
+    ]);
+    if (qr.status===401){ fail('You are not signed in. Reload the page to sign in again.'); return; }
+    q = await qr.json();
+    if (lr){ const d=await lr.json(); LISTINGS=new Map(d.listings.map(l=>[String(l.id),l])); }
+  }catch(e){ fail('Could not load the review queue. Check your connection and reload.'); return; }
+
+  $('who').textContent = q.who || '';
+  $('n-pending').textContent = q.pending.length;
+  $('pending').innerHTML = q.pending.length ? q.pending.map(pendingCard).join('') : '<p class="empty">Nothing waiting. New listings appear here after each weekly check.</p>';
+
+  const byListing = new Map();
+  q.reports.forEach(r=>{ const k=String(r.listing_id); if(!byListing.has(k)) byListing.set(k,[]); byListing.get(k).push(r); });
+  $('n-reports').textContent = byListing.size;
+  $('reports').innerHTML = byListing.size ? [...byListing].map(([id,reps])=>reportCard(id,reps)).join('') : '<p class="empty">No open reports.</p>';
+
+  const rec=[];
+  q.recent.pending.forEach(r=>rec.push({at:r.decided, html: recentRow(r.status==='approved'?'Approved':'Rejected', r.id, r.data.a||r.id, `${r.status==='approved'?'Added':'Rejected'} ${when(r.decided)}${r.reason?' · '+r.reason:''}`, r.status==='approved', r.applied, 'pending')}));
+  q.recent.removals.forEach(r=>{ const l=LISTINGS.get(String(r.id)); rec.push({at:r.decided, html: recentRow('Taken down', r.id, l?l.place:r.id, `Taken down ${when(r.decided)} · ${r.reason||''}`, false, r.applied, 'removal')}); });
+  q.recent.dismissed.forEach(r=>{ const l=LISTINGS.get(String(r.listing_id)); rec.push({at:r.decided, html: recentRow('Dismissed', r.listing_id, l?l.place:r.listing_id, `${r.n} report${r.n>1?'s':''} dismissed ${when(r.decided)}`, true, false, 'dismissal').replace('tag ok">Approved','tag live">Dismissed')}); });
+  rec.sort((a,b)=>(b.at||'').localeCompare(a.at||''));
+  $('recent').innerHTML = rec.length ? rec.map(r=>r.html).join('') : '<p class="empty">Nothing decided yet.</p>';
+}
+
+document.addEventListener('click', async ev=>{
+  const b=ev.target.closest('button.act'); if(!b) return;
+  const card=b.closest('.item'); const id=card.dataset.id;
+  const reason=card.querySelector('input.reason')?.value.trim() || '';
+  card.querySelectorAll('button.act').forEach(x=>x.disabled=true);
+  try{
+    const r=await fetch('/api/admin/decide',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({type:b.dataset.type,action:b.dataset.action,id,reason})});
+    const j=await r.json();
+    if(!j.ok){ toast(j.error||'That did not work.'); card.querySelectorAll('button.act').forEach(x=>x.disabled=false); return; }
+    toast({approve:'Approved',reject:'Rejected',remove:'Will be taken down',dismiss:'Dismissed',undo:'Undone'}[b.dataset.action]);
+    load();
+  }catch(e){ toast('That did not send. Try again.'); card.querySelectorAll('button.act').forEach(x=>x.disabled=false); }
+});
+
+load();
+</script>
+</body>
+</html>
