@@ -43,22 +43,32 @@ def choose(listings, posted, today):
     return (fresh + backlog)[:1]
 
 
-def text_for(x):
-    bits = [x["place"]]
-    bits.append(x["priceText"] or "Price on application")
+SITE_LABEL = "formerly.uk"
+
+
+def text_for(x, total):
+    """Post text plus a link facet so 'formerly.uk' is clickable."""
+    bits = [x["place"], x["priceText"] or "Price on application"]
     if x.get("beds"):
         bits.append(f'{x["beds"]} bed')
-    lines = [x.get("label") or "Former " + x["was"], " · ".join(bits)]
+    head = [x.get("label") or "Former " + x["was"], " · ".join(bits)]
     if x.get("badges"):
-        lines.append(" · ".join(x["badges"]))
+        head.append(" · ".join(x["badges"]))
+    link_line = f"View all {total} buildings on {SITE_LABEL}"
+    credit = ""
     if x.get("photo"):
         p = x["photo"]
-        lines.append(f'Photo: {p["author"]}{", " + str(p["year"]) if p.get("year") else ""} (CC BY-SA 2.0, Geograph)')
+        credit = f'Photo: {p["author"]}{", " + str(p["year"]) if p.get("year") else ""} (CC BY-SA 2.0, Geograph)'
+    lines = head + ["", link_line] + ([credit] if credit else [])
     text = "\n".join(lines)
-    return text[:290]
-
-
-POST_HOURS = {8, 12, 18}  # UK time
+    if len(text) > 295:  # keep within Bluesky's 300-character limit, dropping the flags line first
+        lines = head[:2] + ["", link_line] + ([credit] if credit else [])
+        text = "\n".join(lines)[:295]
+    raw = text.encode("utf-8")
+    start = raw.find(f"on {SITE_LABEL}".encode()) + 3
+    facets = [{"index": {"byteStart": start, "byteEnd": start + len(SITE_LABEL.encode())},
+               "features": [{"$type": "app.bsky.richtext.facet#link", "uri": "https://formerly.uk/"}]}]
+    return text, facets
 
 
 def main():
@@ -80,7 +90,7 @@ def main():
         print("Nothing left to post.")
         return 0
     x = pick[0]
-    text = text_for(x)
+    text, facets = text_for(x, len(data["listings"]))
     img_path = os.path.join(ROOT, "docs", x["photo"]["src"]) if x.get("photo") else \
         os.path.join(ROOT, "docs", "email", "labels", __import__("re").sub(r"[^a-z0-9]+", "-", (x.get("os") or "bldg").lower()) + ".png")
     print(text, "\n->", x["url"], "\nimage:", os.path.relpath(img_path, ROOT))
@@ -98,7 +108,7 @@ def main():
             blob = xrpc("com.atproto.repo.uploadBlob", token, raw=fh.read(),
                         content_type="image/png" if img_path.endswith(".png") else "image/jpeg")["blob"]
         embed["external"]["thumb"] = blob
-    record = {"$type": "app.bsky.feed.post", "text": text, "langs": ["en-GB"], "embed": embed,
+    record = {"$type": "app.bsky.feed.post", "text": text, "facets": facets, "langs": ["en-GB"], "embed": embed,
               "createdAt": datetime.datetime.now(datetime.timezone.utc).isoformat().replace("+00:00", "Z")}
     res = xrpc("com.atproto.repo.createRecord", token, body={"repo": did, "collection": "app.bsky.feed.post", "record": record})
     print("posted", res.get("uri"))
