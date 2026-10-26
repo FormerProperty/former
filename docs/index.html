@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>former.</title>
+<title>formerly.</title>
 <meta name="description" content="Buildings for sale in England that began life as something other than a home: chapels, mills, schools, pubs, stations and oast houses.">
-<link rel="alternate" type="application/rss+xml" title="former." href="feed.xml">
+<link rel="alternate" type="application/rss+xml" title="formerly." href="feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@400;500;600&display=swap">
@@ -168,7 +168,7 @@ footer p{margin:0;max-width:78ch}
 <body>
 <div class="wrap">
   <header class="mast">
-    <h1 class="mark">former<span>.</span></h1>
+    <h1 class="mark">formerly<span>.</span></h1>
     <div class="intro">
       <p>Chapels, mills, schools, pubs, stations and oast houses for sale across England. Every one began life as something other than a home.</p>
       <div class="stats" id="stats"></div>
@@ -247,7 +247,7 @@ footer p{margin:0;max-width:78ch}
   </section>
 
   <footer>
-    <p>former. is a free, not-for-profit listing. We are not an estate agent: every building is advertised by its own agent, and all enquiries go to them. <a href="privacy.html">Privacy</a> · <a href="feed.xml">RSS</a></p>
+    <p>formerly. is a free, not-for-profit listing. We are not an estate agent: every building is advertised by its own agent, and all enquiries go to them. <a href="privacy.html">Privacy</a> · <a href="feed.xml">RSS</a></p>
   </footer>
 </div>
 
@@ -255,7 +255,7 @@ footer p{margin:0;max-width:78ch}
   <form method="dialog" id="report-form">
     <h2 id="report-h">Report this listing</h2>
     <p class="rp-what" id="report-what"></p>
-    <p class="rp-why">former. only lists buildings that were built for something other than living in. Tell us if this one does not belong, and we will check it and take it down if we got it wrong. We do not ask for your name or email.</p>
+    <p class="rp-why">formerly. only lists buildings that were built for something other than living in. Tell us if this one does not belong, and we will check it and take it down if we got it wrong. We do not ask for your name or email.</p>
     <fieldset>
       <legend>What is wrong?</legend>
       <label><input type="radio" name="reason" value="Always a house" required> It was always a house</label>
@@ -354,7 +354,7 @@ function card(e){
   const credit=e.photo?`<p class="credit">Photo: <a href="https://www.geograph.org.uk/photo/${esc(e.photo.id)}" target="_blank" rel="noopener">${esc(e.photo.author)}${e.photo.year?', '+esc(e.photo.year):''}</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a></p>`:'';
   return `<li class="card">
     <div class="media">${frame(e)}</div>
-    <p class="was">Former ${esc(e.was)}</p>
+    <p class="was">${esc(e.label||('Former '+e.was))}</p>
     <h3 class="place"><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.place)}</a></h3>
     <div class="meta">${meta}</div>
     ${e.note?`<p class="note">${esc(e.note)}.</p>`:''}
@@ -413,7 +413,7 @@ $('list').addEventListener('click',ev=>{
   const b=ev.target.closest('button.report'); if(!b) return;
   reporting=ALL.find(e=>e.id===b.dataset.id); if(!reporting) return;
   $('report-form').reset(); $('report-status').textContent=''; $('report-send').disabled=false;
-  $('report-what').textContent=`Former ${reporting.was}, ${reporting.place}`;
+  $('report-what').textContent=`${reporting.label||('Former '+reporting.was)}, ${reporting.place}`;
   $('report').showModal();
 });
 $('report-cancel').addEventListener('click',()=>$('report').close());

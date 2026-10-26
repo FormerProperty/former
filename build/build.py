@@ -1,4 +1,4 @@
-"""Build listings.json for the former. site from a judged export.
+"""Build listings.json for the formerly. site from a judged export.
 
 Input:  export/*.json   judged entries (later files override earlier ones)
         removed.json    ids to leave out, with a reason (flats, sold, misjudged)
@@ -94,15 +94,43 @@ def locate(addr):
 SITE_URL = os.environ.get("FORMER_SITE_URL", "https://example.github.io/former/")
 
 
+PROPER_END = re.compile(r"\b(Church|Chapel|Inn|Tavern|Mill)$")
+COMMON_START = re.compile(r"^(Methodist|Primitive|Wesleyan|Baptist|Cornish|Sunday|United)\b")
+
+
+def label(was):
+    """'Formerly a Methodist chapel, Grade II' style wording for a building's former use."""
+    head, _, tail = was.partition(",")
+    tail = ("," + tail) if tail else ""
+    m = re.match(r"^(.*?)\s*\((part|half|rear part)\)$", head.strip())
+    if m:
+        noun, part = m.group(1), m.group(2)
+        lead = {"part": "Part of", "half": "Half of", "rear part": "The rear part of"}[part]
+        return f"{lead} a former {noun}{tail}"
+    noun = head.strip()
+    if noun.startswith("The "):
+        return f"Formerly the {noun[4:]}{tail}"
+    if re.search(r"(Inn|Tavern)$", noun):
+        return f"Formerly the {noun}{tail}"
+    if PROPER_END.search(noun):
+        return f"Formerly {noun}{tail}"
+    if noun[:1].isupper() and not COMMON_START.match(noun):
+        return f"Formerly the {noun}{tail}"
+    if re.search(r"(buildings|premises)$", noun):
+        return f"Formerly {noun}{tail}"
+    art = "an" if re.match(r"[aeio]", noun, re.I) and not noun.startswith("United") else "a"
+    return f"Formerly {art} {noun}{tail}"
+
+
 def rss(title, items):
     def item(x):
         bits = [x["priceText"] or "Price on application"]
         if x["beds"]:
             bits.append(f'{x["beds"]} bed')
         bits.append(x["county"])
-        desc = f'Former {x["was"]}. ' + ", ".join(bits) + "." + (f' {x["note"]}.' if x["note"] else "")
+        desc = f'{x["label"]}. ' + ", ".join(bits) + "." + (f' {x["note"]}.' if x["note"] else "")
         when = datetime.datetime.fromisoformat(x["added"]).strftime("%a, %d %b %Y 08:00:00 +0000")
-        return (f"<item><title>{escape('former. ' + x['was'] + ', ' + x['place'])}</title>"
+        return (f"<item><title>{escape(x['label'] + ': ' + x['place'])}</title>"
                 f"<link>{escape(x['url'])}</link><guid isPermaLink=\"false\">former-{x['id']}</guid>"
                 f"<pubDate>{when}</pubDate><category>{escape(x['region'])}</category>"
                 f"<description>{escape(desc)}</description></item>")
@@ -116,12 +144,12 @@ def write_feeds(out):
     newest = sorted(out, key=lambda x: (x["added"], x["listed"] or ""), reverse=True)
     docs = os.path.join(ROOT, "docs")
     with open(os.path.join(docs, "feed.xml"), "w") as fh:
-        fh.write(rss("former. - all of England", newest[:60]))
+        fh.write(rss("formerly. - all of England", newest[:60]))
     os.makedirs(os.path.join(docs, "feeds"), exist_ok=True)
     for region in sorted({x["region"] for x in out}):
         slug = re.sub(r"[^a-z]+", "-", region.lower()).strip("-")
         with open(os.path.join(docs, "feeds", slug + ".xml"), "w") as fh:
-            fh.write(rss(f"former. - {region}", [x for x in newest if x["region"] == region][:40]))
+            fh.write(rss(f"formerly. - {region}", [x for x in newest if x["region"] == region][:40]))
 
 
 def photo_for(m):
@@ -175,6 +203,7 @@ def main():
             "source": "Zoopla",
             "type": t,
             "was": r["w"],
+            "label": label(r["w"]),
             "note": r.get("n") or "",
             "place": place,
             "postcode": district,

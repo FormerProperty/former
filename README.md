@@ -1,4 +1,4 @@
-# former.
+# formerly.
 
 Buildings for sale in England that started life as something other than a home:
 chapels, mills, schools, pubs, stations, oast houses and more.
