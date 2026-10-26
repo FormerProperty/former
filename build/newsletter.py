@@ -164,6 +164,11 @@ def build(listings, today, test=False):
 </table></td></tr></table></div>"""
     # Keep every line flush-left so Buttondown's Markdown pass leaves the HTML alone
     html = "\n".join(line.strip() for line in html.splitlines() if line.strip())
+    # Tag links back to the site so visits from the email can be counted (images are left alone)
+    tag = f"utm_source=newsletter&utm_medium=email&utm_campaign=weekly-{today.isoformat()}"
+    html = html.replace(f'href="{SITE}/#feeds"', f'href="{SITE}/?{tag}#feeds"')
+    html = html.replace(f'href="{SITE}/privacy.html"', f'href="{SITE}/privacy.html?{tag}"')
+    html = html.replace(f'href="{SITE}"', f'href="{SITE}/?{tag}"')
     return subject, html
 
 

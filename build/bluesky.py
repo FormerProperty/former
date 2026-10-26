@@ -67,7 +67,7 @@ def text_for(x, total):
     raw = text.encode("utf-8")
     start = raw.find(f"on {SITE_LABEL}".encode()) + 3
     facets = [{"index": {"byteStart": start, "byteEnd": start + len(SITE_LABEL.encode())},
-               "features": [{"$type": "app.bsky.richtext.facet#link", "uri": "https://formerly.uk/"}]}]
+               "features": [{"$type": "app.bsky.richtext.facet#link", "uri": "https://formerly.uk/?utm_source=bluesky&utm_medium=social&utm_campaign=listing-post"}]}]
     return text, facets
 
 
