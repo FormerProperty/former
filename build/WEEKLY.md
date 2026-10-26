@@ -110,8 +110,12 @@ One JSON object per building, in the judging format:
 Every building on the site is rechecked about once a month, a quarter of them each week.
 
 1. Read `status.json` (`{id: {"state", "since", "checked"}}`) and the ids in
-   `docs/data/listings.json`. Pick the **130** listed ids with the oldest `checked` date
+   `docs/data/listings.json`. Work out this week's batch size from the current list:
+   **N = a quarter of the listings, rounded up, but at least 40 and at most 250.**
+   (At 520 listings that is 130.) Pick the N listed ids with the oldest `checked` date
    (ids with no entry count as never checked, so they go first).
+   The 250 cap protects Zoopla from heavy traffic: above about 1,000 listings the cycle
+   stretches beyond a month, so say so in the summary to Tanya when the cap applies.
 2. Fetch each listing page at the same gentle pace as above and decide its state:
    - **gone:** the page returns 404 or 410, redirects away from `/for-sale/details/<id>/`,
      or says the property is no longer on the market / has been removed;
@@ -135,7 +139,7 @@ Every building on the site is rechecked about once a month, a quarter of them ea
 Send one short message with:
 - new listings: how many were checked, how many queued for review, how many left out and the
   main reasons, and the link https://formerly.uk/review;
-- availability: how many existing buildings were checked, which have gone (name and place),
+- availability: how many existing buildings were checked (and N, if the cap applied), which have gone (name and place),
   which are newly under offer, and which dropped off after a month under offer.
 
 Mention that the weekly email draft is built on Friday morning from whatever has been
