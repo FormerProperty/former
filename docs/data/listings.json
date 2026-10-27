@@ -108,7 +108,14 @@
    "badges": [
     "Unconverted"
    ],
-   "photo": null,
+   "photo": {
+    "id": "5374496",
+    "title": "Mill Lane, Thorington Street",
+    "author": "JThomas",
+    "year": "2017",
+    "src": "photos/5374496.jpg",
+    "thumb": "https://s0.geograph.org.uk/geophotos/05/37/44/5374496_11329285_213x160.jpg"
+   },
    "lat": 51.982479,
    "lng": 0.928529,
    "added": "2026-10-27"
@@ -136,7 +143,14 @@
    "beds": 3,
    "listed": "2026-10-26",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "6637875",
+    "title": "Wesleyan Reform Chapel 1851",
+    "author": "Des Blenkinsopp",
+    "year": "2020",
+    "src": "photos/6637875.jpg",
+    "thumb": "https://s3.geograph.org.uk/geophotos/06/63/78/6637875_73d5a2fb_213x160.jpg"
+   },
    "lat": 51.981505,
    "lng": -1.320086,
    "added": "2026-10-27"
@@ -644,7 +658,14 @@
    "beds": 2,
    "listed": "2026-10-21",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "571807",
+    "title": "Bekesbourne Hill and the Unicorn pub",
+    "author": "Nick Smith",
+    "year": "2007",
+    "src": "photos/571807.jpg",
+    "thumb": "https://s3.geograph.org.uk/photos/57/18/571807_8a28f353_213x160.jpg"
+   },
    "lat": 51.262218,
    "lng": 1.136595,
    "added": "2026-10-27"
@@ -672,7 +693,14 @@
    "beds": 2,
    "listed": "2026-10-21",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "1063202",
+    "title": "Drax Arms, Spetisbury",
+    "author": "Mike Faherty",
+    "year": "2008",
+    "src": "photos/1063202.jpg",
+    "thumb": "https://s2.geograph.org.uk/geophotos/01/06/32/1063202_5823c13e_213x160.jpg"
+   },
    "lat": 50.823115,
    "lng": -2.127273,
    "added": "2026-10-27"
@@ -702,7 +730,14 @@
    "badges": [
     "Project"
    ],
-   "photo": null,
+   "photo": {
+    "id": "241357",
+    "title": "Hatton Pumping Station, Swynnerton",
+    "author": "Chris Allen",
+    "year": "2003",
+    "src": "photos/241357.jpg",
+    "thumb": "https://s1.geograph.org.uk/photos/24/13/241357_253e7f04_213x160.jpg"
+   },
    "lat": 52.930128,
    "lng": -2.255355,
    "added": "2026-10-27"
@@ -977,7 +1012,14 @@
    "badges": [
     "Unconverted"
    ],
-   "photo": null,
+   "photo": {
+    "id": "205816",
+    "title": "The Methodist Chapel, Ellerton",
+    "author": "Roger Gilbertson",
+    "year": "2006",
+    "src": "photos/205816.jpg",
+    "thumb": "https://s0.geograph.org.uk/photos/20/58/205816_f8451c17_213x160.jpg"
+   },
    "lat": 53.850063,
    "lng": -0.929909,
    "added": "2026-10-27"
@@ -1005,7 +1047,14 @@
    "beds": 4,
    "listed": "2026-10-19",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "1519757",
+    "title": "The Bugle Coaching Inn, Yarmouth, Isle of Wight",
+    "author": "Christine Matthews",
+    "year": "2009",
+    "src": "photos/1519757.jpg",
+    "thumb": "https://s1.geograph.org.uk/geophotos/01/51/97/1519757_d6432150_213x160.jpg"
+   },
    "lat": 50.706268,
    "lng": -1.497252,
    "added": "2026-10-27"
@@ -1035,7 +1084,14 @@
    "badges": [
     "Unconverted"
    ],
-   "photo": null,
+   "photo": {
+    "id": "5576499",
+    "title": "Barclays Bank",
+    "author": "Jonathan Thacker",
+    "year": "2017",
+    "src": "photos/5576499.jpg",
+    "thumb": "https://s3.geograph.org.uk/geophotos/05/57/64/5576499_63358946_213x160.jpg"
+   },
    "lat": 52.998798,
    "lng": -0.409994,
    "added": "2026-10-27"
@@ -1333,7 +1389,14 @@
    "beds": 5,
    "listed": "2026-10-16",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "1185953",
+    "title": "Unconverted Oast House at Stonehall Farm, Crumps Lane, Ulcombe, Kent",
+    "author": "Oast House Archive",
+    "year": "2009",
+    "src": "photos/1185953.jpg",
+    "thumb": "https://s1.geograph.org.uk/geophotos/01/18/59/1185953_82a42980_213x160.jpg"
+   },
    "lat": 51.196907,
    "lng": 0.642498,
    "added": "2026-10-27"
@@ -3585,7 +3648,14 @@
    "beds": 7,
    "listed": "2026-09-28",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "7420761",
+    "title": "Former White Hart Inn, Charlbury",
+    "author": "Derek Harper",
+    "year": "2022",
+    "src": "photos/7420761.jpg",
+    "thumb": "https://s1.geograph.org.uk/geophotos/07/42/07/7420761_0577cfad_213x160.jpg"
+   },
    "lat": 51.873745,
    "lng": -1.483447,
    "added": "2026-10-27"
@@ -3951,7 +4021,14 @@
    "badges": [
     "Unconverted"
    ],
-   "photo": null,
+   "photo": {
+    "id": "4521910",
+    "title": "The old Primitive Methodist chapel and schoolroom",
+    "author": "Adrian S Pye",
+    "year": "2015",
+    "src": "photos/4521910.jpg",
+    "thumb": "https://s2.geograph.org.uk/geophotos/04/52/19/4521910_68768bd3_213x160.jpg"
+   },
    "lat": 52.62509,
    "lng": 0.478569,
    "added": "2026-10-27"
@@ -5259,7 +5336,14 @@
    "beds": 3,
    "listed": "2026-09-10",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "380634",
+    "title": "Former chapel, Norbury",
+    "author": "Espresso Addict",
+    "year": "2007",
+    "src": "photos/380634.jpg",
+    "thumb": "https://s2.geograph.org.uk/photos/38/06/380634_b2692e27_213x160.jpg"
+   },
    "lat": 53.021738,
    "lng": -2.659711,
    "added": "2026-10-27"
@@ -6486,7 +6570,14 @@
    "beds": 5,
    "listed": "2026-09-01",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "3145783",
+    "title": "The Brickmakers Arms and houses on Wheeler End Common",
+    "author": "don cload",
+    "year": "2012",
+    "src": "photos/3145783.jpg",
+    "thumb": "https://s3.geograph.org.uk/geophotos/03/14/57/3145783_ce29fb86_213x160.jpg"
+   },
    "lat": 51.630943,
    "lng": -0.841263,
    "added": "2026-10-27"
