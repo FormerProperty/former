@@ -56,7 +56,9 @@ Clone `FormerProperty/former` (add it to the session first if needed) and work o
    telephone exchange, sunday school, meeting house, former warehouse, former factory,
    chapel conversion, church conversion, school conversion, mill conversion, coach house,
    methodist church, village chapel.
-3. **Drop ids we have already seen:** anything in `docs/data/listings.json`, `removed.json`,
+3. **Mark the alert emails as read** once they have been parsed (remove the `UNREAD` label from
+   each thread), so Tanya's Zoopla folder shows only what arrived since the last run.
+4. **Drop ids we have already seen:** anything in `docs/data/listings.json`, `removed.json`,
    `pending/*.json` or `pending/judged-out.json`.
 
 ## 3. Judge each new listing

@@ -1,7 +1,7 @@
 name: Weekly email draft
 on:
   schedule:
-    - cron: "23 7 * * 5"   # Fridays 07:23 UTC: draft only, Tanya presses Send in Buttondown
+    - cron: "23 7 * * 6"   # Saturdays 07:23 UTC: draft only, Tanya presses Send in Buttondown
   workflow_dispatch:
     inputs:
       test:
