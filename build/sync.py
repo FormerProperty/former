@@ -59,9 +59,22 @@ def main():
     pending_files = sorted(f for f in glob.glob(os.path.join(ROOT, "pending", "*.json"))
                            if os.path.basename(f) != "judged-out.json")
     pending = {}
+    sys.path.insert(0, os.path.join(ROOT, "build"))
+    import find_photos
     for f in pending_files:
-        for row in load(f, []):
+        rows = load(f, [])
+        changed = False
+        for row in rows:
+            # Suggest a Geograph photo once per candidate ("ph": null means none found)
+            if "ph" not in row and row.get("ll"):
+                try:
+                    row["ph"] = find_photos.suggest(row["ll"][0], row["ll"][1], row.get("t"))
+                    changed = True
+                except Exception as e:
+                    print("photo search failed", row["id"], e)
             pending[str(row["id"])] = row
+        if changed:
+            save(f, rows)
     if pending:
         res = call("POST", token, {"pending": list(pending.values())})
         print(f"queued {len(pending)} candidates ({res.get('changed')} statements)")
@@ -77,11 +90,25 @@ def main():
     # Approved rows join the published export (later export files win)
     out_path = os.path.join(ROOT, "export", "90-approved.json")
     out = {str(r["id"]): r for r in load(out_path, [])}
+    photos_path = os.path.join(ROOT, "photos.json")
+    tried_path = os.path.join(ROOT, "photos-tried.json")
+    photos, tried = load(photos_path, {}), load(tried_path, {})
     for pid, row in approved.items():
+        # Suggested photo: kept unless Tanya unticked it on the review card
+        if row.get("ph"):
+            ph = list(row["ph"])
+            ph[6] = 0 if row.get("phok") is False else 1
+            photos[pid] = ph
+        if "ph" in row:
+            tried[pid] = row.get("l") or ""
         row = {k: v for k, v in row.items() if k in ("id", "p", "b", "a", "l", "t", "w", "n", "g", "au", "h", "sq", "ac", "gr", "bt", "ag", "ll")}
         row["id"] = pid
         out[pid] = row
     save(out_path, list(out.values()))
+    with open(photos_path, "w") as fh:
+        json.dump(photos, fh, ensure_ascii=False, separators=(",", ":"))
+    with open(tried_path, "w") as fh:
+        json.dump(tried, fh, indent=0, sort_keys=True)
 
     removed_path = os.path.join(ROOT, "removed.json")
     removed = load(removed_path, {})
@@ -99,9 +126,6 @@ def main():
             os.remove(f)
 
     env = dict(os.environ, FORMER_SITE_URL="https://formerly.uk/")
-    subprocess.run([sys.executable, os.path.join(ROOT, "build", "build.py")], check=True, env=env)
-    # Look for Geograph photos of newly approved buildings, then rebuild so they show
-    subprocess.run([sys.executable, os.path.join(ROOT, "build", "find_photos.py")], check=False)
     subprocess.run([sys.executable, os.path.join(ROOT, "build", "build.py")], check=True, env=env)
     subprocess.run([sys.executable, os.path.join(ROOT, "build", "fetch_photos.py")], check=False)
 

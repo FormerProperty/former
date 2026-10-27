@@ -14,10 +14,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Find photos for new buildings and rebuild
-        run: |
-          python build/find_photos.py
-          FORMER_SITE_URL=https://formerly.uk/ python build/build.py
       - run: python build/fetch_photos.py
       - name: Commit new thumbnails
         run: |

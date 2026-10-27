@@ -1,4 +1,9 @@
-"""Find a Geograph photograph for buildings added since the last run.
+"""Suggest Geograph photographs for buildings.
+
+suggest() is used by the sync job: each candidate in the review queue gets a suggested
+photo, which Tanya keeps or drops on the review card. main() is a manual tool that matches
+photos for buildings already on the site (it publishes them without review).
+
 
 Runs in GitHub Actions (Geograph is not reachable from every environment). For each
 listing with coordinates and no entry in photos.json or photos-tried.json, it searches
@@ -69,6 +74,24 @@ def path_for(pid, h):
         return f"photos/{s[0:2]}/{s[2:4]}/{s}_{h}"
     s = f"{n:08d}"
     return f"geophotos/{s[0:2]}/{s[2:4]}/{s[4:6]}/{pid}_{h}"
+
+
+def suggest(lat, lng, kind):
+    """Best Geograph photo for a building, as a photos.json row with ok=0, or None."""
+    words = WORDS.get(kind, [])
+    if not words or lat is None or lng is None:
+        return None
+    rows = search(lat, lng, words)
+    time.sleep(1)
+    pat = re.compile(r"\b(" + "|".join(re.escape(w) for w in words) + r")\b", re.I)
+    for r in rows:
+        if float(r.get("d") or 9e9) > MAX_METRES:
+            break
+        if pat.search(STREET.sub("", r.get("title") or "")) and r.get("hash"):
+            pid = str(r["id"])
+            return [pid, r["title"], r.get("realname") or "", (r.get("takenday") or "")[:4],
+                    str(int(pid) % 4), path_for(pid, r["hash"]), 0]
+    return None
 
 
 def main():

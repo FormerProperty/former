@@ -31,7 +31,10 @@ export async function onRequest({ request, env }) {
     for (const item of b.pending || []) {
       const id = String(item.id || "");
       if (!/^\d{5,10}$/.test(id)) continue;
-      stmts.push(db.prepare("INSERT OR IGNORE INTO pending (id, data, created) VALUES (?, ?, datetime('now'))").bind(id, JSON.stringify(item)));
+      // New candidates are added; ones still waiting pick up a photo suggestion added since
+      stmts.push(db.prepare(`INSERT INTO pending (id, data, created) VALUES (?, ?, datetime('now'))
+        ON CONFLICT(id) DO UPDATE SET data = excluded.data
+        WHERE pending.status = 'pending' AND json_type(pending.data, '$.ph') IS NULL AND json_type(excluded.data, '$.ph') IS NOT NULL`).bind(id, JSON.stringify(item)));
     }
     const a = b.applied || {};
     for (const id of a.approved || []) stmts.push(db.prepare("UPDATE pending SET applied=1 WHERE id=? AND status='approved'").bind(String(id)));

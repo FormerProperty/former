@@ -76,6 +76,13 @@ button.act{font:600 14.5px var(--sans);padding:9px 16px;border:1px solid var(--i
 button.yes{background:var(--livery);border-color:var(--livery);color:var(--paper)}
 button.danger{background:var(--oxblood);border-color:var(--oxblood);color:var(--paper)}
 button.act:disabled{opacity:.5;cursor:default}
+.ph{display:flex;gap:14px;align-items:flex-start;margin:6px 0 4px}
+.ph img{width:160px;height:120px;object-fit:cover;background:var(--stone);flex:none}
+.ph figcaption{display:grid;gap:4px;font-size:14px;color:var(--muted)}
+.ph label{font-weight:600;color:var(--ink);display:flex;gap:8px;align-items:center}
+.ph input{width:18px;height:18px;accent-color:var(--livery)}
+.ph .small{font-size:13px}
+@media(max-width:520px){.ph{flex-direction:column}.ph img{width:100%;height:auto;aspect-ratio:4/3}}
 .hl{display:grid;gap:4px;font:600 11.5px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:4px}
 .hl input{font:400 18px var(--serif);letter-spacing:0;text-transform:none;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--ink);padding:6px 0}
 input.reason{font:14.5px var(--sans);color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--rule);padding:6px 0;min-width:0;flex:1 1 220px}
@@ -142,6 +149,11 @@ function pendingCard(r){
     <h2 class="place">${esc(d.a||r.id)}</h2>
     <div class="meta">${meta}</div>
     ${facts?`<div class="meta">${facts}</div>`:''}
+    ${d.ph?`<figure class="ph"><img src="https://s${esc(d.ph[4])}.geograph.org.uk/${esc(d.ph[5])}_213x160.jpg" alt="" loading="lazy">
+      <figcaption><label><input type="checkbox" class="usephoto" checked> Use this photo</label>
+      <span>${esc(d.ph[1])}, ${esc(d.ph[2])}${d.ph[3]?' ('+esc(d.ph[3])+')':''}, Geograph</span>
+      <span class="small">Untick it if it shows a different building.</span></figcaption></figure>`
+      : (d.ll?'<p class="why">No Geograph photo found; the site will show the label tile.</p>':'')}
     <label class="hl">Headline on the site <input class="headline" value="${esc(d.h||'')}" maxlength="90" placeholder="e.g. Grade II village post office, needing modernisation"></label>
     ${d.n?`<p class="why">${esc(d.n)}</p>`:''}
     ${d.why?`<p class="why">Why it was picked: ${esc(d.why)}</p>`:''}
@@ -245,10 +257,11 @@ document.addEventListener('click', async ev=>{
   const card=b.closest('.item'); const id=card.dataset.id;
   const reason=card.querySelector('input.reason')?.value.trim() || '';
   const headline=card.querySelector('input.headline')?.value.trim();
+  const usePhoto=card.querySelector('input.usephoto');
   card.querySelectorAll('button.act').forEach(x=>x.disabled=true);
   try{
     const r=await fetch('/api/admin/decide',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({type:b.dataset.type,action:b.dataset.action,id,reason,...(headline!==undefined?{edits:{h:headline}}:{})})});
+      body:JSON.stringify({type:b.dataset.type,action:b.dataset.action,id,reason,...(headline!==undefined?{edits:{h:headline,...(usePhoto?{photo:usePhoto.checked}:{})}}:{})})});
     const j=await r.json();
     if(!j.ok){ toast(j.error||'That did not work.'); card.querySelectorAll('button.act').forEach(x=>x.disabled=false); return; }
     toast({approve:'Approved',reject:'Rejected',remove:'Will be taken down',dismiss:'Dismissed',undo:'Undone'}[b.dataset.action]);

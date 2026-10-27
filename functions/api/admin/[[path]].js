@@ -42,11 +42,12 @@ export async function onRequest(ctx) {
     const reason = String(b.reason || "").slice(0, 300) || null;
     if (!/^\d{5,10}$/.test(id)) return json({ ok: false, error: "Bad id" }, 400);
 
-    if (b.type === "pending" && b.action === "approve" && b.edits && typeof b.edits.h === "string") {
+    if (b.type === "pending" && b.action === "approve" && b.edits) {
       const row = await db.prepare("SELECT data FROM pending WHERE id=? AND applied=0").bind(id).first();
       if (row) {
         const data = JSON.parse(row.data);
-        data.h = b.edits.h.replace(/\s+/g, " ").trim().slice(0, 90);
+        if (typeof b.edits.h === "string") data.h = b.edits.h.replace(/\s+/g, " ").trim().slice(0, 90);
+        if (typeof b.edits.photo === "boolean") data.phok = b.edits.photo;
         await db.prepare("UPDATE pending SET data=? WHERE id=?").bind(JSON.stringify(data), id).run();
       }
     }
