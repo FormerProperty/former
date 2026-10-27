@@ -23,8 +23,26 @@ Clone `FormerProperty/former` (add it to the session first if needed) and work o
 
 ## 2. Collect candidate listing ids
 
-1. **Alert emails.** In Gmail search `from:zoopla newer_than:8d` and pull every
-   `/for-sale/details/<id>/` link from the alert emails.
+1. **Alert emails.** In Gmail search `from:zoopla newer_than:8d`. The emails are large, so
+   fetch each thread in full (it is saved to a file) and parse the HTML with a script rather
+   than reading it. What we learned about the format:
+   - Take only the listing links **before** the "Similar properties nearby" section, i.e.
+     `/for-sale/details/<id>/?utm_campaign=...` links without `utm_content=similar_listing`.
+     The "similar" ones are Zoopla's suggestions, not matches.
+   - Each card gives price, bedrooms, property type and address, which is enough to sort
+     the obvious noise before opening any page: developments of flats (Granary Square,
+     Neptune Street, warehouse lofts), new builds named after old buildings ("The Henley" at
+     Redwood Avenue) and street-name matches (Windmill Drive, Watermill Way, Signal Box Way).
+     Do not skip a card only because Zoopla calls it a flat: whole buildings are sometimes
+     mislabelled, so open it if the address or price suggests a whole building.
+   - "Price reduced" emails list matching listings whose price has dropped. Treat their ids
+     as candidates too (they can be older listings we have missed), and when one is already
+     on the site, refresh its price during the availability check.
+   - The same email can arrive twice, and the first emails after an alert is created are a
+     catch-up of the previous week or so. De-duplicate ids.
+   In a test on 26 October the alerts caught about 85% of the qualifying buildings listed in the
+   previous week; the misses were worded "coach house", "village chapel" and "Methodist church"
+   without "former" or "converted". So the sweep below still matters.
 2. **Newest-listing sweep (backstop).** For each phrase below, fetch page 1 of
    `https://www.zoopla.co.uk/for-sale/property/england/?keywords="<phrase>"&q=England&results_sort=newest_listings`
    (quoted phrase, URL-encoded) and collect listing ids added in the last 8 days.
@@ -34,7 +52,9 @@ Clone `FormerProperty/former` (add it to the session first if needed) and work o
    signal box, water tower, former bank, former post office, former police station,
    former fire station, coach house, toll house, former forge, smithy, granary, malthouse,
    former dairy, former bakery, engine house, pumping station, former library, court house,
-   telephone exchange, sunday school, meeting house, former warehouse, former factory.
+   telephone exchange, sunday school, meeting house, former warehouse, former factory,
+   chapel conversion, church conversion, school conversion, mill conversion, coach house,
+   methodist church, village chapel.
 3. **Drop ids we have already seen:** anything in `docs/data/listings.json`, `removed.json`,
    `pending/*.json` or `pending/judged-out.json`.
 
@@ -123,14 +143,16 @@ Every building on the site is rechecked about once a month, a quarter of them ea
    - **live:** otherwise.
    If a fetch fails for any other reason (403, timeout), skip that id this week and leave
    its entry unchanged.
-3. Update `status.json` for each id checked: always set `checked` to today. Set `since` to
+3. If the price shown differs from the site's, record the new price text in
+   `overrides.json` as `{"<id>": {"p": "£425,000"}}` (merge with any existing entry).
+4. Update `status.json` for each id checked: always set `checked` to today. Set `since` to
    today only when the state has changed (keep the old `since` when an under-offer building is
    still under offer, so the 31-day clock keeps running).
-4. The build does the rest: **gone** buildings leave the site; **offer** buildings show an
+5. The build does the rest: **gone** buildings leave the site; **offer** buildings show an
    "Under offer" flag for up to 31 days and then leave the site; a building that comes back on
    the market simply loses its flag. Under-offer buildings are never posted to Bluesky or put
    in the email.
-5. Commit `status.json` together with the week's pending file (one commit is fine). Run
+6. Commit `status.json` (and `overrides.json`) together with the week's pending file (one commit is fine). Run
    `FORMER_SITE_URL=https://formerly.uk/ python3 build/build.py` before committing so the live
    site updates straight away, and include `docs/` in the commit.
 
