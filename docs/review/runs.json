@@ -1,1 +1,25 @@
-{"runs": []}
+{
+ "runs": [
+  {
+   "date": "2026-10-27",
+   "label": "Tuesday 27 October",
+   "checked": 180,
+   "queued": 31,
+   "left_out": 149,
+   "reasons": [
+    "70 flats or homes within larger conversions",
+    "41 ordinary or modern houses (keyword only in the area or description)",
+    "17 houses on streets named after old buildings",
+    "21 others: farmhouses and cottages, barn conversions, plots, and houses where the old building is sold separately"
+   ],
+   "availability": {
+    "checked": 65,
+    "gone": [],
+    "offer": [],
+    "expired": []
+   },
+   "health": "",
+   "notes": "Alert emails only (Tuesday run, no sweep). 181 pages opened on Zoopla at a gentle pace; two returned 403 once and loaded fine on a later retry. One price change: 71312908 now £625,000. Several queued items carry a doubt in their note (pub split into two homes, part buildings, school house vs school)."
+  }
+ ]
+}

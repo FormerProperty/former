@@ -1,0 +1,551 @@
+[
+ {
+  "id": "74563749",
+  "p": "£475,000",
+  "b": "3",
+  "a": "Trelights PL29",
+  "l": "2026-10-21",
+  "t": "chapel",
+  "w": "chapel",
+  "n": "Patio garden and parking for one car, near Port Isaac",
+  "h": "Chapel cottage with vaulted ceilings and old beams",
+  "ag": "John Bray and Partners",
+  "ll": [
+   50.57801,
+   -4.83884
+  ],
+  "why": "Chapel Villa, described as a former chapel now a three-bedroom cottage"
+ },
+ {
+  "id": "74546222",
+  "p": "£100,000",
+  "b": "",
+  "a": "Main Street, Ellerton, York YO42",
+  "l": "2026-10-19",
+  "t": "chapel",
+  "w": "chapel, Grade II, unconverted",
+  "g": "Project",
+  "h": "Listed village chapel with consent to become a home",
+  "sq": 1098,
+  "gr": "II",
+  "ag": "Clubleys",
+  "ll": [
+   53.850063,
+   -0.929909
+  ],
+  "why": "Grade II listed former chapel, about 102 sq m, full planning and listed building consent for a home"
+ },
+ {
+  "id": "74205202",
+  "p": "£725,000",
+  "b": "3",
+  "a": "Norbury, Whitchurch, Shropshire SY13",
+  "l": "2026-09-10",
+  "t": "chapel",
+  "w": "chapel",
+  "h": "Restored hilltop chapel with a glass bridge to the study",
+  "sq": 2548,
+  "ag": "Savills - Chester",
+  "ll": [
+   53.021738,
+   -2.659711
+  ],
+  "why": "Restored former chapel with double-height living space; offers over; older listing found via a price-reduced alert"
+ },
+ {
+  "id": "73376640",
+  "p": "£650,000",
+  "b": "5",
+  "a": "Theobalds Green, Calne SN11",
+  "l": "2026-06-04",
+  "t": "chapel",
+  "w": "chapel, converted early 20th century",
+  "h": "Chapel lived in for a century, with far-reaching views",
+  "sq": 2192,
+  "ag": "Hamptons - Marlborough Sales",
+  "ll": [
+   51.420468,
+   -1.968816
+  ],
+  "why": "Former chapel converted to a home in the early 1900s; older listing found via a price-reduced alert"
+ },
+ {
+  "id": "74585331",
+  "p": "£315,000",
+  "b": "2",
+  "a": "Peartree Road, Southampton SO19",
+  "l": "2026-10-23",
+  "t": "school",
+  "w": "school, Grade II",
+  "h": "Listed schoolroom home with a 22ft living room",
+  "gr": "II",
+  "ag": "Stanford Estate Agents Ltd",
+  "ll": [
+   50.902919,
+   -1.375788
+  ],
+  "why": "Described as a Grade II listed converted school with large feature windows, but it is called The Old School House: worth checking it was the school itself"
+ },
+ {
+  "id": "74173175",
+  "p": "£160,000",
+  "b": "2",
+  "a": "Hague Street, Glossop SK13",
+  "l": "2026-09-08",
+  "au": 1,
+  "t": "school",
+  "w": "school house, late 1700s, Grade II",
+  "g": "Project|Auction",
+  "h": "Georgian school with a blue plaque, now two flats",
+  "gr": "II",
+  "bt": "late 1700s",
+  "ag": "Jordan Fishwick",
+  "ll": [
+   53.436847,
+   -1.94558
+  ],
+  "why": "Grade II listed former school house with arched windows and a blue plaque, now two flats, modern auction; doubt: may have been the master's house rather than the school"
+ },
+ {
+  "id": "74599891",
+  "p": "£750,000",
+  "b": "4",
+  "a": "Station Road, Loudwater, High Wycombe, Buckinghamshire HP10",
+  "l": "2026-10-26",
+  "t": "church",
+  "w": "church",
+  "h": "Church conversion with Gothic windows and a roof terrace",
+  "sq": 2240,
+  "ag": "Fine & Country - South Buckinghamshire",
+  "ll": [
+   51.607278,
+   -0.700491
+  ],
+  "why": "The Old Church, described as a converted church; slight doubt because it also says church-inspired design"
+ },
+ {
+  "id": "73547750",
+  "p": "£700,000",
+  "b": "4",
+  "a": "The Hill, Littlebourne, Kent CT3",
+  "l": "2026-06-25",
+  "t": "school",
+  "w": "village school, 1865",
+  "h": "Victorian village school with its scissor beams intact",
+  "sq": 4999,
+  "bt": "1865",
+  "ag": "Miles & Barr - Exclusive",
+  "ll": [
+   51.274942,
+   1.161596
+  ],
+  "why": "The village's former Church of England primary school, 1865, converted and extended; older listing found via a price-reduced alert"
+ },
+ {
+  "id": "73477312",
+  "p": "£950,000",
+  "b": "5",
+  "a": "Old Bristol Road, Berkeley GL13",
+  "l": "2026-06-17",
+  "t": "mill",
+  "w": "mill",
+  "n": "Beside a watercourse, with landscaped gardens",
+  "h": "Mill home with its old workings seen through the floor",
+  "sq": 2616,
+  "ag": "Fine & Country",
+  "ll": [
+   51.658425,
+   -2.451698
+  ],
+  "why": "Five-bedroom former mill; glass panels in the dining room floor show the mill workings below"
+ },
+ {
+  "id": "74600425",
+  "p": "£500,000",
+  "b": "3",
+  "a": "Thorington Street, Stoke By Nayland, Suffolk CO6",
+  "l": "2026-10-26",
+  "t": "mill",
+  "w": "flour mill and Georgian house, Grade II, unconverted",
+  "n": "With a wooded island between the river and the mill chase",
+  "g": "Project",
+  "h": "Riverside flour mill and house needing full restoration",
+  "sq": 4606,
+  "gr": "II",
+  "bt": "18th century",
+  "ag": "Savills - Suffolk",
+  "ll": [
+   51.982479,
+   0.928529
+  ],
+  "why": "Mill House plus the four-storey former flour mill (still storage); offers over; needs significant refurbishment"
+ },
+ {
+  "id": "74589650",
+  "p": "£650,000",
+  "b": "4",
+  "a": "The Crawley Inn, Crawley OX29",
+  "l": "2026-10-23",
+  "t": "pub",
+  "w": "village inn (part), being converted",
+  "h": "The larger half of a village inn, mid-conversion",
+  "sq": 1739,
+  "ag": "Simpsons Estate Agents Witney",
+  "ll": [
+   51.806639,
+   -1.503927
+  ],
+  "why": "Plot 1: the former pub is being split into two homes in an eight-home scheme (the other six are new builds); completion early 2027"
+ },
+ {
+  "id": "74580168",
+  "p": "£550,000",
+  "b": "3",
+  "a": "The Crawley Inn, Crawley OX29",
+  "l": "2026-10-22",
+  "t": "pub",
+  "w": "village inn (part), being converted",
+  "h": "The smaller half of a village inn, mid-conversion",
+  "sq": 1256,
+  "ag": "Simpsons Estate Agents Witney",
+  "ll": [
+   51.806306,
+   -1.503058
+  ],
+  "why": "Plot 2 of the same pub conversion as 74589650; include one or both"
+ },
+ {
+  "id": "74577715",
+  "p": "£650,000",
+  "b": "4",
+  "a": "Bunwell Road, Besthorpe NR17",
+  "l": "2026-10-22",
+  "t": "pub",
+  "w": "coaching inn and pub, c.1816",
+  "n": "With a vaulted studio, a barn and a hidden kitchen garden",
+  "h": "Georgian coaching inn, a private home since 1965",
+  "bt": "c.1816",
+  "ag": "eXp World UK",
+  "ll": [
+   52.517975,
+   1.038092
+  ],
+  "why": "Formerly The Compasses public house, earlier a coaching inn; offers over"
+ },
+ {
+  "id": "74570124",
+  "p": "£650,000",
+  "b": "2",
+  "a": "Bekesbourne Hill, Bekesbourne, Canterbury, Kent CT4",
+  "l": "2026-10-21",
+  "t": "pub",
+  "w": "pub",
+  "h": "Refurbished pub by the station with a vaulted kitchen",
+  "sq": 1796,
+  "ag": "Strutt & Parker - Canterbury",
+  "ll": [
+   51.262218,
+   1.136595
+  ],
+  "why": "The Prince of Wales, a former public house beside Bekesbourne station"
+ },
+ {
+  "id": "74566082",
+  "p": "£277,500",
+  "b": "2",
+  "a": "High Street, Spetisbury, Blandford Forum, Dorset DT11",
+  "l": "2026-10-21",
+  "t": "pub",
+  "w": "pub (part)",
+  "h": "Newly converted village pub with parking for three",
+  "ag": "Vivien Horder Estate Agents",
+  "ll": [
+   50.823115,
+   -2.127273
+  ],
+  "why": "Described as a converted former public house, but it is a terraced two-bedroom home with a build warranty: probably one of several homes made from the pub"
+ },
+ {
+  "id": "74533377",
+  "p": "£1,250,000",
+  "b": "5",
+  "a": "Crumps Lane, Ulcombe, Kent ME17",
+  "l": "2026-10-16",
+  "t": "oast",
+  "w": "oast house with Tudor farmhouse",
+  "n": "Consent to join the oast to the house",
+  "h": "Tudor farmhouse and its oast, with consent to join them",
+  "sq": 3870,
+  "ac": "Over an acre",
+  "bt": "late 16th century",
+  "ag": "Strutt & Parker - Canterbury",
+  "ll": [
+   51.196907,
+   0.642498
+  ],
+  "why": "Oast house annexe (972 sq ft) with the farmhouse (2,898 sq ft): the oast is only about a quarter of the space"
+ },
+ {
+  "id": "74355474",
+  "p": "£1,500,000",
+  "b": "7",
+  "a": "Market Street, Charlbury, Charlbury, Chipping Norton, Oxfordshire OX7",
+  "l": "2026-09-28",
+  "t": "pub",
+  "w": "pub and coaching inn, 17th century, Grade II",
+  "h": "17th-century coaching inn that once hosted inquests",
+  "sq": 4000,
+  "gr": "II",
+  "bt": "c.1650",
+  "ag": "The Oxfordshire Property Agent LTD",
+  "ll": [
+   51.873745,
+   -1.483447
+  ],
+  "why": "The former White Hart pub and coaching inn, a home since 1993; offers over"
+ },
+ {
+  "id": "74108405",
+  "p": "£1,375,000",
+  "b": "5",
+  "a": "Wheeler End Common HP14",
+  "l": "2026-09-01",
+  "t": "pub",
+  "w": "pub",
+  "n": "With a two-bedroom cottage and over half an acre",
+  "h": "Village pub turned home, with galleried hall and climbing wall",
+  "sq": 4594,
+  "ag": "Penny & Sinclair",
+  "ll": [
+   51.630943,
+   -0.841263
+  ],
+  "why": "The Old Brickmakers, a former village pub remodelled as a house"
+ },
+ {
+  "id": "74544905",
+  "p": "£900,000",
+  "b": "4",
+  "a": "Yarmouth, Isle Of Wight PO41",
+  "l": "2026-10-19",
+  "t": "pub",
+  "w": "inn, Georgian, Grade II",
+  "n": "Ground floor let to a dentist",
+  "h": "Georgian inn with a walled garden and a dentist downstairs",
+  "sq": 1834,
+  "gr": "II",
+  "ag": "Spence Willard",
+  "ll": [
+   50.706268,
+   -1.497252
+  ],
+  "why": "Marlborough House, once the New Inn; mixed use with the ground floor let; offers in the region of"
+ },
+ {
+  "id": "74580652",
+  "p": "£550,000",
+  "b": "4",
+  "a": "Eye, Leominster, Herefordshire HR6",
+  "l": "2026-10-22",
+  "t": "station",
+  "w": "station house and ticket office, Victorian",
+  "n": "With paddocks, a stable and the old platform",
+  "h": "Victorian station with its platform and ticket hatch",
+  "sq": 1701,
+  "ac": "1.13 acres",
+  "ag": "Chancellors - Leominster",
+  "ll": [
+   52.271148,
+   -2.740569
+  ],
+  "why": "Former station house that includes the original ticket office and platform; doubt: may be mainly the station master's house"
+ },
+ {
+  "id": "74294467",
+  "p": "£1,450,000",
+  "b": "",
+  "a": "Market Square, Winslow MK18",
+  "l": "2026-09-21",
+  "t": "bank",
+  "w": "bank, converted to six flats",
+  "h": "Whole market-square bank, let as six flats",
+  "ag": "Charles David Casson",
+  "ll": [
+   51.941606,
+   -0.881967
+  ],
+  "why": "The entire former bank building, converted to six flats around 2025 and sold as one freehold investment"
+ },
+ {
+  "id": "71521062",
+  "p": "£250,000",
+  "b": "",
+  "a": "Former Barclays Bank, 21 Market Place NG34",
+  "l": "2026-10-19",
+  "t": "bank",
+  "w": "bank, Grade II, unconverted",
+  "g": "Project",
+  "h": "Listed town bank with a new roof, ready to convert",
+  "sq": 5003,
+  "gr": "II",
+  "ag": "James & Co",
+  "ll": [
+   52.998798,
+   -0.409994
+  ],
+  "why": "Grade II listed former Barclays bank over three floors, vacant; offers over"
+ },
+ {
+  "id": "74544589",
+  "p": "£900,000",
+  "b": "5",
+  "a": "2 Birch Street, Colchester CO2",
+  "l": "2026-10-19",
+  "t": "police",
+  "w": "police station",
+  "h": "Village police station turned five-bedroom family home",
+  "ac": "A third of an acre",
+  "ag": "Knight Residential",
+  "ll": [
+   51.839467,
+   0.819743
+  ],
+  "why": "Detached house converted from a former police station"
+ },
+ {
+  "id": "73704491",
+  "p": "£300,000",
+  "b": "3",
+  "a": "Buxton Road, Eastbourne BN20",
+  "l": "2026-07-13",
+  "t": "coach",
+  "w": "coach house (half)",
+  "h": "Half a manor's coach house, with parquet floors",
+  "ag": "Oakfield Estate Agents",
+  "ll": [
+   50.757701,
+   0.273661
+  ],
+  "why": "Semi-detached converted coach house in the grounds of Highmead Manor; leasehold with a service charge"
+ },
+ {
+  "id": "74111584",
+  "p": "£499,999",
+  "b": "4",
+  "a": "Lucton, Leominster, Herefordshire HR6",
+  "l": "2026-09-01",
+  "t": "granary",
+  "w": "granary, 1740",
+  "h": "Georgian granary with a circular library",
+  "sq": 1959,
+  "bt": "1740",
+  "ag": "Mark Wiggin",
+  "ll": [
+   52.272248,
+   -2.825471
+  ],
+  "why": "Moon House, a converted granary of 1740, one of eight 1998 conversions of Lucton Court farm buildings; not listed itself; also called a barn conversion"
+ },
+ {
+  "id": "71041501",
+  "p": "£180,000",
+  "b": "3",
+  "a": "Hatton Manor, Hatton, Cotes Heath, Stafford ST21",
+  "l": "2026-10-21",
+  "t": "works",
+  "w": "water pumping station (part), Victorian, Grade II",
+  "g": "Project",
+  "h": "Part of a Victorian pumping station, ready for renovation",
+  "gr": "II",
+  "ag": "Reeds Rains - Eccleshall",
+  "ll": [
+   52.930128,
+   -2.255355
+  ],
+  "why": "Semi-detached home within the Grade II pumping station, gated development, leasehold; share of the building unclear"
+ },
+ {
+  "id": "74605103",
+  "p": "£575,000",
+  "b": "3",
+  "a": "Church Street, Deddington OX15",
+  "l": "2026-10-26",
+  "t": "chapel",
+  "w": "chapel",
+  "h": "Chapel with a double-height living room and stained glass",
+  "ag": "Bettermove",
+  "ll": [
+   51.981505,
+   -1.320086
+  ],
+  "why": "Detached converted former chapel; offers over"
+ },
+ {
+  "id": "74605727",
+  "p": "£550,000",
+  "b": "4",
+  "a": "Mill Lane, Ipswich IP9",
+  "l": "2026-10-26",
+  "t": "coach",
+  "w": "stables for the village mill",
+  "h": "Old mill stables with a barn for entertaining",
+  "ag": "Keller Williams",
+  "ll": [
+   51.990298,
+   1.203175
+  ],
+  "why": "The Stables, built for the horses of the nearby mill; include if stables count"
+ },
+ {
+  "id": "74341370",
+  "p": "£300,000",
+  "b": "",
+  "a": "Downham Road, Fincham PE33",
+  "l": "2026-09-25",
+  "t": "chapel",
+  "w": "Methodist chapel and schoolroom, unconverted",
+  "g": "Project",
+  "h": "Methodist chapel and schoolroom with consent for two homes",
+  "ag": "Minors & Brady",
+  "ll": [
+   52.62509,
+   0.478569
+  ],
+  "why": "Former Methodist chapel and adjoining schoolhouse with planning for two dwellings (25/01521/F)"
+ },
+ {
+  "id": "74609518",
+  "p": "£675,000",
+  "b": "4",
+  "a": "Church Street, Woodhurst PE28",
+  "l": "2026-10-27",
+  "t": "postoffice",
+  "w": "post office, Grade II",
+  "h": "Listed village post office with six reception rooms",
+  "sq": 4389,
+  "gr": "II",
+  "ag": "Ellis Winters Sales and Lettings",
+  "ll": [
+   52.366977,
+   -0.068885
+  ],
+  "why": "The Old Post Office, Grade II; may always have been a house that held the post office"
+ },
+ {
+  "id": "73301500",
+  "p": "£1,195,000",
+  "b": "4",
+  "a": "Angel Lane, New Milton BH25",
+  "l": "2026-05-27",
+  "t": "coach",
+  "w": "coach house",
+  "n": "With a heated pool and private woodland",
+  "h": "Country estate coach house with pool and woodland",
+  "ag": "Spencers of the New Forest - Lymington",
+  "ll": [
+   50.743681,
+   -1.629285
+  ],
+  "why": "The Coach House in the grounds of a former country estate; the listing does not say when it was converted"
+ }
+]

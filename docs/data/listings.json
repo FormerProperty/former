@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-26",
+ "updated": "2026-10-27",
  "types": {
   "chapel": "Chapels",
   "church": "Churches",
@@ -14790,8 +14790,8 @@
    "postcode": "WR6",
    "county": "Worcestershire",
    "region": "West Midlands",
-   "price": 675000,
-   "priceText": "£675,000",
+   "price": 625000,
+   "priceText": "£625,000",
    "beds": 3,
    "listed": "2025-09-15",
    "badges": [],
