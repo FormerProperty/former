@@ -108,14 +108,7 @@
    "badges": [
     "Unconverted"
    ],
-   "photo": {
-    "id": "5374496",
-    "title": "Mill Lane, Thorington Street",
-    "author": "JThomas",
-    "year": "2017",
-    "src": "photos/5374496.jpg",
-    "thumb": "https://s0.geograph.org.uk/geophotos/05/37/44/5374496_11329285_213x160.jpg"
-   },
+   "photo": null,
    "lat": 51.982479,
    "lng": 0.928529,
    "added": "2026-10-27"

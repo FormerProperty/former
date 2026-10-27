@@ -15,6 +15,7 @@ from datetime import date
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 API = "https://api.geograph.org.uk/api-facetql.php"
 MAX_METRES = 120
+STREET = re.compile(r"\b\w+\s+(lane|road|street|way|close|drive|avenue|row|hill|walk|place|terrace|yard)\b", re.I)
 
 WORDS = {
     "chapel": ["chapel", "methodist", "baptist", "wesleyan", "congregational", "primitive", "bethel", "ebenezer", "zion", "meeting house"],
@@ -93,7 +94,9 @@ def main():
         for r in rows:
             if float(r.get("d") or 9e9) > MAX_METRES:
                 break
-            if pat.search(r.get("title") or "") and r.get("hash"):
+            # Ignore titles where the word is only part of a street name ("Mill Lane", "Chapel Road")
+            title = STREET.sub("", r.get("title") or "")
+            if pat.search(title) and r.get("hash"):
                 pid = str(r["id"])
                 photos[lid] = [pid, r["title"], r.get("realname") or "", (r.get("takenday") or "")[:4],
                                str(int(pid) % 4), path_for(pid, r["hash"]), 1]
