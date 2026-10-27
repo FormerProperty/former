@@ -1,6 +1,6 @@
-# formerly. weekly intake
+# formerly. intake (Tuesdays and Fridays)
 
-The playbook for the weekly scheduled session that finds new listings, judges them and
+The playbook for the scheduled session, run every **Tuesday and Friday** at 10:43, that finds new listings, judges them and
 queues them for Tanya's review. Follow it step by step. Nothing goes live from this
 session: everything lands in the review queue at https://formerly.uk/review.
 
@@ -43,7 +43,8 @@ Clone `FormerProperty/former` (add it to the session first if needed) and work o
    In a test on 26 October the alerts caught about 85% of the qualifying buildings listed in the
    previous week; the misses were worded "coach house", "village chapel" and "Methodist church"
    without "former" or "converted". So the sweep below still matters.
-2. **Newest-listing sweep (backstop).** For each phrase below, fetch page 1 of
+2. **Newest-listing sweep (backstop): Fridays only.** On Tuesdays the alert emails are enough;
+   on Fridays, for each phrase below, fetch page 1 of
    `https://www.zoopla.co.uk/for-sale/property/england/?keywords="<phrase>"&q=England&results_sort=newest_listings`
    (quoted phrase, URL-encoded) and collect listing ids added in the last 8 days.
    Phrases: former chapel, converted chapel, former school, old school house conversion,
@@ -127,12 +128,12 @@ One JSON object per building, in the judging format:
 
 ## 6. Rolling availability check
 
-Every building on the site is rechecked about once a month, a quarter of them each week.
+Every building on the site is rechecked about once a month: an eighth of them on each run (two runs a week).
 
 1. Read `status.json` (`{id: {"state", "since", "checked"}}`) and the ids in
    `docs/data/listings.json`. Work out this week's batch size from the current list:
-   **N = a quarter of the listings, rounded up, but at least 40 and at most 250.**
-   (At 520 listings that is 130.) Pick the N listed ids with the oldest `checked` date
+   **N = an eighth of the listings, rounded up, but at least 20 and at most 125.**
+   (At 520 listings that is 65.) Pick the N listed ids with the oldest `checked` date
    (ids with no entry count as never checked, so they go first).
    The 250 cap protects Zoopla from heavy traffic: above about 1,000 listings the cycle
    stretches beyond a month, so say so in the summary to Tanya when the cap applies.
@@ -165,9 +166,8 @@ Send one short message with:
   which are newly under offer, and which dropped off after a month under offer.
 
 **Health check:** about 100 qualifying buildings come to market each month, so a normal week
-finds roughly 20 to 30 new ones. If this week found fewer than 10 (outside the Christmas and New
-Year lull), say so plainly and suggest checking that the alerts and the sweep are working.
+finds roughly 20 to 30 new ones, so each run (Tuesday or Friday) roughly 10 to 15. If a run finds
+fewer than 5 (outside the Christmas and New Year lull), say so plainly and suggest checking that the alerts and the sweep are working.
 
-Mention that the weekly email draft is built on Friday morning from whatever has been
-approved by then. If something was taken down in error, Tanya can ask for it to be put back
+Mention that the weekly email draft is built from whatever has been approved by the time it runs. If something was taken down in error, Tanya can ask for it to be put back
 (set its `status.json` state to `live`).
