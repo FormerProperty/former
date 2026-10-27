@@ -100,6 +100,9 @@ def main():
 
     env = dict(os.environ, FORMER_SITE_URL="https://formerly.uk/")
     subprocess.run([sys.executable, os.path.join(ROOT, "build", "build.py")], check=True, env=env)
+    # Look for Geograph photos of newly approved buildings, then rebuild so they show
+    subprocess.run([sys.executable, os.path.join(ROOT, "build", "find_photos.py")], check=False)
+    subprocess.run([sys.executable, os.path.join(ROOT, "build", "build.py")], check=True, env=env)
     subprocess.run([sys.executable, os.path.join(ROOT, "build", "fetch_photos.py")], check=False)
 
     # Record what will be live once this commit is pushed

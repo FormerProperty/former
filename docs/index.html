@@ -95,6 +95,7 @@ select option{background:var(--paper);color:var(--ink)}
 .meta{display:flex;flex-wrap:wrap;gap:2px 0;font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
 .meta > span + span::before{content:"·";padding:0 8px;color:var(--muted);opacity:.5}
 .meta .price{color:var(--ink);font-weight:600}
+.flags .new{color:var(--livery)}
 .flags{font:600 11px/1 var(--sans);letter-spacing:.11em;text-transform:uppercase;color:var(--oxblood);display:flex;gap:12px}
 .note{margin:0;font:italic 400 15px/1.45 var(--serif);color:var(--muted)}
 .credit{font-size:11.5px;line-height:1.4;color:var(--muted);margin:0}
@@ -205,11 +206,12 @@ footer p{margin:0;max-width:78ch}
           <option value="done">Converted only</option>
           <option value="Project">Projects to take on</option>
           <option value="Auction">At auction</option>
+          <option value="New">New this week</option>
           <option value="Under offer">Under offer</option>
         </select></div>
       <div class="field"><label for="sort">Order</label>
         <select id="sort">
-          <option value="new">Newest listed</option>
+          <option value="new">Newest first</option>
           <option value="low">Lowest price</option>
           <option value="high">Highest price</option>
         </select></div>
@@ -342,7 +344,7 @@ function filtered(){
   const out = ALL.filter(e => (!types||types.has(e.type)) && (!region||e.region===region) && (!county||e.county===county) &&
     (!$('price').value||(e.price!=null&&e.price>pmin&&e.price<=pmax)) && (!kind || (kind==='done' ? !isProject(e) : kind==='Project' ? isProject(e) : e.badges.includes(kind))));
   const s=$('sort').value;
-  out.sort((a,b)=> s==='low' ? (a.price??9e9)-(b.price??9e9) : s==='high' ? (b.price??0)-(a.price??0) : (b.listed||'').localeCompare(a.listed||''));
+  out.sort((a,b)=> s==='low' ? (a.price??9e9)-(b.price??9e9) : s==='high' ? (b.price??0)-(a.price??0) : ((b.added||'').localeCompare(a.added||'') || (b.listed||'').localeCompare(a.listed||'')));
   return out;
 }
 
@@ -383,7 +385,7 @@ function card(e){
     e.plot?`<span>${esc(e.plot)}</span>`:'',
     `<span>${esc(e.county)}</span>`
   ].join('');
-  const flags=e.badges.length?`<div class="flags">${e.badges.map(b=>`<span>${esc(b)}</span>`).join('')}</div>`:'';
+  const flags=e.badges.length?`<div class="flags">${e.badges.map(b=>`<span${b==='New'?' class="new"':''}>${esc(b)}</span>`).join('')}</div>`:'';
   const credit=e.photo?`<p class="credit">Photo: <a href="https://www.geograph.org.uk/photo/${esc(e.photo.id)}" target="_blank" rel="noopener">${esc(e.photo.author)}${e.photo.year?', '+esc(e.photo.year):''}</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a></p>`:'';
   return `<li class="card">
     <div class="media">${frame(e)}</div>
@@ -429,6 +431,10 @@ async function boot(){
   try{ data = await fetch('data/listings.json').then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); }); }
   catch(err){ $('list').innerHTML='<li class="empty">The register could not be loaded. Refresh the page to try again.</li>'; return; }
   ALL=data.listings;
+  // "New" for buildings added to formerly. in the last 7 days
+  // (the first 518 went up together on 25 October 2026, so they never count as new)
+  const weekAgo=[new Date(Date.now()-7*864e5).toISOString().slice(0,10),'2026-10-26'].sort()[1];
+  ALL.forEach(e=>{ if((e.added||'')>=weekAgo && !e.badges.includes('New')) e.badges.unshift('New'); });
   $('region').innerHTML += [...new Set(ALL.map(e=>e.region))].sort().map(r=>`<option>${esc(r)}</option>`).join('');
   fillCounties();
   const projects=ALL.filter(isProject).length, counties=new Set(ALL.map(e=>e.county)).size;
