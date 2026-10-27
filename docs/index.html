@@ -2,6 +2,11 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
+<script>(function(){try{var q=new URLSearchParams(location.search),s=q.get("utm_source");if(!s)return;
+var k="__fly_"+s;try{if(sessionStorage.getItem(k))s=null;else sessionStorage.setItem(k,"1")}catch(e){}
+if(s&&location.hostname==="formerly.uk")fetch("/api/hit",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({s:s,c:q.get("utm_campaign")||""}),keepalive:true}).catch(function(){});
+["utm_source","utm_medium","utm_campaign","utm_content","utm_term"].forEach(function(p){q.delete(p)});var r=q.toString();
+history.replaceState(null,"",location.pathname+(r?"?"+r:"")+location.hash)}catch(e){}})();</script>
 <script>if(location.hostname.endsWith("github.io"))location.replace("https://formerly.uk"+location.pathname.replace(/^\/former/,"")+location.search);</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>formerly.</title>

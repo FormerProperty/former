@@ -16,11 +16,17 @@ export async function onRequest(ctx) {
     const reports = await db.prepare("SELECT id, listing_id, reason, note, created FROM reports WHERE status='open' ORDER BY created").all();
     const recentPending = await db.prepare("SELECT id, data, status, reason, decided, applied FROM pending WHERE status!='pending' ORDER BY decided DESC LIMIT 15").all();
     const recentRemovals = await db.prepare("SELECT id, reason, decided, applied FROM removals ORDER BY decided DESC LIMIT 15").all();
+    const visits = await db.prepare(`SELECT source,
+        SUM(CASE WHEN day >= date('now','-6 days') THEN n ELSE 0 END) week,
+        SUM(CASE WHEN day <  date('now','-6 days') AND day >= date('now','-13 days') THEN n ELSE 0 END) prev,
+        SUM(n) month
+      FROM visits WHERE day >= date('now','-29 days') GROUP BY source ORDER BY month DESC`).all();
     const dismissed = await db.prepare("SELECT listing_id, MAX(decided) decided, COUNT(*) n FROM reports WHERE status='dismissed' GROUP BY listing_id ORDER BY decided DESC LIMIT 10").all();
     return json({
       ok: true, who,
       pending: pending.results.map((r) => ({ ...r, data: JSON.parse(r.data) })),
       reports: reports.results,
+      visits: visits.results,
       recent: {
         pending: recentPending.results.map((r) => ({ ...r, data: JSON.parse(r.data) })),
         removals: recentRemovals.results,

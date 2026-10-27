@@ -10,7 +10,7 @@ export async function onRequest({ request, next }) {
   if (url.pathname.startsWith("/review")) {
     const h = new Headers(res.headers);
     h.set("X-Robots-Tag", "noindex");
-    h.set("Cache-Control", "no-store");
+    h.set("Cache-Control", "no-store, no-transform");
     return new Response(res.body, { status: res.status, headers: h });
   }
   return res;
