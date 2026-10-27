@@ -83,6 +83,13 @@ button.act:disabled{opacity:.5;cursor:default}
 .ph input{width:18px;height:18px;accent-color:var(--livery)}
 .ph .small{font-size:13px}
 @media(max-width:520px){.ph{flex-direction:column}.ph img{width:100%;height:auto;aspect-ratio:4/3}}
+.soc-tick{display:flex;gap:8px;align-items:center;font-size:14.5px;margin-top:10px}
+.soc-tick input{width:18px;height:18px;accent-color:var(--livery)}
+.soc-intro{font-size:15px;color:var(--muted);max-width:62ch;margin:18px 0 12px}
+.soc-form{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.soc-form input{flex:1 1 260px;font:400 16px var(--sans);padding:9px 10px;border:1px solid var(--ink);background:transparent;color:var(--ink)}
+button.soc{font:600 14.5px var(--sans);padding:9px 16px;border:1px solid var(--livery);background:var(--livery);color:var(--paper);cursor:pointer}
+button.soc.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
 .hl{display:grid;gap:4px;font:600 11.5px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:4px}
 .hl input{font:400 18px var(--serif);letter-spacing:0;text-transform:none;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--ink);padding:6px 0}
 input.reason{font:14.5px var(--sans);color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--rule);padding:6px 0;min-width:0;flex:1 1 220px}
@@ -112,11 +119,21 @@ input.reason{font:14.5px var(--sans);color:var(--ink);background:transparent;bor
     <button role="tab" id="t-pending" aria-selected="true" aria-controls="pending">To approve<b id="n-pending"></b></button>
     <button role="tab" id="t-reports" aria-selected="false" aria-controls="reports">Reported<b id="n-reports"></b></button>
     <button role="tab" id="t-recent" aria-selected="false" aria-controls="recent">Decided</button>
+    <button role="tab" id="t-social" aria-selected="false" aria-controls="social">Social posts</button>
   </nav>
 
   <section id="pending" role="tabpanel"></section>
   <section id="reports" role="tabpanel" hidden></section>
   <section id="recent" role="tabpanel" class="recent" hidden></section>
+  <section id="social" role="tabpanel" hidden>
+    <p class="soc-intro">Bluesky posts three times a day: the newest buildings first, with 3 posts in every 5 carrying a Geograph photo. Mark a building here to post it next, or to keep it off social media. Changes reach the poster within the hour.</p>
+    <form class="soc-form" id="soc-form">
+      <input id="soc-id" placeholder="Zoopla link or listing number" aria-label="Zoopla link or listing number" autocomplete="off">
+      <button class="soc" type="submit" data-pref="next">Post next</button>
+      <button class="soc ghost" type="submit" data-pref="never">Never post</button>
+    </form>
+    <div id="soc-list"></div>
+  </section>
   <div id="err" class="err" hidden></div>
 </div>
 <div class="toast" id="toast" hidden></div>
@@ -157,6 +174,7 @@ function pendingCard(r){
     <label class="hl">Headline on the site <input class="headline" value="${esc(d.h||'')}" maxlength="90" placeholder="e.g. Grade II village post office, needing modernisation"></label>
     ${d.n?`<p class="why">${esc(d.n)}</p>`:''}
     ${d.why?`<p class="why">Why it was picked: ${esc(d.why)}</p>`:''}
+    <label class="soc-tick"><input type="checkbox" class="postnext"> Post this one next on social media</label>
     <div class="row">
       <a class="out" href="${zoopla(r.id)}" target="_blank" rel="noopener">Open on Zoopla ↗</a>
       <button class="act yes" data-type="pending" data-action="approve">Approve</button>
@@ -250,7 +268,35 @@ async function load(){
   q.recent.dismissed.forEach(r=>{ const l=LISTINGS.get(String(r.listing_id)); rec.push({at:r.decided, html: recentRow('Dismissed', r.listing_id, l?l.place:r.listing_id, `${r.n} report${r.n>1?'s':''} dismissed ${when(r.decided)}`, true, false, 'dismissal').replace('tag ok">Approved','tag live">Dismissed')}); });
   rec.sort((a,b)=>(b.at||'').localeCompare(a.at||''));
   $('recent').innerHTML = rec.length ? rec.map(r=>r.html).join('') : '<p class="empty">Nothing decided yet.</p>';
+
+  const soc=q.social||[];
+  $('soc-list').innerHTML = soc.length ? soc.map(s=>{
+    const l=LISTINGS.get(String(s.id));
+    const title = l ? `${l.headline||l.label}, ${l.place}` : `Listing ${s.id} (not on the site yet)`;
+    return `<article class="item soc-row"><div><span class="tag ${s.pref==='next'?'ok':'no'}">${s.pref==='next'?'Post next':'Never post'}</span><span class="done">set ${when(s.set_at)}</span></div>
+      <h3 class="place">${esc(title)}</h3>
+      <div class="row"><button class="soc ghost" data-clear="${esc(s.id)}">Clear</button></div></article>`;
+  }).join('') : '<p class="empty">Nothing marked. Posting follows the usual order.</p>';
+  $('t-social').innerHTML = 'Social posts' + (soc.length?`<b>${soc.length}</b>`:'');
 }
+
+async function setSocial(id, pref){
+  try{
+    const r=await fetch('/api/admin/social',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({id,pref})});
+    const j=await r.json();
+    if(!j.ok){ toast(j.error||'That did not work.'); return false; }
+    toast(pref==='next'?'Will be posted next':pref==='never'?'Will not be posted':'Cleared');
+    load(); return true;
+  }catch(e){ toast('That did not send. Try again.'); return false; }
+}
+$('soc-form').addEventListener('submit', async ev=>{
+  ev.preventDefault();
+  const m=$('soc-id').value.match(/(\d{5,10})/);
+  if(!m){ toast('Paste a Zoopla link or listing number.'); return; }
+  if(!LISTINGS.has(m[1])){ toast('That building is not on formerly. yet.'); return; }
+  if(await setSocial(m[1], ev.submitter?.dataset.pref||'next')) $('soc-id').value='';
+});
+document.addEventListener('click', ev=>{ const b=ev.target.closest('button[data-clear]'); if(b) setSocial(b.dataset.clear, null); });
 
 document.addEventListener('click', async ev=>{
   const b=ev.target.closest('button.act'); if(!b) return;
@@ -258,10 +304,11 @@ document.addEventListener('click', async ev=>{
   const reason=card.querySelector('input.reason')?.value.trim() || '';
   const headline=card.querySelector('input.headline')?.value.trim();
   const usePhoto=card.querySelector('input.usephoto');
+  const postNext=card.querySelector('input.postnext')?.checked;
   card.querySelectorAll('button.act').forEach(x=>x.disabled=true);
   try{
     const r=await fetch('/api/admin/decide',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({type:b.dataset.type,action:b.dataset.action,id,reason,...(headline!==undefined?{edits:{h:headline,...(usePhoto?{photo:usePhoto.checked}:{})}}:{})})});
+      body:JSON.stringify({type:b.dataset.type,action:b.dataset.action,id,reason,...(headline!==undefined?{edits:{h:headline,...(usePhoto?{photo:usePhoto.checked}:{}),...(postNext?{social:'next'}:{})}}:{})})});
     const j=await r.json();
     if(!j.ok){ toast(j.error||'That did not work.'); card.querySelectorAll('button.act').forEach(x=>x.disabled=false); return; }
     toast({approve:'Approved',reject:'Rejected',remove:'Will be taken down',dismiss:'Dismissed',undo:'Undone'}[b.dataset.action]);

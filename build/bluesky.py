@@ -2,8 +2,13 @@
 
 Runs a few times a day from .github/workflows/bluesky.yml. Only buildings already
 on the site are posted, so the review approval covers social posts too.
-Order: listings added to the site in the last 7 days (newest first), then the
-backlog (buildings with a photo first). Posted ids are kept in social/bluesky-posted.json.
+Order:
+  1. anything Tanya marked "Post next" on the review page (social/priority.json);
+  2. then 3 posts in every 5 carry a Geograph photo and 2 a label tile: each slot takes
+     the newest building of the kind it needs (added in the last 7 days first, then the
+     backlog), falling back to the other kind if none is left;
+  3. never: anything marked "Never post", or under offer.
+Posted ids are kept in social/bluesky-posted.json, and the order in social/bluesky-log.json.
 
 Secrets: BLUESKY_HANDLE, BLUESKY_APP_PASSWORD (an app password, never the main password).
 """
@@ -17,6 +22,9 @@ import urllib.request
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PDS = os.environ.get("BLUESKY_PDS", "https://bsky.social")
 POSTED = os.path.join(ROOT, "social", "bluesky-posted.json")
+LOG = os.path.join(ROOT, "social", "bluesky-log.json")
+PRIORITY = os.path.join(ROOT, "social", "priority.json")
+PHOTO_SHARE = (3, 5)  # 3 posts in every 5 have a photo
 
 
 def xrpc(method, token=None, body=None, raw=None, content_type="application/json"):
@@ -32,15 +40,42 @@ def xrpc(method, token=None, body=None, raw=None, content_type="application/json
         raise SystemExit(f"Bluesky {method} failed: {e.code} {e.read().decode()[:300]}")
 
 
-def choose(listings, posted, today):
-    """Newest additions first; then the backlog, photographed and most recently listed first."""
-    live = [x for x in listings if x["id"] not in posted and "Under offer" not in (x.get("badges") or [])]
+def load_json(path, default):
+    try:
+        with open(path) as fh:
+            return json.load(fh)
+    except FileNotFoundError:
+        return default
+
+
+def want_photo(log):
+    """True when the next post should carry a photo, keeping 3 in every 5 photographed."""
+    k, n = PHOTO_SHARE
+    recent = [bool(e.get("photo")) for e in log[-(n - 1):]]
+    return sum(recent) < k
+
+
+def choose(listings, posted, today, log=None, priority=None):
+    log, priority = log or [], priority or {}
+    live = [x for x in listings if str(x["id"]) not in posted and "Under offer" not in (x.get("badges") or [])
+            and priority.get(str(x["id"]), {}).get("pref") != "never"]
+    # 1. Tanya's picks, in the order she marked them
+    picks = sorted((x for x in live if priority.get(str(x["id"]), {}).get("pref") == "next"),
+                   key=lambda x: priority[str(x["id"])].get("set") or "")
+    if picks:
+        return picks[:1]
+    # 2. photo or tile, newest additions first, then the backlog by listing date
     since = (today - datetime.timedelta(days=7)).isoformat()
-    fresh = [x for x in live if (x.get("added") or "") > since]
-    fresh.sort(key=lambda x: (x.get("added") or "", x.get("listed") or ""), reverse=True)
-    backlog = [x for x in live if (x.get("added") or "") <= since]
-    backlog.sort(key=lambda x: (bool(x.get("photo")), x.get("listed") or ""), reverse=True)
-    return (fresh + backlog)[:1]
+    def order(xs):
+        fresh = sorted((x for x in xs if (x.get("added") or "") > since),
+                       key=lambda x: (x.get("added") or "", x.get("listed") or ""), reverse=True)
+        backlog = sorted((x for x in xs if (x.get("added") or "") <= since),
+                         key=lambda x: x.get("listed") or "", reverse=True)
+        return fresh + backlog
+    photos = order([x for x in live if x.get("photo")])
+    tiles = order([x for x in live if not x.get("photo")])
+    first, second = (photos, tiles) if want_photo(log) else (tiles, photos)
+    return (first + second)[:1]
 
 
 SITE_LABEL = "formerly.uk"
@@ -67,7 +102,8 @@ def text_for(x, total):
     raw = text.encode("utf-8")
     start = raw.find(f"on {SITE_LABEL}".encode()) + 3
     facets = [{"index": {"byteStart": start, "byteEnd": start + len(SITE_LABEL.encode())},
-               "features": [{"$type": "app.bsky.richtext.facet#link", "uri": "https://formerly.uk/?utm_source=bluesky&utm_medium=social&utm_campaign=listing-post"}]}]
+               "features": [{"$type": "app.bsky.richtext.facet#link", "uri": "https://formerly.uk/?utm_source=bluesky&utm_medium=social&utm_campaign="
+                      + ("listing-photo" if x.get("photo") else "listing-tile")}]}]
     return text, facets
 
 
@@ -124,7 +160,9 @@ def main():
             posted = set(json.load(fh))
     except FileNotFoundError:
         posted = set()
-    pick = choose(data["listings"], posted, datetime.date.today())
+    log = load_json(LOG, [])
+    priority = load_json(PRIORITY, {})
+    pick = choose(data["listings"], posted, datetime.date.today(), log, priority)
     if not pick:
         print("Nothing left to post.")
         return 0
@@ -156,6 +194,10 @@ def main():
     os.makedirs(os.path.dirname(POSTED), exist_ok=True)
     with open(POSTED, "w") as fh:
         json.dump(sorted(posted), fh, indent=0)
+    log.append({"id": x["id"], "at": datetime.datetime.now(datetime.timezone.utc).isoformat()[:16],
+                "photo": bool(x.get("photo")), "uri": res.get("uri")})
+    with open(LOG, "w") as fh:
+        json.dump(log[-500:], fh, indent=0)
     with open(SLOTS, "w") as fh:
         json.dump({"last": slot or uk_now().strftime("%Y-%m-%d %H")}, fh)
     return 0

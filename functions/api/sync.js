@@ -16,12 +16,14 @@ export async function onRequest({ request, env }) {
     const rejected = await db.prepare("SELECT id FROM pending WHERE status='rejected' AND applied=0").all();
     const removals = await db.prepare("SELECT id, reason FROM removals WHERE applied=0").all();
     const queued = await db.prepare("SELECT id FROM pending").all();
+    const social = await db.prepare("SELECT id, pref, set_at FROM social").all();
     return json({
       ok: true,
       approved: approved.results.map((r) => ({ id: r.id, data: JSON.parse(r.data) })),
       rejected: rejected.results.map((r) => r.id),
       removals: removals.results,
       known: queued.results.map((r) => r.id),
+      social: social.results,
     });
   }
 

@@ -21,12 +21,14 @@ export async function onRequest(ctx) {
         SUM(CASE WHEN day <  date('now','-6 days') AND day >= date('now','-13 days') THEN n ELSE 0 END) prev,
         SUM(n) month
       FROM visits WHERE day >= date('now','-29 days') GROUP BY source ORDER BY month DESC`).all();
+    const social = await db.prepare("SELECT id, pref, set_at FROM social ORDER BY set_at DESC").all();
     const dismissed = await db.prepare("SELECT listing_id, MAX(decided) decided, COUNT(*) n FROM reports WHERE status='dismissed' GROUP BY listing_id ORDER BY decided DESC LIMIT 10").all();
     return json({
       ok: true, who,
       pending: pending.results.map((r) => ({ ...r, data: JSON.parse(r.data) })),
       reports: reports.results,
       visits: visits.results,
+      social: social.results,
       recent: {
         pending: recentPending.results.map((r) => ({ ...r, data: JSON.parse(r.data) })),
         removals: recentRemovals.results,
@@ -48,6 +50,8 @@ export async function onRequest(ctx) {
         const data = JSON.parse(row.data);
         if (typeof b.edits.h === "string") data.h = b.edits.h.replace(/\s+/g, " ").trim().slice(0, 90);
         if (typeof b.edits.photo === "boolean") data.phok = b.edits.photo;
+        if (b.edits.social === "next")
+          await db.prepare("INSERT INTO social (id, pref, set_at) VALUES (?, 'next', datetime('now')) ON CONFLICT(id) DO UPDATE SET pref='next', set_at=datetime('now')").bind(id).run();
         await db.prepare("UPDATE pending SET data=? WHERE id=?").bind(JSON.stringify(data), id).run();
       }
     }
@@ -82,6 +86,20 @@ export async function onRequest(ctx) {
       return json({ ok: true });
     }
     return json({ ok: false, error: "Unknown action" }, 400);
+  }
+
+  // Social posting: "next" puts a building at the front of the queue, "never" keeps it off; null clears
+  if (request.method === "POST" && route === "social") {
+    let b;
+    try { b = await request.json(); } catch { return json({ ok: false, error: "Bad request" }, 400); }
+    const id = String(b.id || "");
+    if (!/^\d{5,10}$/.test(id)) return json({ ok: false, error: "Bad id" }, 400);
+    if (b.pref === "next" || b.pref === "never") {
+      await db.prepare("INSERT INTO social (id, pref, set_at) VALUES (?, ?, datetime('now')) ON CONFLICT(id) DO UPDATE SET pref=excluded.pref, set_at=excluded.set_at").bind(id, b.pref).run();
+    } else {
+      await db.prepare("DELETE FROM social WHERE id=?").bind(id).run();
+    }
+    return json({ ok: true });
   }
 
   return json({ ok: false, error: "Not found" }, 404);

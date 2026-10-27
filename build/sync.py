@@ -80,6 +80,12 @@ def main():
         print(f"queued {len(pending)} candidates ({res.get('changed')} statements)")
 
     d = call("GET", token)
+    # Social posting choices from the review page, for the Bluesky (and later Facebook) poster
+    prio = {str(s["id"]): {"pref": s["pref"], "set": s["set_at"]} for s in d.get("social", [])}
+    prio_path = os.path.join(ROOT, "social", "priority.json")
+    if prio != load(prio_path, {}):
+        os.makedirs(os.path.dirname(prio_path), exist_ok=True)
+        save(prio_path, prio)
     approved = {str(x["id"]): x["data"] for x in d["approved"]}
     rejected = set(map(str, d["rejected"]))
     removals = {str(x["id"]): x["reason"] for x in d["removals"]}

@@ -26,7 +26,7 @@ jobs:
         run: |
           git config user.name "formerly. bot"
           git config user.email "noreply@github.com"
-          git add -A export removed.json pending docs photos.json photos-tried.json
+          git add -A export removed.json pending docs photos.json photos-tried.json social/priority.json
           if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
           git commit -m "Apply review decisions"
           for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done
