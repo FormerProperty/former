@@ -3,8 +3,10 @@ on:
   schedule:
     # 8am, 12pm and 6pm UK time all year: runs in both the GMT and BST hours,
     # and the script only posts when it is the right hour in London
-    - cron: "2 7,8,11,12,17,18 * * *"
-    - cron: "40 7,8,11,12,17,18 * * *"   # second chance when GitHub starts the first run late
+    # GitHub often starts scheduled runs late, so several runs are queued around each slot;
+    # the script posts once per slot and the extra runs do nothing
+    - cron: "37,52 6,7,10,11,16,17 * * *"
+    - cron: "7,22,37 7,8,11,12,17,18 * * *"
   workflow_dispatch:
 permissions:
   contents: write

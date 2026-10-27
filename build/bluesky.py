@@ -97,7 +97,8 @@ def due_slot():
     now = uk_now()
     slots = [now.replace(hour=h, minute=0, second=0, microsecond=0) for h in POST_HOURS]
     slots += [x - datetime.timedelta(days=1) for x in slots]
-    latest = max(x for x in slots if x <= now)
+    early = datetime.timedelta(minutes=25)  # a run shortly before the hour counts for that slot
+    latest = max(x for x in slots if x - early <= now)
     if now - latest > datetime.timedelta(hours=3):
         return None
     key = latest.strftime("%Y-%m-%d %H")

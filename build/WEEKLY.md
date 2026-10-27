@@ -142,6 +142,10 @@ Send one short message with:
 - availability: how many existing buildings were checked (and N, if the cap applied), which have gone (name and place),
   which are newly under offer, and which dropped off after a month under offer.
 
+**Health check:** about 100 qualifying buildings come to market each month, so a normal week
+finds roughly 20 to 30 new ones. If this week found fewer than 10 (outside the Christmas and New
+Year lull), say so plainly and suggest checking that the alerts and the sweep are working.
+
 Mention that the weekly email draft is built on Friday morning from whatever has been
 approved by then. If something was taken down in error, Tanya can ask for it to be put back
 (set its `status.json` state to `live`).
