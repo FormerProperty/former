@@ -1,0 +1,12 @@
+name: Probe Geograph API
+on: workflow_dispatch
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          set -x
+          LAT=$(python3 -c "import math;print(math.radians(52.6987))"); LNG=$(python3 -c "import math;print(math.radians(1.6215))")
+          curl -s -m 30 "https://api.geograph.org.uk/api-facetql.php?select=id,title,realname,takenday,hash,wgs84_lat,wgs84_long,GEODIST(wgs84_lat,wgs84_long,$LAT,$LNG)+as+d&match=mill&order=d+asc&limit=3" | head -c 1500; echo
+          curl -s -m 30 "https://api.geograph.org.uk/api-facetql.php?select=id,title,realname,hash,GEODIST(wgs84_lat,wgs84_long,$LAT,$LNG)+as+d&where=d<300&order=d+asc&limit=3" | head -c 1500; echo
+          curl -s -m 30 "https://api.geograph.org.uk/syndicator.php?q=mill&lat=52.6987&long=1.6215&distance=0.3&format=JSON" | head -c 800; echo
