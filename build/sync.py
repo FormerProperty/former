@@ -55,7 +55,9 @@ def save(path, data):
 def main():
     token = oidc_token()
 
-    pending_files = sorted(glob.glob(os.path.join(ROOT, "pending", "*.json")))
+    # Only the dated candidate files; judged-out.json is an {id: reason} record, not candidates
+    pending_files = sorted(f for f in glob.glob(os.path.join(ROOT, "pending", "*.json"))
+                           if os.path.basename(f) != "judged-out.json")
     pending = {}
     for f in pending_files:
         for row in load(f, []):
