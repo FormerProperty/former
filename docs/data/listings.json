@@ -1033,14 +1033,7 @@
    "beds": 4,
    "listed": "2026-10-19",
    "badges": [],
-   "photo": {
-    "id": "1519757",
-    "title": "The Bugle Coaching Inn, Yarmouth, Isle of Wight",
-    "author": "Christine Matthews",
-    "year": "2009",
-    "src": "photos/1519757.jpg",
-    "thumb": "https://s1.geograph.org.uk/geophotos/01/51/97/1519757_d6432150_213x160.jpg"
-   },
+   "photo": null,
    "lat": 50.706268,
    "lng": -1.497252,
    "added": "2026-10-27"
