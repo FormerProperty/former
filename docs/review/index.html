@@ -41,6 +41,13 @@ header{border-top:6px solid var(--ink);padding-top:18px;display:flex;flex-wrap:w
 .who{font-size:13.5px;color:var(--muted)}
 .who a{margin-left:12px}
 .note-bar{margin:16px 0 0;font-size:14px;color:var(--muted)}
+.runs{margin-top:20px;border:1px solid var(--rule);background:var(--stone);padding:16px 18px}
+.runs h2{font:600 11.5px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--livery);margin:0 0 6px}
+.runs .lead{font:400 19px/1.35 var(--serif);margin:0 0 10px}
+.runs ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:14.5px}
+.runs .warn{color:var(--oxblood);font-weight:600}
+.runs details{margin-top:10px;font-size:14px;color:var(--muted)}
+.runs details p{margin:6px 0 0}
 nav.tabs{display:flex;flex-wrap:nowrap;gap:4px 24px;margin-top:22px;border-bottom:1px solid var(--rule)}
 nav.tabs button{font:500 15.5px var(--sans);background:none;border:0;border-bottom:2px solid transparent;padding:8px 0;color:var(--muted);cursor:pointer}
 nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--livery)}
@@ -86,6 +93,7 @@ input.reason{font:14.5px var(--sans);color:var(--ink);background:transparent;bor
     <h1 class="mark">formerly<span>.</span><small>review</small></h1>
     <div class="who"><span id="who"></span><a href="/">Site</a><a href="/cdn-cgi/access/logout">Sign out</a></div>
   </header>
+  <section id="runs" class="runs" hidden></section>
   <p class="note-bar">Your decisions go live at the next hourly update. Until then you can undo them under <em>Decided</em>.</p>
 
   <nav class="tabs" role="tablist">
@@ -165,6 +173,31 @@ function recentRow(kind, id, title, sub, ok, applied, undoType){
     ${!applied && undoType ? `<div class="row"><button class="act" data-type="${undoType}" data-action="undo">Undo</button></div>` : ''}
   </article>`;
 }
+
+// Summaries written by each Tuesday/Friday intake run (newest first)
+function runText(r){
+  const a=r.availability||{};
+  const list=(xs)=>xs&&xs.length?xs.map(esc).join('; '):'none';
+  return `<p class="lead">${esc(r.label||r.date)}: ${r.queued??0} new building${r.queued===1?'':'s'} to review, from ${r.checked??0} listings checked.</p>
+  <ul>
+    ${r.left_out?`<li>${r.left_out} left out${r.reasons&&r.reasons.length?': '+r.reasons.map(esc).join('; '):''}</li>`:''}
+    ${a.checked!=null?`<li>Availability: ${a.checked} buildings rechecked. Gone: ${list(a.gone)}. Newly under offer: ${list(a.offer)}. Dropped after a month under offer: ${list(a.expired)}.</li>`:''}
+    ${r.health?`<li class="warn">${esc(r.health)}</li>`:''}
+    ${r.notes?`<li>${esc(r.notes)}</li>`:''}
+  </ul>`;
+}
+async function loadRuns(){
+  try{
+    const r=await fetch('/review/runs.json',{cache:'no-store',credentials:'same-origin'});
+    if(!r.ok) return;
+    const runs=(await r.json()).runs||[];
+    if(!runs.length) return;
+    const older=runs.slice(1,6);
+    $('runs').innerHTML=`<h2>Latest intake</h2>${runText(runs[0])}${older.length?`<details><summary>Earlier runs</summary>${older.map(x=>`<p><b>${esc(x.label||x.date)}</b>: ${x.queued??0} queued from ${x.checked??0} checked${x.health?' · '+esc(x.health):''}</p>`).join('')}</details>`:''}`;
+    $('runs').hidden=false;
+  }catch(e){}
+}
+loadRuns();
 
 async function load(){
   $('err').hidden=true;

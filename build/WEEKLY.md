@@ -157,7 +157,25 @@ Every building on the site is rechecked about once a month: an eighth of them on
    `FORMER_SITE_URL=https://formerly.uk/ python3 build/build.py` before committing so the live
    site updates straight away, and include `docs/` in the commit.
 
-## 7. Tell Tanya
+## 7. Record the run on the review page
+
+Add this run to the front of `docs/review/runs.json` (keep the 10 most recent) and include it
+in the commit. The review page shows the newest one at the top. Format:
+
+```json
+{"runs": [{"date": "2026-10-27", "label": "Tuesday 27 October",
+  "checked": 34, "queued": 12, "left_out": 22,
+  "reasons": ["14 flats in larger conversions", "5 new builds named after old buildings", "3 always houses"],
+  "availability": {"checked": 65, "gone": ["Former chapel, Partway Lane, Hazelbury Bryan"],
+                   "offer": ["Former post office, Huntsham"], "expired": []},
+  "health": "",
+  "notes": ""}]}
+```
+
+Use `health` only for a warning (for example, a run that found fewer than 5 new buildings),
+and `notes` for anything else Tanya should know (Chrome dropped out, Zoopla refused pages).
+
+## 8. Tell Tanya
 
 Send one short message with:
 - new listings: how many were checked, how many queued for review, how many left out and the
