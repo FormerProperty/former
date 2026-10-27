@@ -651,14 +651,7 @@
    "beds": 2,
    "listed": "2026-10-21",
    "badges": [],
-   "photo": {
-    "id": "571807",
-    "title": "Bekesbourne Hill and the Unicorn pub",
-    "author": "Nick Smith",
-    "year": "2007",
-    "src": "photos/571807.jpg",
-    "thumb": "https://s3.geograph.org.uk/photos/57/18/571807_8a28f353_213x160.jpg"
-   },
+   "photo": null,
    "lat": 51.262218,
    "lng": 1.136595,
    "added": "2026-10-27"
