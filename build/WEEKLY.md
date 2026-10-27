@@ -25,7 +25,7 @@ Clone `FormerProperty/former` (add it to the session first if needed) and work o
 
 1. **Alert emails.** In Gmail search `from:zoopla newer_than:8d`. The emails are large, so
    fetch each thread in full (it is saved to a file) and parse the HTML with a script rather
-   than reading it. What we learned about the format:
+   than reading it. Leave the emails as they are (do not mark them read or move them). What we learned about the format:
    - Take only the listing links **before** the "Similar properties nearby" section, i.e.
      `/for-sale/details/<id>/?utm_campaign=...` links without `utm_content=similar_listing`.
      The "similar" ones are Zoopla's suggestions, not matches.
@@ -56,9 +56,7 @@ Clone `FormerProperty/former` (add it to the session first if needed) and work o
    telephone exchange, sunday school, meeting house, former warehouse, former factory,
    chapel conversion, church conversion, school conversion, mill conversion, coach house,
    methodist church, village chapel.
-3. **Mark the alert emails as read** once they have been parsed (remove the `UNREAD` label from
-   each thread), so Tanya's Zoopla folder shows only what arrived since the last run.
-4. **Drop ids we have already seen:** anything in `docs/data/listings.json`, `removed.json`,
+3. **Drop ids we have already seen:** anything in `docs/data/listings.json`, `removed.json`,
    `pending/*.json` or `pending/judged-out.json`.
 
 ## 3. Judge each new listing
