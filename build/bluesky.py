@@ -1,4 +1,4 @@
-"""Post one building to Bluesky, newest listings first.
+"""Post one building to Bluesky (and the same one to Facebook, via facebook.py).
 
 Runs a few times a day from .github/workflows/bluesky.yml. Only buildings already
 on the site are posted, so the review approval covers social posts too.
@@ -172,6 +172,9 @@ def main():
         os.path.join(ROOT, "docs", "email", "labels", __import__("re").sub(r"[^a-z0-9]+", "-", (x.get("os") or "bldg").lower()) + ".png")
     print(text, "\n->", x["url"], "\nimage:", os.path.relpath(img_path, ROOT))
     if dry:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import facebook
+        facebook.post(x, len(data["listings"]), img_path, dry=True)
         return 0
 
     s = xrpc("com.atproto.server.createSession", body={
@@ -200,6 +203,16 @@ def main():
         json.dump(log[-500:], fh, indent=0)
     with open(SLOTS, "w") as fh:
         json.dump({"last": slot or uk_now().strftime("%Y-%m-%d %H")}, fh)
+
+    # The same building goes to the Facebook Page (Bluesky's record is already saved)
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import facebook
+    if facebook.configured():
+        try:
+            facebook.post(x, len(data["listings"]), img_path)
+        except Exception as e:
+            print(e)
+            return 1  # fail the run so GitHub flags it; Bluesky has still posted
     return 0
 
 

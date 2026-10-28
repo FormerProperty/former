@@ -1,0 +1,28 @@
+name: Check Facebook token (one-off, read-only)
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+        run: |
+          python3 - > fb-check.txt <<'PY'
+          import json, os, urllib.request, urllib.error
+          p, t = os.environ.get("FB_PAGE_ID",""), os.environ.get("FB_PAGE_TOKEN","")
+          print("id set:", bool(p), "token set:", bool(t))
+          def get(url):
+              try:
+                  with urllib.request.urlopen(url, timeout=30) as r: return json.load(r)
+              except urllib.error.HTTPError as e: return {"error": e.read().decode()[:400]}
+          print(json.dumps(get(f"https://graph.facebook.com/v26.0/{p}?fields=name,username,link&access_token={t}")))
+          d = get(f"https://graph.facebook.com/v26.0/debug_token?input_token={t}&access_token={t}")
+          dd = d.get("data", {})
+          print(json.dumps({k: dd.get(k) for k in ("type", "is_valid", "expires_at", "data_access_expires_at", "scopes", "profile_id")} if dd else d))
+          PY
+          git config user.name "formerly. bot"; git config user.email "noreply@github.com"
+          git checkout -b probe-out; git add -f fb-check.txt; git commit -qm check; git push -f origin probe-out

@@ -84,6 +84,10 @@ select option{background:var(--paper);color:var(--ink)}
 .count{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;align-self:end;padding-bottom:6px}
 
 /* Listings */
+.spot{margin:28px 0 8px;padding:22px 24px 26px;background:var(--stone);border-top:3px solid var(--livery)}
+.spot h2{font:600 11.5px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--livery);margin:0 0 14px}
+.spot .list{margin:0;grid-template-columns:minmax(0,420px)}
+.spot p.more-note{margin:18px 0 0;font-size:15px;color:var(--muted)}
 .list{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:40px 28px}
 .card{display:grid;gap:12px;align-content:start;min-width:0}
 .frame{position:relative;aspect-ratio:4/3;background:var(--stone);overflow:hidden}
@@ -192,6 +196,7 @@ footer p{margin:0;max-width:78ch}
     </div>
   </header>
 
+  <section class="spot" id="spot" hidden aria-label="The building you followed a link to"></section>
   <section class="filters" aria-label="Filter buildings">
     <div class="types" id="types"></div>
     <div class="row">
@@ -445,8 +450,20 @@ async function boot(){
   fillCounties();
   const projects=ALL.filter(isProject).length, counties=new Set(ALL.map(e=>e.county)).size;
   $('stats').innerHTML=`<span><b>${ALL.length}</b> buildings</span><span><b>${counties}</b> counties</span><span><b>${projects}</b> still to convert</span><span>Updated ${fmtDate(data.updated)}</span>`;
-  renderTabs(); render();
+  renderTabs(); render(); spotlight();
 }
+
+// formerly.uk/#b-<id> (used in social posts) shows that building first
+function spotlight(){
+  const m=location.hash.match(/^#b-(\d+)$/); const s=$('spot');
+  const e=m && ALL.find(x=>String(x.id)===m[1]);
+  if(!e){ s.hidden=true; return; }
+  s.innerHTML=`<h2>The building you came to see</h2><ol class="list">${card(e)}</ol>
+    <p class="more-note">Below are all ${ALL.length} buildings on formerly., newest first.</p>`;
+  s.hidden=false;
+  s.scrollIntoView({block:'start'});
+}
+addEventListener('hashchange', ()=>{ if(ALL.length) spotlight(); });
 
 $('region').addEventListener('change',()=>{ $('county').value=''; fillCounties(); shown=PAGE; renderTabs(); render(); });
 $('county').addEventListener('change',()=>{ shown=PAGE; renderTabs(); render(); });

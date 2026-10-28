@@ -25,6 +25,8 @@ jobs:
         env:
           BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
           BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
         run: |
           if [ -z "$BLUESKY_HANDLE" ] || [ -z "$BLUESKY_APP_PASSWORD" ]; then
             echo "Bluesky secrets not set yet; showing what would be posted."
@@ -33,8 +35,9 @@ jobs:
           fi
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then python build/bluesky.py --now; else python build/bluesky.py; fi
       - name: Record what was posted
+        if: always()
         run: |
           git config user.name "formerly. bot"
           git config user.email "noreply@github.com"
           git add social
-          git diff --cached --quiet || (git commit -m "Record Bluesky post" && for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done)
+          git diff --cached --quiet || (git commit -m "Record social post" && for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done)
