@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-27",
+ "updated": "2026-10-28",
  "types": {
   "chapel": "Chapels",
   "church": "Churches",
@@ -108,7 +108,14 @@
    "badges": [
     "Unconverted"
    ],
-   "photo": null,
+   "photo": {
+    "id": "237917",
+    "title": "Old Mill and Mill House at Thorington Street, Suffolk",
+    "author": "Robert Edwards",
+    "year": "2006",
+    "src": "photos/237917.jpg",
+    "thumb": "https://s1.geograph.org.uk/photos/23/79/237917_6087a038_213x160.jpg"
+   },
    "lat": 51.982479,
    "lng": 0.928529,
    "added": "2026-10-27"
@@ -558,7 +565,14 @@
    "beds": 4,
    "listed": "2026-10-22",
    "badges": [],
-   "photo": null,
+   "photo": {
+    "id": "6929723",
+    "title": "Berrington and Eye railway station",
+    "author": "Fabian Musto",
+    "year": "2021",
+    "src": "photos/6929723.jpg",
+    "thumb": "https://s3.geograph.org.uk/geophotos/06/92/97/6929723_4e3c1025_213x160.jpg"
+   },
    "lat": 52.271148,
    "lng": -2.740569,
    "added": "2026-10-27"
