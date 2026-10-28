@@ -28,9 +28,9 @@ def caption_for(x, total):
     lines.append(" · ".join(bits))
     if x.get("badges"):
         lines.append(" · ".join(x["badges"]))
-    kind = "listing-photo" if x.get("photo") else "listing-tile"
+    # Short link; Facebook adds its own fbclid to it, which tells formerly.uk the visit came from here
     lines += ["", f"See it on formerly.uk, with all {total} buildings that began life as something else:",
-              f"https://formerly.uk/?utm_source=facebook&utm_medium=social&utm_campaign={kind}#b-{x['id']}"]
+              f"https://formerly.uk/b/{x['id']}"]
     if x.get("photo"):
         p = x["photo"]
         lines += ["", f'Photo: {p["author"]}{", " + str(p["year"]) if p.get("year") else ""} (CC BY-SA 2.0, Geograph)']

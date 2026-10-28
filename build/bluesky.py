@@ -102,8 +102,7 @@ def text_for(x, total):
     raw = text.encode("utf-8")
     start = raw.find(f"on {SITE_LABEL}".encode()) + 3
     facets = [{"index": {"byteStart": start, "byteEnd": start + len(SITE_LABEL.encode())},
-               "features": [{"$type": "app.bsky.richtext.facet#link", "uri": "https://formerly.uk/?utm_source=bluesky&utm_medium=social&utm_campaign="
-                      + ("listing-photo" if x.get("photo") else "listing-tile")}]}]
+               "features": [{"$type": "app.bsky.richtext.facet#link", "uri": f"https://formerly.uk/b/{x['id']}?s=bluesky"}]}]
     return text, facets
 
 
@@ -170,7 +169,7 @@ def main():
     text, facets = text_for(x, len(data["listings"]))
     img_path = os.path.join(ROOT, "docs", x["photo"]["src"]) if x.get("photo") else \
         os.path.join(ROOT, "docs", "email", "labels", __import__("re").sub(r"[^a-z0-9]+", "-", (x.get("os") or "bldg").lower()) + ".png")
-    print(text, "\n->", x["url"], "\nimage:", os.path.relpath(img_path, ROOT))
+    print(text, "\n->", f"https://formerly.uk/b/{x['id']}?s=bluesky", "\nimage:", os.path.relpath(img_path, ROOT))
     if dry:
         sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
         import facebook
@@ -181,8 +180,9 @@ def main():
         "identifier": os.environ["BLUESKY_HANDLE"], "password": os.environ["BLUESKY_APP_PASSWORD"]})
     token, did = s["accessJwt"], s["did"]
     embed = {"$type": "app.bsky.embed.external", "external": {
-        "uri": x["url"], "title": x.get("headline") or f'{x.get("label") or "Former " + x["was"]}: {x["place"]}',
-        "description": "Full listing on Zoopla. Found by formerly.uk, buildings that began life as something else."}}
+        "uri": f"https://formerly.uk/b/{x['id']}?s=bluesky",
+        "title": x.get("headline") or f'{x.get("label") or "Former " + x["was"]}: {x["place"]}',
+        "description": f'{x.get("label") or "Former " + x["was"]}, {x["place"]}. On formerly.uk, with a link to the full listing.'}}
     if os.path.exists(img_path):
         with open(img_path, "rb") as fh:
             blob = xrpc("com.atproto.repo.uploadBlob", token, raw=fh.read(),

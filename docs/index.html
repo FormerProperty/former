@@ -457,6 +457,10 @@ async function boot(){
 function spotlight(){
   const m=location.hash.match(/^#b-(\d+)$/); const s=$('spot');
   const e=m && ALL.find(x=>String(x.id)===m[1]);
+  if(m && !e){
+    s.innerHTML=`<h2>That building has gone</h2><p class="more-note" style="margin:0">It has sold or come off the market since it was posted. Below are all ${ALL.length} buildings on formerly., newest first.</p>`;
+    s.hidden=false; return;
+  }
   if(!e){ s.hidden=true; return; }
   s.innerHTML=`<h2>The building you came to see</h2><ol class="list">${card(e)}</ol>
     <p class="more-note">Below are all ${ALL.length} buildings on formerly., newest first.</p>`;
