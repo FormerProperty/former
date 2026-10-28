@@ -425,14 +425,17 @@ function render(){
   const list=filtered();
   $('list').classList.toggle('rows', view==='rows');
   $('count').textContent = list.length + (list.length===1?' building':' buildings');
-  const cards = list.slice(0,shown).map(card);
-  if(cards.length>12 && !subscribed()) cards.splice(12,0,`<li class="card signcard"><p class="was">The weekly list</p>
+  // The sign-up card takes one slot in the grid, so show one building fewer to keep rows full
+  const withCard = list.length>12 && !subscribed();
+  const count = withCard ? shown-1 : shown;
+  const cards = list.slice(0,count).map(card);
+  if(withCard) cards.splice(12,0,`<li class="card signcard"><p class="was">The weekly list</p>
     <h3 class="place">Enjoying these?</h3><p class="where">Get each week's new arrivals by email. One email a week, nothing else.</p>
     <div data-signup="list-card"></div></li>`);
   $('list').innerHTML = list.length ? cards.join('')
     : '<li class="empty">Nothing on the register matches that yet. Try a wider area or another kind of building.</li>';
   fillSignups($('list'));
-  const left=list.length-shown;
+  const left=list.length-count;
   $('more').hidden = left<=0;
   $('more').textContent = `Show ${Math.min(PAGE,left)} more of ${left}`;
 }
