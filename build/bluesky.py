@@ -40,6 +40,31 @@ def xrpc(method, token=None, body=None, raw=None, content_type="application/json
         raise SystemExit(f"Bluesky {method} failed: {e.code} {e.read().decode()[:300]}")
 
 
+def sharper_image(x, img_path):
+    """For a Geograph photo, fetch the larger version (about 640 px) for the post, as the
+    site's thumbnail (213 x 160) looks soft when Bluesky and Facebook enlarge it.
+    Falls back to the thumbnail if Geograph does not answer."""
+    p = x.get("photo")
+    if not p or not p.get("thumb", "").endswith("_213x160.jpg"):
+        return img_path
+    big = p["thumb"][: -len("_213x160.jpg")] + ".jpg"
+    candidates = [big, "https://s0.geograph.org.uk/" + big.split(".geograph.org.uk/", 1)[1]]
+    for url in dict.fromkeys(candidates):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "formerly.uk social poster (not-for-profit)"})
+            with urllib.request.urlopen(req, timeout=30) as r:
+                data = r.read()
+            if data[:3] == b"\xff\xd8\xff" and len(data) < 950_000:
+                out = os.path.join(ROOT, "social", ".post-image.jpg")
+                with open(out, "wb") as fh:
+                    fh.write(data)
+                print("using the larger Geograph image", url)
+                return out
+        except Exception as e:
+            print("larger image not available:", url, e)
+    return img_path
+
+
 def load_json(path, default):
     try:
         with open(path) as fh:
@@ -183,6 +208,7 @@ def main():
         "uri": f"https://formerly.uk/b/{x['id']}?s=bluesky",
         "title": x.get("headline") or f'{x.get("label") or "Former " + x["was"]}: {x["place"]}',
         "description": f'{x.get("label") or "Former " + x["was"]}, {x["place"]}. On formerly.uk, with a link to the full listing.'}}
+    img_path = sharper_image(x, img_path)
     if os.path.exists(img_path):
         with open(img_path, "rb") as fh:
             blob = xrpc("com.atproto.repo.uploadBlob", token, raw=fh.read(),

@@ -4,3 +4,4 @@ __pycache__/
 .dev.vars
 node_modules/
 .wrangler/
+social/.post-image.jpg
