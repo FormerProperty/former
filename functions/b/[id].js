@@ -19,7 +19,7 @@ async function listings(env, request) {
 export async function onRequestGet({ request, env, params }) {
   const url = new URL(request.url);
   const id = String(params.id || "").replace(/[^0-9]/g, "").slice(0, 10);
-  const go = new URL(`/#b-${id}`, url.origin);
+  let go = new URL(`/#b-${id}`, url.origin);
   try {
     let source = (url.searchParams.get("s") || "").toLowerCase();
     if (!SOURCES.has(source)) source = url.searchParams.has("fbclid") ? "facebook" : "";
@@ -30,6 +30,7 @@ export async function onRequestGet({ request, env, params }) {
       await env.DB.prepare(`INSERT INTO visits (day, source, campaign, n) VALUES (date('now'), ?, ?, 1)
         ON CONFLICT(day, source, campaign) DO UPDATE SET n = n + 1`).bind(source, campaign).run();
     }
+    if (source) go = new URL(`/?via=${source}#b-${id}`, url.origin);
   } catch (e) { /* counting never blocks the visit */ }
   return Response.redirect(go.toString(), 302);
 }

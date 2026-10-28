@@ -2,7 +2,9 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
-<script>(function(){try{var q=new URLSearchParams(location.search),s=q.get("utm_source");if(!s)return;
+<script>(function(){try{var q=new URLSearchParams(location.search),v=q.get("via");
+if(v){try{sessionStorage.setItem("__fly_src",v.slice(0,30))}catch(e){}q.delete("via");var r0=q.toString();history.replaceState(null,"",location.pathname+(r0?"?"+r0:"")+location.hash)}
+var s=q.get("utm_source");if(!s)return;try{sessionStorage.setItem("__fly_src",s.slice(0,30))}catch(e){}
 var k="__fly_"+s;try{if(sessionStorage.getItem(k))s=null;else sessionStorage.setItem(k,"1")}catch(e){}
 if(s&&location.hostname==="formerly.uk")fetch("/api/hit",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({s:s,c:q.get("utm_campaign")||""}),keepalive:true}).catch(function(){});
 ["utm_source","utm_medium","utm_campaign","utm_content","utm_term"].forEach(function(p){q.delete(p)});var r=q.toString();
@@ -136,6 +138,17 @@ input[type=email]{flex:1 1 auto;min-width:0;font:15px var(--sans);color:var(--in
 button.primary{font:600 15px var(--sans);background:var(--livery);color:var(--paper);border:1px solid var(--livery);padding:11px 20px;cursor:pointer;border-radius:0}
 .sub p{margin:0;color:var(--muted)}
 .formnote{margin-top:8px;font-size:14px;color:var(--livery)}
+.hsign{margin-top:6px}
+.hsign form,.spot-sign form,.signcard form{margin-top:6px}
+.hsign-lead{margin:0 !important;font:600 12px var(--sans) !important;letter-spacing:.1em;text-transform:uppercase;color:var(--livery)}
+.spot-sign{margin-top:22px;max-width:30rem}
+.signcard{background:var(--stone);padding:24px 22px;align-content:center;border-top:3px solid var(--livery)}
+.signcard,.spot-sign{grid-template-columns:minmax(0,1fr)}
+.signcard>*,.signcard form{min-width:0;max-width:100%}
+form.bd input[type=email]{width:0}
+.intro,.intro>*,.hsign form{min-width:0}
+.signcard .place{font-size:26px}
+.list.rows .signcard{grid-template-columns:1fr;padding:24px 22px;margin-block:12px}
 .signup-small{margin-top:8px !important;font-size:13px;color:var(--muted)}
 .sources{margin:10px 0 0;font-size:13.5px;color:var(--muted)}
 .sources a{color:var(--ink);text-underline-offset:3px;text-decoration-color:var(--rule)}
@@ -192,6 +205,7 @@ footer p{margin:0;max-width:78ch}
     <div class="intro">
       <p>Chapels, mills, schools, pubs, stations and oast houses for sale across England. Every one began life as something other than a home.</p>
       <div class="stats" id="stats"></div>
+      <div class="hsign" data-signup="header"></div>
       <p class="sources">Listings from <a href="https://www.zoopla.co.uk/" target="_blank" rel="noopener">Zoopla</a>. Photographs from <a href="https://www.geograph.org.uk/" target="_blank" rel="noopener">Geograph</a>.</p>
     </div>
   </header>
@@ -254,13 +268,8 @@ footer p{margin:0;max-width:78ch}
     <div class="sub">
       <h2>The weekly list</h2>
       <p>One email each week with the newest buildings across England. If you only want one region, its <a href="#feeds">RSS feed</a> is free.</p>
-      <form id="signup" action="https://buttondown.com/api/emails/embed-subscribe/formerly" method="post" target="bd-signup">
-        <input type="email" id="email" name="email" placeholder="you@example.com" aria-label="Email address" autocomplete="email" required>
-        <input type="hidden" name="embed" value="1">
-        <button class="primary" type="submit">Subscribe</button>
-      </form>
+      <div data-signup="footer"></div>
       <p class="signup-small">We'll email you a link to confirm. Your address is held by our mailing service, Buttondown, and used for nothing else. <a href="privacy.html">Privacy</a></p>
-      <div class="formnote" id="formnote" role="status" hidden></div>
       <iframe name="bd-signup" title="Sign-up confirmation" hidden></iframe>
     </div>
   </section>
@@ -416,8 +425,13 @@ function render(){
   const list=filtered();
   $('list').classList.toggle('rows', view==='rows');
   $('count').textContent = list.length + (list.length===1?' building':' buildings');
-  $('list').innerHTML = list.length ? list.slice(0,shown).map(card).join('')
+  const cards = list.slice(0,shown).map(card);
+  if(cards.length>12 && !subscribed()) cards.splice(12,0,`<li class="card signcard"><p class="was">The weekly list</p>
+    <h3 class="place">Enjoying these?</h3><p class="where">Get each week's new arrivals by email. One email a week, nothing else.</p>
+    <div data-signup="list-card"></div></li>`);
+  $('list').innerHTML = list.length ? cards.join('')
     : '<li class="empty">Nothing on the register matches that yet. Try a wider area or another kind of building.</li>';
+  fillSignups($('list'));
   const left=list.length-shown;
   $('more').hidden = left<=0;
   $('more').textContent = `Show ${Math.min(PAGE,left)} more of ${left}`;
@@ -463,7 +477,9 @@ function spotlight(){
   }
   if(!e){ s.hidden=true; return; }
   s.innerHTML=`<h2>The building you came to see</h2><ol class="list">${card(e)}</ol>
+    ${subscribed()?'':`<div class="spot-sign"><p class="hsign-lead">New buildings like this every week, by email</p><div data-signup="linked-building"></div></div>`}
     <p class="more-note">Below are all ${ALL.length} buildings on formerly., newest first.</p>`;
+  fillSignups(s);
   s.hidden=false;
   s.scrollIntoView({block:'start'});
 }
@@ -475,11 +491,38 @@ $('county').addEventListener('change',()=>{ shown=PAGE; renderTabs(); render(); 
 $('view-grid').addEventListener('click',()=>setView('grid'));
 $('view-rows').addEventListener('click',()=>setView('rows'));
 $('more').addEventListener('click',()=>{ shown+=PAGE; render(); });
-// Posts to Buttondown in a hidden frame, so visitors stay on the page
-$('signup').addEventListener('submit',()=>{
-  const n=$('formnote'); n.textContent='Thank you. Check your inbox for a link to confirm your subscription.'; n.hidden=false;
-  setTimeout(()=>{ $('email').value=''; },50);
+// Sign-up forms: header, a card in the list, under a linked building, and the footer.
+// Each posts to Buttondown in a hidden frame, so visitors stay on the page. Buttondown records
+// where the subscriber arrived from (utm_source) and which form they used (utm_campaign).
+function signupForm(place, label){
+  return `<form class="bd" action="https://buttondown.com/api/emails/embed-subscribe/formerly" method="post" target="bd-signup">
+    <input type="email" name="email" placeholder="you@example.com" aria-label="${esc(label||'Email address')}" autocomplete="email" required>
+    <input type="hidden" name="embed" value="1">
+    <input type="hidden" name="utm_source" value="">
+    <input type="hidden" name="utm_medium" value="website">
+    <input type="hidden" name="utm_campaign" value="${esc(place)}">
+    <button class="primary" type="submit">Subscribe</button>
+  </form><div class="formnote" role="status" hidden></div>`;
+}
+function subscribed(){ try{ return localStorage.getItem('__fly_sub')==='1'; }catch(e){ return false; } }
+const THANKS='Thank you. Check your inbox for a link to confirm your subscription.';
+function fillSignups(root){
+  (root||document).querySelectorAll('[data-signup]:not([data-filled])').forEach(el=>{
+    el.dataset.filled='1';
+    const place=el.dataset.signup;
+    if(place==='header') el.innerHTML = subscribed() ? '' : `<p class="hsign-lead">Get the week's new buildings by email</p>${signupForm('header')}`;
+    else el.innerHTML = signupForm(place);
+  });
+}
+document.addEventListener('submit', ev=>{
+  const f=ev.target.closest('form.bd'); if(!f) return;
+  let src='direct'; try{ src=sessionStorage.getItem('__fly_src')||'direct'; }catch(e){}
+  f.querySelector('[name=utm_source]').value=src;
+  const n=f.nextElementSibling; if(n){ n.textContent=THANKS; n.hidden=false; }
+  try{ localStorage.setItem('__fly_sub','1'); }catch(e){}
+  setTimeout(()=>{ f.querySelector('[name=email]').value=''; },50);
 });
+fillSignups();
 let reporting=null;
 $('list').addEventListener('click',ev=>{
   const b=ev.target.closest('button.report'); if(!b) return;
