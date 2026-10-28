@@ -306,14 +306,7 @@
    "beds": 4,
    "listed": "2026-10-23",
    "badges": [],
-   "photo": {
-    "id": "4312672",
-    "title": "House at Lintzford",
-    "author": "Robert Graham",
-    "year": "2014",
-    "src": "photos/4312672.jpg",
-    "thumb": "https://s0.geograph.org.uk/geophotos/04/31/26/4312672_519a330e_213x160.jpg"
-   },
+   "photo": null,
    "lat": 54.90904,
    "lng": -1.7669,
    "added": "2026-10-25"
