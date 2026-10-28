@@ -1,0 +1,13 @@
+name: Suggest photos (one-off)
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          python build/suggest_for.py 74563749,73376640,74585331,74599891,73547750,73477312,74600425,74577715,74580652,74544589,73704491,74111584,74609518,73301500 > suggest-out.json
+          git config user.name "formerly. bot"; git config user.email "noreply@github.com"
+          git checkout -b probe-out; git add -f suggest-out.json; git commit -qm "suggestions"; git push -f origin probe-out

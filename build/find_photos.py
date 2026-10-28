@@ -19,7 +19,10 @@ from datetime import date
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 API = "https://api.geograph.org.uk/api-facetql.php"
-MAX_METRES = 120
+MAX_METRES = 120          # main(): published without review
+SUGGEST_METRES = 200      # suggest(): reviewed on the card
+GENERIC_METRES = 120
+GENERIC = ["former", "old", "converted", "disused"]
 STREET = re.compile(r"\b\w+\s+(lane|road|street|way|close|drive|avenue|row|hill|walk|place|terrace|yard)\b", re.I)
 
 WORDS = {
@@ -59,7 +62,7 @@ def search(lat, lng, words):
         "select": f"id,title,realname,takenday,hash,GEODIST(wgs84_lat,wgs84_long,{math.radians(lat)},{math.radians(lng)}) as d",
         "match": f"@title ({terms})",
         "order": "d asc",
-        "limit": "15",
+        "limit": "40",
     }
     req = urllib.request.Request(API + "?" + urllib.parse.urlencode(q),
                                  headers={"User-Agent": "formerly.uk site builder (not-for-profit)"})
@@ -76,21 +79,34 @@ def path_for(pid, h):
     return f"geophotos/{s[0:2]}/{s[2:4]}/{s[4:6]}/{pid}_{h}"
 
 
+def _row(r):
+    pid = str(r["id"])
+    return [pid, r["title"], r.get("realname") or "", (r.get("takenday") or "")[:4],
+            str(int(pid) % 4), path_for(pid, r["hash"]), 0]
+
+
 def suggest(lat, lng, kind):
-    """Best Geograph photo for a building, as a photos.json row with ok=0, or None."""
-    words = WORDS.get(kind, [])
-    if not words or lat is None or lng is None:
+    """Best Geograph photo for a building, as a photos.json row with ok=0, or None.
+
+    Looser than the old automatic matching, because Tanya checks every suggestion:
+    1. a photo within SUGGEST_METRES whose title names the kind of building;
+    2. failing that, one within GENERIC_METRES whose title says former/old/converted/disused.
+    """
+    if lat is None or lng is None:
         return None
-    rows = search(lat, lng, words)
+    words = WORDS.get(kind, [])
+    rows = search(lat, lng, words + GENERIC) if words else search(lat, lng, GENERIC)
     time.sleep(1)
-    pat = re.compile(r"\b(" + "|".join(re.escape(w) for w in words) + r")\b", re.I)
-    for r in rows:
-        if float(r.get("d") or 9e9) > MAX_METRES:
-            break
-        if pat.search(STREET.sub("", r.get("title") or "")) and r.get("hash"):
-            pid = str(r["id"])
-            return [pid, r["title"], r.get("realname") or "", (r.get("takenday") or "")[:4],
-                    str(int(pid) % 4), path_for(pid, r["hash"]), 0]
+    def has(words, r):
+        return words and re.search(r"\b(" + "|".join(re.escape(w) for w in words) + r")\b",
+                                   STREET.sub("", r.get("title") or ""), re.I)
+    usable = [r for r in rows if r.get("hash")]
+    for r in usable:
+        if float(r.get("d") or 9e9) <= SUGGEST_METRES and has(words, r):
+            return _row(r)
+    for r in usable:
+        if float(r.get("d") or 9e9) <= GENERIC_METRES and has(GENERIC, r):
+            return _row(r)
     return None
 
 
