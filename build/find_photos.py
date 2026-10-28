@@ -21,8 +21,6 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 API = "https://api.geograph.org.uk/api-facetql.php"
 MAX_METRES = 120          # main(): published without review
 SUGGEST_METRES = 200      # suggest(): reviewed on the card
-GENERIC_METRES = 120
-GENERIC = ["former", "old", "converted", "disused"]
 STREET = re.compile(r"\b\w+\s+(lane|road|street|way|close|drive|avenue|row|hill|walk|place|terrace|yard)\b", re.I)
 
 WORDS = {
@@ -89,13 +87,16 @@ def suggest(lat, lng, kind):
     """Best Geograph photo for a building, as a photos.json row with ok=0, or None.
 
     Looser than the old automatic matching, because Tanya checks every suggestion:
-    1. a photo within SUGGEST_METRES whose title names the kind of building;
-    2. failing that, one within GENERIC_METRES whose title says former/old/converted/disused.
+    the nearest photo within SUGGEST_METRES whose title names the kind of building.
+    (Matching on "former", "old" or "converted" was tried and dropped: it found the wrong
+    buildings, such as an old post office for a chapel.)
     """
     if lat is None or lng is None:
         return None
     words = WORDS.get(kind, [])
-    rows = search(lat, lng, words + GENERIC) if words else search(lat, lng, GENERIC)
+    if not words:
+        return None
+    rows = search(lat, lng, words)
     time.sleep(1)
     def has(words, r):
         return words and re.search(r"\b(" + "|".join(re.escape(w) for w in words) + r")\b",
@@ -103,9 +104,6 @@ def suggest(lat, lng, kind):
     usable = [r for r in rows if r.get("hash")]
     for r in usable:
         if float(r.get("d") or 9e9) <= SUGGEST_METRES and has(words, r):
-            return _row(r)
-    for r in usable:
-        if float(r.get("d") or 9e9) <= GENERIC_METRES and has(GENERIC, r):
             return _row(r)
     return None
 
