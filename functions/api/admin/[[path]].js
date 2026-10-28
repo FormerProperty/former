@@ -21,6 +21,13 @@ export async function onRequest(ctx) {
         SUM(CASE WHEN day <  date('now','-6 days') AND day >= date('now','-13 days') THEN n ELSE 0 END) prev,
         SUM(n) month
       FROM visits WHERE day >= date('now','-29 days') GROUP BY source ORDER BY month DESC`).all();
+    const clickTotals = await db.prepare(`SELECT
+        COALESCE(SUM(CASE WHEN day >= date('now','-6 days') THEN n END),0) week,
+        COALESCE(SUM(CASE WHEN day < date('now','-6 days') AND day >= date('now','-13 days') THEN n END),0) prev,
+        COALESCE(SUM(n),0) month
+      FROM clicks WHERE day >= date('now','-29 days')`).first();
+    const clickTop = await db.prepare(`SELECT id, SUM(n) n FROM clicks WHERE day >= date('now','-29 days')
+      GROUP BY id ORDER BY n DESC LIMIT 5`).all();
     const social = await db.prepare("SELECT id, pref, set_at FROM social ORDER BY set_at DESC").all();
     const dismissed = await db.prepare("SELECT listing_id, MAX(decided) decided, COUNT(*) n FROM reports WHERE status='dismissed' GROUP BY listing_id ORDER BY decided DESC LIMIT 10").all();
     return json({
@@ -29,6 +36,7 @@ export async function onRequest(ctx) {
       reports: reports.results,
       visits: visits.results,
       social: social.results,
+      clicks: { ...clickTotals, top: clickTop.results },
       recent: {
         pending: recentPending.results.map((r) => ({ ...r, data: JSON.parse(r.data) })),
         removals: recentRemovals.results,

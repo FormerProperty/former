@@ -7,6 +7,12 @@ var k="__fly_"+s;try{if(sessionStorage.getItem(k))s=null;else sessionStorage.set
 if(s&&location.hostname==="formerly.uk")fetch("/api/hit",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({s:s,c:q.get("utm_campaign")||""}),keepalive:true}).catch(function(){});
 ["utm_source","utm_medium","utm_campaign","utm_content","utm_term"].forEach(function(p){q.delete(p)});var r=q.toString();
 history.replaceState(null,"",location.pathname+(r?"?"+r:"")+location.hash)}catch(e){}})();</script>
+<script>// Count clicks through to Zoopla (a daily tally per listing, nothing about the visitor)
+(function(){function c(ev){var a=ev.target.closest&&ev.target.closest('a[href*="zoopla.co.uk/for-sale/details/"]');if(!a||location.hostname!=="formerly.uk")return;
+var m=a.href.match(/details\/(\d+)/);if(!m)return;var body=JSON.stringify({id:m[1]});
+try{if(navigator.sendBeacon&&navigator.sendBeacon("/api/click",body))return}catch(e){}
+fetch("/api/click",{method:"POST",body:body,keepalive:true}).catch(function(){})}
+document.addEventListener("click",c);document.addEventListener("auxclick",function(ev){if(ev.button===1)c(ev)})})();</script>
 <script>if(location.hostname.endsWith("github.io"))location.replace("https://formerly.uk"+location.pathname.replace(/^\/former/,"")+location.search);</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>formerly.</title>
