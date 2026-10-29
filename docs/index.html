@@ -143,7 +143,7 @@ button.primary{font:600 15px var(--sans);background:var(--livery);color:var(--pa
 .hsign-lead{margin:0 !important;font:600 12px var(--sans) !important;letter-spacing:.1em;text-transform:uppercase;color:var(--livery)}
 .spot-sign{margin-top:22px;max-width:30rem}
 .signcard{background:var(--stone);padding:24px 22px;align-content:center;border-top:3px solid var(--livery)}
-.extracard{border-top:3px solid var(--oxblood);padding-top:14px}
+.extracard{border-top:3px solid var(--oxblood);background:var(--oxblood-soft);padding:14px 16px 18px}
 .extracard .was{color:var(--oxblood)}
 .list .extracard .note{display:block;color:var(--ink)}
 .signcard,.spot-sign{grid-template-columns:minmax(0,1fr)}
@@ -450,10 +450,10 @@ function render(){
   // Extra cards (sign-up, "Not formerly., but…") each take a slot, so show that many fewer buildings
   const withCard = list.length>12 && !subscribed();
   const unfiltered = group==='all' && !$('region').value && !$('county').value && !$('price').value && !$('kind').value;
-  const extra = unfiltered && list.length>6 ? EXTRAS[0] : null;
+  const extra = unfiltered && list.length>3 ? EXTRAS[0] : null;
   const count = shown - (withCard?1:0) - (extra?1:0);
   const cards = list.slice(0,count).map(card);
-  if(extra) cards.splice(6,0,extraCard(extra));
+  if(extra) cards.splice(3,0,extraCard(extra));
   if(withCard) cards.splice(12,0,`<li class="card signcard"><p class="was">The weekly list</p>
     <h3 class="place">Enjoying these?</h3><p class="where">Get each week's new arrivals by email. One email a week, nothing else.</p>
     <div data-signup="list-card"></div></li>`);

@@ -1,0 +1,21 @@
+name: Probe (one-off)
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          python3 - > probe.txt <<'PY'
+          import json, math, sys, urllib.parse, urllib.request
+          lat, lng = 51.2955, 0.5070
+          q = {"select": f"id,title,realname,takenday,hash,GEODIST(wgs84_lat,wgs84_long,{math.radians(lat)},{math.radians(lng)}) as d",
+               "match": '@title "allington castle"', "order": "d asc", "limit": "60"}
+          req = urllib.request.Request("https://api.geograph.org.uk/api-facetql.php?" + urllib.parse.urlencode(q), headers={"User-Agent": "formerly.uk"})
+          for r in json.load(urllib.request.urlopen(req, timeout=30)).get("rows", []):
+              print(json.dumps({k: r.get(k) for k in ("id","title","realname","takenday","hash","d")}))
+          PY
+          git config user.name "formerly. bot"; git config user.email "noreply@github.com"
+          git checkout -b probe-out; git add -f probe.txt; git commit -qm probe; git push -f origin probe-out
