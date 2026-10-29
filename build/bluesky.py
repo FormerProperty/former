@@ -3,6 +3,7 @@
 Runs a few times a day from .github/workflows/bluesky.yml. Only buildings already
 on the site are posted, so the review approval covers social posts too.
 Order:
+  0. any new "Not formerly., but…" building (extras in listings.json), once each;
   1. anything Tanya marked "Post next" on the review page (social/priority.json);
   2. then 3 posts in every 5 carry a Geograph photo and 2 a label tile: each slot takes
      the newest building of the kind it needs (added in the last 7 days first, then the
@@ -186,7 +187,10 @@ def main():
         posted = set()
     log = load_json(LOG, [])
     priority = load_json(PRIORITY, {})
-    pick = choose(data["listings"], posted, datetime.date.today(), log, priority)
+    # "Not formerly., but…" buildings go out first, once each (unless marked Never post)
+    extras = [e for e in data.get("extras", []) if str(e["id"]) not in posted
+              and priority.get(str(e["id"]), {}).get("pref") != "never"]
+    pick = extras[:1] or choose(data["listings"], posted, datetime.date.today(), log, priority)
     if not pick:
         print("Nothing left to post.")
         return 0

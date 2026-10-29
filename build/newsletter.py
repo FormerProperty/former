@@ -102,7 +102,7 @@ def extra_block(x):
     body = details(x, 22).replace("margin:12px 0 4px", "margin:0 0 6px")
     body = body.replace(h(x.get("label") or "Former " + x["was"]), "Not formerly., but…", 1).replace(f"color:{GREEN}\">Not formerly", f"color:{OXBLOOD}\">Not formerly", 1)
     note = f'<p style="margin:10px 0 0;font:italic 16px/1.5 {SERIF};color:{INK}">{h(x["note"])}.</p>' if x.get("note") else ""
-    return (f'<tr><td class="pad" style="padding:26px 30px 0"><table role="presentation" width="100%" cellpadding="0" cellspacing="0">'
+    return (f'<tr><td class="pad" style="padding:6px 30px 18px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0">'
             f'<tr><td colspan="3" style="border-top:3px solid {OXBLOOD};padding:18px 0 0"></td></tr><tr>'
             f'<td class="col" width="270" valign="top" style="width:270px">{picture(x)}</td><td class="gap" width="20" style="width:20px"></td>'
             f'<td class="col" valign="top">{body}{note}</td></tr></table></td></tr>')
@@ -166,10 +166,10 @@ def build(listings, today, test=False, extras=()):
 <table role="presentation" cellpadding="0" cellspacing="0" style="margin-top:18px"><tr><td bgcolor="{GREEN}" style="background:{GREEN}">
 <a href="{SITE}" style="display:inline-block;padding:11px 20px;font:bold 15px {SANS};color:#ffffff;text-decoration:none">See all {total} buildings on formerly.uk &rarr;</a>
 </td></tr></table></td></tr>
+{extra_block(extra) if extra else ""}
 {pick(featured) if featured else ""}
 {"".join(blocks)}
 {more}
-{extra_block(extra) if extra else ""}
 <tr><td class="pad" style="padding:10px 30px 0"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td style="border-top:6px solid {INK};padding:18px 0 0">
 <p style="margin:0 0 10px;font:15px/1.5 {SANS};color:{INK}">Spotted one that doesn't belong? Press <i>Report</i> on the listing at <a href="{SITE}" style="color:{GREEN}">formerly.uk</a>, or just reply to this email.</p>
 <p style="margin:0 0 6px;font:12px/1.5 {SANS};color:{MUTED}">formerly. is free and not-for-profit. We are not an estate agent. Listings found on Zoopla; photographs from Geograph, credited to their photographers; labels after the old Ordnance Survey maps.</p>

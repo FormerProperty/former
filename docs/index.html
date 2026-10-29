@@ -498,13 +498,13 @@ async function boot(){
 // formerly.uk/#b-<id> (used in social posts) shows that building first
 function spotlight(){
   const m=location.hash.match(/^#b-(\d+)$/); const s=$('spot');
-  const e=m && ALL.find(x=>String(x.id)===m[1]);
+  const e=m && (ALL.find(x=>String(x.id)===m[1]) || EXTRAS.find(x=>String(x.id)===m[1]));
   if(m && !e){
     s.innerHTML=`<h2>That building has gone</h2><p class="more-note" style="margin:0">It has sold or come off the market since it was posted. Below are all ${ALL.length} buildings on formerly., newest first.</p>`;
     s.hidden=false; return;
   }
   if(!e){ s.hidden=true; return; }
-  s.innerHTML=`<h2>The building you came to see</h2><ol class="list">${card(e)}</ol>
+  s.innerHTML=`<h2>The building you came to see</h2><ol class="list">${e.extra?extraCard(e):card(e)}</ol>
     ${subscribed()?'':`<div class="spot-sign"><p class="hsign-lead">New buildings like this every week, by email</p><div data-signup="linked-building"></div></div>`}
     <p class="more-note">Below are all ${ALL.length} buildings on formerly., newest first.</p>`;
   fillSignups(s);

@@ -28,6 +28,8 @@ def caption_for(x, total):
     lines.append(" · ".join(bits))
     if x.get("badges"):
         lines.append(" · ".join(x["badges"]))
+    if x.get("extra") and x.get("note"):
+        lines += ["", x["note"] + "."]
     # Short link; Facebook adds its own fbclid to it, which tells formerly.uk the visit came from here
     lines += ["", f"See it on formerly.uk, with all {total} buildings that began life as something else:",
               f"https://formerly.uk/b/{x['id']}"]

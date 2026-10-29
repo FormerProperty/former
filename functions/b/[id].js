@@ -11,7 +11,8 @@ let known = null, knownAt = 0;
 async function listings(env, request) {
   if (known && Date.now() - knownAt < 600_000) return known;
   const res = await env.ASSETS.fetch(new URL("/data/listings.json", request.url));
-  known = new Map((await res.json()).listings.map((l) => [String(l.id), l]));
+  const d = await res.json();
+  known = new Map([...d.listings, ...(d.extras || [])].map((l) => [String(l.id), l]));
   knownAt = Date.now();
   return known;
 }

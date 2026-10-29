@@ -294,6 +294,9 @@ def main():
             "added": prev.get(str(r["id"])) or datetime.date.today().isoformat(),
         })
     extras = sorted((o for o in out if o["id"] in extra_ids), key=lambda x: x["added"], reverse=True)
+    for o in extras:
+        o["extra"] = True
+        o["label"] = "Not formerly., but…"
     out = [o for o in out if o["id"] not in extra_ids]
     out.sort(key=lambda x: x["listed"] or "", reverse=True)
     data = {
