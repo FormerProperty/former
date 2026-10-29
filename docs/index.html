@@ -143,6 +143,9 @@ button.primary{font:600 15px var(--sans);background:var(--livery);color:var(--pa
 .hsign-lead{margin:0 !important;font:600 12px var(--sans) !important;letter-spacing:.1em;text-transform:uppercase;color:var(--livery)}
 .spot-sign{margin-top:22px;max-width:30rem}
 .signcard{background:var(--stone);padding:24px 22px;align-content:center;border-top:3px solid var(--livery)}
+.extracard{border-top:3px solid var(--oxblood);padding-top:14px}
+.extracard .was{color:var(--oxblood)}
+.list .extracard .note{display:block;color:var(--ink)}
 .signcard,.spot-sign{grid-template-columns:minmax(0,1fr)}
 .signcard>*,.signcard form{min-width:0;max-width:100%}
 form.bd input[type=email]{width:0}
@@ -342,7 +345,7 @@ function osLabel(e){
 }
 const $ = id => document.getElementById(id);
 const PAGE = 24;
-let ALL = [], shown = PAGE, group = 'all', view = 'grid';
+let EXTRAS = [], ALL = [], shown = PAGE, group = 'all', view = 'grid';
 const fmtDate = iso => iso ? new Date(iso+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) : '';
 const esc = s => String(s??'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
@@ -422,15 +425,35 @@ function card(e){
   </li>`;
 }
 
+// "Not formerly., but…": a building that was always a home, so not on the list, shown once
+function extraCard(e){
+  const meta=[`<span class="price">${e.price!=null?esc(e.priceText):'Price on application'}</span>`, e.beds?`<span>${e.beds} bed</span>`:'',
+    e.plot?`<span>${esc(e.plot)}</span>`:'', `<span>${esc(e.county)}</span>`].join('');
+  const credit=e.photo?`<p class="credit">Photo: <a href="https://www.geograph.org.uk/photo/${esc(e.photo.id)}" target="_blank" rel="noopener">${esc(e.photo.author)}${e.photo.year?', '+esc(e.photo.year):''}</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a></p>`:'';
+  return `<li class="card extracard">
+    <div class="media">${frame(e)}</div>
+    <p class="was">Not formerly., but…</p>
+    <h3 class="place"><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.headline||e.place)}</a></h3>
+    <p class="where">${esc(e.place)}</p>
+    <div class="meta">${meta}</div>
+    ${e.note?`<p class="note">${esc(e.note)}.</p>`:''}
+    ${credit}
+    <div class="actions"><a href="${esc(e.url)}" target="_blank" rel="noopener">View on Zoopla</a></div>
+  </li>`;
+}
+
 function render(){
   priceCounts();
   const list=filtered();
   $('list').classList.toggle('rows', view==='rows');
   $('count').textContent = list.length + (list.length===1?' building':' buildings');
-  // The sign-up card takes one slot in the grid, so show one building fewer to keep rows full
+  // Extra cards (sign-up, "Not formerly., but…") each take a slot, so show that many fewer buildings
   const withCard = list.length>12 && !subscribed();
-  const count = withCard ? shown-1 : shown;
+  const unfiltered = group==='all' && !$('region').value && !$('county').value && !$('price').value && !$('kind').value;
+  const extra = unfiltered && list.length>6 ? EXTRAS[0] : null;
+  const count = shown - (withCard?1:0) - (extra?1:0);
   const cards = list.slice(0,count).map(card);
+  if(extra) cards.splice(6,0,extraCard(extra));
   if(withCard) cards.splice(12,0,`<li class="card signcard"><p class="was">The weekly list</p>
     <h3 class="place">Enjoying these?</h3><p class="where">Get each week's new arrivals by email. One email a week, nothing else.</p>
     <div data-signup="list-card"></div></li>`);
@@ -460,7 +483,7 @@ async function boot(){
   let data;
   try{ data = await fetch('data/listings.json').then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); }); }
   catch(err){ $('list').innerHTML='<li class="empty">The register could not be loaded. Refresh the page to try again.</li>'; return; }
-  ALL=data.listings;
+  ALL=data.listings; EXTRAS=data.extras||[];
   // "New" for buildings added to formerly. in the last 7 days
   // (the first 518 went up together on 25 October 2026, so they never count as new)
   const weekAgo=[new Date(Date.now()-7*864e5).toISOString().slice(0,10),'2026-10-26'].sort()[1];

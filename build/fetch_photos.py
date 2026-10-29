@@ -9,7 +9,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "docs", "photos")
 os.makedirs(OUT, exist_ok=True)
 data = json.load(open(os.path.join(ROOT, "docs", "data", "listings.json")))
-wanted = {x["photo"]["id"]: x["photo"]["thumb"] for x in data["listings"] if x.get("photo")}
+wanted = {x["photo"]["id"]: x["photo"]["thumb"] for x in data["listings"] + data.get("extras", []) if x.get("photo")}
 got = 0
 for pid, url in wanted.items():
     dest = os.path.join(OUT, f"{pid}.jpg")

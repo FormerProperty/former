@@ -204,6 +204,15 @@ def main():
         with open(f) as fh:
             for r in json.load(fh):
                 rows[str(r["id"])] = r  # later files win
+    # "Not formerly., but…": buildings that fail the remit (always homes) but are too good to
+    # leave out. Built the same way, published separately, never counted, posted or put in feeds.
+    extras_path = os.path.join(ROOT, "extras.json")
+    extra_ids = set()
+    if os.path.exists(extras_path):
+        with open(extras_path) as fh:
+            for r in json.load(fh):
+                rows[str(r["id"])] = r
+                extra_ids.add(str(r["id"]))
     removed = {}
     rp = os.path.join(ROOT, "removed.json")
     if os.path.exists(rp):
@@ -220,7 +229,8 @@ def main():
     lp = os.path.join(ROOT, "docs", "data", "listings.json")
     if os.path.exists(lp):
         with open(lp) as fh:
-            prev = {x["id"]: x.get("added") for x in json.load(fh)["listings"]}
+            old = json.load(fh)
+            prev = {x["id"]: x.get("added") for x in old["listings"] + old.get("extras", [])}
     out, dropped = [], []
     for r in rows.values():
         if str(r["id"]) in removed:
@@ -283,12 +293,15 @@ def main():
             "lng": (coords.get(str(r["id"])) or r.get("ll") or [None, None])[1],
             "added": prev.get(str(r["id"])) or datetime.date.today().isoformat(),
         })
+    extras = sorted((o for o in out if o["id"] in extra_ids), key=lambda x: x["added"], reverse=True)
+    out = [o for o in out if o["id"] not in extra_ids]
     out.sort(key=lambda x: x["listed"] or "", reverse=True)
     data = {
         "updated": datetime.date.today().isoformat(),
         "types": TYPE_LABELS,
         "count": len(out),
         "listings": out,
+        "extras": extras,
     }
     os.makedirs(os.path.join(ROOT, "docs", "data"), exist_ok=True)
     with open(lp, "w") as fh:

@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-28",
+ "updated": "2026-10-29",
  "types": {
   "chapel": "Chapels",
   "church": "Churches",
@@ -17031,6 +17031,43 @@
    "lat": 52.85589,
    "lng": -1.93292,
    "added": "2026-10-25"
+  }
+ ],
+ "extras": [
+  {
+   "id": "74470088",
+   "url": "https://www.zoopla.co.uk/for-sale/details/74470088/",
+   "source": "Zoopla",
+   "type": "other",
+   "was": "medieval castle",
+   "label": "Formerly a medieval castle",
+   "os": "Bldg",
+   "note": "A 12th-century castle on the Medway, made into a grand house by the Wyatt family in the late 1400s. Built to be lived in, so it isn't on our list, but too good to leave out",
+   "headline": "Restored medieval castle on the Medway, with 42 acres",
+   "sqft": null,
+   "plot": "42 acres",
+   "grade": "",
+   "built": "",
+   "place": "Allington, Maidstone",
+   "postcode": "ME16",
+   "county": "Kent",
+   "region": "South East",
+   "price": 5000000,
+   "priceText": "£5,000,000",
+   "beds": 30,
+   "listed": "2026-10-21",
+   "badges": [],
+   "photo": {
+    "id": "2232957",
+    "title": "Allington Castle",
+    "author": "N Chadwick",
+    "year": "2010",
+    "src": "photos/2232957.jpg",
+    "thumb": "https://s1.geograph.org.uk/geophotos/02/23/29/2232957_580ab997_213x160.jpg"
+   },
+   "lat": 51.2905,
+   "lng": 0.5022,
+   "added": "2026-10-29"
   }
  ]
 }

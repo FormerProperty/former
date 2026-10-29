@@ -97,6 +97,17 @@ def pick(x):
             f'</tr></table></td></tr>')
 
 
+def extra_block(x):
+    """'Not formerly., but…': a building that was always a home, too good to leave out."""
+    body = details(x, 22).replace("margin:12px 0 4px", "margin:0 0 6px")
+    body = body.replace(h(x.get("label") or "Former " + x["was"]), "Not formerly., but…", 1).replace(f"color:{GREEN}\">Not formerly", f"color:{OXBLOOD}\">Not formerly", 1)
+    note = f'<p style="margin:10px 0 0;font:italic 16px/1.5 {SERIF};color:{INK}">{h(x["note"])}.</p>' if x.get("note") else ""
+    return (f'<tr><td class="pad" style="padding:26px 30px 0"><table role="presentation" width="100%" cellpadding="0" cellspacing="0">'
+            f'<tr><td colspan="3" style="border-top:3px solid {OXBLOOD};padding:18px 0 0"></td></tr><tr>'
+            f'<td class="col" width="270" valign="top" style="width:270px">{picture(x)}</td><td class="gap" width="20" style="width:20px"></td>'
+            f'<td class="col" valign="top">{body}{note}</td></tr></table></td></tr>')
+
+
 def region_block(name, items):
     rows = []
     for i in range(0, len(items), 2):
@@ -111,8 +122,10 @@ def region_block(name, items):
             + "".join(rows) + '</table></td></tr>')
 
 
-def build(listings, today, test=False):
-    since = (today - datetime.timedelta(days=7)).isoformat()
+def build(listings, today, test=False, extras=()):
+    # The first 518 buildings all went up together at launch on 25 October 2026; they are not "new"
+    since = max((today - datetime.timedelta(days=7)).isoformat(), "2026-10-25")
+    extra = next((x for x in extras if (x.get("added") or "") > since), None)
     new = [x for x in listings if (x.get("added") or "") > since and "Under offer" not in (x.get("badges") or [])]
     if not new:
         return None
@@ -156,6 +169,7 @@ def build(listings, today, test=False):
 {pick(featured) if featured else ""}
 {"".join(blocks)}
 {more}
+{extra_block(extra) if extra else ""}
 <tr><td class="pad" style="padding:10px 30px 0"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td style="border-top:6px solid {INK};padding:18px 0 0">
 <p style="margin:0 0 10px;font:15px/1.5 {SANS};color:{INK}">Spotted one that doesn't belong? Press <i>Report</i> on the listing at <a href="{SITE}" style="color:{GREEN}">formerly.uk</a>, or just reply to this email.</p>
 <p style="margin:0 0 6px;font:12px/1.5 {SANS};color:{MUTED}">formerly. is free and not-for-profit. We are not an estate agent. Listings found on Zoopla; photographs from Geograph, credited to their photographers; labels after the old Ordnance Survey maps.</p>
@@ -175,8 +189,9 @@ def build(listings, today, test=False):
 def main():
     test = "--test" in sys.argv
     with open(os.path.join(ROOT, "docs", "data", "listings.json")) as fh:
-        listings = json.load(fh)["listings"]
-    out = build(listings, datetime.date.today(), test)
+        data = json.load(fh)
+    listings = data["listings"]
+    out = build(listings, datetime.date.today(), test, data.get("extras", []))
     if not out:
         print("No new listings this week; no draft created.")
         return 0

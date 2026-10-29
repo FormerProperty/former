@@ -83,6 +83,13 @@ libraries, court houses, telephone exchanges, warehouses, factories and the like
 
 When unsure, include it with a clear `why` so Tanya can decide.
 
+**"Not formerly., but…"** Occasionally a building fails the rules but is exceptional: a castle,
+a tower house, a folly, a remarkable manor. Do not queue it. Instead, mention it in the run's
+notes ("Possible Not formerly., but…: <address>, <Zoopla link>, <one line why>"). If Tanya wants
+it, it goes in `extras.json` (same record format, with `n` as the short explanation). Extras
+appear as one card on the site and a section in the weekly email; they are never counted,
+posted to social media or put in the RSS feeds.
+
 ## 4. Record each included listing
 
 One JSON object per building, in the judging format:
