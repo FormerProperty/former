@@ -297,6 +297,8 @@ def main():
     for o in extras:
         o["extra"] = True
         o["label"] = "Not formerly., but…"
+        if "castle" in o["was"].lower():
+            o["os"] = "Castle"
     out = [o for o in out if o["id"] not in extra_ids]
     out.sort(key=lambda x: x["listed"] or "", reverse=True)
     data = {

@@ -35,6 +35,7 @@ document.addEventListener("click",c);document.addEventListener("auxclick",functi
   --livery:#1E4D3B;     /* Brunswick green, railway and chapel railings */
   --livery-soft:#DCE5DF;
   --oxblood:#7B2D26;
+  --oxblood-soft:#EEDDD9;  /* "Not formerly., but…" card */
   --display:"Libre Caslon Display", "Libre Caslon Text", Georgia, serif;
   --serif:"Libre Caslon Text", Georgia, "Times New Roman", serif;
   --sans:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -43,12 +44,12 @@ document.addEventListener("click",c);document.addEventListener("auxclick",functi
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --paper:#121413; --ink:#ECEDEA; --muted:#A0A5A1; --rule:#2C302E; --stone:#1D201E;
-    --livery:#86BFA4; --livery-soft:#1B2A23; --oxblood:#E1958B; color-scheme:dark;
+    --livery:#86BFA4; --livery-soft:#1B2A23; --oxblood:#E1958B; --oxblood-soft:#2A1C1A; color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
   --paper:#121413; --ink:#ECEDEA; --muted:#A0A5A1; --rule:#2C302E; --stone:#1D201E;
-  --livery:#86BFA4; --livery-soft:#1B2A23; --oxblood:#E1958B; color-scheme:dark;
+  --livery:#86BFA4; --livery-soft:#1B2A23; --oxblood:#E1958B; --oxblood-soft:#2A1C1A; color-scheme:dark;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
