@@ -58,6 +58,12 @@ export async function onRequest(ctx) {
         const data = JSON.parse(row.data);
         if (typeof b.edits.h === "string") data.h = b.edits.h.replace(/\s+/g, " ").trim().slice(0, 90);
         if (typeof b.edits.photo === "boolean") data.phok = b.edits.photo;
+        // A photo Tanya picked from the Geograph chooser replaces the suggestion
+        const ph = b.edits.ph;
+        if (Array.isArray(ph) && ph.length === 7 && /^\d{1,9}$/.test(ph[0]) && /^[0-3]$/.test(ph[4])
+            && /^(geo)?photos\/[\d/]+_[0-9a-f]{8}$/.test(ph[5])) {
+          data.ph = [ph[0], String(ph[1]).slice(0, 200), String(ph[2]).slice(0, 100), String(ph[3]).slice(0, 4), ph[4], ph[5], 0];
+        }
         if (b.edits.social === "next")
           await db.prepare("INSERT INTO social (id, pref, set_at) VALUES (?, 'next', datetime('now')) ON CONFLICT(id) DO UPDATE SET pref='next', set_at=datetime('now')").bind(id).run();
         await db.prepare("UPDATE pending SET data=? WHERE id=?").bind(JSON.stringify(data), id).run();

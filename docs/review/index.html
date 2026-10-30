@@ -84,6 +84,17 @@ button.act:disabled{opacity:.5;cursor:default}
 .ph label{font-weight:600;color:var(--ink);display:flex;gap:8px;align-items:center}
 .ph input{width:18px;height:18px;accent-color:var(--livery)}
 .ph .small{font-size:13px}
+.ph button.zoom{border:0;padding:0;background:none;cursor:zoom-in;flex:none}
+.pick-btn{justify-self:start;font:600 13.5px var(--sans);background:none;border:1px solid var(--ink);color:var(--ink);padding:6px 10px;cursor:pointer;margin-top:4px}
+.chooser{margin:6px 0 10px;padding:12px;background:var(--stone)}
+.chooser .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:8px}
+.chooser .grid button{display:grid;gap:4px;text-align:left;background:none;border:0;padding:0;cursor:zoom-in;font:13px/1.3 var(--sans);color:var(--ink)}
+.chooser .grid img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--paper)}
+.chooser .grid i{display:block;font-style:normal;color:var(--muted);font-size:12px}
+.zoombox{border:0;padding:16px;width:min(92vw,720px);max-width:none;background:var(--paper);color:var(--ink)}
+.zoombox::backdrop{background:rgba(0,0,0,.6)}
+.zoombox img{display:block;width:100%;height:auto;max-height:70vh;object-fit:contain;background:var(--stone)}
+.zoombox p{font-size:14.5px;margin:10px 0}
 @media(max-width:520px){.ph{flex-direction:column}.ph img{width:100%;height:auto;aspect-ratio:4/3}}
 .soc-tick{display:flex;gap:8px;align-items:center;font-size:14.5px;margin-top:10px}
 .soc-tick input{width:18px;height:18px;accent-color:var(--livery)}
@@ -139,6 +150,11 @@ input.reason{font:14.5px var(--sans);color:var(--ink);background:transparent;bor
   <div id="err" class="err" hidden></div>
 </div>
 <div class="toast" id="toast" hidden></div>
+<dialog id="zoom" class="zoombox">
+  <img id="zoom-img" alt="">
+  <p id="zoom-cap"></p>
+  <div class="row"><button type="button" class="act yes" id="zoom-use">Use this photo</button><button type="button" class="act" id="zoom-close">Close</button></div>
+</dialog>
 
 <script>
 const $ = id => document.getElementById(id);
@@ -158,6 +174,59 @@ document.querySelectorAll('nav.tabs button').forEach(b=>b.addEventListener('clic
   document.querySelectorAll('section[role=tabpanel]').forEach(p=>p.hidden = p.id!==b.getAttribute('aria-controls'));
 }));
 
+// Photo on the review card: the suggestion (or Tanya's choice), with a chooser of every
+// Geograph photo near the building. Rows are photos.json rows: [id, title, author, year, server, path, ok]
+const GEO = (ph, size) => `https://s${ph[4]}.geograph.org.uk/${ph[5]}${size?'_'+size:''}.jpg`;
+function photoBlock(ph, chosen){
+  const find = `<button type="button" class="pick-btn">${ph?'Choose a different photo':'Find a photo on Geograph'}</button>`;
+  if(!ph) return `<p class="why">No Geograph photo suggested; the site will show the label tile.</p>${find}`;
+  return `<figure class="ph"><button type="button" class="zoom" data-ph='${esc(JSON.stringify(ph))}' aria-label="Enlarge photo"><img src="${GEO(ph,'213x160')}" alt="" loading="lazy"></button>
+    <figcaption><label><input type="checkbox" class="usephoto" checked> Use this photo</label>
+    <span>${esc(ph[1])}, ${esc(ph[2])}${ph[3]?' ('+esc(ph[3])+')':''}, Geograph</span>
+    <span class="small">${chosen?'Your choice.':'Untick it if it shows a different building.'} Click the photo to enlarge it.</span>${find}</figcaption></figure>`;
+}
+function geoPath(id, hash){
+  const n=+id;
+  if(n<1e6){ const s=String(n).padStart(6,'0'); return `photos/${s.slice(0,2)}/${s.slice(2,4)}/${s}_${hash}`; }
+  const s=String(n).padStart(8,'0'); return `geophotos/${s.slice(0,2)}/${s.slice(2,4)}/${s.slice(4,6)}/${id}_${hash}`;
+}
+async function nearbyPhotos(lat, lng){
+  const r=Math.PI/180;
+  const q=new URLSearchParams({select:`id,title,realname,takenday,hash,GEODIST(wgs84_lat,wgs84_long,${lat*r},${lng*r}) as d`, order:'d asc', limit:'60'});
+  const res=await fetch('https://api.geograph.org.uk/api-facetql.php?'+q);
+  const rows=(await res.json()).rows||[];
+  return rows.filter(x=>x.hash && +x.d<=600).map(x=>({ph:[String(x.id), x.title, x.realname||'', (x.takenday||'').slice(0,4), String(+x.id%4), geoPath(x.id,x.hash), 0], d:Math.round(+x.d)}));
+}
+let ZOOM=null;
+function openZoom(ph, card){
+  ZOOM={ph, card};
+  $('zoom-img').src=GEO(ph,''); $('zoom-img').alt=ph[1];
+  $('zoom-cap').innerHTML=`<b>${esc(ph[1])}</b><br>${esc(ph[2])}${ph[3]?', '+esc(ph[3]):''} · <a href="https://www.geograph.org.uk/photo/${esc(ph[0])}" target="_blank" rel="noopener">See it on Geograph ↗</a>`;
+  $('zoom-use').hidden=!card;
+  $('zoom').showModal();
+}
+function choosePhoto(card, ph){
+  card.dataset.ph=JSON.stringify(ph);
+  card.querySelector('.phbox').innerHTML=photoBlock(ph, true);
+  const ch=card.querySelector('.chooser'); if(ch) ch.hidden=true;
+}
+document.addEventListener('click', async ev=>{
+  const z=ev.target.closest('button.zoom');
+  if(z){ openZoom(JSON.parse(z.dataset.ph), z.dataset.choose ? z.closest('.item') : null); return; }
+  const b=ev.target.closest('button.pick-btn'); if(!b) return;
+  const card=b.closest('.item'), ch=card.querySelector('.chooser'), ll=card.querySelector('.phbox').dataset.ll;
+  if(!ch || !ll) return;
+  if(!ch.hidden){ ch.hidden=true; return; }
+  ch.hidden=false; ch.innerHTML='<p class="why">Looking for photos near the building…</p>';
+  try{
+    const [lat,lng]=ll.split(',').map(Number);
+    const list=await nearbyPhotos(lat,lng);
+    ch.innerHTML = list.length ? `<p class="why">${list.length} photos within 600 m, nearest first. Click one to see it larger.</p>
+      <div class="grid">${list.map(x=>`<button type="button" class="zoom" data-choose="1" data-ph='${esc(JSON.stringify(x.ph))}'><img src="${GEO(x.ph,'213x160')}" alt="" loading="lazy"><span>${esc(x.ph[1])}<i>${x.d} m · ${esc(x.ph[3])}</i></span></button>`).join('')}</div>`
+      : '<p class="why">No Geograph photos within 600 m.</p>';
+  }catch(e){ ch.innerHTML='<p class="why">Geograph did not answer. Try again in a minute.</p>'; }
+});
+
 // Pending rows use the judging format: id, p price, b beds, a address, t type, w was, n note, g flags, why
 function pendingCard(r){
   const d=r.data||{};
@@ -168,11 +237,8 @@ function pendingCard(r){
     <h2 class="place">${esc(d.a||r.id)}</h2>
     <div class="meta">${meta}</div>
     ${facts?`<div class="meta">${facts}</div>`:''}
-    ${d.ph?`<figure class="ph"><img src="https://s${esc(d.ph[4])}.geograph.org.uk/${esc(d.ph[5])}_213x160.jpg" alt="" loading="lazy">
-      <figcaption><label><input type="checkbox" class="usephoto" checked> Use this photo</label>
-      <span>${esc(d.ph[1])}, ${esc(d.ph[2])}${d.ph[3]?' ('+esc(d.ph[3])+')':''}, Geograph</span>
-      <span class="small">Untick it if it shows a different building.</span></figcaption></figure>`
-      : (d.ll?'<p class="why">No Geograph photo found; the site will show the label tile.</p>':'')}
+    <div class="phbox" data-ll="${d.ll?esc(d.ll.join(',')):''}">${photoBlock(d.ph, false)}</div>
+    ${d.ll?`<div class="chooser" hidden></div>`:''}
     <label class="hl">Headline on the site <input class="headline" value="${esc(d.h||'')}" maxlength="90" placeholder="e.g. Grade II village post office, needing modernisation"></label>
     ${d.n?`<p class="why">${esc(d.n)}</p>`:''}
     ${d.why?`<p class="why">Why it was picked: ${esc(d.why)}</p>`:''}
@@ -305,17 +371,22 @@ $('soc-form').addEventListener('submit', async ev=>{
 });
 document.addEventListener('click', ev=>{ const b=ev.target.closest('button[data-clear]'); if(b) setSocial(b.dataset.clear, null); });
 
+$('zoom-close').addEventListener('click',()=>$('zoom').close());
+$('zoom').addEventListener('click',ev=>{ if(ev.target===$('zoom')) $('zoom').close(); });
+$('zoom-use').addEventListener('click',()=>{ if(ZOOM&&ZOOM.card){ choosePhoto(ZOOM.card, ZOOM.ph); toast('Photo chosen. Approve to use it.'); } $('zoom').close(); });
+
 document.addEventListener('click', async ev=>{
-  const b=ev.target.closest('button.act'); if(!b) return;
+  const b=ev.target.closest('button.act'); if(!b || b.closest('#zoom')) return;
   const card=b.closest('.item'); const id=card.dataset.id;
   const reason=card.querySelector('input.reason')?.value.trim() || '';
   const headline=card.querySelector('input.headline')?.value.trim();
   const usePhoto=card.querySelector('input.usephoto');
+  const chosenPh=card.dataset.ph ? JSON.parse(card.dataset.ph) : null;
   const postNext=card.querySelector('input.postnext')?.checked;
   card.querySelectorAll('button.act').forEach(x=>x.disabled=true);
   try{
     const r=await fetch('/api/admin/decide',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({type:b.dataset.type,action:b.dataset.action,id,reason,...(headline!==undefined?{edits:{h:headline,...(usePhoto?{photo:usePhoto.checked}:{}),...(postNext?{social:'next'}:{})}}:{})})});
+      body:JSON.stringify({type:b.dataset.type,action:b.dataset.action,id,reason,...(headline!==undefined?{edits:{h:headline,...(usePhoto?{photo:usePhoto.checked}:{}),...(chosenPh?{ph:chosenPh}:{}),...(postNext?{social:'next'}:{})}}:{})})});
     const j=await r.json();
     if(!j.ok){ toast(j.error||'That did not work.'); card.querySelectorAll('button.act').forEach(x=>x.disabled=false); return; }
     toast({approve:'Approved',reject:'Rejected',remove:'Will be taken down',dismiss:'Dismissed',undo:'Undone'}[b.dataset.action]);
