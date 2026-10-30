@@ -135,7 +135,9 @@ def build(listings, today, test=False, extras=()):
     featured = next((x for x in shown if x.get("photo") and x.get("note")), None) or next((x for x in shown if x.get("photo")), None)
     rest = [x for x in shown if x is not featured]
     rest.sort(key=lambda x: (x["region"], -(x.get("price") or 0)))
-    date = today.strftime("%-d %B %Y")
+    # Drafted on Friday evening for Saturday morning, so the email carries Saturday's date
+    send_day = today + datetime.timedelta(days=(5 - today.weekday()) % 7)
+    date = send_day.strftime("%-d %B %Y")
     subject = f"{'[TEST] ' if test else ''}formerly. · {n} new building{'s' if n != 1 else ''} this week"
     total = len(listings)
     lead = summary(new)
@@ -179,7 +181,7 @@ def build(listings, today, test=False, extras=()):
     # Keep every line flush-left so Buttondown's Markdown pass leaves the HTML alone
     html = "\n".join(line.strip() for line in html.splitlines() if line.strip())
     # Tag links back to the site so visits from the email can be counted (images are left alone)
-    tag = f"utm_source=newsletter&utm_medium=email&utm_campaign=weekly-{today.isoformat()}"
+    tag = f"utm_source=newsletter&utm_medium=email&utm_campaign=weekly-{send_day.isoformat()}"
     html = html.replace(f'href="{SITE}/#feeds"', f'href="{SITE}/?{tag}#feeds"')
     html = html.replace(f'href="{SITE}/privacy.html"', f'href="{SITE}/privacy.html?{tag}"')
     html = html.replace(f'href="{SITE}"', f'href="{SITE}/?{tag}"')

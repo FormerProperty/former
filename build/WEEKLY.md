@@ -194,5 +194,5 @@ Send one short message with:
 finds roughly 20 to 30 new ones, so each run (Tuesday or Friday) roughly 10 to 15. If a run finds
 fewer than 5 (outside the Christmas and New Year lull), say so plainly and suggest checking that the alerts and the sweep are working.
 
-Mention that the weekly email draft is built from whatever has been approved by the time it runs. If something was taken down in error, Tanya can ask for it to be put back
+Mention that the weekly email draft is built at 7pm on Friday from whatever has been approved by then. If something was taken down in error, Tanya can ask for it to be put back
 (set its `status.json` state to `live`).
