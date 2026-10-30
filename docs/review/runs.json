@@ -1,6 +1,32 @@
 {
  "runs": [
   {
+   "date": "2026-10-30",
+   "label": "Friday 30 October",
+   "checked": 126,
+   "queued": 16,
+   "left_out": 110,
+   "reasons": [
+    "51 flats or homes within larger conversions",
+    "17 flats or houses in modern developments",
+    "24 ordinary houses (keyword only in the area or description)",
+    "8 houses on streets named after old buildings",
+    "10 others: houses that were always houses, barn conversions and a plot of land"
+   ],
+   "availability": {
+    "checked": 73,
+    "gone": [
+     "Former oast house, Grade II, Station Road, Northiam",
+     "Former windmill, Newton Road, Tollerton",
+     "Former village school, Victorian, Church Road, Hinton Waldrist"
+    ],
+    "offer": [],
+    "expired": []
+   },
+   "health": "",
+   "notes": "Alert emails plus the Friday newest-listings sweep (45 phrases). The sweep found 38 new listings the alerts missed, mostly 23 to 29 October. About 185 pages opened on Zoopla at 8 to 12 seconds apart, no refusals; Chrome stalled once mid-run and the run resumed from where it stopped. Price changes recorded: 72741626 now £895,000, 70251228 £300,000, 73798610 £240,000, 73971206 £475,000. Possible Not formerly., but…: Lower Carden Hall, Tilston, https://www.zoopla.co.uk/for-sale/details/74632051/, Grade I listed 15th-century hall; Stoke Park, Stoke Bruerne, https://www.zoopla.co.uk/for-sale/details/74635624/, early Palladian house with pavilions attributed to Inigo Jones. Several queued items are semi-detached or terraced parts of the old building; each says so in its note."
+  },
+  {
    "date": "2026-10-27",
    "label": "Tuesday 27 October",
    "checked": 180,
