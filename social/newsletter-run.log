@@ -1,1 +1,1 @@
-Buttondown refused the email: 400 {"code":"email_duplicate","detail":"Email is potentially a duplicate of an existing email","metadata":{}} | could not reuse a draft: HTTP Error 400: Bad Request
+Buttondown refused the email: 400 {"code":"email_duplicate","detail":"Email is potentially a duplicate of an existing email","metadata":{}} | could not reuse a draft: HTTP Error 400: Bad Request {"code":"email_duplicate","detail":"This email appears to be a duplicate of one you've already sent. Confirm and retry to send it anyway.","metadata":{}}
