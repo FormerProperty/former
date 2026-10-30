@@ -35,5 +35,5 @@ jobs:
         run: |
           git config user.name "formerly. bot"
           git config user.email "noreply@github.com"
-          git add social/newsletter-last.json social/newsletter-run.log 2>/dev/null || true
+          for f in social/newsletter-last.json social/newsletter-run.log; do [ -f "$f" ] && git add "$f"; done; true
           git diff --cached --quiet || (git commit -m "Record weekly email" && for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done)
