@@ -1,10 +1,11 @@
 name: Weekly email
 on:
   schedule:
-    # Fridays at 2pm UK time: 14:07 UTC in winter, 13:07 UTC in summer (the script skips the other one).
+    # Fridays at about 2pm UK time. GitHub often starts scheduled jobs late, so there are three tries
+    # (13:07, 14:07, 15:07 UTC); the script acts on the first from 1:45pm UK time and skips the rest.
     # The email is created in Buttondown scheduled to send at 10:30am on Saturday; Tanya can edit or
     # cancel it there until then.
-    - cron: "7 13,14 * * 5"
+    - cron: "7 13,14,15 * * 5"
   workflow_dispatch:
     inputs:
       test:

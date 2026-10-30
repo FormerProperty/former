@@ -211,11 +211,11 @@ def main():
     today = datetime.date.today()
     send_day = today + datetime.timedelta(days=(5 - today.weekday()) % 7)
     # Scheduled runs: GitHub's clock is UTC, so the job runs at 13:07 and 14:07 UTC on Fridays
-    # and the first one that falls between 2pm and 6pm UK time goes ahead (GitHub sometimes runs
+    # and the first one that falls between 1:45pm and 6pm UK time goes ahead (GitHub sometimes runs
     # late); a marker file stops a second email being made the same week.
     if "--scheduled" in sys.argv:
         now = datetime.datetime.now(datetime.timezone.utc)
-        if not (uk_time(today, 14, 0) <= now <= uk_time(today, 18, 0)):
+        if not (uk_time(today, 13, 45) <= now <= uk_time(today, 18, 0)):
             print("Before 2pm UK time; the later scheduled run will create this week's email.")
             return 0
         try:
