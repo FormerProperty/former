@@ -1,0 +1,22 @@
+name: Probe (one-off)
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - env:
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+        run: |
+          python3 - > probe.txt <<'PY'
+          import json, os, urllib.request
+          req = urllib.request.Request("https://api.buttondown.com/v1/emails?ordering=-creation_date", headers={"Authorization": "Token " + os.environ["BUTTONDOWN_API_KEY"], "User-Agent": "formerly"})
+          d = json.load(urllib.request.urlopen(req, timeout=60))
+          print("count", d.get("count"))
+          for e in d.get("results", [])[:15]:
+              print(json.dumps({k: e.get(k) for k in ("id", "subject", "status", "creation_date", "publish_date")}))
+          PY
+          git config user.name "formerly. bot"; git config user.email "noreply@github.com"
+          git checkout -b probe-out; git add -f probe.txt; git commit -qm probe; git push -f origin probe-out
