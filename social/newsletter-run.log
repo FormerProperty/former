@@ -1,1 +1,1 @@
-Buttondown refused the draft: 400 {"code":"email_duplicate","detail":"Email is potentially a duplicate of an existing email","metadata":{}}
+Buttondown refused the email: 400 {"code":"email_duplicate","detail":"Email is potentially a duplicate of an existing email","metadata":{}} | could not reuse a draft: HTTP Error 400: Bad Request
