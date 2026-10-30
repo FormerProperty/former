@@ -253,12 +253,35 @@ def main():
         data=json.dumps(payload).encode(),
         method="POST",
         headers={"Authorization": f"Token {key}", "Content-Type": "application/json", "User-Agent": "formerly-newsletter"})
+    def api(method, path, body=None):
+        r = urllib.request.Request(f"https://api.buttondown.com/v1/{path}", method=method,
+                                   data=json.dumps(body).encode() if body is not None else None,
+                                   headers={"Authorization": f"Token {key}", "Content-Type": "application/json",
+                                            "User-Agent": "formerly-newsletter"})
+        with urllib.request.urlopen(r, timeout=60) as resp:
+            return json.load(resp)
     try:
         with urllib.request.urlopen(req, timeout=60) as r:
             res = json.load(r)
     except urllib.error.HTTPError as e:
-        print("Buttondown refused the draft:", e.code, e.read().decode()[:500])
-        return 1
+        detail = e.read().decode()[:500]
+        if e.code == 400 and "email_duplicate" in detail and not test:
+            # Buttondown blocks a second email with the same content, e.g. after a test draft of this
+            # week's email. Turn the existing draft into the real one instead.
+            try:
+                drafts = api("GET", "emails?status=draft").get("results", [])
+                same = [d for d in drafts if (d.get("subject") or "").replace("[TEST] ", "") == subject]
+                if not same:
+                    raise RuntimeError("no matching draft found")
+                patch = {k: v for k, v in payload.items() if k != "body"}
+                res = api("PATCH", f"emails/{same[0]['id']}", patch)
+                print("Turned the existing draft into this week's email.")
+            except Exception as e2:
+                print("Buttondown refused the email:", e.code, detail, "| could not reuse a draft:", e2)
+                return 1
+        else:
+            print("Buttondown refused the email:", e.code, detail)
+            return 1
     print(f"Email created: {subject} (id {res.get('id')}, status {res.get('status')}, sends {payload.get('publish_date', 'when Tanya presses Send')})")
     if not test:
         os.makedirs(os.path.dirname(MARKER), exist_ok=True)
