@@ -29,8 +29,9 @@ jobs:
           BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
         run: |
           set -o pipefail
-          python build/newsletter.py ${{ github.event_name == 'schedule' && '--scheduled' || '' }} ${{ (github.event_name == 'workflow_dispatch' && inputs.test) && '--test' || '' }} | tail -3 | tee social/newsletter-run.log
+          python build/newsletter.py ${{ github.event_name == 'schedule' && '--scheduled' || '' }} ${{ (github.event_name == 'workflow_dispatch' && inputs.test) && '--test' || '' }} 2>&1 | tail -5 | tee social/newsletter-run.log
       - name: Record that it was created
+        if: always()
         run: |
           git config user.name "formerly. bot"
           git config user.email "noreply@github.com"
