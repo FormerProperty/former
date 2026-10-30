@@ -27,10 +27,12 @@ jobs:
       - name: Create this week's email in Buttondown
         env:
           BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
-        run: python build/newsletter.py ${{ github.event_name == 'schedule' && '--scheduled' || '' }} ${{ (github.event_name == 'workflow_dispatch' && inputs.test) && '--test' || '' }}
+        run: |
+          set -o pipefail
+          python build/newsletter.py ${{ github.event_name == 'schedule' && '--scheduled' || '' }} ${{ (github.event_name == 'workflow_dispatch' && inputs.test) && '--test' || '' }} | tail -3 | tee social/newsletter-run.log
       - name: Record that it was created
         run: |
           git config user.name "formerly. bot"
           git config user.email "noreply@github.com"
-          git add social/newsletter-last.json 2>/dev/null || true
+          git add social/newsletter-last.json social/newsletter-run.log 2>/dev/null || true
           git diff --cached --quiet || (git commit -m "Record weekly email" && for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done)
