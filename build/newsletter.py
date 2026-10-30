@@ -266,21 +266,18 @@ def main():
     except urllib.error.HTTPError as e:
         detail = e.read().decode()[:500]
         if e.code == 400 and "email_duplicate" in detail and not test:
-            # Buttondown blocks a second email with the same content, e.g. after a test draft of this
-            # week's email. Turn the existing draft into the real one instead.
+            # Buttondown blocks a second copy of the same email. If this week's email is already
+            # scheduled or sent, that is fine: record it and stop. Otherwise report the problem.
             try:
-                drafts = api("GET", "emails?page_size=50&ordering=-creation_date").get("results", [])
-                drafts = [d for d in drafts if d.get("status") == "draft"]
-                same = [d for d in drafts if (d.get("subject") or "").replace("[TEST] ", "") == subject]
-                if not same:
-                    raise RuntimeError("no matching draft found")
-                patch = {k: v for k, v in payload.items() if k != "body"}
-                res = api("PATCH", f"emails/{same[0]['id']}", patch)
-                print("Turned the existing draft into this week's email.")
-            except Exception as e2:
-                extra = e2.read().decode()[:400] if hasattr(e2, "read") else ""
-                print("Buttondown refused the email:", e.code, detail, "| could not reuse a draft:", e2, extra)
+                emails = api("GET", "emails?ordering=-creation_date").get("results", [])
+                done = [m for m in emails if m.get("subject") == subject and m.get("status") in ("scheduled", "sent", "about_to_send", "in_flight")]
+            except Exception:
+                done = []
+            if not done:
+                print("Buttondown refused the email as a duplicate of a draft. Delete the draft in Buttondown and run again:", detail)
                 return 1
+            res = done[0]
+            print("This week's email was already in Buttondown:", res.get("status"), res.get("publish_date"))
         else:
             print("Buttondown refused the email:", e.code, detail)
             return 1
