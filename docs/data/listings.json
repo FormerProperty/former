@@ -266,7 +266,14 @@
    "badges": [
     "Unconverted"
    ],
-   "photo": null,
+   "photo": {
+    "id": "7463570",
+    "title": "Snainton, Station Lane, Methodist Church",
+    "author": "Mel Towler",
+    "year": "2023",
+    "src": "photos/7463570.jpg",
+    "thumb": "https://s2.geograph.org.uk/geophotos/07/46/35/7463570_e1df4873_213x160.jpg"
+   },
    "lat": 54.226177,
    "lng": -0.590608,
    "added": "2026-10-30"
