@@ -1,0 +1,35 @@
+name: Probe (one-off)
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          python3 - > probe.txt <<'PY'
+          import json, math, time, urllib.parse, urllib.request
+          lat, lng = 54.226177, -0.590608
+          def q(params):
+              url = "https://api.geograph.org.uk/api-facetql.php?" + urllib.parse.urlencode(params)
+              req = urllib.request.Request(url, headers={"User-Agent": "formerly.uk", "Origin": "https://formerly.uk"})
+              t = time.time()
+              with urllib.request.urlopen(req, timeout=40) as r:
+                  print("CORS:", r.headers.get("Access-Control-Allow-Origin"), "secs:", round(time.time()-t, 2))
+                  return json.load(r).get("rows") or []
+          sel = f"id,title,realname,takenday,hash,GEODIST(wgs84_lat,wgs84_long,{math.radians(lat)},{math.radians(lng)}) as d"
+          print("== match snainton")
+          for r in q({"select": sel, "match": "@title (snainton|methodist|church|chapel)", "order": "d asc", "limit": "30"}):
+              print(json.dumps(r))
+          print("== no match")
+          try:
+              for r in q({"select": sel, "order": "d asc", "limit": "10"}): print(json.dumps(r))
+          except Exception as e: print("ERR", e)
+          print("== match by grid")
+          try:
+              for r in q({"select": sel, "match": "@grid_reference SE9", "order": "d asc", "limit": "5"}): print(json.dumps(r))
+          except Exception as e: print("ERR", e)
+          PY
+          git config user.name "formerly. bot"; git config user.email "noreply@github.com"
+          git checkout -b probe-out; git add -f probe.txt; git commit -qm probe; git push -f origin probe-out
