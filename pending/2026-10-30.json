@@ -1,52 +1,5 @@
 [
  {
-  "id": "70581752",
-  "p": "£250,000",
-  "b": "3",
-  "a": "Tilstock, Whitchurch SY13",
-  "l": "2026-10-27",
-  "t": "toll",
-  "w": "toll house",
-  "h": "Two-century-old toll house with beams and log burners",
-  "ag": "Barbers - Whitchurch",
-  "ll": [
-   52.935119,
-   -2.683514
-  ],
-  "why": "Agent says it dates back over 200 years and was originally a toll house; came in on a price-reduced alert, so first listed earlier",
-  "ph": [
-   "6114475",
-   "Old Toll House by the B5476, Tilstock",
-   "Milestone Society",
-   "2016",
-   "3",
-   "geophotos/06/11/44/6114475_f338d8ad",
-   0
-  ]
- },
- {
-  "id": "74614174",
-  "p": "£425,000",
-  "b": "4",
-  "a": "High Street, Milborne Port DT9",
-  "l": "2026-10-27",
-  "au": 1,
-  "t": "bakery",
-  "w": "bakery, Grade II",
-  "n": "With a separate two-bedroom cottage in the grounds",
-  "g": "Auction",
-  "h": "Listed 18th-century bakery with its own cottage",
-  "gr": "II",
-  "bt": "18th century",
-  "ag": "Whoobid",
-  "ll": [
-   50.966014,
-   -2.461708
-  ],
-  "why": "The Old Bakery, described as the former bakery, built in the 18th century; check it was a working bakery rather than a house with one. Online auction",
-  "ph": null
- },
- {
   "id": "74617111",
   "p": "£169,995",
   "b": "3",
