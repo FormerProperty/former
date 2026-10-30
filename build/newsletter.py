@@ -269,7 +269,8 @@ def main():
             # Buttondown blocks a second email with the same content, e.g. after a test draft of this
             # week's email. Turn the existing draft into the real one instead.
             try:
-                drafts = api("GET", "emails?status=draft").get("results", [])
+                drafts = api("GET", "emails?page_size=50&ordering=-creation_date").get("results", [])
+                drafts = [d for d in drafts if d.get("status") == "draft"]
                 same = [d for d in drafts if (d.get("subject") or "").replace("[TEST] ", "") == subject]
                 if not same:
                     raise RuntimeError("no matching draft found")
@@ -277,7 +278,8 @@ def main():
                 res = api("PATCH", f"emails/{same[0]['id']}", patch)
                 print("Turned the existing draft into this week's email.")
             except Exception as e2:
-                print("Buttondown refused the email:", e.code, detail, "| could not reuse a draft:", e2)
+                extra = e2.read().decode()[:400] if hasattr(e2, "read") else ""
+                print("Buttondown refused the email:", e.code, detail, "| could not reuse a draft:", e2, extra)
                 return 1
         else:
             print("Buttondown refused the email:", e.code, detail)
