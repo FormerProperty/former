@@ -1,24 +1,36 @@
-name: Weekly email draft
+name: Weekly email
 on:
   schedule:
-    - cron: "7 19 * * 5"   # Fridays 19:07 UTC (7pm GMT, 8pm BST), after the Friday intake and Tanya's review: draft only
+    # Fridays at 2pm UK time: 14:07 UTC in winter, 13:07 UTC in summer (the script skips the other one).
+    # The email is created in Buttondown scheduled to send at 10:30am on Saturday; Tanya can edit or
+    # cancel it there until then.
+    - cron: "7 13,14 * * 5"
   workflow_dispatch:
     inputs:
       test:
-        description: "Mark the draft as a test"
+        description: "Make a test draft (not scheduled)"
         type: boolean
         default: true
 permissions:
-  contents: read
+  contents: write
+concurrency:
+  group: newsletter
+  cancel-in-progress: false
 jobs:
-  draft:
+  email:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Create Buttondown draft
+      - name: Create this week's email in Buttondown
         env:
           BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
-        run: python build/newsletter.py ${{ (github.event_name == 'workflow_dispatch' && inputs.test) && '--test' || '' }}
+        run: python build/newsletter.py ${{ github.event_name == 'schedule' && '--scheduled' || '' }} ${{ (github.event_name == 'workflow_dispatch' && inputs.test) && '--test' || '' }}
+      - name: Record that it was created
+        run: |
+          git config user.name "formerly. bot"
+          git config user.email "noreply@github.com"
+          git add social/newsletter-last.json 2>/dev/null || true
+          git diff --cached --quiet || (git commit -m "Record weekly email" && for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done)

@@ -135,7 +135,7 @@ def build(listings, today, test=False, extras=()):
     featured = next((x for x in shown if x.get("photo") and x.get("note")), None) or next((x for x in shown if x.get("photo")), None)
     rest = [x for x in shown if x is not featured]
     rest.sort(key=lambda x: (x["region"], -(x.get("price") or 0)))
-    # Drafted on Friday evening for Saturday morning, so the email carries Saturday's date
+    # Created on Friday for Saturday morning, so the email carries Saturday's date
     send_day = today + datetime.timedelta(days=(5 - today.weekday()) % 7)
     date = send_day.strftime("%-d %B %Y")
     subject = f"{'[TEST] ' if test else ''}formerly. · {n} new building{'s' if n != 1 else ''} this week"
@@ -188,12 +188,47 @@ def build(listings, today, test=False, extras=()):
     return subject, html
 
 
+def uk_time(d, hh, mm):
+    """A UK wall-clock time on date d, as a UTC datetime."""
+    try:
+        from zoneinfo import ZoneInfo
+        local = datetime.datetime(d.year, d.month, d.day, hh, mm, tzinfo=ZoneInfo("Europe/London"))
+        return local.astimezone(datetime.timezone.utc)
+    except Exception:  # no time-zone data: apply British Summer Time by hand
+        def last_sunday(month):
+            x = datetime.date(d.year, month, 31)
+            return x - datetime.timedelta(days=(x.weekday() + 1) % 7)
+        bst = last_sunday(3) <= d < last_sunday(10)
+        return datetime.datetime(d.year, d.month, d.day, hh, mm, tzinfo=datetime.timezone.utc) - datetime.timedelta(hours=1 if bst else 0)
+
+
+SEND_AT = (10, 30)  # Saturday, UK time
+MARKER = os.path.join(ROOT, "social", "newsletter-last.json")
+
+
 def main():
     test = "--test" in sys.argv
+    today = datetime.date.today()
+    send_day = today + datetime.timedelta(days=(5 - today.weekday()) % 7)
+    # Scheduled runs: GitHub's clock is UTC, so the job runs at 13:07 and 14:07 UTC on Fridays
+    # and the first one that falls between 2pm and 6pm UK time goes ahead (GitHub sometimes runs
+    # late); a marker file stops a second email being made the same week.
+    if "--scheduled" in sys.argv:
+        now = datetime.datetime.now(datetime.timezone.utc)
+        if not (uk_time(today, 14, 0) <= now <= uk_time(today, 18, 0)):
+            print("Before 2pm UK time; the later scheduled run will create this week's email.")
+            return 0
+        try:
+            with open(MARKER) as fh:
+                if json.load(fh).get("send_day") == send_day.isoformat():
+                    print("This week's email has already been created.")
+                    return 0
+        except FileNotFoundError:
+            pass
     with open(os.path.join(ROOT, "docs", "data", "listings.json")) as fh:
         data = json.load(fh)
     listings = data["listings"]
-    out = build(listings, datetime.date.today(), test, data.get("extras", []))
+    out = build(listings, today, test, data.get("extras", []))
     if not out:
         print("No new listings this week; no draft created.")
         return 0
@@ -208,9 +243,14 @@ def main():
             print(body)
         return 0
     key = os.environ["BUTTONDOWN_API_KEY"]
+    # Scheduled for 10:30am Saturday UK time; test runs, and anything too late for that, stay drafts
+    payload = {"subject": subject, "body": body, "status": "draft"}
+    send_at = uk_time(send_day, *SEND_AT)
+    if not test and "--draft" not in sys.argv and send_at > datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(minutes=15):
+        payload.update(status="scheduled", publish_date=send_at.strftime("%Y-%m-%dT%H:%M:%SZ"))
     req = urllib.request.Request(
         "https://api.buttondown.com/v1/emails",
-        data=json.dumps({"subject": subject, "body": body, "status": "draft"}).encode(),
+        data=json.dumps(payload).encode(),
         method="POST",
         headers={"Authorization": f"Token {key}", "Content-Type": "application/json", "User-Agent": "formerly-newsletter"})
     try:
@@ -219,7 +259,11 @@ def main():
     except urllib.error.HTTPError as e:
         print("Buttondown refused the draft:", e.code, e.read().decode()[:500])
         return 1
-    print(f"Draft created: {subject} (id {res.get('id')}, status {res.get('status')})")
+    print(f"Email created: {subject} (id {res.get('id')}, status {res.get('status')}, sends {payload.get('publish_date', 'when Tanya presses Send')})")
+    if not test:
+        os.makedirs(os.path.dirname(MARKER), exist_ok=True)
+        with open(MARKER, "w") as fh:
+            json.dump({"send_day": send_day.isoformat(), "id": res.get("id"), "status": res.get("status")}, fh)
     return 0
 
 
