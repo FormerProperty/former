@@ -1,0 +1,35 @@
+name: Probe Facebook tokens
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check both Page tokens (prints no secrets)
+        env:
+          A_ID: ${{ secrets.FB_PAGE_ID }}
+          A_TOK: ${{ secrets.FB_PAGE_TOKEN }}
+          B_ID: ${{ secrets.GRANDLY_FB_PAGE_ID }}
+          B_TOK: ${{ secrets.GRANDLY_FB_PAGE_TOKEN }}
+        run: |
+          python3 - <<'PY' > /tmp/probe.txt 2>&1
+          import os, json, urllib.request, urllib.error, urllib.parse
+          G = "https://graph.facebook.com/v26.0"
+          def get(path, **q):
+              try:
+                  with urllib.request.urlopen(f"{G}/{path}?" + urllib.parse.urlencode(q), timeout=30) as r:
+                      return json.load(r)
+              except urllib.error.HTTPError as e:
+                  return {"HTTP": e.code, "body": e.read().decode()[:400]}
+          for site, pid, tok in (("formerly", os.environ["A_ID"], os.environ["A_TOK"]), ("grandly", os.environ["B_ID"], os.environ["B_TOK"])):
+              print("==", site, "page id length", len(pid), "token length", len(tok))
+              print("me:", get("me", fields="id,name", access_token=tok))
+              d = get("debug_token", input_token=tok, access_token=tok).get("data", {})
+              print("debug:", {k: d.get(k) for k in ("is_valid", "type", "expires_at", "data_access_expires_at", "scopes", "profile_id", "error")})
+              print("page:", get(pid, fields="id,name", access_token=tok))
+          PY
+          git config user.name "formerly. bot"; git config user.email "noreply@github.com"
+          git fetch origin probe-out && git checkout probe-out
+          cp /tmp/probe.txt probe-fb.txt && git add probe-fb.txt && git commit -m "probe fb" && git push origin probe-out
