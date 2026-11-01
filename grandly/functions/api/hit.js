@@ -3,7 +3,7 @@
 // Stores only a daily tally per source and campaign: no IP address, no cookie, no visitor id.
 import { json, ensureSchema } from "../../lib/auth.js";
 
-const SOURCES = new Set(["bluesky", "facebook", "instagram", "newsletter", "threads", "x", "linkedin"]);
+const SOURCES = new Set(["bluesky", "facebook", "instagram", "newsletter", "threads", "x", "linkedin", "grandly", "formerly"]);
 let ready = false;
 
 export async function onRequestPost({ request, env }) {

@@ -115,4 +115,7 @@ export async function ensureSchema(db) {
       day TEXT NOT NULL, source TEXT NOT NULL, campaign TEXT NOT NULL DEFAULT '', n INTEGER NOT NULL DEFAULT 0,
       PRIMARY KEY (day, source, campaign))`),
   ]);
+  // Added for grandly.uk: which site a Zoopla click came from (older rows are all formerly.'s)
+  try { await db.prepare("ALTER TABLE clicks ADD COLUMN site TEXT NOT NULL DEFAULT 'formerly'").run(); }
+  catch (e) { /* already there */ }
 }

@@ -363,6 +363,9 @@ def main():
         json.dump({"updated": datetime.date.today().isoformat(), "types": GRAND_TYPES, "count": len(grand),
                    "listings": grand, "extras": sister_card(out, load("sister.json").get("grandly"), other="formerly")},
                   fh, ensure_ascii=False, indent=1)
+    # Names of Grandly's houses for formerly.'s review page (which cannot read grandly.uk directly)
+    with open(os.path.join(ROOT, "docs", "data", "grandly-names.json"), "w") as fh:
+        json.dump({o["id"]: [o["headline"] or o["label"], o["place"]] for o in grand}, fh, ensure_ascii=False)
     out.sort(key=lambda x: x["listed"] or "", reverse=True)
     # With no "Not formerly., but…" building, formerly.'s extra card shows a Grandly house instead
     if not extras:

@@ -53,6 +53,11 @@ header{border-top:6px solid var(--ink);padding-top:18px;display:flex;flex-wrap:w
 .runs ol.top{margin:0;padding-left:20px;font-size:14.5px;display:grid;gap:3px}
 .runs ol.top b{font-variant-numeric:tabular-nums;margin-left:6px}
 .visits-t th{font-weight:600;color:var(--muted);font-size:13px}
+.visits-t th.per{text-align:center;border-bottom:0;color:var(--ink)}
+.visits-t td.both{font-weight:600}
+.visits-t td:first-child{white-space:nowrap;padding-right:6px}
+.visits-t tr.sum td{border-top:1px solid var(--ink);font-weight:600}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .runs details p{margin:6px 0 0}
 nav.tabs{display:flex;flex-wrap:nowrap;gap:4px 24px;margin-top:22px;border-bottom:1px solid var(--rule)}
 nav.tabs button{font:500 15.5px var(--sans);background:none;border:0;border-bottom:2px solid transparent;padding:8px 0;color:var(--muted);cursor:pointer}
@@ -162,7 +167,7 @@ const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const zoopla = id => `https://www.zoopla.co.uk/for-sale/details/${encodeURIComponent(id)}/`;
 const when = s => s ? new Date(s.replace(' ','T')+'Z').toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}) : '';
-let LISTINGS = new Map();
+let LISTINGS = new Map(), GRANDLY = new Map();  // GRANDLY: grandly.uk's houses, for naming their clicks
 // Rough version of the site's wording; the published label comes from build.py
 const formerly = w => /^[aeio]/i.test(w) ? `Formerly an ${w}` : /^[A-Z]/.test(w) && !/^(Methodist|Primitive|Wesleyan|Baptist|Cornish|Sunday|United)/.test(w) ? `Formerly ${w}` : `Formerly a ${w}`;
 
@@ -354,18 +359,28 @@ async function load(){
     if (qr.status===401){ fail('You are not signed in. Reload the page to sign in again.'); return; }
     q = await qr.json();
     if (lr){ const d=await lr.json(); LISTINGS=new Map(d.listings.map(l=>[String(l.id),l])); }
+    try{ const g=await fetch('/data/grandly-names.json').then(r=>r.json()); GRANDLY=new Map(Object.entries(g).map(([k,v])=>[k,{headline:v[0],place:v[1]}])); }catch(e){}
   }catch(e){ fail('Could not load the review queue. Check your connection and reload.'); return; }
 
   $('who').textContent = q.who || '';
-  const NAMES={bluesky:'Bluesky',facebook:'Facebook',instagram:'Instagram',newsletter:'Newsletter',threads:'Threads',x:'X',linkedin:'LinkedIn',other:'Other tagged links'};
-  const v=q.visits||[];
-  $('visits').innerHTML = `<h2>Visits from our links</h2>` + (v.length
-    ? `<table class="visits-t"><tr><th>Source</th><th>Last 7 days</th><th>Week before</th><th>Last 30 days</th></tr>${v.map(r=>`<tr><td>${esc(NAMES[r.source]||r.source)}</td><td>${r.week}</td><td>${r.prev}</td><td>${r.month}</td></tr>`).join('')}</table>`
+  const NAMES={bluesky:'Bluesky',facebook:'Facebook',instagram:'Instagram',newsletter:'Newsletter',threads:'Threads',x:'X',linkedin:'LinkedIn',
+    grandly:'From grandly.',formerly:'From formerly.',other:'Other tagged links'};
+  // Both sites side by side: each period shows Both, then formerly. and grandly.
+  const SITES=['formerly','grandly'], PER=[['week','Last 7 days'],['prev','Week before'],['month','Last 30 days']];
+  const head=`<tr><th rowspan="2">Source</th>${PER.map(p=>`<th colspan="3" class="per">${p[1]}</th>`).join('')}</tr>
+    <tr>${PER.map(()=>'<th>Both</th><th>formerly.</th><th>grandly.</th>').join('')}</tr>`;
+  const cells=(by)=>PER.map(([k])=>{const a=by.formerly?.[k]||0, b=by.grandly?.[k]||0; return `<td class="both">${a+b}</td><td>${a||'·'}</td><td>${b||'·'}</td>`;}).join('');
+  const bySource={}; (q.visits||[]).forEach(r=>{(bySource[r.source]??={})[r.site]=r;});
+  const order=Object.keys(bySource).sort((a,b)=>SITES.reduce((s,x)=>s+(bySource[b][x]?.month||0)-(bySource[a][x]?.month||0),0));
+  const total={}; SITES.forEach(x=>{total[x]={}; PER.forEach(([k])=>{total[x][k]=order.reduce((s,src)=>s+(bySource[src][x]?.[k]||0),0);});});
+  $('visits').innerHTML = `<h2>Visits from our links</h2>` + (order.length
+    ? `<div class="scroll"><table class="visits-t">${head}${order.map(s=>`<tr><td>${esc(NAMES[s]||s)}</td>${cells(bySource[s])}</tr>`).join('')}
+       <tr class="sum"><td>All sources</td>${cells(total)}</tr></table></div>`
     : `<p style="margin:0;font-size:14.5px">No visits counted yet. Each click on a link in a Bluesky post or the email adds one here.</p>`)
-    + (()=>{ const c=q.clicks||{}; const top=(c.top||[]).map(t=>{const l=LISTINGS.get(String(t.id)); return `<li>${esc(l?(l.headline||l.label)+', '+l.place:'Listing '+t.id)} <b>${t.n}</b></li>`;}).join('');
+    + (()=>{ const c=q.clicks||{}; const by={}; (c.sites||[]).forEach(r=>by[r.site]=r);
+      const top=(c.top||[]).map(t=>{const l=LISTINGS.get(String(t.id))||GRANDLY.get(String(t.id)); return `<li>${esc(l?(l.headline||l.label)+', '+l.place:'Listing '+t.id)} ${t.site==='grandly'?'<span class="sitetag">grandly.</span>':''} <b>${t.n}</b></li>`;}).join('');
       return `<h2 style="margin-top:18px">Clicks through to Zoopla</h2>
-      <table class="visits-t"><tr><th></th><th>Last 7 days</th><th>Week before</th><th>Last 30 days</th></tr>
-      <tr><td>From formerly.uk</td><td>${c.week??0}</td><td>${c.prev??0}</td><td>${c.month??0}</td></tr></table>
+      <div class="scroll"><table class="visits-t">${head.replace('Source','')}<tr><td>From the listings</td>${cells(by)}</tr></table></div>
       ${top?`<p style="margin:12px 0 4px;font-size:14px;color:var(--muted)">Most clicked in the last 30 days</p><ol class="top">${top}</ol>`:''}`; })();
   $('visits').hidden=false;
   $('n-pending').textContent = q.pending.length;

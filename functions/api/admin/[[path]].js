@@ -16,18 +16,21 @@ export async function onRequest(ctx) {
     const reports = await db.prepare("SELECT id, listing_id, reason, note, created FROM reports WHERE status='open' ORDER BY created").all();
     const recentPending = await db.prepare("SELECT id, data, status, reason, decided, applied FROM pending WHERE status!='pending' ORDER BY decided DESC LIMIT 15").all();
     const recentRemovals = await db.prepare("SELECT id, reason, decided, applied FROM removals ORDER BY decided DESC LIMIT 15").all();
+    // Visits and clicks for both sites: grandly.uk's visits carry a "grandly:" campaign prefix,
+    // and clicks a site column. The review page shows Both, formerly. and grandly. side by side.
     const visits = await db.prepare(`SELECT source,
+        CASE WHEN campaign LIKE 'grandly:%' THEN 'grandly' ELSE 'formerly' END site,
         SUM(CASE WHEN day >= date('now','-6 days') THEN n ELSE 0 END) week,
         SUM(CASE WHEN day <  date('now','-6 days') AND day >= date('now','-13 days') THEN n ELSE 0 END) prev,
         SUM(n) month
-      FROM visits WHERE day >= date('now','-29 days') AND campaign NOT LIKE 'grandly:%' GROUP BY source ORDER BY month DESC`).all();
-    const clickTotals = await db.prepare(`SELECT
+      FROM visits WHERE day >= date('now','-29 days') GROUP BY source, site`).all();
+    const clickTotals = await db.prepare(`SELECT site,
         COALESCE(SUM(CASE WHEN day >= date('now','-6 days') THEN n END),0) week,
         COALESCE(SUM(CASE WHEN day < date('now','-6 days') AND day >= date('now','-13 days') THEN n END),0) prev,
         COALESCE(SUM(n),0) month
-      FROM clicks WHERE day >= date('now','-29 days')`).first();
-    const clickTop = await db.prepare(`SELECT id, SUM(n) n FROM clicks WHERE day >= date('now','-29 days')
-      GROUP BY id ORDER BY n DESC LIMIT 5`).all();
+      FROM clicks WHERE day >= date('now','-29 days') GROUP BY site`).all();
+    const clickTop = await db.prepare(`SELECT id, site, SUM(n) n FROM clicks WHERE day >= date('now','-29 days')
+      GROUP BY id, site ORDER BY n DESC LIMIT 8`).all();
     const social = await db.prepare("SELECT id, pref, set_at FROM social ORDER BY set_at DESC").all();
     const dismissed = await db.prepare("SELECT listing_id, MAX(decided) decided, COUNT(*) n FROM reports WHERE status='dismissed' GROUP BY listing_id ORDER BY decided DESC LIMIT 10").all();
     return json({
@@ -36,7 +39,7 @@ export async function onRequest(ctx) {
       reports: reports.results,
       visits: visits.results,
       social: social.results,
-      clicks: { ...clickTotals, top: clickTop.results },
+      clicks: { sites: clickTotals.results, top: clickTop.results },
       recent: {
         pending: recentPending.results.map((r) => ({ ...r, data: JSON.parse(r.data) })),
         removals: recentRemovals.results,

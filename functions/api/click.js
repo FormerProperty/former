@@ -1,4 +1,4 @@
-// Public: counts a click from formerly.uk through to a listing on Zoopla.
+// Public: counts a click from formerly.uk (or grandly.uk) through to a listing on Zoopla.
 // Stores only a daily tally per listing: no IP address, no cookie, no visitor id.
 import { json, ensureSchema } from "../../lib/auth.js";
 
@@ -23,7 +23,7 @@ export async function onRequestPost({ request, env }) {
   if (!ready) { await ensureSchema(db); ready = true; }
   const today = await db.prepare("SELECT COALESCE(SUM(n),0) n FROM clicks WHERE day = date('now')").first("n");
   if (today >= 20000) return json({ ok: true });
-  await db.prepare(`INSERT INTO clicks (day, id, n) VALUES (date('now'), ?, 1)
-    ON CONFLICT(day, id) DO UPDATE SET n = n + 1`).bind(id).run();
+  await db.prepare(`INSERT INTO clicks (day, id, n, site) VALUES (date('now'), ?, 1, ?)
+    ON CONFLICT(day, id) DO UPDATE SET n = n + 1`).bind(id, env.SITE === "grandly" ? "grandly" : "formerly").run();
   return json({ ok: true });
 }
