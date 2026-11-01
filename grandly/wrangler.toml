@@ -1,0 +1,14 @@
+# Cloudflare Pages configuration for grandly.uk (sister site of formerly.uk).
+# The Pages project "grandly" uses this folder (grandly/) as its root directory.
+name = "grandly"
+pages_build_output_dir = "site"
+compatibility_date = "2026-10-01"
+
+# Shared with formerly.uk: reports, visit and click tallies
+[[d1_databases]]
+binding = "DB"
+database_name = "formerly"
+database_id = "70c96256-724e-4f94-854c-4dc891104e7d"
+
+[vars]
+SITE = "grandly"

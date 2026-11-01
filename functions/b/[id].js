@@ -27,7 +27,7 @@ export async function onRequestGet({ request, env, params }) {
     const l = id ? (await listings(env, request)).get(id) : null;
     if (source && l && env.DB) {
       if (!ready) { await ensureSchema(env.DB); ready = true; }
-      const campaign = l.photo ? "listing-photo" : "listing-tile";
+      const campaign = (env.SITE === "grandly" ? "grandly:" : "") + (l.photo ? "listing-photo" : "listing-tile");
       await env.DB.prepare(`INSERT INTO visits (day, source, campaign, n) VALUES (date('now'), ?, ?, 1)
         ON CONFLICT(day, source, campaign) DO UPDATE SET n = n + 1`).bind(source, campaign).run();
     }

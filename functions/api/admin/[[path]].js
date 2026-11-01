@@ -20,7 +20,7 @@ export async function onRequest(ctx) {
         SUM(CASE WHEN day >= date('now','-6 days') THEN n ELSE 0 END) week,
         SUM(CASE WHEN day <  date('now','-6 days') AND day >= date('now','-13 days') THEN n ELSE 0 END) prev,
         SUM(n) month
-      FROM visits WHERE day >= date('now','-29 days') GROUP BY source ORDER BY month DESC`).all();
+      FROM visits WHERE day >= date('now','-29 days') AND campaign NOT LIKE 'grandly:%' GROUP BY source ORDER BY month DESC`).all();
     const clickTotals = await db.prepare(`SELECT
         COALESCE(SUM(CASE WHEN day >= date('now','-6 days') THEN n END),0) week,
         COALESCE(SUM(CASE WHEN day < date('now','-6 days') AND day >= date('now','-13 days') THEN n END),0) prev,

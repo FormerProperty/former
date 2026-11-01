@@ -11,7 +11,8 @@ export async function onRequestPost({ request, env }) {
   let source = String(b.s || "").toLowerCase().trim().slice(0, 30);
   if (!source) return json({ ok: false }, 400);
   if (!SOURCES.has(source)) source = "other";
-  const campaign = String(b.c || "").toLowerCase().replace(/[^a-z0-9-]/g, "").slice(0, 40);
+  let campaign = String(b.c || "").toLowerCase().replace(/[^a-z0-9-]/g, "").slice(0, 40);
+  if (env.SITE === "grandly") campaign = ("grandly:" + campaign).slice(0, 48);  // sister site's visits kept apart
 
   const db = env.DB;
   if (!ready) { await ensureSchema(db); ready = true; }

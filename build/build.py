@@ -57,7 +57,7 @@ GRAND_TYPES = {
 }
 GRAND_OS = {"castle": "Castle", "tower": "Tower", "manor": "Manor", "hall": "Hall", "country": "Ho",
             "mansion": "Mansion", "estate": "Park", "townhouse": "Ho", "other": "Ho"}
-GRANDLY_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "grandly")
+GRANDLY_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "grandly", "site")
 
 PC_RE = re.compile(r"\b([A-Z]{1,2})(\d[\dA-Z]?)\s*$")
 
