@@ -201,3 +201,52 @@ fewer than 5 (outside the Christmas and New Year lull), say so plainly and sugge
 
 Mention that the weekly email draft is built at 7pm on Friday from whatever has been approved by then. If something was taken down in error, Tanya can ask for it to be put back
 (set its `status.json` state to `live`).
+
+## Grandly (sister site, grandly.uk): Fridays only
+
+**Only if `build/grandly.json` has `"intake": true`.** Until then, skip this section entirely
+(and keep skipping "grandly:" alert emails, as in step 2).
+
+**Promise:** a house built to show status, that still reads as one. Great Britain (England,
+Scotland, Wales; not Northern Ireland, the Isle of Man or the Channel Islands).
+
+**Include** a whole house that meets one of these:
+1. **Castles and fortified houses:** castles, tower houses, pele towers, bastles, fortified and
+   moated manor houses. Any price.
+2. **Listed and clearly grand:** listed (Grade I, II* or II in England and Wales; Category A or B
+   in Scotland) **and** at least one of: 7+ bedrooms; about 15+ acres; a named house with real
+   recorded history (a family seat, a known architect). In a large city, a Grade I or II*
+   townhouse of 5+ bedrooms counts (Regent's Park terraces, Bath crescents).
+3. **Country houses with land:** manor houses, halls, granges, mansions and country houses with
+   about 20 acres. Use judgement: 12 acres with an important house can count; 25 acres with a
+   modern house does not.
+
+**Exclude:** flats, apartments, wings or "part of" any house; new builds, however grand; lodges,
+cottages or barns on an estate sold separately; development plots; buildings built for
+something else (those are formerly.'s: an abbey, a rectory, a castle that became a school stays
+on formerly. if it was built as something other than a home).
+
+**Zoopla searches cannot do this alone:** "castle" matches Castle Road and Castle Douglas;
+Grade II* cannot be searched (the asterisk is ignored); acreage cannot be filtered. Read every
+listing. The same house is often listed twice by different agents: keep one (the fuller
+listing) and note the other id in `why`.
+
+**Where candidates come from:** Zoopla alert emails named "grandly: …" (13 alerts, Great Britain),
+plus a small sweep: at most 40 page fetches in total for Grandly, at the same gentle pace.
+Zoopla refused pages after about 45 rapid searches on 31 October.
+
+**Record** each included house in the judging format (section 4), plus:
+
+| key | meaning |
+|---|---|
+| `s` | always `"grandly"` |
+| `nm` | the house's proper name if it has one: `"Law Castle"`, `"Wadworth Hall"`; `""` if none |
+| `t` | castle, tower, manor, hall, country, mansion, estate, townhouse, other |
+| `w` | what it is, in our words: `"15th-century tower house, Category A listed"` |
+| `gr` | `"I"`, `"II*"`, `"II"`, `"A"`, `"B"`, if stated |
+
+Headline rules as for formerly. (our words, facts only, no estate-agent language).
+
+**Queue** them in `pending/<YYYY-MM-DD>-grandly.json`; record ids judged out in
+`pending/grandly-judged-out.json` (not formerly.'s file). Mention the Grandly numbers separately
+in the run summary.

@@ -1,0 +1,16 @@
+{
+ "updated": "2026-11-01",
+ "types": {
+  "castle": "Castles",
+  "tower": "Tower houses",
+  "manor": "Manor houses",
+  "hall": "Halls and courts",
+  "country": "Country houses",
+  "mansion": "Mansions",
+  "estate": "Estates",
+  "townhouse": "Town houses",
+  "other": "Other"
+ },
+ "count": 0,
+ "listings": []
+}

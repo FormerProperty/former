@@ -57,7 +57,7 @@ def main():
 
     # Only the dated candidate files; judged-out.json is an {id: reason} record, not candidates
     pending_files = sorted(f for f in glob.glob(os.path.join(ROOT, "pending", "*.json"))
-                           if os.path.basename(f) != "judged-out.json")
+                           if not os.path.basename(f).endswith("judged-out.json"))
     pending = {}
     sys.path.insert(0, os.path.join(ROOT, "build"))
     import find_photos
@@ -68,7 +68,7 @@ def main():
             # Suggest a Geograph photo once per candidate ("ph": null means none found)
             if "ph" not in row and row.get("ll"):
                 try:
-                    row["ph"] = find_photos.suggest(row["ll"][0], row["ll"][1], row.get("t"))
+                    row["ph"] = find_photos.suggest(row["ll"][0], row["ll"][1], row.get("t"), row.get("s") or "formerly")
                     changed = True
                 except Exception as e:
                     print("photo search failed", row["id"], e)
@@ -107,7 +107,7 @@ def main():
             photos[pid] = ph
         if "ph" in row:
             tried[pid] = row.get("l") or ""
-        row = {k: v for k, v in row.items() if k in ("id", "p", "b", "a", "l", "t", "w", "n", "g", "au", "h", "sq", "ac", "gr", "bt", "ag", "ll")}
+        row = {k: v for k, v in row.items() if k in ("id", "p", "b", "a", "l", "t", "w", "n", "g", "au", "h", "sq", "ac", "gr", "bt", "ag", "ll", "s", "nm")}
         row["id"] = pid
         out[pid] = row
     save(out_path, list(out.values()))

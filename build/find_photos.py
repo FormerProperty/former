@@ -49,6 +49,16 @@ WORDS = {
 }
 
 
+# grandly.uk types (some keys match formerly.'s but mean something else, e.g. "hall", "tower")
+GRAND_WORDS = {
+    "castle": ["castle", "keep", "tower"], "tower": ["tower", "pele", "bastle", "castle"],
+    "manor": ["manor", "hall", "court", "house"], "hall": ["hall", "court", "house"],
+    "country": ["house", "hall", "court", "park", "place", "grange"], "mansion": ["mansion", "house", "hall"],
+    "estate": ["house", "hall", "park", "estate", "lodge"], "townhouse": ["terrace", "crescent", "square", "house"],
+    "other": ["house", "hall", "castle", "manor"],
+}
+
+
 def load(name, default):
     p = os.path.join(ROOT, name)
     return json.load(open(p)) if os.path.exists(p) else default
@@ -83,7 +93,7 @@ def _row(r):
             str(int(pid) % 4), path_for(pid, r["hash"]), 0]
 
 
-def suggest(lat, lng, kind):
+def suggest(lat, lng, kind, site="formerly"):
     """Best Geograph photo for a building, as a photos.json row with ok=0, or None.
 
     Looser than the old automatic matching, because Tanya checks every suggestion:
@@ -93,7 +103,7 @@ def suggest(lat, lng, kind):
     """
     if lat is None or lng is None:
         return None
-    words = WORDS.get(kind, [])
+    words = (GRAND_WORDS if site == "grandly" else WORDS).get(kind, [])
     if not words:
         return None
     rows = search(lat, lng, words)

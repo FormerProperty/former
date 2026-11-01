@@ -145,3 +145,31 @@ ENGLISH_DISTRICTS = {"TD15", "CH1", "CH2", "CH3", "CH4", "CH64", "CH65", "CH66",
 # Postcodes outside England (Scotland, Wales) to drop.
 NON_ENGLAND_AREAS = {"TD", "DG", "EH", "KA", "ML", "G", "PA", "AB", "DD", "FK", "IV", "KW", "KY", "PH", "HS", "ZE",
                      "LL", "SA", "CF", "NP", "LD", "BT"}
+
+# ---- Great Britain (used for grandly.uk only; formerly.uk stays England-only) ----
+# Scotland and Wales by postcode area: (county, region). Approximate; an address naming a
+# county overrides it, as for England.
+GB_AREAS = {
+    "AB": ("Aberdeenshire", "Scotland"), "DD": ("Angus", "Scotland"), "DG": ("Dumfries and Galloway", "Scotland"),
+    "EH": ("Lothian", "Scotland"), "FK": ("Stirlingshire", "Scotland"), "G": ("Glasgow", "Scotland"),
+    "HS": ("Western Isles", "Scotland"), "IV": ("Highland", "Scotland"), "KA": ("Ayrshire", "Scotland"),
+    "KW": ("Highland", "Scotland"), "KY": ("Fife", "Scotland"), "ML": ("Lanarkshire", "Scotland"),
+    "PA": ("Argyll and Renfrewshire", "Scotland"), "PH": ("Perth and Kinross", "Scotland"),
+    "TD": ("Scottish Borders", "Scotland"), "ZE": ("Shetland", "Scotland"),
+    "CF": ("Glamorgan", "Wales"), "LD": ("Powys", "Wales"), "LL": ("Gwynedd", "Wales"),
+    "NP": ("Monmouthshire", "Wales"), "SA": ("Carmarthenshire", "Wales"),
+}
+# Welsh postcode districts inside otherwise English areas (Shropshire SY, Cheshire CH)
+WELSH_DISTRICTS = {**{f"SY{n}": ("Powys", "Wales") for n in range(15, 26)},
+                   **{f"CH{n}": ("Flintshire", "Wales") for n in (5, 6, 7, 8)}}
+GB_COUNTY_WORDS = {
+    **{w: (w, "Scotland") for w in ["Aberdeenshire", "Angus", "Argyll", "Ayrshire", "North Ayrshire", "South Ayrshire",
+                                    "East Ayrshire", "Perthshire", "Fife", "Highland", "Moray", "Inverness-shire",
+                                    "Dumfries and Galloway", "Dumfries And Galloway", "Scottish Borders", "East Lothian",
+                                    "Midlothian", "West Lothian", "Stirlingshire", "Lanarkshire", "Renfrewshire",
+                                    "Kincardineshire", "Kirkcudbrightshire", "Sutherland", "Caithness", "Ross-shire",
+                                    "Isle of Skye", "Isle of Mull", "Orkney", "Shetland"]},
+    **{w: (w, "Wales") for w in ["Pembrokeshire", "Carmarthenshire", "Ceredigion", "Powys", "Monmouthshire", "Gwynedd",
+                                 "Conwy", "Denbighshire", "Flintshire", "Anglesey", "Isle of Anglesey", "Wrexham",
+                                 "Vale of Glamorgan", "Glamorgan", "Swansea", "Cardiff", "Newport"]},
+}

@@ -32,6 +32,7 @@ Each export row:
 import json, re, sys, glob, datetime, os
 from xml.sax.saxutils import escape
 from areas import AREAS, COUNTY_WORDS, DISTRICT_OVERRIDES, NON_ENGLAND_AREAS, ENGLISH_DISTRICTS
+from areas import GB_AREAS, GB_COUNTY_WORDS, WELSH_DISTRICTS
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -47,6 +48,16 @@ TYPE_LABELS = {
     "toll": "Toll houses", "granary": "Granaries", "malthouse": "Malthouses", "bakery": "Bakeries",
     "hall": "Halls", "works": "Industrial and civic", "other": "Other",
 }
+
+# grandly.uk (sister site): its own building types and map labels
+GRAND_TYPES = {
+    "castle": "Castles", "tower": "Tower houses", "manor": "Manor houses", "hall": "Halls and courts",
+    "country": "Country houses", "mansion": "Mansions", "estate": "Estates", "townhouse": "Town houses",
+    "other": "Other",
+}
+GRAND_OS = {"castle": "Castle", "tower": "Tower", "manor": "Manor", "hall": "Hall", "country": "Ho",
+            "mansion": "Mansion", "estate": "Park", "townhouse": "Ho", "other": "Ho"}
+GRANDLY_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "grandly")
 
 PC_RE = re.compile(r"\b([A-Z]{1,2})(\d[\dA-Z]?)\s*$")
 
@@ -70,19 +81,29 @@ def parse_price(s):
     return int(m.group(1).replace(",", "")) if m else None
 
 
-def locate(addr):
-    """Return (place, district, county, region) or None if outside England."""
+def locate(addr, gb=False):
+    """Return (place, district, county, region) or None if outside England.
+    With gb=True (grandly.uk), Scotland and Wales are accepted too."""
     a = (addr or "").strip().rstrip(".")
     m = PC_RE.search(a)
     district = area = None
     if m:
         area, district = m.group(1), m.group(1) + m.group(2)
         a = a[: m.start()].rstrip(" ,")
-    if area in NON_ENGLAND_AREAS and district not in ENGLISH_DISTRICTS:
+    welsh = district in WELSH_DISTRICTS
+    outside = (area in NON_ENGLAND_AREAS and district not in ENGLISH_DISTRICTS) or welsh
+    if outside and (not gb or area == "BT"):
         return None
     county = region = None
+    if outside:
+        for word, (c, r) in sorted(GB_COUNTY_WORDS.items(), key=lambda kv: -len(kv[0])):
+            if re.search(r"\b" + re.escape(word) + r"\b", addr or "", re.I):
+                county, region = c, r
+                break
+        if not county:
+            county, region = WELSH_DISTRICTS.get(district) or GB_AREAS.get(area, ("Unknown", "Unknown"))
     # An explicit county in the address wins
-    for word, (c, r) in sorted(COUNTY_WORDS.items(), key=lambda kv: -len(kv[0])):
+    for word, (c, r) in ([] if county else sorted(COUNTY_WORDS.items(), key=lambda kv: -len(kv[0]))):
         if re.search(r"\b" + re.escape(word) + r"\b", addr or "", re.I):
             county, region = c, r
             break
@@ -231,6 +252,10 @@ def main():
         with open(lp) as fh:
             old = json.load(fh)
             prev = {x["id"]: x.get("added") for x in old["listings"] + old.get("extras", [])}
+    gp = os.path.join(GRANDLY_DIR, "data", "listings.json")
+    if os.path.exists(gp):
+        with open(gp) as fh:
+            prev.update({x["id"]: x.get("added") for x in json.load(fh)["listings"]})
     out, dropped = [], []
     for r in rows.values():
         if str(r["id"]) in removed:
@@ -247,9 +272,10 @@ def main():
                 continue
             under_offer = True
         r = {**r, **overrides.get(str(r["id"]), {})}
-        loc = locate(r["a"])
+        site = r.get("s") or "formerly"
+        loc = locate(r["a"], gb=(site == "grandly"))
         if loc is None:
-            dropped.append((r["id"], r["a"], "outside England"))
+            dropped.append((r["id"], r["a"], "outside England" if site == "formerly" else "outside Great Britain"))
             continue
         place, district, county, region = loc
         badges = [b for b in (r.get("g") or "").split("|") if b]
@@ -264,15 +290,20 @@ def main():
                 badges.insert(0, "Unconverted")
         if under_offer:
             badges.insert(0, "Under offer")
-        t = r["t"] if r["t"] in TYPE_LABELS else "other"
+        if site == "grandly":
+            t = r["t"] if r["t"] in GRAND_TYPES else "other"
+        else:
+            t = r["t"] if r["t"] in TYPE_LABELS else "other"
         out.append({
+            "site": site,
+            "name": (r.get("nm") or "").strip(),
             "id": str(r["id"]),
             "url": f"https://www.zoopla.co.uk/for-sale/details/{r['id']}/",
             "source": "Zoopla",
             "type": t,
             "was": was,
-            "label": label(was),
-            "os": os_label(was, t),
+            "label": (was[:1].upper() + was[1:]) if site == "grandly" else label(was),
+            "os": GRAND_OS.get(t, "Ho") if site == "grandly" else os_label(was, t),
             "note": r.get("n") or "",
             "headline": (r.get("h") or "").strip(),
             "sqft": int(r["sq"]) if str(r.get("sq") or "").isdigit() else None,
@@ -300,6 +331,13 @@ def main():
         if "castle" in o["was"].lower():
             o["os"] = "Castle"
     out = [o for o in out if o["id"] not in extra_ids]
+    # Grandly buildings go to the sister site's data, never into formerly.'s
+    grand = sorted((o for o in out if o["site"] == "grandly"), key=lambda x: x["listed"] or "", reverse=True)
+    out = [o for o in out if o["site"] != "grandly"]
+    os.makedirs(os.path.join(GRANDLY_DIR, "data"), exist_ok=True)
+    with open(gp, "w") as fh:
+        json.dump({"updated": datetime.date.today().isoformat(), "types": GRAND_TYPES, "count": len(grand),
+                   "listings": grand}, fh, ensure_ascii=False, indent=1)
     out.sort(key=lambda x: x["listed"] or "", reverse=True)
     data = {
         "updated": datetime.date.today().isoformat(),
