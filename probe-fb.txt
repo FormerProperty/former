@@ -1,12 +1,20 @@
-== formerly page id length 16 token length 213
-me: {'id': '10162786049145633', 'name': 'Tanya-Jayne Park'}
-debug: {'is_valid': True, 'type': 'USER', 'expires_at': 0, 'data_access_expires_at': 1801307162, 'scopes': ['pages_show_list', 'pages_read_engagement', 'pages_manage_posts', 'public_profile'], 'profile_id': None, 'error': None}
-page: {'id': '1442566835602039', 'name': 'formerly.uk'}
-accounts: [{'id': '1456341120891703', 'name': 'grandly.uk', 'tasks': ['MANAGE_LEADS', 'MODERATE', 'MESSAGING', 'ANALYZE', 'ADVERTISE', 'CREATE_CONTENT', 'MANAGE'], 'has_token': True}, {'id': '1442566835602039', 'name': 'formerly.uk', 'tasks': ['MANAGE_LEADS', 'MODERATE', 'MESSAGING', 'ANALYZE', 'ADVERTISE', 'CREATE_CONTENT', 'MANAGE'], 'has_token': True}]
-same token as formerly: True
-== grandly page id length 16 token length 213
-me: {'id': '10162786049145633', 'name': 'Tanya-Jayne Park'}
-debug: {'is_valid': True, 'type': 'USER', 'expires_at': 0, 'data_access_expires_at': 1801307162, 'scopes': ['pages_show_list', 'pages_read_engagement', 'pages_manage_posts', 'public_profile'], 'profile_id': None, 'error': None}
-page: {'id': '1707828000871918', 'name': 'formerly page manager'}
-accounts: [{'id': '1456341120891703', 'name': 'grandly.uk', 'tasks': ['MANAGE_LEADS', 'MODERATE', 'MESSAGING', 'ANALYZE', 'ADVERTISE', 'CREATE_CONTENT', 'MANAGE'], 'has_token': True}, {'id': '1442566835602039', 'name': 'formerly.uk', 'tasks': ['MANAGE_LEADS', 'MODERATE', 'MESSAGING', 'ANALYZE', 'ADVERTISE', 'CREATE_CONTENT', 'MANAGE'], 'has_token': True}]
-same token as formerly: True
+Facebook:
+Formerly a chapel
+Chapel with gilded columns and Gothic arched windows
+King Street, Workington · £140,000 · 2 bed
+
+See it on formerly.uk, with all 559 buildings that began life as something else:
+https://formerly.uk/b/74631088
+posted to Facebook 1442566835602039_122101570785532164
+formerly -> 1442566835602039_122101570785532164
+Facebook:
+Scots baronial house by David Bryce, 1850, Category A listed
+David Bryce baronial house on a 1,227-acre estate
+Portmore House, Peebles · £8,000,000 · 10 bed
+
+See it on grandly.uk, with all 22 grand houses for sale across Great Britain:
+https://grandly.uk/b/74600658
+
+Photo: Anthony O'Neil, 2022 (CC BY-SA 2.0, Wikimedia Commons)
+posted to Facebook 1456341120891703_122097330855538280
+grandly -> 1456341120891703_122097330855538280
