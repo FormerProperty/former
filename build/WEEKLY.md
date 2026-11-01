@@ -1,4 +1,4 @@
-# formerly. intake (Tuesdays and Fridays)
+# formerly. intake (Tuesdays and Fridays): new listings
 
 The playbook for the scheduled session, run every **Tuesday and Friday** at 10:43, that finds new listings, judges them and
 queues them for Tanya's review. Follow it step by step. Nothing goes live from this
@@ -6,9 +6,14 @@ session: everything lands in the review queue at https://formerly.uk/review.
 
 ## 0. Ground rules
 
-- **Pace Zoopla gently.** At least 8 to 12 seconds between page fetches, randomised. Never run
-  two loops at once. If Zoopla returns 403 or a challenge page, back off for a few minutes,
-  and stop for the week if it keeps happening. Never try to get round bot protection.
+- **Pace Zoopla gently: one page every 60 to 120 seconds, randomised, and at most 30 Zoopla
+  pages in a sitting** (searches and listing pages together, both sites). Zoopla's bot protection
+  refused pages after about 20 to 25 quick fetches on 1 November 2026, and the refusals land on
+  Tanya's connection and Zoopla account, which formerly. depends on. Never run two loops at once.
+  At the first 403 or challenge page, stop Zoopla for the day: queue what is already judged, and
+  leave the rest for the next run. Never try to get round bot protection.
+- **Open a page only when the alert card leaves a real chance it qualifies.** The card's price,
+  bedrooms, type, address and summary are enough to rule out most noise without a fetch.
 - **Use Tanya's Chrome** (Claude in Chrome), where she is signed in to Zoopla, and fetch pages from
   a zoopla.co.uk tab with in-page `fetch` + `DOMParser`. Keep progress in `localStorage`
   (`__formerlyWeek`) so a sleeping computer only pauses the run.
@@ -42,25 +47,19 @@ Clone `FormerProperty/former` (add it to the session first if needed) and work o
      mislabelled, so open it if the address or price suggests a whole building.
    - "Price reduced" emails list matching listings whose price has dropped. Treat their ids
      as candidates too (they can be older listings we have missed), and when one is already
-     on the site, refresh its price during the availability check.
+     on the site, record the new price in `overrides.json` from the card (no page fetch needed).
    - The same email can arrive twice, and the first emails after an alert is created are a
      catch-up of the previous week or so. De-duplicate ids.
    In a test on 26 October the alerts caught about 85% of the qualifying buildings listed in the
    previous week; the misses were worded "coach house", "village chapel" and "Methodist church"
    without "former" or "converted". So the sweep below still matters.
-2. **Newest-listing sweep (backstop): Fridays only.** On Tuesdays the alert emails are enough;
-   on Fridays, for each phrase below, fetch page 1 of
+2. **Newest-listing sweep (backstop): Fridays only, 5 searches.** The alerts catch most
+   qualifying buildings; the test on 26 October found the misses were worded without "former" or
+   "converted". So on Fridays fetch page 1 of
    `https://www.zoopla.co.uk/for-sale/property/england/?keywords="<phrase>"&q=England&results_sort=newest_listings`
-   (quoted phrase, URL-encoded) and collect listing ids added in the last 8 days.
-   Phrases: former chapel, converted chapel, former school, old school house conversion,
-   converted school, former mill, converted mill, watermill, windmill, former church,
-   converted church, former pub, former public house, former inn, oast house, former station,
-   signal box, water tower, former bank, former post office, former police station,
-   former fire station, coach house, toll house, former forge, smithy, granary, malthouse,
-   former dairy, former bakery, engine house, pumping station, former library, court house,
-   telephone exchange, sunday school, meeting house, former warehouse, former factory,
-   chapel conversion, church conversion, school conversion, mill conversion, coach house,
-   methodist church, village chapel.
+   for these phrases only, and collect listing ids added in the last 8 days:
+   coach house, village chapel, methodist church, chapel conversion, school conversion.
+   (Add a phrase here only when a qualifying building is found to have slipped past the alerts.)
 3. **Drop ids we have already seen:** anything in `docs/data/listings.json`, `removed.json`,
    `pending/*.json` or `pending/judged-out.json`.
 
@@ -138,36 +137,12 @@ One JSON object per building, in the judging format:
 3. Commit and push to `main`, with the session's usual attribution lines. The push starts the
    sync job, which puts the buildings in the review queue within a few minutes.
 
-## 6. Rolling availability check
+## 6. Availability checks: not in this run
 
-Every building on the site is rechecked about once a month: an eighth of them on each run (two runs a week).
-
-1. Read `status.json` (`{id: {"state", "since", "checked"}}`) and the ids in
-   `docs/data/listings.json`. Work out this week's batch size from the current list:
-   **N = an eighth of the listings, rounded up, but at least 20 and at most 125.**
-   (At 520 listings that is 65.) Pick the N listed ids with the oldest `checked` date
-   (ids with no entry count as never checked, so they go first).
-   The 250 cap protects Zoopla from heavy traffic: above about 1,000 listings the cycle
-   stretches beyond a month, so say so in the summary to Tanya when the cap applies.
-2. Fetch each listing page at the same gentle pace as above and decide its state:
-   - **gone:** the page returns 404 or 410, redirects away from `/for-sale/details/<id>/`,
-     or says the property is no longer on the market / has been removed;
-   - **offer:** the page shows "Sold STC", "Under offer" or "Sale agreed";
-   - **live:** otherwise.
-   If a fetch fails for any other reason (403, timeout), skip that id this week and leave
-   its entry unchanged.
-3. If the price shown differs from the site's, record the new price text in
-   `overrides.json` as `{"<id>": {"p": "£425,000"}}` (merge with any existing entry).
-4. Update `status.json` for each id checked: always set `checked` to today. Set `since` to
-   today only when the state has changed (keep the old `since` when an under-offer building is
-   still under offer, so the 31-day clock keeps running).
-5. The build does the rest: **gone** buildings leave the site; **offer** buildings show an
-   "Under offer" flag for up to 31 days and then leave the site; a building that comes back on
-   the market simply loses its flag. Under-offer buildings are never posted to Bluesky or put
-   in the email.
-6. Commit `status.json` (and `overrides.json`) together with the week's pending file (one commit is fine). Run
-   `FORMER_SITE_URL=https://formerly.uk/ python3 build/build.py` before committing so the live
-   site updates straight away, and include `docs/` in the commit.
+Since 2 November 2026 the availability checks (gone, under offer, price changes) run in their
+own small daily session, so that no single sitting asks Zoopla for too many pages. The playbook
+is `build/CHECKS.md`. This run does not check availability. In the run record (step 7) leave
+`availability` out.
 
 ## 7. Record the run on the review page
 
@@ -191,9 +166,7 @@ and `notes` for anything else Tanya should know (Chrome dropped out, Zoopla refu
 
 Send one short message with:
 - new listings: how many were checked, how many queued for review, how many left out and the
-  main reasons, and the link https://formerly.uk/review;
-- availability: how many existing buildings were checked (and N, if the cap applied), which have gone (name and place),
-  which are newly under offer, and which dropped off after a month under offer.
+  main reasons, and the link https://formerly.uk/review (Grandly's numbers separately).
 
 **Health check:** about 100 qualifying buildings come to market each month, so a normal week
 finds roughly 20 to 30 new ones, so each run (Tuesday or Friday) roughly 10 to 15. If a run finds
@@ -232,7 +205,8 @@ listing. The same house is often listed twice by different agents: keep one (the
 listing) and note the other id in `why`.
 
 **Where candidates come from:** Zoopla alert emails named "grandly: …" (13 alerts, Great Britain),
-plus a small sweep: at most 40 page fetches in total for Grandly, at the same gentle pace.
+plus, if pages remain within the sitting's cap of 30, a few searches for the alert phrases. Grandly shares the
+cap with formerly.: judge formerly.'s candidates first.
 Zoopla refused pages after about 45 rapid searches on 31 October.
 
 **Record** each included house in the judging format (section 4), plus:
