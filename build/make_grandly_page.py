@@ -127,13 +127,6 @@ INDEX = [
     ("localStorage.setItem('former-view', v)", "localStorage.setItem('grandly-view', v)", 1),
     ("localStorage.getItem('__fly_sub')", "localStorage.getItem('__grandly_sub')", 1),
     ("localStorage.setItem('__fly_sub','1')", "localStorage.setItem('__grandly_sub','1')", 1),
-    # The extra card on Grandly is a building from formerly., linked through formerly.'s short link
-    ('<p class="was">Not formerly., but…</p>\n    <h3 class="place"><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.headline||e.place)}</a></h3>\n    <p class="where">${esc(e.place)}</p>',
-     '<p class="was">From our sister site, formerly.</p>\n    <h3 class="place"><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.headline||e.place)}</a></h3>\n    <p class="where">${esc(e.label)}, ${esc(e.place)}</p>', 1),
-    ('<div class="actions"><a href="${esc(e.url)}" target="_blank" rel="noopener">View on Zoopla</a></div>\n  </li>`;\n}\n\nfunction render',
-     '<div class="actions"><a href="${esc(e.url)}" target="_blank" rel="noopener">See it on formerly.</a></div>\n  </li>`;\n}\n\nfunction render', 1),
-    ('// "Not formerly., but…": a building that was always a home, so not on the list, shown once',
-     '// "From our sister site": one building from formerly., shown once', 1),
     # The sister card wears formerly.'s green, so it reads as a visitor from the other site
     (".extracard{border-top:3px solid var(--oxblood);background:var(--oxblood-soft);padding:14px 16px 18px}\n.extracard .was{color:var(--oxblood)}",
      ".extracard{border-top:3px solid var(--sister);background:#DDE8E2;padding:14px 16px 18px}\n.extracard .was,.extracard .actions a{color:var(--sister)}\n"
@@ -159,7 +152,7 @@ def apply(text, rules, name):
         if isinstance(old, re.Pattern) or count is True or count == "credit":
             pat = old if isinstance(old, re.Pattern) else re.compile(old, re.S)
             n = len(pat.findall(text))
-            want = 2 if count == "credit" else None
+            want = 1 if count == "credit" else None  # the card; extraCard handles Commons itself
             if n == 0 or (want and n != want):
                 sys.exit(f"{name}: pattern not found as expected ({n}): {pat.pattern[:80]}")
             text = pat.sub(lambda m: m.expand(new) if "\\1" in new else new, text)

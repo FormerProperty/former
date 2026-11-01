@@ -11,8 +11,46 @@
   "townhouse": "Town houses",
   "other": "Other"
  },
- "count": 0,
- "listings": [],
+ "count": 1,
+ "listings": [
+  {
+   "site": "grandly",
+   "name": "Allington Castle",
+   "id": "74470088",
+   "url": "https://www.zoopla.co.uk/for-sale/details/74470088/",
+   "source": "Zoopla",
+   "type": "castle",
+   "was": "Medieval castle on the Medway",
+   "label": "Medieval castle on the Medway",
+   "os": "Castle",
+   "note": "A 12th-century castle made into a grand house by the Wyatt family in the late 1400s",
+   "headline": "Restored medieval castle on the Medway, with 42 acres",
+   "sqft": null,
+   "plot": "42 acres",
+   "grade": "",
+   "built": "",
+   "place": "Allington, Maidstone",
+   "postcode": "ME16",
+   "county": "Kent",
+   "region": "South East",
+   "price": 5000000,
+   "priceText": "£5,000,000",
+   "beds": 30,
+   "listed": "2026-10-21",
+   "badges": [],
+   "photo": {
+    "id": "2863469",
+    "title": "Allington Castle",
+    "author": "Jo and Steve Turner",
+    "year": "1979",
+    "src": "photos/2863469.jpg",
+    "thumb": "https://s1.geograph.org.uk/geophotos/02/86/34/2863469_70db6c3e_213x160.jpg"
+   },
+   "lat": 51.2905,
+   "lng": 0.5022,
+   "added": "2026-10-29"
+  }
+ ],
  "extras": [
   {
    "site": "formerly",

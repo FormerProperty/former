@@ -224,17 +224,19 @@ def photo_for(m):
             "src": f"photos/{pid}.jpg", "thumb": base + "_213x160.jpg"}
 
 
-def sister_card(pool, pinned=None):
-    """One formerly. building for Grandly's "From our sister site" card. sister.json can pin one
-    ({"grandly": "<id>"}); otherwise the newest photographed building, the dearest of that day's."""
+def sister_card(pool, pinned=None, other="formerly"):
+    """One house or building from the other site for this site's "From our sister site" card.
+    `other` is the site it comes from. sister.json can pin one ({"grandly": "<id>", "formerly": "<id>"});
+    otherwise the newest photographed one, the dearest of that day's."""
     pool = [o for o in pool if o.get("photo")]
     pick = next((o for o in pool if o["id"] == str(pinned or "")), None)
     if not pick and pool:
         pick = max(pool, key=lambda o: (o["added"], o["price"] or 0))
     if not pick:
         return []
-    card = {**pick, "extra": True, "sister": "formerly", "url": f"https://formerly.uk/b/{pick['id']}?s=grandly",
-            "photo": {**pick["photo"], "src": "https://formerly.uk/" + pick["photo"]["src"]}}
+    home, here = f"https://{other}.uk", ("grandly" if other == "formerly" else "formerly")
+    card = {**pick, "extra": True, "sister": other, "url": f"{home}/b/{pick['id']}?s={here}",
+            "photo": {**pick["photo"], "src": f"{home}/" + pick["photo"]["src"]}}
     return [card]
 
 
@@ -359,9 +361,12 @@ def main():
     os.makedirs(os.path.join(GRANDLY_DIR, "data"), exist_ok=True)
     with open(gp, "w") as fh:
         json.dump({"updated": datetime.date.today().isoformat(), "types": GRAND_TYPES, "count": len(grand),
-                   "listings": grand, "extras": sister_card(out, load("sister.json").get("grandly"))},
+                   "listings": grand, "extras": sister_card(out, load("sister.json").get("grandly"), other="formerly")},
                   fh, ensure_ascii=False, indent=1)
     out.sort(key=lambda x: x["listed"] or "", reverse=True)
+    # With no "Not formerly., but…" building, formerly.'s extra card shows a Grandly house instead
+    if not extras:
+        extras = sister_card(grand, load("sister.json").get("formerly"), other="grandly")
     data = {
         "updated": datetime.date.today().isoformat(),
         "types": TYPE_LABELS,

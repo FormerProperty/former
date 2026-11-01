@@ -18534,16 +18534,16 @@
  ],
  "extras": [
   {
-   "site": "formerly",
-   "name": "",
+   "site": "grandly",
+   "name": "Allington Castle",
    "id": "74470088",
-   "url": "https://www.zoopla.co.uk/for-sale/details/74470088/",
+   "url": "https://grandly.uk/b/74470088?s=formerly",
    "source": "Zoopla",
-   "type": "other",
-   "was": "medieval castle",
-   "label": "Not formerly., but…",
+   "type": "castle",
+   "was": "Medieval castle on the Medway",
+   "label": "Medieval castle on the Medway",
    "os": "Castle",
-   "note": "A 12th-century castle on the Medway, made into a grand house by the Wyatt family in the late 1400s. Built to be lived in, so it isn't on our list, but too good to leave out",
+   "note": "A 12th-century castle made into a grand house by the Wyatt family in the late 1400s",
    "headline": "Restored medieval castle on the Medway, with 42 acres",
    "sqft": null,
    "plot": "42 acres",
@@ -18563,13 +18563,14 @@
     "title": "Allington Castle",
     "author": "Jo and Steve Turner",
     "year": "1979",
-    "src": "photos/2863469.jpg",
+    "src": "https://grandly.uk/photos/2863469.jpg",
     "thumb": "https://s1.geograph.org.uk/geophotos/02/86/34/2863469_70db6c3e_213x160.jpg"
    },
    "lat": 51.2905,
    "lng": 0.5022,
    "added": "2026-10-29",
-   "extra": true
+   "extra": true,
+   "sister": "grandly"
   }
  ]
 }

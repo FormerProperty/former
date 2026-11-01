@@ -56,7 +56,8 @@ def summary(items):
 
 def picture(x, w=270, hgt=203):
     if x.get("photo"):
-        src, alt = f'{SITE}/{x["photo"]["src"]}', x["photo"]["title"]
+        src, alt = x["photo"]["src"], x["photo"]["title"]
+        src = src if src.startswith("http") else f"{SITE}/{src}"  # a sister-site photo is already a full address
     else:
         src, alt = f'{SITE}/email/labels/{slug(x.get("os") or "Bldg")}.png', x.get("label", "")
     return (f'<a href="{h(x["url"])}" style="text-decoration:none"><img src="{h(src)}" width="{w}" height="{hgt}" alt="{h(alt)}" '
@@ -79,8 +80,13 @@ def details(x, place_size=19):
     if x.get("photo"):
         p = x["photo"]
         yr = f', {p["year"]}' if p.get("year") else ""
-        out.append(f'<p style="margin:6px 0 0;font:11px/1.4 {SANS};color:{MUTED}">Photo: <a href="https://www.geograph.org.uk/photo/{h(p["id"])}" style="color:{MUTED}">{h(p["author"])}{h(yr)}</a>, '
-                   f'<a href="https://creativecommons.org/licenses/by-sa/2.0/" style="color:{MUTED}">CC BY-SA 2.0</a></p>')
+        if p.get("page"):  # Wikimedia Commons
+            lic = (f'<a href="{h(p["licenceUrl"])}" style="color:{MUTED}">{h(p.get("licence") or "")}</a>' if p.get("licenceUrl")
+                   else h(p.get("licence") or ""))
+            out.append(f'<p style="margin:6px 0 0;font:11px/1.4 {SANS};color:{MUTED}">Photo: <a href="{h(p["page"])}" style="color:{MUTED}">{h(p["author"])}{h(yr)}</a>, {lic}, Wikimedia Commons</p>')
+        else:
+            out.append(f'<p style="margin:6px 0 0;font:11px/1.4 {SANS};color:{MUTED}">Photo: <a href="https://www.geograph.org.uk/photo/{h(p["id"])}" style="color:{MUTED}">{h(p["author"])}{h(yr)}</a>, '
+                       f'<a href="https://creativecommons.org/licenses/by-sa/2.0/" style="color:{MUTED}">CC BY-SA 2.0</a></p>')
     return "".join(out)
 
 
@@ -98,9 +104,13 @@ def pick(x):
 
 
 def extra_block(x):
-    """'Not formerly., but…': a building that was always a home, too good to leave out."""
+    """'Not formerly., but…' (a building that was always a home, too good to leave out), or
+    'From our sister site, grandly.' (a Grandly house, linked through grandly.uk's short link)."""
+    tag = f'From our sister site, {x["sister"]}.' if x.get("sister") else "Not formerly., but…"
     body = details(x, 22).replace("margin:12px 0 4px", "margin:0 0 6px")
-    body = body.replace(h(x.get("label") or "Former " + x["was"]), "Not formerly., but…", 1).replace(f"color:{GREEN}\">Not formerly", f"color:{OXBLOOD}\">Not formerly", 1)
+    if x.get("sister") and x.get("name") and x["name"] not in x["place"]:
+        body = body.replace(f'>{h(x["place"])}</p>', f'>{h(x["name"])}, {h(x["place"])}</p>', 1)
+    body = body.replace(h(x.get("label") or "Former " + x["was"]), tag, 1).replace(f"color:{GREEN}\">{tag[:4]}", f"color:{OXBLOOD}\">{tag[:4]}", 1)
     note = f'<p style="margin:10px 0 0;font:italic 16px/1.5 {SERIF};color:{INK}">{h(x["note"])}.</p>' if x.get("note") else ""
     return (f'<tr><td class="pad" style="padding:6px 30px 18px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0">'
             f'<tr><td colspan="3" style="border-top:3px solid {OXBLOOD};padding:18px 0 0"></td></tr><tr>'
@@ -125,7 +135,8 @@ def region_block(name, items):
 def build(listings, today, test=False, extras=()):
     # The first 518 buildings all went up together at launch on 25 October 2026; they are not "new"
     since = max((today - datetime.timedelta(days=7)).isoformat(), "2026-10-25")
-    extra = next((x for x in extras if (x.get("added") or "") > since), None)
+    # a new "Not formerly., but…" building, else this week's house from Grandly
+    extra = next((x for x in extras if (x.get("added") or "") > since or x.get("sister")), None)
     new = [x for x in listings if (x.get("added") or "") > since and "Under offer" not in (x.get("badges") or [])]
     if not new:
         return None

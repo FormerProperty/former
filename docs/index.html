@@ -333,6 +333,7 @@ const GROUPS = [
 ];
 // Ordnance Survey style shorthand, refined by what the building was
 function osLabel(e){
+  if (e.sister==='grandly' && e.os) return e.os;  // a Grandly house carries its own label
   const w = (e.was||'').toLowerCase();
   const by = [
     [/signal box/,'SB'],[/sunday school/,'S Sch'],[/convent/,'Convent'],[/priory/,'Priory'],
@@ -427,20 +428,25 @@ function card(e){
   </li>`;
 }
 
-// "Not formerly., but…": a building that was always a home, so not on the list, shown once
+// The extra card: "Not formerly., but…" (a building that was always a home, shown once), or
+// "From our sister site": one house or building from the other site (e.sister names that site)
 function extraCard(e){
+  const sis=e.sister;
   const meta=[`<span class="price">${e.price!=null?esc(e.priceText):'Price on application'}</span>`, e.beds?`<span>${e.beds} bed</span>`:'',
     e.plot?`<span>${esc(e.plot)}</span>`:'', `<span>${esc(e.county)}</span>`].join('');
-  const credit=e.photo?`<p class="credit">Photo: <a href="https://www.geograph.org.uk/photo/${esc(e.photo.id)}" target="_blank" rel="noopener">${esc(e.photo.author)}${e.photo.year?', '+esc(e.photo.year):''}</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a></p>`:'';
+  const p=e.photo, who=p?`${esc(p.author)}${p.year?', '+esc(p.year):''}`:'';
+  const credit=!p?'':p.page?`<p class="credit">Photo: <a href="${esc(p.page)}" target="_blank" rel="noopener">${who}</a>, ${p.licenceUrl?`<a href="${esc(p.licenceUrl)}" target="_blank" rel="noopener">${esc(p.licence)}</a>`:esc(p.licence||'')}, Wikimedia Commons</p>`
+    :`<p class="credit">Photo: <a href="https://www.geograph.org.uk/photo/${esc(p.id)}" target="_blank" rel="noopener">${who}</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a></p>`;
+  const where=sis==='grandly'?(e.name&&!e.place.includes(e.name)?e.name+', ':'')+e.place:sis==='formerly'?e.label+', '+e.place:e.place;
   return `<li class="card extracard">
     <div class="media">${frame(e)}</div>
-    <p class="was">Not formerly., but…</p>
+    <p class="was">${sis?'From our sister site, '+sis+'.':'Not formerly., but…'}</p>
     <h3 class="place"><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.headline||e.place)}</a></h3>
-    <p class="where">${esc(e.place)}</p>
+    <p class="where">${esc(where)}</p>
     <div class="meta">${meta}</div>
     ${e.note?`<p class="note">${esc(e.note)}.</p>`:''}
     ${credit}
-    <div class="actions"><a href="${esc(e.url)}" target="_blank" rel="noopener">View on Zoopla</a></div>
+    <div class="actions"><a href="${esc(e.url)}" target="_blank" rel="noopener">${sis?'See it on '+sis+'.':'View on Zoopla'}</a></div>
   </li>`;
 }
 
