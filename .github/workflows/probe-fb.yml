@@ -7,32 +7,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check both Page tokens (prints no secrets)
+      - name: Post to Facebook the 6pm buildings that missed it (prints no secrets)
         env:
-          A_ID: ${{ secrets.FB_PAGE_ID }}
-          A_TOK: ${{ secrets.FB_PAGE_TOKEN }}
-          B_ID: ${{ secrets.GRANDLY_FB_PAGE_ID }}
-          B_TOK: ${{ secrets.GRANDLY_FB_PAGE_TOKEN }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          GRANDLY_FB_PAGE_ID: ${{ secrets.GRANDLY_FB_PAGE_ID }}
+          GRANDLY_FB_PAGE_TOKEN: ${{ secrets.GRANDLY_FB_PAGE_TOKEN }}
         run: |
-          python3 - <<'PY' > /tmp/probe.txt 2>&1
-          import os, json, urllib.request, urllib.error, urllib.parse
-          G = "https://graph.facebook.com/v26.0"
-          def get(path, **q):
-              try:
-                  with urllib.request.urlopen(f"{G}/{path}?" + urllib.parse.urlencode(q), timeout=30) as r:
-                      return json.load(r)
-              except urllib.error.HTTPError as e:
-                  return {"HTTP": e.code, "body": e.read().decode()[:400]}
-          for site, pid, tok in (("formerly", os.environ["A_ID"], os.environ["A_TOK"]), ("grandly", os.environ["B_ID"], os.environ["B_TOK"])):
-              print("==", site, "page id length", len(pid), "token length", len(tok))
-              print("me:", get("me", fields="id,name", access_token=tok))
-              d = get("debug_token", input_token=tok, access_token=tok).get("data", {})
-              print("debug:", {k: d.get(k) for k in ("is_valid", "type", "expires_at", "data_access_expires_at", "scopes", "profile_id", "error")})
-              print("page:", get(pid, fields="id,name", access_token=tok))
-              acc = get("me/accounts", fields="id,name,tasks,access_token", access_token=tok)
-              print("accounts:", [{"id": a.get("id"), "name": a.get("name"), "tasks": a.get("tasks"), "has_token": bool(a.get("access_token"))} for a in acc.get("data", [])] if "data" in acc else acc)
-              print("same token as formerly:", tok == os.environ["A_TOK"])
+          python3 - <<'PY' > /tmp/probe.txt 2>&1 || true
+          import sys, json, os
+          sys.argv = ["bluesky.py"]; sys.path.insert(0, "build")
+          import bluesky, facebook
+          for name, cfg in bluesky.SITES.items():
+              log = json.load(open(os.path.join(cfg["records"], "bluesky-log.json")))
+              done = {p["id"] for p in json.load(open(os.path.join(cfg["records"], "facebook-posted.json")))} if os.path.exists(os.path.join(cfg["records"], "facebook-posted.json")) else set()
+              last = log[-1]["id"]
+              if last in done: print(name, "already on Facebook"); continue
+              data = json.load(open(os.path.join(cfg["dir"], "data", "listings.json")))
+              x = next(l for l in data["listings"] if l["id"] == last)
+              img = os.path.join(cfg["dir"], x["photo"]["src"]) if x.get("photo") else os.path.join(cfg["dir"], "email", "labels", __import__("re").sub(r"[^a-z0-9]+", "-", (x.get("os") or "bldg").lower()) + ".png")
+              try: print(name, "->", facebook.post(x, len(data["listings"]), img, site=cfg))
+              except Exception as e: print(name, "FAILED", e)
           PY
           git config user.name "formerly. bot"; git config user.email "noreply@github.com"
+          git add social && git commit -m "Record Facebook catch-up posts" && git push origin HEAD:main || true
           git fetch origin probe-out && git checkout probe-out
           cp /tmp/probe.txt probe-fb.txt && git add probe-fb.txt && git commit -m "probe fb" && git push origin probe-out

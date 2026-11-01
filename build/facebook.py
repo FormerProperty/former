@@ -10,6 +10,7 @@ Posted ids are kept in social/facebook-posted.json (Grandly: GRANDLY_FB_* secret
 import json
 import os
 import urllib.error
+import urllib.parse
 import urllib.request
 import uuid
 
@@ -54,13 +55,30 @@ def _multipart(fields, file_field, path):
     return b"".join(out), f"multipart/form-data; boundary={boundary}"
 
 
+def page_token(page, token, domain):
+    """Posting needs the Page's own token. If the secret holds Tanya's user token instead (one
+    user token can manage both Pages), swap it for the Page token via me/accounts. The Page is
+    found by its id, or failing that by its name (the Pages are called formerly.uk and grandly.uk)."""
+    try:
+        q = urllib.parse.urlencode({"fields": "id,name,access_token", "access_token": token})
+        with urllib.request.urlopen(f"{GRAPH}/me/accounts?{q}", timeout=60) as r:
+            pages = json.load(r).get("data", [])
+    except Exception:
+        return page, token  # a Page token cannot list accounts: use it as it is
+    hit = next((p for p in pages if p.get("id") == page), None) or \
+          next((p for p in pages if (p.get("name") or "").lower() == domain), None)
+    if hit and hit.get("access_token"):
+        return hit["id"], hit["access_token"]
+    return page, token
+
+
 def post(x, total, img_path, dry=False, site=DEFAULT):
     """Publish one photo post to the Page. Returns the post id, or None on a dry run."""
     caption = caption_for(x, total, site)
     print("Facebook:\n" + caption)
     if dry:
         return None
-    page, token = os.environ[site["env"] + "FB_PAGE_ID"], os.environ[site["env"] + "FB_PAGE_TOKEN"]
+    page, token = page_token(os.environ[site["env"] + "FB_PAGE_ID"], os.environ[site["env"] + "FB_PAGE_TOKEN"], site["domain"])
     body, ctype = _multipart({"caption": caption, "published": "true", "access_token": token}, "source", img_path)
     req = urllib.request.Request(f"{GRAPH}/{page}/photos", data=body, method="POST",
                                  headers={"Content-Type": ctype, "User-Agent": "formerly-social"})
