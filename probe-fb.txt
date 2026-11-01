@@ -1,0 +1,8 @@
+== formerly page id length 16 token length 213
+me: {'id': '10162786049145633', 'name': 'Tanya-Jayne Park'}
+debug: {'is_valid': True, 'type': 'USER', 'expires_at': 0, 'data_access_expires_at': 1801307162, 'scopes': ['pages_show_list', 'pages_read_engagement', 'pages_manage_posts', 'public_profile'], 'profile_id': None, 'error': None}
+page: {'id': '1442566835602039', 'name': 'formerly.uk'}
+== grandly page id length 16 token length 213
+me: {'id': '10162786049145633', 'name': 'Tanya-Jayne Park'}
+debug: {'is_valid': True, 'type': 'USER', 'expires_at': 0, 'data_access_expires_at': 1801307162, 'scopes': ['pages_show_list', 'pages_read_engagement', 'pages_manage_posts', 'public_profile'], 'profile_id': None, 'error': None}
+page: {'id': '1707828000871918', 'name': 'formerly page manager'}
