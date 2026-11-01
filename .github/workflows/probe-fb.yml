@@ -29,6 +29,9 @@ jobs:
               d = get("debug_token", input_token=tok, access_token=tok).get("data", {})
               print("debug:", {k: d.get(k) for k in ("is_valid", "type", "expires_at", "data_access_expires_at", "scopes", "profile_id", "error")})
               print("page:", get(pid, fields="id,name", access_token=tok))
+              acc = get("me/accounts", fields="id,name,tasks,access_token", access_token=tok)
+              print("accounts:", [{"id": a.get("id"), "name": a.get("name"), "tasks": a.get("tasks"), "has_token": bool(a.get("access_token"))} for a in acc.get("data", [])] if "data" in acc else acc)
+              print("same token as formerly:", tok == os.environ["A_TOK"])
           PY
           git config user.name "formerly. bot"; git config user.email "noreply@github.com"
           git fetch origin probe-out && git checkout probe-out
