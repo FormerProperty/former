@@ -700,5 +700,157 @@
    50.902268,
    -1.377212
   ]
+ },
+ {
+  "id": "71243156",
+  "p": "£900,000",
+  "b": "6",
+  "a": "Law Castle, West Kilbride, North Ayrshire KA23",
+  "l": "2025-09-05",
+  "t": "castle",
+  "nm": "Law Castle",
+  "w": "15th-century tower house",
+  "h": "Restored medieval tower house above the Firth of Clyde",
+  "bt": "15th century",
+  "ag": "Savills - Glasgow",
+  "ll": [
+   55.696219,
+   -4.847765
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "73216593",
+  "p": "£1,650,000",
+  "b": "9",
+  "a": "Castle Of Park, Cornhill, Banff, Aberdeenshire AB45",
+  "l": "2026-05-18",
+  "t": "castle",
+  "nm": "Castle of Park",
+  "w": "16th-century castle, Category A listed",
+  "gr": "A",
+  "ac": "about 37 acres",
+  "bt": "16th century",
+  "h": "Category A castle with walled garden and policy woodland",
+  "ag": "Savills - Aberdeen",
+  "ll": [
+   57.602403,
+   -2.68938
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "73443622",
+  "p": "£1,100,000",
+  "b": "6",
+  "a": "Lochmaben, Lockerbie, Dumfries And Galloway DG11",
+  "l": "2026-06-12",
+  "t": "tower",
+  "nm": "Elshieshields Tower",
+  "w": "Medieval tower house, Category A listed",
+  "gr": "A",
+  "ac": "19.84 acres",
+  "bt": "Medieval",
+  "h": "Medieval tower grown into a riverside country house",
+  "ag": "Knight Frank - Edinburgh Sales",
+  "ll": [
+   55.150828,
+   -3.462707
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "73727871",
+  "p": "£950,000",
+  "b": "6",
+  "a": "Inverbervie, Montrose, Angus DD10",
+  "l": "2026-07-15",
+  "t": "castle",
+  "nm": "Allardice Castle",
+  "w": "16th-century castle, Category A listed",
+  "gr": "A",
+  "ac": "about 3 acres",
+  "bt": "c.1542",
+  "h": "Seat of the Barons of Allardice, with its Great Hall",
+  "ag": "Strutt & Parker - Perth",
+  "ll": [
+   56.859769,
+   -2.304977
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "72949978",
+  "p": "£695,000",
+  "b": "5",
+  "a": "Old Mayen, Rothiemay, By Huntly, Aberdeenshire AB54",
+  "l": "2026-04-16",
+  "t": "tower",
+  "nm": "Old Mayen",
+  "w": "17th-century fortified laird's house, Category A listed",
+  "gr": "A",
+  "ac": "1.6 acres",
+  "bt": "1680",
+  "sq": "4125",
+  "h": "Fortified laird's house of 1680 above the Deveron",
+  "ag": "Savills - Perth Country Houses",
+  "ll": [
+   57.518248,
+   -2.712426
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "69219842",
+  "p": "£6,500,000",
+  "b": "6",
+  "a": "Oxney, Dover CT15",
+  "l": "2025-01-20",
+  "t": "mansion",
+  "nm": "Oxney Court",
+  "w": "Castellated mansion",
+  "ac": "35 acres",
+  "bt": "18th century",
+  "h": "Castellated mansion in 35 acres of Kent",
+  "ag": "Harding Green, London & Country",
+  "ll": [
+   51.16955,
+   1.363331
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "74600658",
+  "p": "£8,000,000",
+  "b": "10",
+  "a": "Peebles, Scottish Borders EH45",
+  "l": "2026-10-26",
+  "t": "estate",
+  "nm": "Portmore House",
+  "w": "Scots baronial house by David Bryce, 1850, Category A listed",
+  "gr": "A",
+  "ac": "1,227 acres",
+  "bt": "1850",
+  "h": "David Bryce baronial house on a 1,227-acre estate",
+  "ag": "Knight Frank - Country Department Sales",
+  "ll": [
+   55.727074,
+   -3.194987
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
  }
 ]
