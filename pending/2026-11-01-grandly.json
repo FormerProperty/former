@@ -18,7 +18,19 @@
   "why": "Fully restored 15th-century tower house over five floors, linked to Robert the Bruce; listing grade not stated",
   "s": "grandly",
   "n": "",
-  "g": ""
+  "g": "",
+  "ph": [
+   "c847229",
+   "Law Castle",
+   "David Neale",
+   "2004",
+   "",
+   "https://upload.wikimedia.org/wikipedia/commons/0/0b/Law_Castle.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   0,
+   "CC BY-SA 2.0",
+   "https://creativecommons.org/licenses/by-sa/2.0",
+   "https://commons.wikimedia.org/wiki/File:Law_Castle.jpg"
+  ]
  },
  {
   "id": "73216593",
@@ -41,7 +53,19 @@
   "why": "16th-century castle, Category A, about 37 acres with walled garden and paddocks",
   "s": "grandly",
   "n": "",
-  "g": ""
+  "g": "",
+  "ph": [
+   "c187042981",
+   "Castle of Park",
+   "Kognos",
+   "2026",
+   "",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Castle_of_Park.jpg/960px-Castle_of_Park.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   0,
+   "CC BY 4.0",
+   "https://creativecommons.org/licenses/by/4.0",
+   "https://commons.wikimedia.org/wiki/File:Castle_of_Park.jpg"
+  ]
  },
  {
   "id": "73443622",
@@ -64,7 +88,8 @@
   "why": "Category A country house built round a medieval tower; 19.84 acres, gate house",
   "s": "grandly",
   "n": "",
-  "g": ""
+  "g": "",
+  "ph": null
  },
  {
   "id": "73727871",
@@ -87,7 +112,19 @@
   "why": "Castle of about 1542, chief seat of the Barons of Allardice; A listed per the listing summary",
   "s": "grandly",
   "n": "",
-  "g": ""
+  "g": "",
+  "ph": [
+   "c3989671",
+   "Castle of Allardice",
+   "Alan Thomson",
+   "2006",
+   "",
+   "https://upload.wikimedia.org/wikipedia/commons/d/d6/Castle_of_Allardice.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   0,
+   "CC BY-SA 2.0",
+   "https://creativecommons.org/licenses/by-sa/2.0",
+   "https://commons.wikimedia.org/wiki/File:Castle_of_Allardice.jpg"
+  ]
  },
  {
   "id": "72949978",
@@ -111,7 +148,8 @@
   "why": "Fortified laird's house, 1680, Category A (stated); small plot, but fortified houses count at any size",
   "s": "grandly",
   "n": "",
-  "g": ""
+  "g": "",
+  "ph": null
  },
  {
   "id": "69219842",
@@ -133,7 +171,8 @@
   "why": "Castellated mansion in 35 acres on an ancient site; same house also listed as 69923270 (same agent) - kept this one; grade not stated",
   "s": "grandly",
   "n": "",
-  "g": ""
+  "g": "",
+  "ph": null
  },
  {
   "id": "74600658",
@@ -156,6 +195,18 @@
   "why": "Category A Bryce house of 1850; the whole 3,460-acre estate is also offered at £15m as 74600671 - kept the house lot",
   "s": "grandly",
   "n": "",
-  "g": ""
+  "g": "",
+  "ph": [
+   "c138732564",
+   "Portmore House (geograph 7283519)",
+   "Anthony O'Neil",
+   "2022",
+   "",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Portmore_House_%28geograph_7283519%29.jpg/960px-Portmore_House_%28geograph_7283519%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   0,
+   "CC BY-SA 2.0",
+   "https://creativecommons.org/licenses/by-sa/2.0",
+   "https://commons.wikimedia.org/wiki/File:Portmore_House_(geograph_7283519).jpg"
+  ]
  }
 ]
