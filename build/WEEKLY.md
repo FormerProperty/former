@@ -26,6 +26,11 @@ Clone `FormerProperty/former` (add it to the session first if needed) and work o
 1. **Alert emails.** In Gmail search `from:zoopla newer_than:8d`. The emails are large, so
    fetch each thread in full (it is saved to a file) and parse the HTML with a script rather
    than reading it. Leave the emails as they are (do not mark them read or move them). What we learned about the format:
+   - **Grandly alerts are not ours (yet).** Since 1 November there are also alerts named
+     "grandly: …" (castles, manor houses, grade I listed and so on, for a planned sister site).
+     Skip any email whose subject or heading names a "grandly:" search, and do not add its ids to
+     `pending/judged-out.json`. A building in a "grandly:" email that is also a formerly. building
+     (a castle that became a school, say) will still turn up through the formerly. alerts or sweep.
    - Take only the listing links **before** the "Similar properties nearby" section, i.e.
      `/for-sale/details/<id>/?utm_campaign=...` links without `utm_content=similar_listing`.
      The "similar" ones are Zoopla's suggestions, not matches.
