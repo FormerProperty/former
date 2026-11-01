@@ -12,6 +12,9 @@ Order:
 Posted ids are kept in social/bluesky-posted.json, and the order in social/bluesky-log.json.
 
 Secrets: BLUESKY_HANDLE, BLUESKY_APP_PASSWORD (an app password, never the main password).
+
+Grandly: `bluesky.py --site grandly` does the same for grandly.uk, at 8am and 6pm only, with
+GRANDLY_BLUESKY_* and GRANDLY_FB_* secrets and its own records in social/grandly/.
 """
 import datetime
 import json
@@ -22,9 +25,19 @@ import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PDS = os.environ.get("BLUESKY_PDS", "https://bsky.social")
-POSTED = os.path.join(ROOT, "social", "bluesky-posted.json")
-LOG = os.path.join(ROOT, "social", "bluesky-log.json")
-PRIORITY = os.path.join(ROOT, "social", "priority.json")
+PRIORITY = os.path.join(ROOT, "social", "priority.json")  # shared: listing ids never clash between sites
+
+# What differs between the two sites. formerly. keeps its original file names.
+SITES = {
+    "formerly": {"domain": "formerly.uk", "dir": "docs", "records": "social", "env": "", "hours": (8, 12, 18),
+                 "noun": "buildings", "fb_line": "with all {n} buildings that began life as something else"},
+    "grandly": {"domain": "grandly.uk", "dir": "grandly/site", "records": "social/grandly", "env": "GRANDLY_",
+                "hours": (8, 18), "noun": "houses", "fb_line": "with all {n} grand houses for sale across Great Britain"},
+}
+SITE = SITES["grandly" if "--site" in sys.argv and sys.argv[sys.argv.index("--site") + 1] == "grandly" else "formerly"]
+RECORDS = os.path.join(ROOT, SITE["records"])
+POSTED = os.path.join(RECORDS, "bluesky-posted.json")
+LOG = os.path.join(RECORDS, "bluesky-log.json")
 PHOTO_SHARE = (3, 5)  # 3 posts in every 5 have a photo
 
 
@@ -56,7 +69,8 @@ def sharper_image(x, img_path):
             with urllib.request.urlopen(req, timeout=30) as r:
                 data = r.read()
             if data[:3] == b"\xff\xd8\xff" and len(data) < 950_000:
-                out = os.path.join(ROOT, "social", ".post-image.jpg")
+                os.makedirs(RECORDS, exist_ok=True)
+                out = os.path.join(RECORDS, ".post-image.jpg")
                 with open(out, "wb") as fh:
                     fh.write(data)
                 print("using the larger Geograph image", url)
@@ -104,22 +118,34 @@ def choose(listings, posted, today, log=None, priority=None):
     return (first + second)[:1]
 
 
-SITE_LABEL = "formerly.uk"
+SITE_LABEL = SITE["domain"]
+
+
+def credit_for(p):
+    """Photo credit line: Geograph photos are all CC BY-SA 2.0; Commons ones carry their own licence."""
+    who = f'{p["author"]}{", " + str(p["year"]) if p.get("year") else ""}'
+    if p.get("source") == "Wikimedia Commons":
+        return f'Photo: {who} ({p.get("licence") or "see Wikimedia Commons"}, Wikimedia Commons)'
+    return f"Photo: {who} (CC BY-SA 2.0, Geograph)"
+
+
+def where(x):
+    """'Barholm Castle, Creetown' when the house has a name, else just the place."""
+    return f'{x["name"]}, {x["place"]}' if x.get("name") and x["name"] not in x["place"] else x["place"]
 
 
 def text_for(x, total):
-    """Post text plus a link facet so 'formerly.uk' is clickable."""
-    bits = [x["place"], x["priceText"] or "Price on application"]
+    """Post text plus a link facet so the site's name is clickable."""
+    bits = [where(x), x["priceText"] or "Price on application"]
     if x.get("beds"):
         bits.append(f'{x["beds"]} bed')
     head = [x.get("label") or "Former " + x["was"]] + ([x["headline"]] if x.get("headline") else []) + [" · ".join(bits)]
     if x.get("badges"):
         head.append(" · ".join(x["badges"]))
-    link_line = f"View all {total} buildings on {SITE_LABEL}"
+    link_line = f'View all {total} {SITE["noun"]} on {SITE_LABEL}'
     credit = ""
     if x.get("photo"):
-        p = x["photo"]
-        credit = f'Photo: {p["author"]}{", " + str(p["year"]) if p.get("year") else ""} (CC BY-SA 2.0, Geograph)'
+        credit = credit_for(x["photo"])
     lines = head + ["", link_line] + ([credit] if credit else [])
     text = "\n".join(lines)
     if len(text) > 295:  # keep within Bluesky's 300-character limit, dropping the flags line first
@@ -128,12 +154,12 @@ def text_for(x, total):
     raw = text.encode("utf-8")
     start = raw.find(f"on {SITE_LABEL}".encode()) + 3
     facets = [{"index": {"byteStart": start, "byteEnd": start + len(SITE_LABEL.encode())},
-               "features": [{"$type": "app.bsky.richtext.facet#link", "uri": f"https://formerly.uk/b/{x['id']}?s=bluesky"}]}]
+               "features": [{"$type": "app.bsky.richtext.facet#link", "uri": f"https://{SITE_LABEL}/b/{x['id']}?s=bluesky"}]}]
     return text, facets
 
 
-POST_HOURS = (8, 12, 18)  # UK time
-SLOTS = os.path.join(ROOT, "social", "bluesky-slot.json")
+POST_HOURS = SITE["hours"]  # UK time
+SLOTS = os.path.join(RECORDS, "bluesky-slot.json")
 
 
 def uk_now():
@@ -176,9 +202,10 @@ def main():
     dry = "--dry-run" in sys.argv
     slot = due_slot()
     if "--now" not in sys.argv and not slot:
-        print(f"No posting slot due at {uk_now():%H:%M} UK time; posts go out at 8am, 12pm and 6pm.")
+        print(f"No posting slot due at {uk_now():%H:%M} UK time for {SITE_LABEL}; posts go out at "
+              + ", ".join(f"{h}:00" for h in POST_HOURS) + ".")
         return 0
-    with open(os.path.join(ROOT, "docs", "data", "listings.json")) as fh:
+    with open(os.path.join(ROOT, SITE["dir"], "data", "listings.json")) as fh:
         data = json.load(fh)
     try:
         with open(POSTED) as fh:
@@ -188,7 +215,8 @@ def main():
     log = load_json(LOG, [])
     priority = load_json(PRIORITY, {})
     # "Not formerly., but…" buildings go out first, once each (unless marked Never post)
-    extras = [e for e in data.get("extras", []) if str(e["id"]) not in posted
+    # (Grandly's extra is the formerly. building on its sister card: that is not Grandly's to post)
+    extras = [e for e in data.get("extras", []) if str(e["id"]) not in posted and not e.get("sister")
               and priority.get(str(e["id"]), {}).get("pref") != "never"]
     pick = extras[:1] or choose(data["listings"], posted, datetime.date.today(), log, priority)
     if not pick:
@@ -196,22 +224,22 @@ def main():
         return 0
     x = pick[0]
     text, facets = text_for(x, len(data["listings"]))
-    img_path = os.path.join(ROOT, "docs", x["photo"]["src"]) if x.get("photo") else \
-        os.path.join(ROOT, "docs", "email", "labels", __import__("re").sub(r"[^a-z0-9]+", "-", (x.get("os") or "bldg").lower()) + ".png")
-    print(text, "\n->", f"https://formerly.uk/b/{x['id']}?s=bluesky", "\nimage:", os.path.relpath(img_path, ROOT))
+    img_path = os.path.join(ROOT, SITE["dir"], x["photo"]["src"]) if x.get("photo") else \
+        os.path.join(ROOT, SITE["dir"], "email", "labels", __import__("re").sub(r"[^a-z0-9]+", "-", (x.get("os") or "bldg").lower()) + ".png")
+    print(text, "\n->", f"https://{SITE_LABEL}/b/{x['id']}?s=bluesky", "\nimage:", os.path.relpath(img_path, ROOT))
     if dry:
         sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
         import facebook
-        facebook.post(x, len(data["listings"]), img_path, dry=True)
+        facebook.post(x, len(data["listings"]), img_path, dry=True, site=SITE)
         return 0
 
     s = xrpc("com.atproto.server.createSession", body={
-        "identifier": os.environ["BLUESKY_HANDLE"], "password": os.environ["BLUESKY_APP_PASSWORD"]})
+        "identifier": os.environ[SITE["env"] + "BLUESKY_HANDLE"], "password": os.environ[SITE["env"] + "BLUESKY_APP_PASSWORD"]})
     token, did = s["accessJwt"], s["did"]
     embed = {"$type": "app.bsky.embed.external", "external": {
-        "uri": f"https://formerly.uk/b/{x['id']}?s=bluesky",
+        "uri": f"https://{SITE_LABEL}/b/{x['id']}?s=bluesky",
         "title": x.get("headline") or f'{x.get("label") or "Former " + x["was"]}: {x["place"]}',
-        "description": f'{x.get("label") or "Former " + x["was"]}, {x["place"]}. On formerly.uk, with a link to the full listing.'}}
+        "description": f'{x.get("label") or "Former " + x["was"]}, {where(x)}. On {SITE_LABEL}, with a link to the full listing.'}}
     img_path = sharper_image(x, img_path)
     if os.path.exists(img_path):
         with open(img_path, "rb") as fh:
@@ -237,9 +265,9 @@ def main():
     # The same building goes to the Facebook Page (Bluesky's record is already saved)
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import facebook
-    if facebook.configured():
+    if facebook.configured(SITE):
         try:
-            facebook.post(x, len(data["listings"]), img_path)
+            facebook.post(x, len(data["listings"]), img_path, site=SITE)
         except Exception as e:
             print(e)
             return 1  # fail the run so GitHub flags it; Bluesky has still posted

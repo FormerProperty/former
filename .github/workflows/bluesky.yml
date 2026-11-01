@@ -1,7 +1,7 @@
-name: Post to Bluesky
+name: Post to Bluesky and Facebook (formerly. and grandly.)
 on:
   schedule:
-    # 8am, 12pm and 6pm UK time all year: runs in both the GMT and BST hours,
+    # formerly.: 8am, 12pm and 6pm UK time; grandly.: 8am and 6pm. All year:: runs in both the GMT and BST hours,
     # and the script only posts when it is the right hour in London
     # GitHub often starts scheduled runs late, so several runs are queued around each slot;
     # the script posts once per slot and the extra runs do nothing
@@ -34,6 +34,20 @@ jobs:
             exit 0
           fi
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then python build/bluesky.py --now; else python build/bluesky.py; fi
+      - name: Post the next Grandly house (8am and 6pm only)
+        if: always()
+        env:
+          GRANDLY_BLUESKY_HANDLE: ${{ secrets.GRANDLY_BLUESKY_HANDLE }}
+          GRANDLY_BLUESKY_APP_PASSWORD: ${{ secrets.GRANDLY_BLUESKY_APP_PASSWORD }}
+          GRANDLY_FB_PAGE_ID: ${{ secrets.GRANDLY_FB_PAGE_ID }}
+          GRANDLY_FB_PAGE_TOKEN: ${{ secrets.GRANDLY_FB_PAGE_TOKEN }}
+        run: |
+          if [ -z "$GRANDLY_BLUESKY_HANDLE" ] || [ -z "$GRANDLY_BLUESKY_APP_PASSWORD" ]; then
+            echo "Grandly Bluesky secrets not set; showing what would be posted."
+            python build/bluesky.py --site grandly --dry-run --now
+            exit 0
+          fi
+          python build/bluesky.py --site grandly
       - name: Record what was posted
         if: always()
         run: |

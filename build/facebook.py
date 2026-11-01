@@ -1,11 +1,11 @@
-"""Post a building to the formerly. Facebook Page.
+"""Post a building to the formerly. (or grandly.) Facebook Page.
 
 Called by bluesky.py straight after each Bluesky post, so both accounts show the same
 building at 8am, 12pm and 6pm. The post is our own image (the Geograph photo or the
 label tile) with a caption; the link goes to that building on formerly.uk.
 
 Secrets: FB_PAGE_ID and FB_PAGE_TOKEN (a Page access token that does not expire).
-Posted ids are kept in social/facebook-posted.json.
+Posted ids are kept in social/facebook-posted.json (Grandly: GRANDLY_FB_* secrets, social/grandly/).
 """
 import json
 import os
@@ -15,11 +15,13 @@ import uuid
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GRAPH = "https://graph.facebook.com/v26.0"
-POSTED = os.path.join(ROOT, "social", "facebook-posted.json")
+DEFAULT = {"domain": "formerly.uk", "records": "social", "env": "",
+           "fb_line": "with all {n} buildings that began life as something else"}
 
 
-def caption_for(x, total):
-    bits = [x["place"], x.get("priceText") or "Price on application"]
+def caption_for(x, total, site=DEFAULT):
+    from bluesky import credit_for, where
+    bits = [where(x), x.get("priceText") or "Price on application"]
     if x.get("beds"):
         bits.append(f'{x["beds"]} bed')
     lines = [x.get("label") or "Former " + x["was"]]
@@ -30,12 +32,11 @@ def caption_for(x, total):
         lines.append(" · ".join(x["badges"]))
     if x.get("extra") and x.get("note"):
         lines += ["", x["note"] + "."]
-    # Short link; Facebook adds its own fbclid to it, which tells formerly.uk the visit came from here
-    lines += ["", f"See it on formerly.uk, with all {total} buildings that began life as something else:",
-              f"https://formerly.uk/b/{x['id']}"]
+    # Short link; Facebook adds its own fbclid to it, which tells the site the visit came from here
+    lines += ["", f'See it on {site["domain"]}, ' + site["fb_line"].format(n=total) + ":",
+              f'https://{site["domain"]}/b/{x["id"]}']
     if x.get("photo"):
-        p = x["photo"]
-        lines += ["", f'Photo: {p["author"]}{", " + str(p["year"]) if p.get("year") else ""} (CC BY-SA 2.0, Geograph)']
+        lines += ["", credit_for(x["photo"])]
     return "\n".join(lines)
 
 
@@ -53,13 +54,13 @@ def _multipart(fields, file_field, path):
     return b"".join(out), f"multipart/form-data; boundary={boundary}"
 
 
-def post(x, total, img_path, dry=False):
+def post(x, total, img_path, dry=False, site=DEFAULT):
     """Publish one photo post to the Page. Returns the post id, or None on a dry run."""
-    caption = caption_for(x, total)
+    caption = caption_for(x, total, site)
     print("Facebook:\n" + caption)
     if dry:
         return None
-    page, token = os.environ["FB_PAGE_ID"], os.environ["FB_PAGE_TOKEN"]
+    page, token = os.environ[site["env"] + "FB_PAGE_ID"], os.environ[site["env"] + "FB_PAGE_TOKEN"]
     body, ctype = _multipart({"caption": caption, "published": "true", "access_token": token}, "source", img_path)
     req = urllib.request.Request(f"{GRAPH}/{page}/photos", data=body, method="POST",
                                  headers={"Content-Type": ctype, "User-Agent": "formerly-social"})
@@ -68,6 +69,7 @@ def post(x, total, img_path, dry=False):
             res = json.load(r)
     except urllib.error.HTTPError as e:
         raise RuntimeError(f"Facebook post failed: {e.code} {e.read().decode()[:300]}")
+    POSTED = os.path.join(ROOT, site["records"], "facebook-posted.json")
     posted = []
     if os.path.exists(POSTED):
         with open(POSTED) as fh:
@@ -79,5 +81,5 @@ def post(x, total, img_path, dry=False):
     return res.get("post_id") or res.get("id")
 
 
-def configured():
-    return bool(os.environ.get("FB_PAGE_ID") and os.environ.get("FB_PAGE_TOKEN"))
+def configured(site=DEFAULT):
+    return bool(os.environ.get(site["env"] + "FB_PAGE_ID") and os.environ.get(site["env"] + "FB_PAGE_TOKEN"))
