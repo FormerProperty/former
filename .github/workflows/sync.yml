@@ -22,6 +22,8 @@ jobs:
           python-version: "3.12"
       - name: Fetch decisions and rebuild
         run: python build/sync.py
+      - name: Regenerate Grandly's page from formerly.'s
+        run: python build/make_grandly_page.py || echo "::warning::Grandly page not regenerated; a rule no longer matches formerly.'s page"
       - name: Commit and push
         run: |
           git config user.name "formerly. bot"
