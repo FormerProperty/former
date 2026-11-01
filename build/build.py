@@ -207,12 +207,20 @@ def write_feeds(out):
 
 
 def photo_for(m):
-    """photos.json rows: [photo id, title, author, year, server, path, ok]. ok=1 is used on the site."""
+    """photos.json rows, ok (index 6) = 1 means used on the site:
+    Geograph:          [photo id, title, author, year, server, path, ok]
+    Wikimedia Commons: ["c<page id>", title, author, year, "", image url (640 px), ok, licence, licence url, page url]
+    """
     if not m or not m[6]:
         return None
-    pid, title, author, year, server, path, _ = m
-    base = f"https://s{server}.geograph.org.uk/{path}"
-    return {"id": str(pid), "title": title.strip(), "author": author, "year": year,
+    pid, title, author, year = str(m[0]), m[1], m[2], m[3]
+    if pid.startswith("c"):
+        return {"id": pid, "title": title.strip(), "author": author, "year": year, "src": f"photos/{pid}.jpg",
+                "thumb": m[5], "large": m[5], "source": "Wikimedia Commons",
+                "licence": m[7] if len(m) > 7 else "", "licenceUrl": m[8] if len(m) > 8 else "",
+                "page": m[9] if len(m) > 9 else ""}
+    base = f"https://s{m[4]}.geograph.org.uk/{m[5]}"
+    return {"id": pid, "title": title.strip(), "author": author, "year": year,
             "src": f"photos/{pid}.jpg", "thumb": base + "_213x160.jpg"}
 
 

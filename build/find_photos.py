@@ -158,3 +158,63 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# ---- Wikimedia Commons (grandly.uk) ----
+# Famous and listed houses are far better covered on Commons than on Geograph, but mostly by
+# name, not by location. Rows use the Commons format described in build.py's photo_for().
+COMMONS = "https://commons.wikimedia.org/w/api.php"
+UA = "formerly.uk / grandly.uk site builder (not-for-profit; hello@formerly.uk)"
+
+
+def _commons(params):
+    q = urllib.parse.urlencode({**params, "format": "json", "formatversion": "2"})
+    req = urllib.request.Request(f"{COMMONS}?{q}", headers={"User-Agent": UA})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        return json.load(r)
+
+
+def _strip(html):
+    return re.sub(r"<[^>]+>", "", html or "").strip()
+
+
+def commons_rows(titles):
+    """Image details for Commons file titles, as photos.json rows (ok=0), JPEGs only."""
+    if not titles:
+        return []
+    d = _commons({"action": "query", "titles": "|".join(titles[:40]), "prop": "imageinfo",
+                  "iiprop": "url|extmetadata|mime", "iiurlwidth": "640"})
+    rows = []
+    for p in d.get("query", {}).get("pages", []):
+        ii = (p.get("imageinfo") or [{}])[0]
+        if ii.get("mime") != "image/jpeg" or not (ii.get("thumburl") or ii.get("url")):
+            continue
+        md = ii.get("extmetadata") or {}
+        get = lambda k: _strip((md.get(k) or {}).get("value", ""))
+        licence = get("LicenseShortName")
+        if not licence:
+            continue
+        author = get("Artist")[:80] or "Unknown"
+        m = re.search(r"(1[89]\d\d|20\d\d)", get("DateTimeOriginal") or get("DateTime"))
+        year = m.group(1) if m else ""
+        title = re.sub(r"^File:|\.[a-z]+$", "", p.get("title", ""), flags=re.I).replace("_", " ")
+        rows.append([f"c{p.get('pageid')}", title[:150], author, year, "",
+                     ii.get("thumburl") or ii["url"], 0, licence, get("LicenseUrl"), ii.get("descriptionurl", "")])
+    return rows
+
+
+def commons_suggest(name, lat=None, lng=None):
+    """Best Commons photo for a named house: a file whose title contains the name, preferring
+    ones taken near the house. None if nothing fits."""
+    name = (name or "").strip()
+    if len(name) < 4:
+        return None
+    hits = _commons({"action": "query", "list": "search", "srsearch": f'"{name}"', "srnamespace": "6",
+                     "srlimit": "30"}).get("query", {}).get("search", [])
+    words = [w for w in re.findall(r"[a-z]{3,}", name.lower()) if w not in ("the", "and")]
+    titles = [h["title"] for h in hits if all(w in h["title"].lower() for w in words)]
+    time.sleep(1)
+    rows = commons_rows(titles)
+    # Copies of Geograph photos are fine, but prefer Commons' own (often Wiki Loves Monuments)
+    rows.sort(key=lambda r: ("geograph" in r[1].lower(), len(r[1])))
+    return rows[0] if rows else None

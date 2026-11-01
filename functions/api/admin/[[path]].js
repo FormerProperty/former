@@ -63,6 +63,11 @@ export async function onRequest(ctx) {
         if (Array.isArray(ph) && ph.length === 7 && /^\d{1,9}$/.test(ph[0]) && /^[0-3]$/.test(ph[4])
             && /^(geo)?photos\/[\d/]+_[0-9a-f]{8}$/.test(ph[5])) {
           data.ph = [ph[0], String(ph[1]).slice(0, 200), String(ph[2]).slice(0, 100), String(ph[3]).slice(0, 4), ph[4], ph[5], 0];
+        } else if (Array.isArray(ph) && ph.length === 10 && /^c\d{1,10}$/.test(ph[0])
+            && /^https:\/\/upload\.wikimedia\.org\//.test(ph[5]) && /^https:\/\/commons\.wikimedia\.org\//.test(ph[9])) {
+          // Wikimedia Commons photo, with its licence and page
+          data.ph = [ph[0], String(ph[1]).slice(0, 200), String(ph[2]).slice(0, 100), String(ph[3]).slice(0, 4), "",
+                     ph[5], 0, String(ph[7]).slice(0, 40), String(ph[8]).slice(0, 200), ph[9]];
         }
         if (b.edits.social === "next")
           await db.prepare("INSERT INTO social (id, pref, set_at) VALUES (?, 'next', datetime('now')) ON CONFLICT(id) DO UPDATE SET pref='next', set_at=datetime('now')").bind(id).run();

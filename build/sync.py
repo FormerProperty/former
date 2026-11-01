@@ -68,7 +68,11 @@ def main():
             # Suggest a Geograph photo once per candidate ("ph": null means none found)
             if "ph" not in row and row.get("ll"):
                 try:
-                    row["ph"] = find_photos.suggest(row["ll"][0], row["ll"][1], row.get("t"), row.get("s") or "formerly")
+                    row["ph"] = None
+                    if row.get("s") == "grandly" and row.get("nm"):
+                        row["ph"] = find_photos.commons_suggest(row["nm"], row["ll"][0], row["ll"][1])
+                    if not row["ph"]:
+                        row["ph"] = find_photos.suggest(row["ll"][0], row["ll"][1], row.get("t"), row.get("s") or "formerly")
                     changed = True
                 except Exception as e:
                     print("photo search failed", row["id"], e)

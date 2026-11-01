@@ -177,13 +177,17 @@ document.querySelectorAll('nav.tabs button').forEach(b=>b.addEventListener('clic
 
 // Photo on the review card: the suggestion (or Tanya's choice), with a chooser of every
 // Geograph photo near the building. Rows are photos.json rows: [id, title, author, year, server, path, ok]
-const GEO = (ph, size) => `https://s${ph[4]}.geograph.org.uk/${ph[5]}${size?'_'+size:''}.jpg`;
+// Wikimedia Commons rows: ["c<page id>", title, author, year, "", image url, ok, licence, licence url, page url]
+const isCommons = ph => String(ph[0]).startsWith('c');
+const GEO = (ph, size) => isCommons(ph) ? ph[5] : `https://s${ph[4]}.geograph.org.uk/${ph[5]}${size?'_'+size:''}.jpg`;
+const credit = ph => isCommons(ph) ? `Wikimedia Commons, ${ph[7]||'free licence'}` : 'Geograph';
+const pageOf = ph => isCommons(ph) ? ph[9] : `https://www.geograph.org.uk/photo/${ph[0]}`;
 function photoBlock(ph, chosen){
-  const find = `<button type="button" class="pick-btn">${ph?'Choose a different photo':'Find a photo on Geograph'}</button>`;
-  if(!ph) return `<p class="why">No Geograph photo suggested; the site will show the label tile.</p>${find}`;
+  const find = `<button type="button" class="pick-btn">${ph?'Choose a different photo':'Find a photo'}</button>`;
+  if(!ph) return `<p class="why">No photo suggested; the site will show the label tile.</p>${find}`;
   return `<figure class="ph"><button type="button" class="zoom" data-ph='${esc(JSON.stringify(ph))}' aria-label="Enlarge photo"><img src="${GEO(ph,'213x160')}" alt="" loading="lazy"></button>
     <figcaption><label><input type="checkbox" class="usephoto" checked> Use this photo</label>
-    <span>${esc(ph[1])}, ${esc(ph[2])}${ph[3]?' ('+esc(ph[3])+')':''}, Geograph</span>
+    <span>${esc(ph[1])}, ${esc(ph[2])}${ph[3]?' ('+esc(ph[3])+')':''}, ${esc(credit(ph))}</span>
     <span class="small">${chosen?'Your choice.':'Untick it if it shows a different building.'} Click the photo to enlarge it.</span>${find}</figcaption></figure>`;
 }
 function geoPath(id, hash){
@@ -198,11 +202,39 @@ async function nearbyPhotos(lat, lng){
   const rows=(await res.json()).rows||[];
   return rows.filter(x=>x.hash && +x.d<=600).map(x=>({ph:[String(x.id), x.title, x.realname||'', (x.takenday||'').slice(0,4), String(+x.id%4), geoPath(x.id,x.hash), 0], d:Math.round(+x.d)}));
 }
+// Wikimedia Commons: photos titled with the house's name, and photos taken near it
+async function commonsPhotos(name, lat, lng){
+  const api = p => fetch('https://commons.wikimedia.org/w/api.php?'+new URLSearchParams({...p, format:'json', formatversion:'2', origin:'*'})).then(r=>r.json());
+  const titles=new Set();
+  if(name && name.length>3){
+    const s=await api({action:'query', list:'search', srsearch:`"${name}"`, srnamespace:'6', srlimit:'30'});
+    (s.query?.search||[]).forEach(h=>titles.add(h.title));
+  }
+  if(lat){
+    const g=await api({action:'query', list:'geosearch', gscoord:`${lat}|${lng}`, gsradius:'500', gsnamespace:'6', gslimit:'30'});
+    (g.query?.geosearch||[]).forEach(h=>titles.add(h.title));
+  }
+  const all=[...titles].slice(0,50), rows=[];
+  for(let i=0;i<all.length;i+=25){
+    const d=await api({action:'query', titles:all.slice(i,i+25).join('|'), prop:'imageinfo', iiprop:'url|extmetadata|mime', iiurlwidth:'640'});
+    for(const p of d.query?.pages||[]){
+      const ii=(p.imageinfo||[])[0]; if(!ii || ii.mime!=='image/jpeg' || !(ii.thumburl||ii.url)) continue;
+      const md=ii.extmetadata||{}, get=k=>String(md[k]?.value||'').replace(/<[^>]+>/g,'').trim();
+      if(!get('LicenseShortName')) continue;
+      const yr=(get('DateTimeOriginal').match(/(1[89]\d\d|20\d\d)/)||[])[1]||'';
+      rows.push({named: !!name && p.title.toLowerCase().includes(name.toLowerCase().split(' ')[0]),
+        ph:['c'+p.pageid, p.title.replace(/^File:|\.[a-z]+$/gi,'').replace(/_/g,' ').slice(0,150), get('Artist').slice(0,80)||'Unknown', yr, '', ii.thumburl||ii.url, 0, get('LicenseShortName'), get('LicenseUrl'), ii.descriptionurl]});
+    }
+  }
+  return rows.sort((a,b)=>(b.named-a.named));
+}
+const thumbGrid = (list, label) => `<div class="grid">${list.map(x=>`<button type="button" class="zoom" data-choose="1" data-ph='${esc(JSON.stringify(x.ph))}'><img src="${GEO(x.ph,'213x160')}" alt="" loading="lazy"><span>${esc(x.ph[1])}<i>${label(x)}</i></span></button>`).join('')}</div>`;
+
 let ZOOM=null;
 function openZoom(ph, card){
   ZOOM={ph, card};
   $('zoom-img').src=GEO(ph,''); $('zoom-img').alt=ph[1];
-  $('zoom-cap').innerHTML=`<b>${esc(ph[1])}</b><br>${esc(ph[2])}${ph[3]?', '+esc(ph[3]):''} · <a href="https://www.geograph.org.uk/photo/${esc(ph[0])}" target="_blank" rel="noopener">See it on Geograph ↗</a>`;
+  $('zoom-cap').innerHTML=`<b>${esc(ph[1])}</b><br>${esc(ph[2])}${ph[3]?', '+esc(ph[3]):''} · ${esc(credit(ph))} · <a href="${esc(pageOf(ph))}" target="_blank" rel="noopener">See the original ↗</a>`;
   $('zoom-use').hidden=!card;
   $('zoom').showModal();
 }
@@ -215,17 +247,25 @@ document.addEventListener('click', async ev=>{
   const z=ev.target.closest('button.zoom');
   if(z){ openZoom(JSON.parse(z.dataset.ph), z.dataset.choose ? z.closest('.item') : null); return; }
   const b=ev.target.closest('button.pick-btn'); if(!b) return;
-  const card=b.closest('.item'), ch=card.querySelector('.chooser'), ll=card.querySelector('.phbox').dataset.ll;
+  const card=b.closest('.item'), ch=card.querySelector('.chooser'), box=card.querySelector('.phbox'), ll=box.dataset.ll, nm=box.dataset.nm||'', grand=box.dataset.site==='grandly';
   if(!ch || !ll) return;
   if(!ch.hidden){ ch.hidden=true; return; }
   ch.hidden=false; ch.innerHTML='<p class="why">Looking for photos near the building…</p>';
+  const [lat,lng]=ll.split(',').map(Number);
+  let html='';
+  if(grand){
+    try{
+      const c=await commonsPhotos(nm, lat, lng);
+      html += c.length ? `<p class="why"><b>Wikimedia Commons</b>: ${c.length} photos${nm?` named "${esc(nm)}" or`:''} taken within 500 m. Click one to see it larger.</p>${thumbGrid(c, x=>`${esc(x.ph[7])}${x.ph[3]?' · '+esc(x.ph[3]):''}`)}`
+        : '<p class="why"><b>Wikimedia Commons</b>: nothing found.</p>';
+    }catch(e){ html += '<p class="why">Wikimedia Commons did not answer.</p>'; }
+  }
   try{
-    const [lat,lng]=ll.split(',').map(Number);
     const list=await nearbyPhotos(lat,lng);
-    ch.innerHTML = list.length ? `<p class="why">${list.length} photos within 600 m, nearest first. Click one to see it larger.</p>
-      <div class="grid">${list.map(x=>`<button type="button" class="zoom" data-choose="1" data-ph='${esc(JSON.stringify(x.ph))}'><img src="${GEO(x.ph,'213x160')}" alt="" loading="lazy"><span>${esc(x.ph[1])}<i>${x.d} m · ${esc(x.ph[3])}</i></span></button>`).join('')}</div>`
-      : '<p class="why">No Geograph photos within 600 m.</p>';
-  }catch(e){ ch.innerHTML='<p class="why">Geograph did not answer. Try again in a minute.</p>'; }
+    html += list.length ? `<p class="why"><b>Geograph</b>: ${list.length} photos within 600 m, nearest first. Click one to see it larger.</p>${thumbGrid(list, x=>`${x.d} m · ${esc(x.ph[3])}`)}`
+      : '<p class="why"><b>Geograph</b>: no photos within 600 m.</p>';
+  }catch(e){ html += '<p class="why">Geograph did not answer. Try again in a minute.</p>'; }
+  ch.innerHTML = html;
 });
 
 // Pending rows use the judging format: id, p price, b beds, a address, t type, w was, n note, g flags, why
@@ -238,7 +278,7 @@ function pendingCard(r){
     <h2 class="place">${esc(d.a||r.id)}</h2>
     <div class="meta">${meta}</div>
     ${facts?`<div class="meta">${facts}</div>`:''}
-    <div class="phbox" data-ll="${d.ll?esc(d.ll.join(',')):''}">${photoBlock(d.ph, false)}</div>
+    <div class="phbox" data-ll="${d.ll?esc(d.ll.join(',')):''}" data-nm="${esc(d.nm||'')}" data-site="${esc(d.s||'formerly')}">${photoBlock(d.ph, false)}</div>
     ${d.ll?`<div class="chooser" hidden></div>`:''}
     <label class="hl">Headline on the site <input class="headline" value="${esc(d.h||'')}" maxlength="90" placeholder="e.g. Grade II village post office, needing modernisation"></label>
     ${d.n?`<p class="why">${esc(d.n)}</p>`:''}
