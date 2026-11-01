@@ -164,7 +164,8 @@ input.reason{font:14.5px var(--sans);color:var(--ink);background:transparent;bor
 
 <script>
 const $ = id => document.getElementById(id);
-const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+// Escapes ' too: photo data sits in single-quoted attributes, and titles like "St Mary's Church" broke them
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const zoopla = id => `https://www.zoopla.co.uk/for-sale/details/${encodeURIComponent(id)}/`;
 const when = s => s ? new Date(s.replace(' ','T')+'Z').toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}) : '';
 let LISTINGS = new Map(), GRANDLY = new Map();  // GRANDLY: grandly.uk's houses, for naming their clicks
