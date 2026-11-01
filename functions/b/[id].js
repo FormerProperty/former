@@ -4,7 +4,8 @@
 // own fbclid parameter, which Facebook adds to every link people follow from it.
 import { ensureSchema } from "../../lib/auth.js";
 
-const SOURCES = new Set(["bluesky", "facebook", "instagram", "newsletter", "threads", "x", "linkedin"]);
+const SOURCES = new Set(["bluesky", "facebook", "instagram", "newsletter", "threads", "x", "linkedin", "grandly", "formerly"]);
+const SISTERS = new Set(["grandly", "formerly"]);  // the cross-promotion card on the other site
 let ready = false;
 let known = null, knownAt = 0;
 
@@ -27,7 +28,7 @@ export async function onRequestGet({ request, env, params }) {
     const l = id ? (await listings(env, request)).get(id) : null;
     if (source && l && env.DB) {
       if (!ready) { await ensureSchema(env.DB); ready = true; }
-      const campaign = (env.SITE === "grandly" ? "grandly:" : "") + (l.photo ? "listing-photo" : "listing-tile");
+      const campaign = (env.SITE === "grandly" ? "grandly:" : "") + (SISTERS.has(source) ? "sister-card" : l.photo ? "listing-photo" : "listing-tile");
       await env.DB.prepare(`INSERT INTO visits (day, source, campaign, n) VALUES (date('now'), ?, ?, 1)
         ON CONFLICT(day, source, campaign) DO UPDATE SET n = n + 1`).bind(source, campaign).run();
     }

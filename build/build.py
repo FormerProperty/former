@@ -55,8 +55,8 @@ GRAND_TYPES = {
     "country": "Country houses", "mansion": "Mansions", "estate": "Estates", "townhouse": "Town houses",
     "other": "Other",
 }
-GRAND_OS = {"castle": "Castle", "tower": "Tower", "manor": "Manor", "hall": "Hall", "country": "Ho",
-            "mansion": "Mansion", "estate": "Park", "townhouse": "Ho", "other": "Ho"}
+GRAND_OS = {"castle": "Castle", "tower": "Tower", "manor": "Manor", "hall": "Hall", "country": "House",
+            "mansion": "Mansion", "estate": "Park", "townhouse": "House", "other": "House"}
 GRANDLY_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "grandly", "site")
 
 PC_RE = re.compile(r"\b([A-Z]{1,2})(\d[\dA-Z]?)\s*$")
@@ -224,6 +224,20 @@ def photo_for(m):
             "src": f"photos/{pid}.jpg", "thumb": base + "_213x160.jpg"}
 
 
+def sister_card(pool, pinned=None):
+    """One formerly. building for Grandly's "From our sister site" card. sister.json can pin one
+    ({"grandly": "<id>"}); otherwise the newest photographed building, the dearest of that day's."""
+    pool = [o for o in pool if o.get("photo")]
+    pick = next((o for o in pool if o["id"] == str(pinned or "")), None)
+    if not pick and pool:
+        pick = max(pool, key=lambda o: (o["added"], o["price"] or 0))
+    if not pick:
+        return []
+    card = {**pick, "extra": True, "sister": "formerly", "url": f"https://formerly.uk/b/{pick['id']}?s=grandly",
+            "photo": {**pick["photo"], "src": "https://formerly.uk/" + pick["photo"]["src"]}}
+    return [card]
+
+
 OFFER_DAYS = 31  # how long an under-offer building stays listed with its flag
 
 
@@ -311,7 +325,7 @@ def main():
             "type": t,
             "was": was,
             "label": (was[:1].upper() + was[1:]) if site == "grandly" else label(was),
-            "os": GRAND_OS.get(t, "Ho") if site == "grandly" else os_label(was, t),
+            "os": GRAND_OS.get(t, "House") if site == "grandly" else os_label(was, t),
             "note": r.get("n") or "",
             "headline": (r.get("h") or "").strip(),
             "sqft": int(r["sq"]) if str(r.get("sq") or "").isdigit() else None,
@@ -345,7 +359,8 @@ def main():
     os.makedirs(os.path.join(GRANDLY_DIR, "data"), exist_ok=True)
     with open(gp, "w") as fh:
         json.dump({"updated": datetime.date.today().isoformat(), "types": GRAND_TYPES, "count": len(grand),
-                   "listings": grand}, fh, ensure_ascii=False, indent=1)
+                   "listings": grand, "extras": sister_card(out, load("sister.json").get("grandly"))},
+                  fh, ensure_ascii=False, indent=1)
     out.sort(key=lambda x: x["listed"] or "", reverse=True)
     data = {
         "updated": datetime.date.today().isoformat(),

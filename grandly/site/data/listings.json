@@ -12,5 +12,46 @@
   "other": "Other"
  },
  "count": 0,
- "listings": []
+ "listings": [],
+ "extras": [
+  {
+   "site": "formerly",
+   "name": "",
+   "id": "74628951",
+   "url": "https://formerly.uk/b/74628951?s=grandly",
+   "source": "Zoopla",
+   "type": "oast",
+   "was": "oast house",
+   "label": "Formerly an oast house",
+   "os": "Oast",
+   "note": "With a separate one-bedroom cottage, pool and stables",
+   "headline": "Unlisted Kentish oast in over two acres",
+   "sqft": 3666,
+   "plot": "over 2 acres",
+   "grade": "",
+   "built": "",
+   "place": "Water Lane, Headcorn, Ashford",
+   "postcode": "TN27",
+   "county": "Kent",
+   "region": "South East",
+   "price": 1395000,
+   "priceText": "£1,395,000",
+   "beds": 6,
+   "listed": "2026-10-29",
+   "badges": [],
+   "photo": {
+    "id": "3051164",
+    "title": "Waterside Oast, Water Lane",
+    "author": "Julian P Guffogg",
+    "year": "2012",
+    "src": "https://formerly.uk/photos/3051164.jpg",
+    "thumb": "https://s0.geograph.org.uk/geophotos/03/05/11/3051164_87b1ac4f_213x160.jpg"
+   },
+   "lat": 51.162397,
+   "lng": 0.606505,
+   "added": "2026-10-30",
+   "extra": true,
+   "sister": "formerly"
+  }
+ ]
 }
