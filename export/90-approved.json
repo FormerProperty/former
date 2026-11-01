@@ -1151,5 +1151,158 @@
   "s": "grandly",
   "n": "",
   "g": ""
+ },
+ {
+  "id": "74527265",
+  "p": "£25,000,000",
+  "b": "11",
+  "a": "Holwood Estate, Keston, Kent BR2",
+  "l": "2026-10-16",
+  "t": "country",
+  "nm": "Holwood House",
+  "w": "Country house, Grade I listed",
+  "gr": "I",
+  "ac": "about 40 acres",
+  "sq": "25060",
+  "h": "Grade I house in 40 acres of parkland inside the M25",
+  "ag": "GLOBAL 1",
+  "ll": [
+   51.359337,
+   0.042203
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "73627257",
+  "p": "£25,000,000",
+  "b": "10",
+  "a": "Ormeley Lodge Estate, Richmond, London TW10",
+  "l": "2026-07-04",
+  "t": "country",
+  "nm": "Ormeley Lodge",
+  "w": "Early Georgian house, Grade II* listed",
+  "gr": "II*",
+  "ac": "about 2.3 acres",
+  "sq": "16000",
+  "bt": "Early Georgian",
+  "h": "Early Georgian house in walled gardens by Richmond Park",
+  "ag": "UK Sotheby's International Realty - Wimbledon",
+  "ll": [
+   51.435173,
+   -0.302794
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "73083942",
+  "p": "£22,500,000",
+  "b": "9",
+  "a": "Hampstead Grove, Hampstead, London NW3",
+  "l": "2026-04-21",
+  "t": "townhouse",
+  "nm": "Old Grove House",
+  "w": "Early 18th-century house, Grade II listed",
+  "gr": "II",
+  "bt": "Early 18th century",
+  "h": "Early 18th-century house with staff cottage in old Hampstead",
+  "ag": "UK Sotheby's International Realty",
+  "ll": [
+   51.558692,
+   -0.179198
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "74017972",
+  "p": "£15,500,000",
+  "b": "7",
+  "a": "Vicarage Crescent, Battersea, London SW11",
+  "l": "2026-08-19",
+  "t": "townhouse",
+  "nm": "Old Battersea House",
+  "w": "House of 1699, Grade II* listed",
+  "gr": "II*",
+  "bt": "1699",
+  "h": "House of 1699 on Tudor foundations, thought to be Wren's",
+  "ag": "UK Sotheby's International Realty",
+  "ll": [
+   51.474314,
+   -0.176181
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "72129286",
+  "p": "£13,500,000",
+  "b": "12",
+  "a": "Holt Fleet, Ombersley, Droitwich, Worcestershire WR9",
+  "l": "2026-01-07",
+  "t": "country",
+  "nm": "Ombersley Court",
+  "w": "Early 18th-century Georgian country house, Grade I listed",
+  "gr": "I",
+  "ac": "about 49.66 acres",
+  "bt": "Early 18th century",
+  "h": "Grade I Georgian house with walled garden and parkland",
+  "ag": "Strutt & Parker - National Country House Department",
+  "ll": [
+   52.268307,
+   -2.232953
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "72690353",
+  "p": "£9,000,000",
+  "b": "10",
+  "a": "Hinchwick Manor, Condicote, Cheltenham, Gloucestershire GL54",
+  "l": "2026-03-18",
+  "t": "manor",
+  "nm": "Hinchwick Manor",
+  "w": "Manor house by C.R. Cockerell, 1826, Grade II listed",
+  "gr": "II",
+  "ac": "76 acres",
+  "bt": "1826",
+  "h": "Cockerell manor of 1826 with an octagonal stone courtyard",
+  "ag": "Savills - Country Department",
+  "ll": [
+   51.968297,
+   -1.79035
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "74468421",
+  "p": "£8,500,000",
+  "b": "10",
+  "a": "Sandford Lane, Hurst, Berkshire RG10",
+  "l": "2026-10-09",
+  "t": "country",
+  "nm": "Hurst Grove",
+  "w": "Georgian country house of about 1730, Grade II listed",
+  "gr": "II",
+  "ac": "37.07 acres",
+  "bt": "c.1730",
+  "h": "Georgian country house of about 1730 in 37 acres",
+  "ag": "Knight Frank - Country Department Sales",
+  "ll": [
+   51.4475,
+   -0.8665
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
  }
 ]
