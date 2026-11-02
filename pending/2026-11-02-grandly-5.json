@@ -1,0 +1,70 @@
+[
+ {
+  "id": "74465062",
+  "p": "£3,450,000",
+  "b": "6",
+  "a": "Willeymoor Lane, Cheshire, Whitchurch SY13",
+  "l": "2026-10-09",
+  "t": "hall",
+  "nm": "Tushingham Hall",
+  "w": "Country house with a 17th-century core, Grade II listed",
+  "gr": "II",
+  "ac": "about 26.67 acres",
+  "bt": "17th century",
+  "sq": "6000",
+  "h": "Restored hall overlooking its own lake and parkland",
+  "ag": "Savills - Country Department",
+  "ll": [
+   53.007209,
+   -2.702959
+  ],
+  "why": "Grade II, 17th-century core on a moated site, 26.67 acres with a lake",
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "73661364",
+  "p": "£2,000,000",
+  "b": "7",
+  "a": "Stoke Hall, Nantwich, Cheshire CW5",
+  "l": "2026-07-08",
+  "t": "hall",
+  "nm": "Stoke Hall",
+  "w": "17th-century hall, Grade II listed",
+  "gr": "II",
+  "bt": "17th century",
+  "sq": "7000",
+  "h": "17th-century hall in the Cheshire countryside",
+  "ag": "Inigo",
+  "ll": [
+   53.107498,
+   -2.56501
+  ],
+  "why": "Grade II 17th-century hall, 6 to 7 bed (passes on 7 beds, just)",
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "71349061",
+  "p": "£1,300,000",
+  "b": "13",
+  "a": "Berstane House, Berstane Road, St Ola, Kirkwall, Orkney KW15",
+  "l": "2025-09-18",
+  "t": "mansion",
+  "nm": "Berstane House",
+  "w": "Stately home on Orkney",
+  "ac": "about 8 acres",
+  "h": "Thirteen-bedroom Orkney mansion with sea views",
+  "ag": "K Allan Properties",
+  "ll": [
+   58.974998,
+   -2.924999
+  ],
+  "why": "Borderline: 13 bed, 8 acres of woodland and lawns near Kirkwall, but no listing stated. Your call",
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ }
+]
