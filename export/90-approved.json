@@ -1304,5 +1304,138 @@
   "s": "grandly",
   "n": "",
   "g": ""
+ },
+ {
+  "id": "73388080",
+  "p": "£7,950,000",
+  "b": "10",
+  "a": "Newington House, Wallingford, Oxfordshire OX10",
+  "l": "2026-06-05",
+  "t": "country",
+  "nm": "Newington House",
+  "w": "17th-century country house, Grade II* listed",
+  "gr": "II*",
+  "ac": "42 acres",
+  "bt": "17th century",
+  "h": "17th-century palazzo with the Thame running through its 42 acres",
+  "ag": "Savills - Country Department",
+  "ll": [
+   51.663539,
+   -1.121488
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "64581047",
+  "p": "£6,950,000",
+  "b": "6",
+  "a": "Saddlewood, Leighterton, Tetbury, Gloucestershire GL8",
+  "l": "2026-05-02",
+  "t": "manor",
+  "nm": "Saddlewood Manor",
+  "w": "17th-century Cotswold stone manor, Grade II listed",
+  "gr": "II",
+  "ac": "172 acres",
+  "bt": "17th century",
+  "h": "17th-century Cotswold manor on a 172-acre ring-fenced estate",
+  "ag": "Knight Frank - Country Department Sales",
+  "ll": [
+   51.607122,
+   -2.275279
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "69766913",
+  "p": "£5,975,000",
+  "b": "10",
+  "a": "Ampney Crucis, Cirencester, Gloucestershire GL7",
+  "l": "2025-03-25",
+  "t": "manor",
+  "nm": "Waterton House",
+  "w": "Cotswold stone manor house, about 1901",
+  "ac": "25 acres",
+  "bt": "c.1901",
+  "sq": "16008",
+  "h": "Cotswold stone manor overlooking its own parkland",
+  "ag": "Savills - Country Department",
+  "ll": [
+   51.710969,
+   -1.908011
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "71226680",
+  "p": "£5,950,000",
+  "b": "6",
+  "a": "Haslingfield Manor, 5 High Street, Cambridge, Cambridgeshire CB23",
+  "l": "2026-04-21",
+  "t": "manor",
+  "nm": "Haslingfield Manor",
+  "w": "Tudor manor house, Grade II* listed",
+  "gr": "II*",
+  "ac": "3.08 acres",
+  "bt": "Mid-16th century",
+  "sq": "7420",
+  "h": "Tudor manor where Elizabeth I stayed in 1564",
+  "ag": "Savills - Country Department",
+  "ll": [
+   52.149917,
+   0.053556
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "68440313",
+  "p": "£3,950,000",
+  "b": "9",
+  "a": "Claverley, Shropshire WV5",
+  "l": "2026-05-01",
+  "t": "hall",
+  "nm": "Ludstone Hall",
+  "w": "Moated Jacobean manor house, Grade I listed",
+  "gr": "I",
+  "ac": "about 177 acres",
+  "bt": "Jacobean",
+  "h": "Moated Jacobean hall, Grade I, with 177 acres",
+  "ag": "Fisher German LLP - South",
+  "ll": [
+   52.548068,
+   -2.295017
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "73046599",
+  "p": "£3,495,000",
+  "b": "10",
+  "a": "Little Onn, Stafford, Staffordshire ST20",
+  "l": "2026-04-28",
+  "t": "hall",
+  "nm": "Little Onn Hall",
+  "w": "Victorian Jacobean-style country house",
+  "ac": "28.24 acres",
+  "bt": "Victorian",
+  "sq": "10500",
+  "h": "Victorian Jacobean-style hall in its own parkland",
+  "ag": "Knight Frank - Stafford Sales",
+  "ll": [
+   52.7376,
+   -2.2391
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
  }
 ]
