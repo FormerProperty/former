@@ -1437,5 +1437,50 @@
   "s": "grandly",
   "n": "",
   "g": ""
+ },
+ {
+  "id": "74465062",
+  "p": "£3,450,000",
+  "b": "6",
+  "a": "Willeymoor Lane, Cheshire, Whitchurch SY13",
+  "l": "2026-10-09",
+  "t": "hall",
+  "nm": "Tushingham Hall",
+  "w": "Country house with a 17th-century core, Grade II listed",
+  "gr": "II",
+  "ac": "about 26.67 acres",
+  "bt": "17th century",
+  "sq": "6000",
+  "h": "Restored hall overlooking its own lake and parkland",
+  "ag": "Savills - Country Department",
+  "ll": [
+   53.007209,
+   -2.702959
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "73661364",
+  "p": "£2,000,000",
+  "b": "7",
+  "a": "Stoke Hall, Nantwich, Cheshire CW5",
+  "l": "2026-07-08",
+  "t": "hall",
+  "nm": "Stoke Hall",
+  "w": "17th-century hall, Grade II listed",
+  "gr": "II",
+  "bt": "17th century",
+  "sq": "7000",
+  "h": "17th-century hall in the Cheshire countryside",
+  "ag": "Inigo",
+  "ll": [
+   53.107498,
+   -2.56501
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
  }
 ]
