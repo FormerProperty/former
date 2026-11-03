@@ -27,33 +27,6 @@
   ]
  },
  {
-  "id": "74656872",
-  "p": "£225,000",
-  "b": "5",
-  "a": "The Bay Horse, Helmshore Road, Haslingden BB4",
-  "l": "2026-11-02",
-  "t": "pub",
-  "w": "public house, unconverted",
-  "n": "Stripped back inside to its original structure",
-  "g": "Project",
-  "h": "Stone-built pub stripped back and ready for renovation",
-  "ag": "Coppenwall",
-  "ll": [
-   53.703246,
-   -2.326015
-  ],
-  "why": "Former Bay Horse public house, freehold, needing full renovation; Zoopla says 5 beds, the description says four",
-  "ph": [
-   "461937",
-   "The Roebuck (Pub) Lower Deardengate, Haslingden",
-   "Robert Wade",
-   "2007",
-   "1",
-   "photos/46/19/461937_d182c3a1",
-   0
-  ]
- },
- {
   "id": "74294467",
   "p": "£1,450,000",
   "b": "",
@@ -78,72 +51,5 @@
    "geophotos/04/48/48/4484828_f3dbf279",
    0
   ]
- },
- {
-  "id": "69364333",
-  "p": "£425,000",
-  "b": "4",
-  "a": "Main Street, Babcary, Somerton, Somerset TA11",
-  "l": "2026-11-02",
-  "t": "chapel",
-  "w": "chapel",
-  "n": "With a self-contained flat and a large integral garage",
-  "g": "Project",
-  "h": "Detached chapel with its own annexe flat, needing updating",
-  "sq": 1826,
-  "ag": "Greenslade Taylor Hunt",
-  "ll": [
-   51.055883,
-   -2.62412
-  ],
-  "why": "The Old Chapel: a detached converted former chapel, freehold, in need of modernisation throughout",
-  "ph": [
-   "5695261",
-   "Converted chapel, Babcary",
-   "Roger Cornfoot",
-   "2018",
-   "1",
-   "geophotos/05/69/52/5695261_0161eb63",
-   0
-  ]
- },
- {
-  "id": "74661910",
-  "p": "£525,000",
-  "b": "3",
-  "a": "Chapel House, Newport Pagnell MK16",
-  "l": "2026-11-02",
-  "t": "chapel",
-  "w": "chapel, Grade II",
-  "h": "Listed chapel with exposed beams and brickwork",
-  "sq": 1216,
-  "gr": "II",
-  "ag": "Astons Estate Agents",
-  "ll": [
-   52.0858,
-   -0.72551
-  ],
-  "why": "Grade II listed chapel conversion, freehold; Zoopla calls it a cottage and it has allocated parking, so worth checking it is the whole chapel",
-  "ph": null
- },
- {
-  "id": "66566614",
-  "p": "£850,000",
-  "b": "3",
-  "a": "Wolverley Road, Wolverley, Kidderminster DY10",
-  "l": "2026-11-02",
-  "t": "coach",
-  "w": "coach house",
-  "n": "With six stables, a two-furlong gallop and 7.2 acres",
-  "h": "Converted coach house with its own gallop and stables",
-  "sq": 1850,
-  "ac": "7.2 acres",
-  "ag": "Andrew Grant",
-  "ll": [
-   52.407825,
-   -2.24997
-  ],
-  "why": "Described as a converted coach house, freehold, with equestrian land",
-  "ph": null
  }
 ]
