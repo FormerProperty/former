@@ -63,6 +63,30 @@ Clone `FormerProperty/former` (add it to the session first if needed) and work o
 3. **Drop ids we have already seen:** anything in `docs/data/listings.json`, `removed.json`,
    `pending/*.json` or `pending/judged-out.json`.
 
+## 2b. Comparison run: email-only judging (Friday 6 November 2026 only)
+
+Tanya wants to compare the current method with an email-only method that never opens a Zoopla
+page. On **Friday 6 November 2026 only**, do this **before** opening any listing page:
+
+1. For every candidate id that came from an alert email (formerly. and, if the Grandly intake is
+   on, grandly.), judge it using **only** what the email card shows (price, beds, type, address,
+   summary line) plus a location from the postcode via the free API
+   `https://api.postcodes.io/postcodes/<postcode>` (or `/outcodes/<outcode>` when only the district
+   is given). Do not open Zoopla pages or follow links in the emails for this step.
+2. For each, record `{"id", "decision": "in" | "out" | "unsure", "why", and for "in" or "unsure"
+   the usual fields you can fill (p, b, a, t, w, h, ll...)}` in
+   `compare/2026-11-06-email-only.json`. Write the headline from the card alone; leave out what the
+   card does not say.
+3. Commit that file first, before any page is opened, so the blind judgement is on record.
+4. Then carry on with the normal run below (open pages, judge, queue). Only the normal run's
+   results go into `pending/`; the email-only file is for comparison and is never queued.
+5. At the end, write `compare/2026-11-06-report.md`: a table of every candidate with both
+   decisions side by side (email-only vs full), where they differ and why, how headlines and
+   notes compare, how far the postcode location was from the listing's map location, how many
+   Zoopla pages the normal run opened, and which candidates came only from the Friday sweep
+   (which the email-only method would never see). Finish with a short verdict. Send Tanya the
+   main numbers in the run message and say the full report is in the repository.
+
 ## 3. Judge each new listing
 
 Open `https://www.zoopla.co.uk/for-sale/details/<id>/` and read the page text (title,
