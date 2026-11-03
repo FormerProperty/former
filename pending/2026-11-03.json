@@ -15,7 +15,16 @@
    51.806306,
    -1.503058
   ],
-  "why": "Described as a former pub being converted into one terraced home; it sits in a development of eight, so check the pub building is this unit and not a new build beside it"
+  "why": "Described as a former pub being converted into one terraced home; it sits in a development of eight, so check the pub building is this unit and not a new build beside it",
+  "ph": [
+   "3059633",
+   "Foxburrow Lane passes The Crawley Inn",
+   "Stuart Logan",
+   "2012",
+   "1",
+   "geophotos/03/05/96/3059633_ccbd642d",
+   0
+  ]
  },
  {
   "id": "74656872",
@@ -33,7 +42,16 @@
    53.703246,
    -2.326015
   ],
-  "why": "Former Bay Horse public house, freehold, needing full renovation; Zoopla says 5 beds, the description says four"
+  "why": "Former Bay Horse public house, freehold, needing full renovation; Zoopla says 5 beds, the description says four",
+  "ph": [
+   "461937",
+   "The Roebuck (Pub) Lower Deardengate, Haslingden",
+   "Robert Wade",
+   "2007",
+   "1",
+   "photos/46/19/461937_d182c3a1",
+   0
+  ]
  },
  {
   "id": "74294467",
@@ -50,7 +68,16 @@
    51.941606,
    -0.881967
   ],
-  "why": "Freehold of an entire former bank building, recently converted to six flats and sold as an investment; included as a whole building, though it is flats"
+  "why": "Freehold of an entire former bank building, recently converted to six flats and sold as an investment; included as a whole building, though it is flats",
+  "ph": [
+   "4484828",
+   "TSB bank in Winslow",
+   "Steve Daniels",
+   "2015",
+   "0",
+   "geophotos/04/48/48/4484828_f3dbf279",
+   0
+  ]
  },
  {
   "id": "69364333",
@@ -69,7 +96,16 @@
    51.055883,
    -2.62412
   ],
-  "why": "The Old Chapel: a detached converted former chapel, freehold, in need of modernisation throughout"
+  "why": "The Old Chapel: a detached converted former chapel, freehold, in need of modernisation throughout",
+  "ph": [
+   "5695261",
+   "Converted chapel, Babcary",
+   "Roger Cornfoot",
+   "2018",
+   "1",
+   "geophotos/05/69/52/5695261_0161eb63",
+   0
+  ]
  },
  {
   "id": "74661910",
@@ -87,7 +123,8 @@
    52.0858,
    -0.72551
   ],
-  "why": "Grade II listed chapel conversion, freehold; Zoopla calls it a cottage and it has allocated parking, so worth checking it is the whole chapel"
+  "why": "Grade II listed chapel conversion, freehold; Zoopla calls it a cottage and it has allocated parking, so worth checking it is the whole chapel",
+  "ph": null
  },
  {
   "id": "66566614",
@@ -106,6 +143,7 @@
    52.407825,
    -2.24997
   ],
-  "why": "Described as a converted coach house, freehold, with equestrian land"
+  "why": "Described as a converted coach house, freehold, with equestrian land",
+  "ph": null
  }
 ]
