@@ -1,6 +1,22 @@
 {
  "runs": [
   {
+   "date": "2026-11-03",
+   "label": "Tuesday 3 November",
+   "checked": 96,
+   "queued": 6,
+   "left_out": 90,
+   "reasons": [
+    "34 new builds in modern developments",
+    "28 flats in larger buildings or developments",
+    "19 ordinary houses (keyword only in the area or description)",
+    "7 outside England",
+    "2 others: a house on a street named after a mill and a plot of land"
+   ],
+   "health": "Only 6 new buildings queued: Zoopla refused a page (403) after 8 listing pages, so 41 candidates are left for the next run.",
+   "notes": "Alert emails only (Tuesday run, no sweep). Zoopla returned a 403 on the 9th page of the sitting (listing 74657010), so Zoopla was stopped for the day. 41 candidates left unjudged for next time: 21 plausible alert cards (former mill at New Bolingbroke, Old Engine House at Lavenham, Bucklesham sand filter building, Tasburgh former post office, St Dionis Road chapel conversion and others) and 19 large houses from Zoopla's weekly digest email whose alert is not named. Price cuts recorded for 3 live listings (74111993, 72004516, 74439830)."
+  },
+  {
    "date": "2026-10-30",
    "label": "Friday 30 October",
    "checked": 126,
