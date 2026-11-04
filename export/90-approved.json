@@ -1552,5 +1552,110 @@
    52.407825,
    -2.24997
   ]
+ },
+ {
+  "id": "68756427",
+  "p": "£1,500,000",
+  "b": "8",
+  "a": "Rubislaw House, 50 Queens Road, Aberdeen AB15",
+  "l": "2024-11-11",
+  "t": "townhouse",
+  "nm": "Rubislaw House",
+  "w": "Late 19th-century granite house, Category A listed",
+  "gr": "A",
+  "bt": "Late 19th century",
+  "h": "Category A granite house with stained glass and carved bays",
+  "ag": "Savills - Aberdeen",
+  "ll": [
+   57.141725,
+   -2.135277
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "70932967",
+  "p": "£3,750,000",
+  "b": "10",
+  "a": "Lamb's House, Waters Close, Leith, Edinburgh EH6",
+  "l": "2025-07-31",
+  "t": "townhouse",
+  "nm": "Lamb's House",
+  "w": "Merchant's house of 1610, Category A listed",
+  "gr": "A",
+  "bt": "1610",
+  "h": "Restored merchant's house of 1610 by Leith harbour",
+  "ag": "Savills - Edinburgh Town",
+  "ll": [
+   55.975078,
+   -3.169804
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "60762441",
+  "p": "£9,500,000",
+  "b": "14",
+  "a": "Much Hadham, Hertfordshire SG10",
+  "l": "2022-02-15",
+  "t": "country",
+  "nm": "Moor Place",
+  "w": "Georgian country house, Grade I listed",
+  "gr": "I",
+  "ac": "70 acres",
+  "bt": "Georgian",
+  "h": "Grade I Georgian house in 70 acres of Hertfordshire",
+  "ag": "London Luxury Property",
+  "ll": [
+   51.850662,
+   0.062527
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "70580269",
+  "p": "£3,950,000",
+  "b": "6",
+  "a": "The Circus, Bath, Somerset BA1",
+  "l": "2025-06-24",
+  "t": "townhouse",
+  "nm": "",
+  "w": "Georgian townhouse on The Circus, Grade I listed",
+  "gr": "I",
+  "h": "Grade I house on The Circus with a garden to Victoria Park",
+  "ag": "Savills - Bath",
+  "ll": [
+   51.385747,
+   -2.36468
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "73044643",
+  "p": "£12,950,000",
+  "b": "6",
+  "a": "Hanover Terrace, Regent's Park, London NW1",
+  "l": "2026-04-28",
+  "t": "townhouse",
+  "nm": "",
+  "w": "Nash terrace house on Regent's Park, Grade I listed",
+  "gr": "I",
+  "sq": "6245",
+  "h": "Grade I Nash house with park views and its own mews",
+  "ag": "Savills - St. John's Wood & Regents Park",
+  "ll": [
+   51.52775,
+   -0.162949
+  ],
+  "s": "grandly",
+  "n": "",
+  "g": ""
  }
 ]
