@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-04",
+ "updated": "2026-11-05",
  "types": {
   "castle": "Castles",
   "tower": "Tower houses",
@@ -11,7 +11,7 @@
   "townhouse": "Town houses",
   "other": "Other"
  },
- "count": 42,
+ "count": 43,
  "listings": [
   {
    "site": "grandly",
@@ -584,6 +584,36 @@
    "lat": 53.013864,
    "lng": -1.011665,
    "added": "2026-11-01"
+  },
+  {
+   "site": "grandly",
+   "name": "Woodcote Manor",
+   "id": "73296633",
+   "url": "https://www.zoopla.co.uk/for-sale/details/73296633/",
+   "source": "Zoopla",
+   "type": "manor",
+   "was": "Manor house with a 17th-century front, Grade II* listed",
+   "label": "Manor house with a 17th-century front, Grade II* listed",
+   "os": "Manor",
+   "note": "",
+   "headline": "Grade II* manor in 18th-century parkland near the South Downs",
+   "sqft": 14133,
+   "plot": "202 acres",
+   "grade": "II*",
+   "built": "17th century (origins late 12th century)",
+   "place": "Woodcote Manor, Alresford",
+   "postcode": "SO24",
+   "county": "Hampshire",
+   "region": "South East",
+   "price": 11500000,
+   "priceText": "£11,500,000",
+   "beds": 9,
+   "listed": "2026-05-27",
+   "badges": [],
+   "photo": null,
+   "lat": 51.045927,
+   "lng": -1.112325,
+   "added": "2026-11-05"
   },
   {
    "site": "grandly",
