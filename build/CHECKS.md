@@ -10,6 +10,11 @@ It runs every day except Tuesday and Friday (the intake days).
   403 or challenge page, stop for the day and save what was checked. Never try to get round bot
   protection. (Zoopla refused pages after about 20 to 25 quick fetches on 1 November 2026, and
   refusals land on Tanya's connection and Zoopla account.)
+- **Start fresh, stop at the first refusal (agreed with Tanya, 5 Nov 2026).** At the start of the
+  run open a new tab and load `https://www.zoopla.co.uk/` once, normally, like any browser visit;
+  then fetch pages from that tab at the pace above. At the first 403 or challenge page, stop using
+  Zoopla for the day. Never reload, open another tab, or load a page normally to clear a refusal
+  and carry on: that would be working round the protection, which we do not do.
 - Use Tanya's Chrome (Claude in Chrome), from a zoopla.co.uk tab, with in-page `fetch`.
   If Chrome is not reachable, stop quietly: tomorrow's run picks up the slack. Tell Tanya only if
   three runs in a row could not reach Chrome.

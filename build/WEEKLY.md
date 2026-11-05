@@ -14,6 +14,11 @@ session: everything lands in the review queue at https://formerly.uk/review.
   leave the rest for the next run. Never try to get round bot protection.
 - **Open a page only when the alert card leaves a real chance it qualifies.** The card's price,
   bedrooms, type, address and summary are enough to rule out most noise without a fetch.
+- **Start fresh, stop at the first refusal (agreed with Tanya, 5 Nov 2026).** At the start of the
+  run open a new tab and load `https://www.zoopla.co.uk/` once, normally, like any browser visit;
+  then fetch pages from that tab at the pace above. At the first 403 or challenge page, stop using
+  Zoopla for the day. Never reload, open another tab, or load a page normally to clear a refusal
+  and carry on: that would be working round the protection, which we do not do.
 - **Use Tanya's Chrome** (Claude in Chrome), where she is signed in to Zoopla, and fetch pages from
   a zoopla.co.uk tab with in-page `fetch` + `DOMParser`. Keep progress in `localStorage`
   (`__formerlyWeek`) so a sleeping computer only pauses the run.
