@@ -118,7 +118,22 @@ def choose(listings, posted, today, log=None, priority=None):
     photos = order([x for x in live if x.get("photo")])
     tiles = order([x for x in live if not x.get("photo")])
     first, second = (photos, tiles) if want_photo(log) else (tiles, photos)
-    return (first + second)[:1]
+    if first or second:
+        return (first + second)[:1]
+    # 3. Nothing new left: share again one already posted, not shared in the last RESHARE_DAYS days
+    #    (Tanya, 5 Nov 2026), the one shared longest ago first. Same filters as above.
+    last = {}
+    for e in log:
+        last[str(e["id"])] = max(last.get(str(e["id"]), ""), e.get("at") or "")
+    cutoff = (today - datetime.timedelta(days=RESHARE_DAYS)).isoformat()
+    again = [x for x in listings if str(x["id"]) in posted and "Under offer" not in (x.get("badges") or [])
+             and priority.get(str(x["id"]), {}).get("pref") != "never"
+             and (x.get("photo") or not SITE.get("photo_only"))
+             and last.get(str(x["id"]), "") < cutoff]
+    return sorted(again, key=lambda x: last.get(str(x["id"]), ""))[:1]
+
+
+RESHARE_DAYS = 8
 
 
 SITE_LABEL = SITE["domain"]
