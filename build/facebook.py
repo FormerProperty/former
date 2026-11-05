@@ -25,7 +25,7 @@ def caption_for(x, total, site=DEFAULT):
     bits = [where(x), x.get("priceText") or "Price on application"]
     if x.get("beds"):
         bits.append(f'{x["beds"]} bed')
-    lines = [x.get("label") or "Former " + x["was"]]
+    lines = ([x["_lead"]] if x.get("_lead") else []) + [x.get("label") or "Former " + x["was"]]
     if x.get("headline"):
         lines.append(x["headline"])
     lines.append(" · ".join(bits))

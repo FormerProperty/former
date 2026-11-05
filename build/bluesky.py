@@ -136,6 +136,14 @@ def choose(listings, posted, today, log=None, priority=None):
 RESHARE_DAYS = 8
 
 
+def reshare_lead(x, log):
+    """Opening line for a re-share: news if the price has dropped since it was last shared."""
+    before = next((e.get("price") for e in reversed(log) if str(e["id"]) == str(x["id"]) and e.get("price")), None)
+    if before and x.get("price") and x["price"] < before:
+        return f'Price reduced: now {x["priceText"]} (was £{before:,})'
+    return "Still for sale"
+
+
 SITE_LABEL = SITE["domain"]
 
 
@@ -157,7 +165,7 @@ def text_for(x, total):
     bits = [where(x), x["priceText"] or "Price on application"]
     if x.get("beds"):
         bits.append(f'{x["beds"]} bed')
-    head = [x.get("label") or "Former " + x["was"]] + ([x["headline"]] if x.get("headline") else []) + [" · ".join(bits)]
+    head = ([x["_lead"]] if x.get("_lead") else []) + [x.get("label") or "Former " + x["was"]] + ([x["headline"]] if x.get("headline") else []) + [" · ".join(bits)]
     if x.get("badges"):
         head.append(" · ".join(x["badges"]))
     link_line = f'View all {total} {SITE["noun"]} on {SITE_LABEL}'
@@ -168,7 +176,11 @@ def text_for(x, total):
     text = "\n".join(lines)
     if len(text) > 295:  # keep within Bluesky's 300-character limit, dropping the flags line first
         lines = [l for l in head if l not in (" · ".join(x.get("badges") or []),)] + ["", link_line] + ([credit] if credit else [])
-        text = "\n".join(lines)[:295]
+        text = "\n".join(lines)
+        if len(text) > 295 and x.get("headline"):  # then the "what it is" line, keeping the headline and credit whole
+            lines = [l for l in lines if l != (x.get("label") or "Former " + x["was"])]
+            text = "\n".join(lines)
+        text = text[:295]
     raw = text.encode("utf-8")
     start = raw.find(f"on {SITE_LABEL}".encode()) + 3
     facets = [{"index": {"byteStart": start, "byteEnd": start + len(SITE_LABEL.encode())},
@@ -240,7 +252,13 @@ def main():
     if not pick:
         print("Nothing left to post.")
         return 0
-    x = pick[0]
+    x = dict(pick[0])
+    if x["id"] in posted:  # a re-share: nothing new was left
+        # Re-shares go out once a day, in the last slot (Tanya, 5 Nov 2026), so repeats come round half as often
+        if "--now" not in sys.argv and uk_now().hour < POST_HOURS[-1] - 1:
+            print("Nothing new to post; re-shares go out in the evening slot only.")
+            return 0
+        x["_lead"] = reshare_lead(x, log)
     text, facets = text_for(x, len(data["listings"]))
     img_path = os.path.join(ROOT, SITE["dir"], x["photo"]["src"]) if x.get("photo") else \
         os.path.join(ROOT, SITE["dir"], "email", "labels", __import__("re").sub(r"[^a-z0-9]+", "-", (x.get("os") or "bldg").lower()) + ".png")
@@ -274,7 +292,8 @@ def main():
     with open(POSTED, "w") as fh:
         json.dump(sorted(posted), fh, indent=0)
     log.append({"id": x["id"], "at": datetime.datetime.now(datetime.timezone.utc).isoformat()[:16],
-                "photo": bool(x.get("photo")), "uri": res.get("uri")})
+                "photo": bool(x.get("photo")), "uri": res.get("uri"), "price": x.get("price"),
+                **({"again": True} if x.get("_lead") else {})})
     with open(LOG, "w") as fh:
         json.dump(log[-500:], fh, indent=0)
     with open(SLOTS, "w") as fh:
