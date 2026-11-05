@@ -32,7 +32,7 @@ SITES = {
     "formerly": {"domain": "formerly.uk", "dir": "docs", "records": "social", "env": "", "hours": (8, 12, 18),
                  "noun": "buildings", "fb_line": "with all {n} buildings that began life as something else"},
     "grandly": {"domain": "grandly.uk", "dir": "grandly/site", "records": "social/grandly", "env": "GRANDLY_",
-                "hours": (8, 18), "noun": "houses", "fb_line": "with all {n} grand houses for sale across Great Britain"},
+                "hours": (8, 18), "photo_only": True, "noun": "houses", "fb_line": "with all {n} grand houses for sale across Great Britain"},
 }
 SITE = SITES["grandly" if "--site" in sys.argv and sys.argv[sys.argv.index("--site") + 1] == "grandly" else "formerly"]
 RECORDS = os.path.join(ROOT, SITE["records"])
@@ -99,6 +99,9 @@ def choose(listings, posted, today, log=None, priority=None):
     log, priority = log or [], priority or {}
     live = [x for x in listings if str(x["id"]) not in posted and "Under offer" not in (x.get("badges") or [])
             and priority.get(str(x["id"]), {}).get("pref") != "never"]
+    # Grandly posts only houses with a photo (Tanya, 5 Nov 2026): no label tiles, even for her picks
+    if SITE.get("photo_only"):
+        live = [x for x in live if x.get("photo")]
     # 1. Tanya's picks, in the order she marked them
     picks = sorted((x for x in live if priority.get(str(x["id"]), {}).get("pref") == "next"),
                    key=lambda x: priority[str(x["id"])].get("set") or "")
