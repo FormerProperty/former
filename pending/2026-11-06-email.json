@@ -1,0 +1,692 @@
+[
+ {
+  "id": "69607680",
+  "p": "£18,500",
+  "b": "",
+  "a": "Wheal Ellen Mine, Porthtowan TR4",
+  "l": "2026-10-31",
+  "t": "works",
+  "w": "mine building",
+  "h": "Bungalow on an old mine site",
+  "ll": [
+   50.287,
+   -5.138
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Engine house alert; address names Wheal Ellen Mine; £18,500. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "72529122",
+  "p": "£780,000",
+  "b": "4",
+  "a": "Arlesey Road, Ickleford, Hitchin SG5",
+  "l": "2026-10-30",
+  "t": "chapel",
+  "w": "chapel",
+  "h": "Four-bedroom chapel conversion",
+  "ll": [
+   51.972,
+   -0.281
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Matched both chapel alerts; 4 bed detached. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "72555941",
+  "p": "£650,000",
+  "b": "3",
+  "a": "Forest Lane, High Ongar, Ongar, Essex CM5",
+  "l": "2026-11-04",
+  "t": "coach",
+  "w": "coach house",
+  "h": "Three-bedroom coach house conversion",
+  "ll": [
+   51.7222,
+   0.2483
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Converted coach house alert; 3 bed terraced. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "72849921",
+  "p": "£165,000",
+  "b": "2",
+  "a": "West Lane, Dolton, Winkleigh EX19",
+  "l": "2026-11-03",
+  "t": "chapel",
+  "w": "chapel",
+  "h": "Two-bedroom chapel conversion",
+  "ll": [
+   50.8771,
+   -4.0034
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Matched both chapel alerts; 2 bed semi-detached. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "72964613",
+  "p": "£750,000",
+  "b": "5",
+  "a": "High Street, South Woodchester GL5",
+  "l": "2026-11-05",
+  "t": "postoffice",
+  "w": "post office",
+  "h": "Five-bedroom former post office",
+  "ll": [
+   51.7381,
+   -2.2211
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Former post office alert; 5 bed semi on High Street. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "73623567",
+  "p": "£1,350,000",
+  "b": "6",
+  "a": "Maynards Lane, Little Sampford, Saffron Walden CB10",
+  "l": "2026-11-03",
+  "t": "granary",
+  "w": "granary",
+  "h": "Six-bedroom house with a granary",
+  "ll": [
+   52.0292,
+   0.2622
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Granary alert; 6 bed detached £1.35m. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "73713962",
+  "p": "£30,000",
+  "b": "",
+  "a": "Former Methodist Church, Leek Road, Quarnford, Buxton SK17",
+  "l": "2026-11-03",
+  "t": "chapel",
+  "w": "Methodist church",
+  "h": "Former Methodist church, likely a project",
+  "ll": [
+   53.245,
+   -1.882
+  ],
+  "why": "EMAIL ONLY, page not read (in): Card names it \"Former Methodist Church\"; guide £30,000 suggests unconverted or a project. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74050551",
+  "p": "£325,000",
+  "b": "3",
+  "a": "Main Street, Birchover DE4",
+  "l": "2026-11-04",
+  "t": "chapel",
+  "w": "chapel",
+  "h": "Three-bedroom converted chapel",
+  "ll": [
+   53.1266,
+   -1.5652
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Converted chapel alert; 3 bed, no type given. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74075017",
+  "p": "£600,000",
+  "b": "5",
+  "a": "The Green, Tendring CO16",
+  "l": "2026-11-04",
+  "t": "chapel",
+  "w": "chapel",
+  "h": "Five-bedroom detached converted chapel",
+  "ll": [
+   51.8225,
+   1.1239
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Converted chapel alert; 5 bed detached. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74240866",
+  "p": "£1,200,000",
+  "b": "3",
+  "a": "Nunhead Grove, London SE15",
+  "l": "2026-11-03",
+  "t": "chapel",
+  "w": "chapel",
+  "h": "Three-bedroom converted chapel",
+  "ll": [
+   51.473,
+   -0.066
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Converted chapel alert; no type given, £1.2m. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74318681",
+  "p": "£400,000",
+  "b": "2",
+  "a": "William Street, Didsbury Village, Manchester M20",
+  "l": "2026-11-04",
+  "t": "church",
+  "w": "church (part)",
+  "h": "Two-bedroom home in a converted church",
+  "ll": [
+   53.424,
+   -2.233
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Church conversion alert; terraced, likely one of several. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74387610",
+  "p": "£650,000",
+  "b": "4",
+  "a": "Old Bath Road, Reading RG31",
+  "l": "2026-11-03",
+  "t": "tower",
+  "w": "water tower",
+  "h": "Four-bedroom house with a water tower",
+  "ll": [
+   51.456,
+   -1.046
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Water tower alert; 4 bed detached. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74423942",
+  "p": "£375,000",
+  "b": "4",
+  "a": "Main Road, Shavington, Cheshire CW2",
+  "l": "2026-11-04",
+  "t": "school",
+  "w": "school (part)",
+  "h": "Four-bedroom town house in a former school",
+  "ll": [
+   53.0793,
+   -2.4462
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Former school alert; town house may be one of several units. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74640595",
+  "p": "£340,000",
+  "b": "2",
+  "a": "North Mills, Bridport DT6",
+  "l": "2026-10-30",
+  "t": "works",
+  "w": "warehouse (part)",
+  "h": "Two-bedroom home in a former warehouse",
+  "ll": [
+   50.7392,
+   -2.7757
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Former warehouse alert; North Mills, terraced, may be one of several. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74641011",
+  "p": "£415,000",
+  "b": "2",
+  "a": "The Old Engine House, Lavenham CO10",
+  "l": "2026-10-30",
+  "t": "works",
+  "w": "engine house",
+  "h": "Old engine house with two bedrooms",
+  "ll": [
+   52.0586,
+   0.7215
+  ],
+  "why": "EMAIL ONLY, page not read (in): Card address is \"The Old Engine House\". Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74641272",
+  "p": "£3,350,000",
+  "b": "6",
+  "a": "Abberley, Worcester, Worcestershire WR6",
+  "l": "2026-10-30",
+  "t": "other",
+  "w": "granary",
+  "h": "Six-bedroom property with land",
+  "ll": [
+   52.23,
+   -2.382
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Granary alert; listed as land with 6 beds at £3.35m, perhaps an estate with a granary. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74643334",
+  "p": "£235,000",
+  "b": "1",
+  "a": "Kimberley Terrace, Chester CH2",
+  "l": "2026-10-30",
+  "t": "tower",
+  "w": "water tower",
+  "h": "One-bedroom home in a water tower",
+  "ll": [
+   53.2181,
+   -2.8689
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Water tower alert; 1 bed terraced in Chester. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74645677",
+  "p": "£785,000",
+  "b": "5",
+  "a": "Great Lane, Shepton Beauchamp, Ilminster TA19",
+  "l": "2026-10-30",
+  "t": "chapel",
+  "w": "chapel",
+  "h": "Five-bedroom former chapel",
+  "ll": [
+   50.935,
+   -2.916
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Former chapel alert; 5 bed, no building name on the card. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74646877",
+  "p": "£150,000",
+  "b": "6",
+  "a": "Bucklesham Sand Filter Building, Watermill Road, Bucklesham, Ipswich, Suffolk IP10",
+  "l": "2026-10-30",
+  "t": "works",
+  "w": "sand filter building, waterworks",
+  "h": "Former waterworks sand filter building with six bedrooms",
+  "ll": [
+   52.0189,
+   1.2701
+  ],
+  "why": "EMAIL ONLY, page not read (in): Card address names the \"Bucklesham Sand Filter Building\"; 6 bed for £150,000 is odd, so may be a project. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74648910",
+  "p": "£650,000",
+  "b": "5",
+  "a": "The Red House, 60 Halifax Road, Ripponden HX6",
+  "l": "2026-10-31",
+  "t": "mill",
+  "w": "mill",
+  "h": "Five-bedroom detached house linked to a mill",
+  "ll": [
+   53.6968,
+   -1.9274
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Former mill alert; address \"The Red House\" sounds like a house. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74649248",
+  "p": "£1,500,000",
+  "b": "4",
+  "a": "Oxford Street, Ramsbury, Marlborough, Wiltshire SN8",
+  "l": "2026-10-31",
+  "t": "granary",
+  "w": "granary",
+  "h": "Four-bedroom granary conversion",
+  "ll": [
+   51.406,
+   -1.685
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Granary alert; 4 bed detached, £1.5m. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74654504",
+  "p": "£750,000",
+  "b": "4",
+  "a": "Low Road, Tasburgh, Norwich NR15",
+  "l": "2026-11-02",
+  "t": "postoffice",
+  "w": "post office",
+  "h": "Four-bedroom former village post office",
+  "ll": [
+   52.503,
+   1.267
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Former post office alert; Tuesday notes flagged it as plausible. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74657010",
+  "p": "£665,000",
+  "b": "3",
+  "a": "Chapel Lane, New Bolingbroke, Boston PE22",
+  "l": "2026-11-02",
+  "t": "mill",
+  "w": "mill",
+  "h": "Former mill with three bedrooms",
+  "ll": [
+   53.051,
+   0.043
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Former mill alert; Chapel Lane address; Tuesday notes flagged a former mill here. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74662578",
+  "p": "£800,000",
+  "b": "3",
+  "a": "Whitmoor Lane, Guildford GU4",
+  "l": "2026-11-02",
+  "t": "granary",
+  "w": "granary",
+  "h": "Three-bedroom granary",
+  "ll": [
+   51.2433,
+   -0.54
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Granary alert; 3 bed semi. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74662988",
+  "p": "£3,000,000",
+  "b": "10",
+  "a": "Eastbourne Road, South Godstone, Godstone RH9",
+  "l": "2026-11-02",
+  "t": "oast",
+  "w": "oast house",
+  "h": "Ten-bedroom country house with an oast",
+  "ll": [
+   51.236,
+   -0.062
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Oast house alert; 10 bed country house. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74666121",
+  "p": "£1,100,000",
+  "b": "5",
+  "a": "Quay Road, St. Agnes TR5",
+  "l": "2026-11-03",
+  "t": "works",
+  "w": "engine house",
+  "h": "Five-bedroom house linked to an engine house",
+  "ll": [
+   50.31,
+   -5.198
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Engine house alert; Cornish mining area. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74666170",
+  "p": "£260,000",
+  "b": "2",
+  "a": "Prospect Avenue, Attleborough NR17",
+  "l": "2026-11-03",
+  "t": "pub",
+  "w": "pub",
+  "h": "Two-bedroom former pub",
+  "ll": [
+   52.516,
+   0.995
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Former public house alert; 2 bed terraced. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74668244",
+  "p": "£1,050,000",
+  "b": "5",
+  "a": "Kersteman Road, Bristol BS6",
+  "l": "2026-11-03",
+  "t": "church",
+  "w": "church",
+  "h": "Five-bedroom converted church",
+  "ll": [
+   51.4708,
+   -2.6005
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Converted church alert; 5 bed, £1.05m. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74669188",
+  "p": "£300,000",
+  "b": "3",
+  "a": "Admiral Street, Princes Park, Liverpool. L8",
+  "l": "2026-11-03",
+  "t": "church",
+  "w": "church (part)",
+  "h": "Three-bedroom town house in a converted church",
+  "ll": [
+   53.3899,
+   -2.9638
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Church conversion alert; town house, likely one of several. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74670501",
+  "p": "£1,150,000",
+  "b": "5",
+  "a": "Andover Road, Newbury RG14",
+  "l": "2026-11-03",
+  "t": "mill",
+  "w": "watermill",
+  "h": "Five-bedroom watermill",
+  "ll": [
+   51.4,
+   -1.323
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Watermill alert; 5 bed detached. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74676257",
+  "p": "£1,650,000",
+  "b": "2",
+  "a": "St. Dionis Road, Fulham SW6",
+  "l": "2026-11-04",
+  "t": "church",
+  "w": "church (part)",
+  "h": "Two-bedroom home in a converted church",
+  "ll": [
+   51.477,
+   -0.201
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Church conversion alert; £1.65m for 2 beds may be a large part of a church, or a flat. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74676258",
+  "p": "£1,350,000",
+  "b": "2",
+  "a": "St. Dionis Road, Fulham SW6",
+  "l": "2026-11-04",
+  "t": "church",
+  "w": "church (part)",
+  "h": "Two-bedroom home in a converted church",
+  "ll": [
+   51.477,
+   -0.201
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Church conversion alert; same building as 74676257. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74676449",
+  "p": "£225,000",
+  "b": "1",
+  "a": "Chapel Hill, Newquay TR7",
+  "l": "2026-11-04",
+  "t": "forge",
+  "w": "forge",
+  "h": "One-bedroom former forge",
+  "ll": [
+   50.414,
+   -5.074
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Former forge alert; 1 bed semi on Chapel Hill. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74678641",
+  "p": "£399,950",
+  "b": "4",
+  "a": "Victoria Terrace, Jarrow NE32",
+  "l": "2026-11-04",
+  "t": "church",
+  "w": "church or Sunday school",
+  "h": "Four-bedroom former church",
+  "ll": [
+   54.967,
+   -1.484
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Matched former church and Sunday school alerts; 4 bed terraced. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74678899",
+  "p": "£750,000",
+  "b": "4",
+  "a": "Maidstone Road, Nettlestead, Maidstone ME18",
+  "l": "2026-11-04",
+  "t": "oast",
+  "w": "oast house",
+  "h": "Four-bedroom oast house",
+  "ll": [
+   51.242,
+   0.415
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Oast house alert; 4 bed semi (half an oast is fine). Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74679759",
+  "p": "£200,000",
+  "b": "",
+  "a": "Queens Road, Lydd TN29",
+  "l": "2026-11-04",
+  "t": "other",
+  "w": "telephone exchange",
+  "h": "Former telephone exchange site",
+  "ll": [
+   50.994,
+   0.932
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Telephone exchange alert; listed as land at £200,000. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74682382",
+  "p": "£900,000",
+  "b": "4",
+  "a": "Church Road, Dunton CM13",
+  "l": "2026-11-04",
+  "t": "church",
+  "w": "church",
+  "h": "Converted church with four bedrooms",
+  "ll": [
+   51.615,
+   0.3383
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Converted church alert, 4 bed detached on Church Road; card does not say it is the church itself. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74683681",
+  "p": "£950,000",
+  "b": "4",
+  "a": "East Farleigh, Maidstone, Kent ME15",
+  "l": "2026-11-04",
+  "t": "coach",
+  "w": "coach house",
+  "h": "Equestrian property with a converted coach house",
+  "ll": [
+   51.253,
+   0.534
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Converted coach house alert; 4 bed equestrian. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74684102",
+  "p": "£230,000",
+  "b": "3",
+  "a": "Green Lane, Belle Vue, Carlisle CA2",
+  "l": "2026-11-04",
+  "t": "works",
+  "w": "engine house",
+  "h": "Three-bedroom engine house",
+  "ll": [
+   54.8839,
+   -2.9514
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Engine house alert; 3 bed semi. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74686728",
+  "p": "£1,400,000",
+  "b": "7",
+  "a": "Mill Way, Grantchester, Cambridge CB3",
+  "l": "2026-11-05",
+  "t": "mill",
+  "w": "mill",
+  "h": "Seven-bedroom house by the mill",
+  "ll": [
+   52.2138,
+   0.098
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Former mill alert; \"From\" price suggests a new home. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74688000",
+  "p": "£185,000",
+  "b": "3",
+  "a": "4 Grammar School Yard, Church Lane, Banham, Norwich, Norfolk NR16",
+  "l": "2026-11-05",
+  "t": "school",
+  "w": "school (part)",
+  "h": "Three-bedroom home in a former grammar school",
+  "ll": [
+   52.473,
+   1.052
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Address \"Grammar School Yard\"; terraced, maybe one of several. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74688192",
+  "p": "£425,000",
+  "b": "3",
+  "a": "Kingston, Kingsbridge TQ7",
+  "l": "2026-11-05",
+  "t": "school",
+  "w": "school",
+  "h": "Three-bedroom former school",
+  "ll": [
+   50.283,
+   -3.784
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Former school alert; 3 bed link detached. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74689185",
+  "p": "£775,000",
+  "b": "4",
+  "a": "The Old School, Main Street, Farcet, Peterborough PE7",
+  "l": "2026-11-05",
+  "t": "school",
+  "w": "school",
+  "h": "Old village school, now a four-bedroom house",
+  "ll": [
+   52.536,
+   -0.211
+  ],
+  "why": "EMAIL ONLY, page not read (in): Card address is \"The Old School\". Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74693084",
+  "p": "£350,000",
+  "b": "3",
+  "a": "The Sergeants Mess, Royal Cavalry Gate, Dragoon Road, Colchester, Essex CO2",
+  "l": "2026-11-05",
+  "t": "other",
+  "w": "sergeants' mess",
+  "h": "Three-bedroom home in a former sergeants’ mess",
+  "ll": [
+   51.8695,
+   0.8939
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Address \"The Sergeants Mess\"; terraced, likely one of several. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74693921",
+  "p": "£295,000",
+  "b": "4",
+  "a": "Chorley Road, Westhoughton, Bolton, Greater Manchester BL5",
+  "l": "2026-11-05",
+  "t": "pub",
+  "w": "pub",
+  "h": "Former pub site with four bedrooms",
+  "ll": [
+   53.5481,
+   -2.5157
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Former public house alert; listed as land. Map pin is the postcode district centre, not the building"
+ },
+ {
+  "id": "74695993",
+  "p": "£1,500,000",
+  "b": "5",
+  "a": "Drifton Hill, West Kington, Wiltshire SN14",
+  "l": "2026-11-06",
+  "t": "mill",
+  "w": "mill",
+  "h": "Five-bedroom detached former mill",
+  "ll": [
+   51.475,
+   -2.198
+  ],
+  "why": "EMAIL ONLY, page not read (unsure): Former mill alert; 5 bed detached, £1.5m. Map pin is the postcode district centre, not the building"
+ }
+]
