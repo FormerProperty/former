@@ -72,6 +72,12 @@ export async function onRequest(ctx) {
           data.ph = [ph[0], String(ph[1]).slice(0, 200), String(ph[2]).slice(0, 100), String(ph[3]).slice(0, 4), "",
                      ph[5], 0, String(ph[7]).slice(0, 40), String(ph[8]).slice(0, 200), ph[9]];
         }
+        // A better map pin Tanya set on the review card (Great Britain only)
+        const ll = b.edits.ll;
+        if (Array.isArray(ll) && ll.length === 2 && ll.every(v => typeof v === "number" && isFinite(v))
+            && ll[0] > 49.8 && ll[0] < 60.95 && ll[1] > -8.7 && ll[1] < 1.9) {
+          data.ll = [Math.round(ll[0] * 1e6) / 1e6, Math.round(ll[1] * 1e6) / 1e6];
+        }
         if (b.edits.social === "next")
           await db.prepare("INSERT INTO social (id, pref, set_at) VALUES (?, 'next', datetime('now')) ON CONFLICT(id) DO UPDATE SET pref='next', set_at=datetime('now')").bind(id).run();
         await db.prepare("UPDATE pending SET data=? WHERE id=?").bind(JSON.stringify(data), id).run();

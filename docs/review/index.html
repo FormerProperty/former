@@ -111,6 +111,11 @@ button.soc{font:600 14.5px var(--sans);padding:9px 16px;border:1px solid var(--l
 button.soc.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
 .hl{display:grid;gap:4px;font:600 11.5px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:4px}
 .hl input{font:400 18px var(--serif);letter-spacing:0;text-transform:none;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--ink);padding:6px 0}
+.loc{display:grid;gap:4px;margin-top:2px}
+.loc .row{margin-top:0}
+.loc input.locin{font:14.5px var(--sans);color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--rule);padding:6px 0;min-width:0;flex:1 1 220px}
+.loc .small{font:13px/1.4 var(--sans);color:var(--muted)}
+.loc .small b{color:var(--ink);font-weight:600}
 input.reason{font:14.5px var(--sans);color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--rule);padding:6px 0;min-width:0;flex:1 1 220px}
 .done{font-size:14px;color:var(--muted)}
 .tag{display:inline-block;font:600 11px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:4px 6px;margin-right:8px}
@@ -252,9 +257,10 @@ function choosePhoto(card, ph){
 document.addEventListener('click', async ev=>{
   const z=ev.target.closest('button.zoom');
   if(z){ openZoom(JSON.parse(z.dataset.ph), z.dataset.choose ? z.closest('.item') : null); return; }
-  const b=ev.target.closest('button.pick-btn'); if(!b) return;
+  const b=ev.target.closest('button.pick-btn'); if(!b || b.classList.contains('loc-btn')) return;
   const card=b.closest('.item'), ch=card.querySelector('.chooser'), box=card.querySelector('.phbox'), ll=box.dataset.ll, nm=box.dataset.nm||'', grand=box.dataset.site==='grandly';
-  if(!ch || !ll) return;
+  if(!ch) return;
+  if(!ll){ toast('Set a location first.'); return; }
   if(!ch.hidden){ ch.hidden=true; return; }
   ch.hidden=false; ch.innerHTML='<p class="why">Looking for photos near the building…</p>';
   const [lat,lng]=ll.split(',').map(Number);
@@ -274,6 +280,46 @@ document.addEventListener('click', async ev=>{
   ch.innerHTML = html;
 });
 
+// Location: Tanya can correct the map pin (postcode, "lat, lng" or a map link). The new pin is
+// used by "Find a photo" at once and is saved with the listing when she approves it.
+const UK = (lat,lng) => lat>49.8 && lat<60.95 && lng>-8.7 && lng<1.9;
+const pinText = (ll, approx, mine) => ll ? `<b>${mine?'Your pin':approx?'Approximate pin':'Pin'}:</b> ${ll[0].toFixed(5)}, ${ll[1].toFixed(5)}${approx&&!mine?' (postcode district centre, not the building)':''} · <a href="https://www.openstreetmap.org/?mlat=${ll[0]}&mlon=${ll[1]}#map=17/${ll[0]}/${ll[1]}" target="_blank" rel="noopener">Check on a map ↗</a>` : '<b>No pin yet.</b>';
+function locBlock(d){
+  const approx=/postcode district centre/i.test(d.why||'');
+  return `<div class="loc"><span class="small loc-now">${pinText(d.ll, approx, false)}</span>
+    <div class="row"><input class="locin" placeholder="Better location: full postcode, or lat, lng, or a map link" aria-label="Better location"><button type="button" class="pick-btn loc-btn">Set location</button></div></div>`;
+}
+async function parseLocation(txt){
+  txt=txt.trim(); if(!txt) return null;
+  let m=txt.match(/static\/(-?\d+\.\d+),(-?\d+\.\d+)/);          // Zoopla static map: lng,lat
+  if(m) return [+m[2], +m[1]];
+  m=txt.match(/[?&](?:mlat|lat)=(-?\d+\.\d+)[^#]*?[?&](?:mlon|lon|lng)=(-?\d+\.\d+)/) || txt.match(/map=\d+\/(-?\d+\.\d+)\/(-?\d+\.\d+)/)
+    || txt.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/) || txt.match(/(-?\d{1,2}\.\d{2,})\s*[,\s]\s*(-?\d{1,3}\.\d{2,})/);
+  if(m){ let a=+m[1], b=+m[2]; if(!UK(a,b) && UK(b,a)) [a,b]=[b,a]; return [a,b]; }
+  const pc=txt.toUpperCase().replace(/[^A-Z0-9]/g,'');
+  if(/^[A-Z]{1,2}\d[A-Z\d]?\d[A-Z]{2}$/.test(pc)){
+    const r=await fetch('https://api.postcodes.io/postcodes/'+pc); if(!r.ok) throw new Error('That postcode was not found.');
+    const j=(await r.json()).result; return [j.latitude, j.longitude];
+  }
+  throw new Error('Use a full postcode, "lat, lng", or a map link.');
+}
+async function setLocation(card){
+  const inp=card.querySelector('input.locin');
+  let ll;
+  try{ ll=await parseLocation(inp.value); }catch(e){ toast(e.message); return; }
+  if(!ll){ toast('Type a postcode, "lat, lng" or paste a map link.'); return; }
+  if(!UK(ll[0],ll[1])){ toast('That point is not in Great Britain.'); return; }
+  ll=[+ll[0].toFixed(6), +ll[1].toFixed(6)];
+  card.dataset.ll=JSON.stringify(ll);
+  card.querySelector('.phbox').dataset.ll=ll.join(',');
+  card.querySelector('.loc-now').innerHTML=pinText(ll,false,true)+' · saved when you approve';
+  inp.value='';
+  const ch=card.querySelector('.chooser'); ch.hidden=true;
+  card.querySelector('button.pick-btn:not(.loc-btn)')?.click();
+}
+document.addEventListener('click', ev=>{ const b=ev.target.closest('button.loc-btn'); if(b) setLocation(b.closest('.item')); });
+document.addEventListener('keydown', ev=>{ if(ev.key==='Enter' && ev.target.matches('input.locin')){ ev.preventDefault(); setLocation(ev.target.closest('.item')); } });
+
 // Pending rows use the judging format: id, p price, b beds, a address, t type, w was, n note, g flags, why
 function pendingCard(r){
   const d=r.data||{};
@@ -285,7 +331,8 @@ function pendingCard(r){
     <div class="meta">${meta}</div>
     ${facts?`<div class="meta">${facts}</div>`:''}
     <div class="phbox" data-ll="${d.ll?esc(d.ll.join(',')):''}" data-nm="${esc(d.nm||'')}" data-site="${esc(d.s||'formerly')}">${photoBlock(d.ph, false)}</div>
-    ${d.ll?`<div class="chooser" hidden></div>`:''}
+    <div class="chooser" hidden></div>
+    ${locBlock(d)}
     <label class="hl">Headline on the site <input class="headline" value="${esc(d.h||'')}" maxlength="90" placeholder="e.g. Grade II village post office, needing modernisation"></label>
     ${d.n?`<p class="why">${esc(d.n)}</p>`:''}
     ${d.why?`<p class="why">Why it was picked: ${esc(d.why)}</p>`:''}
@@ -440,10 +487,11 @@ document.addEventListener('click', async ev=>{
   const usePhoto=card.querySelector('input.usephoto');
   const chosenPh=card.dataset.ph ? JSON.parse(card.dataset.ph) : null;
   const postNext=card.querySelector('input.postnext')?.checked;
+  const newLl=card.dataset.ll ? JSON.parse(card.dataset.ll) : null;
   card.querySelectorAll('button.act').forEach(x=>x.disabled=true);
   try{
     const r=await fetch('/api/admin/decide',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({type:b.dataset.type,action:b.dataset.action,id,reason,...(headline!==undefined?{edits:{h:headline,...(usePhoto?{photo:usePhoto.checked}:{}),...(chosenPh?{ph:chosenPh}:{}),...(postNext?{social:'next'}:{})}}:{})})});
+      body:JSON.stringify({type:b.dataset.type,action:b.dataset.action,id,reason,...(headline!==undefined?{edits:{h:headline,...(usePhoto?{photo:usePhoto.checked}:{}),...(chosenPh?{ph:chosenPh}:{}),...(postNext?{social:'next'}:{}),...(newLl?{ll:newLl}:{})}}:{})})});
     const j=await r.json();
     if(!j.ok){ toast(j.error||'That did not work.'); card.querySelectorAll('button.act').forEach(x=>x.disabled=false); return; }
     toast({approve:'Approved',reject:'Rejected',remove:'Will be taken down',dismiss:'Dismissed',undo:'Undone'}[b.dataset.action]);
