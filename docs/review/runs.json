@@ -1,6 +1,23 @@
 {
  "runs": [
   {
+   "date": "2026-11-06",
+   "label": "Friday 6 November",
+   "checked": 133,
+   "queued": 0,
+   "left_out": 87,
+   "reasons": [
+    "46 flats in larger buildings or developments",
+    "22 ordinary or modern houses (keyword only in the street, area or description)",
+    "8 new builds named after old buildings",
+    "6 park homes, lodges or bungalows",
+    "4 barn conversions",
+    "1 plot of land"
+   ],
+   "health": "No new buildings queued: Zoopla refused the first page fetched after the homepage (403), so no listing pages could be read. 46 plausible candidates are left for the next run.",
+   "notes": "Alert emails (152 threads, 13 grandly: emails skipped) gave 133 new ids. 87 ruled out from the alert cards alone. Zoopla returned a 403 on the first search of the Friday sweep (page 2 of the sitting), so Zoopla was stopped for the day; the sweep and all listing pages are left for next time. Left for next run: 46 plausible cards, including Former Methodist Church at Quarnford, The Old Engine House at Lavenham, Bucklesham sand filter building, The Old School at Farcet, Tasburgh former post office, New Bolingbroke former mill, St Dionis Road church conversion. Price cuts recorded for 4 live listings (73330847, 65019472, 73788632, 72393453). Email-only comparison file and report are in compare/."
+  },
+  {
    "date": "2026-11-03",
    "label": "Tuesday 3 November",
    "checked": 96,
