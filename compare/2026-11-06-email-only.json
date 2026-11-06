@@ -1,0 +1,1127 @@
+[
+ {
+  "id": "68007294",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: Offers over £800,000 Reduced by £50,000 2 bed flat for sale Copenhagen Street, London N1)"
+ },
+ {
+  "id": "69607680",
+  "decision": "unsure",
+  "why": "Engine house alert; address names Wheal Ellen Mine; £18,500",
+  "p": "£18,500,",
+  "b": "",
+  "a": ", Wheal Ellen Mine, Porthtowan TR4",
+  "t": "works",
+  "w": "mine building",
+  "h": "Bungalow on an old mine site",
+  "ll": [
+   50.287,
+   -5.138
+  ]
+ },
+ {
+  "id": "70538912",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: Guide price £100,000 2 bed flat for sale Bradford Road, Dewsbury, West Yorkshire WF13)"
+ },
+ {
+  "id": "71826024",
+  "decision": "out",
+  "why": "Ordinary house; keyword only in the street or area name (card: £1,095,000 Reduced by £55,000 4 bed terraced for sale Malthouse Drive, London W4)"
+ },
+ {
+  "id": "71987112",
+  "decision": "out",
+  "why": "Ordinary or modern house; keyword only in the area or description (card: £500,000 Reduced by £25,000 3 bed detached for sale Blunham Road, Moggerhanger, Bedford MK44)"
+ },
+ {
+  "id": "72529122",
+  "decision": "unsure",
+  "why": "Matched both chapel alerts; 4 bed detached",
+  "p": "£780,000",
+  "b": "4",
+  "a": "Arlesey Road, Ickleford, Hitchin SG5",
+  "t": "chapel",
+  "w": "chapel",
+  "h": "Four-bedroom chapel conversion",
+  "ll": [
+   51.972,
+   -0.281
+  ]
+ },
+ {
+  "id": "72555941",
+  "decision": "unsure",
+  "why": "Converted coach house alert; 3 bed terraced",
+  "p": "£650,000",
+  "b": "3",
+  "a": "Forest Lane, High Ongar, Ongar, Essex CM5",
+  "t": "coach",
+  "w": "coach house",
+  "h": "Three-bedroom coach house conversion",
+  "ll": [
+   51.7222,
+   0.2483
+  ]
+ },
+ {
+  "id": "72849921",
+  "decision": "unsure",
+  "why": "Matched both chapel alerts; 2 bed semi-detached",
+  "p": "£165,000",
+  "b": "2",
+  "a": "West Lane, Dolton, Winkleigh EX19",
+  "t": "chapel",
+  "w": "chapel",
+  "h": "Two-bedroom chapel conversion in a Devon village",
+  "ll": [
+   50.8771,
+   -4.0034
+  ]
+ },
+ {
+  "id": "72964613",
+  "decision": "unsure",
+  "why": "Former post office alert; 5 bed semi on High Street",
+  "p": "£750,000",
+  "b": "5",
+  "a": "High Street, South Woodchester GL5",
+  "t": "postoffice",
+  "w": "post office",
+  "h": "Five-bedroom former post office on the high street",
+  "ll": [
+   51.7381,
+   -2.2211
+  ]
+ },
+ {
+  "id": "73149992",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: Guide price £500,000 2 bed flat for sale Simmonds Malthouse, Fobney Street, Reading, Berkshire RG1)"
+ },
+ {
+  "id": "73214490",
+  "decision": "out",
+  "why": "Ordinary or modern house; keyword only in the area or description (card: Offers over £525,000 3 bed detached for sale Tun Furlong, Pitstone, Buckinghamshire LU7)"
+ },
+ {
+  "id": "73623567",
+  "decision": "unsure",
+  "why": "Granary alert; 6 bed detached £1.35m",
+  "p": "£1,350,000",
+  "b": "6",
+  "a": "Maynards Lane, Little Sampford, Saffron Walden CB10",
+  "t": "granary",
+  "w": "granary",
+  "h": "Six-bedroom house with a granary",
+  "ll": [
+   52.0292,
+   0.2622
+  ]
+ },
+ {
+  "id": "73713962",
+  "decision": "in",
+  "why": "Card names it \"Former Methodist Church\"; guide £30,000 suggests unconverted or a project",
+  "p": "£30,000",
+  "b": "",
+  "a": "Former Methodist Church, Leek Road, Quarnford, Buxton SK17",
+  "t": "chapel",
+  "w": "Methodist church",
+  "h": "Former Methodist church in the Peak District hills",
+  "ll": [
+   53.245,
+   -1.882
+  ]
+ },
+ {
+  "id": "73948938",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: Offers over £500,000 Reduced by £50,000 2 bed flat for sale Broadway Lofts, 10 Gatton Road, London SW17)"
+ },
+ {
+  "id": "74050551",
+  "decision": "unsure",
+  "why": "Converted chapel alert; 3 bed, no type given",
+  "p": "£325,000",
+  "b": "3",
+  "a": "Main Street, Birchover DE4",
+  "t": "chapel",
+  "w": "chapel",
+  "h": "Three-bedroom converted chapel in the Peak District",
+  "ll": [
+   53.1266,
+   -1.5652
+  ]
+ },
+ {
+  "id": "74055230",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: Offers over £90,000 Reduced by £10,000 3 bed flat for sale Leekbrook House, Leek, United Kingdom ST13)"
+ },
+ {
+  "id": "74075017",
+  "decision": "unsure",
+  "why": "Converted chapel alert; 5 bed detached",
+  "p": "£600,000",
+  "b": "5",
+  "a": "The Green, Tendring CO16",
+  "t": "chapel",
+  "w": "chapel",
+  "h": "Five-bedroom converted chapel on the green",
+  "ll": [
+   51.8225,
+   1.1239
+  ]
+ },
+ {
+  "id": "74240866",
+  "decision": "unsure",
+  "why": "Converted chapel alert; no type given, £1.2m",
+  "p": "£1,200,000",
+  "b": "3",
+  "a": "Nunhead Grove, London SE15",
+  "t": "chapel",
+  "w": "chapel",
+  "h": "Three-bedroom converted chapel",
+  "ll": [
+   51.473,
+   -0.066
+  ]
+ },
+ {
+  "id": "74244876",
+  "decision": "out",
+  "why": "Barn conversion (card: Guide price £850,000 Reduced by £50,000 5 bed barn conversion for sale Clamp Farm, Stowmarket, Suffolk IP14)"
+ },
+ {
+  "id": "74302370",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £575,000 Reduced by £25,000 2 bed flat for sale Lynton Road, Bermondsey SE1)"
+ },
+ {
+  "id": "74318681",
+  "decision": "unsure",
+  "why": "Church conversion alert; terraced, likely one of several",
+  "p": "£400,000",
+  "b": "2",
+  "a": "William Street, Didsbury Village, Manchester M20",
+  "t": "church",
+  "w": "church (part)",
+  "h": "Two-bedroom home in a converted church",
+  "ll": [
+   53.424,
+   -2.233
+  ]
+ },
+ {
+  "id": "74353995",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: Offers over £150,000 Reduced by £10,000 2 bed flat for sale Morley Street, Daybrook, Nottingham NG5)"
+ },
+ {
+  "id": "74354045",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £375,000 Reduced by £50,000 1 bed flat for sale Lynton Road, Bermondsey, London SE1)"
+ },
+ {
+  "id": "74356729",
+  "decision": "out",
+  "why": "Park home, lodge or ordinary bungalow (card: £50,000 Reduced by £10,000 2 bed park home for sale Churchend, Twyning, Tewkesbury GL20)"
+ },
+ {
+  "id": "74373923",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £190,000 Reduced by £10,000 1 bed flat for sale Trinity Place, Merchants Road, Hotwells BS8)"
+ },
+ {
+  "id": "74387610",
+  "decision": "unsure",
+  "why": "Water tower alert; 4 bed detached",
+  "p": "£650,000",
+  "b": "4",
+  "a": "Old Bath Road, Reading RG31",
+  "t": "tower",
+  "w": "water tower",
+  "h": "Four-bedroom house with a water tower",
+  "ll": [
+   51.456,
+   -1.046
+  ]
+ },
+ {
+  "id": "74393516",
+  "decision": "out",
+  "why": "Ordinary or modern house; keyword only in the area or description (card: Offers over £625,000 Reduced by £35,000 3 bed detached for sale Beaumont House, Ivinghoe, Buckinghamshire LU7)"
+ },
+ {
+  "id": "74397471",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £87,500 Reduced by £6,250 2 bed flat for sale St. Peters Gardens, London SE13)"
+ },
+ {
+  "id": "74400993",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: Guide price £1,150,000 Reduced by £100,000 2 bed flat for sale Mountford Mansions, 100 Battersea Park Road, London SW11)"
+ },
+ {
+  "id": "74418279",
+  "decision": "out",
+  "why": "Ordinary or modern house; keyword only in the area or description (card: Offers over £500,000 Reduced by £35,000 3 bed detached for sale Clifford Road, Quainton HP22)"
+ },
+ {
+  "id": "74423942",
+  "decision": "unsure",
+  "why": "Former school alert; town house may be one of several units",
+  "p": "£375,000",
+  "b": "4",
+  "a": "Main Road, Shavington, Cheshire CW2",
+  "t": "school",
+  "w": "school (part)",
+  "h": "Four-bedroom town house in a former school",
+  "ll": [
+   53.0793,
+   -2.4462
+  ]
+ },
+ {
+  "id": "74444525",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: Guide price £190,000 Reduced by £10,000 2 bed flat for sale Mill Park Gardens, Mildenhall IP28)"
+ },
+ {
+  "id": "74474244",
+  "decision": "out",
+  "why": "Ordinary or modern house; keyword only in the area or description (card: Guide price £325,000 Reduced by £25,000 3 bed semi detached for sale Harvey Road, Willesborough TN24)"
+ },
+ {
+  "id": "74496971",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: Offers over £350,000 Reduced by £25,000 2 bed flat for sale Royal Quay, Harefield, Uxbridge UB9)"
+ },
+ {
+  "id": "74522525",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £600,000 Reduced by £50,000 2 bed flat for sale Lough Road, Islington N7)"
+ },
+ {
+  "id": "74640595",
+  "decision": "unsure",
+  "why": "Former warehouse alert; North Mills, terraced, may be one of several",
+  "p": "£340,000",
+  "b": "2",
+  "a": "North Mills, Bridport DT6",
+  "t": "works",
+  "w": "warehouse (part)",
+  "h": "Two-bedroom home in a converted rope works",
+  "ll": [
+   50.7392,
+   -2.7757
+  ]
+ },
+ {
+  "id": "74641011",
+  "decision": "in",
+  "why": "Card address is \"The Old Engine House\"",
+  "p": "£415,000",
+  "b": "2",
+  "a": "The Old Engine House, Lavenham CO10",
+  "t": "works",
+  "w": "engine house",
+  "h": "Old engine house with two bedrooms",
+  "ll": [
+   52.0586,
+   0.7215
+  ]
+ },
+ {
+  "id": "74641272",
+  "decision": "unsure",
+  "why": "Granary alert; listed as land with 6 beds at £3.35m, perhaps an estate with a granary",
+  "p": "£3,350,000",
+  "b": "6",
+  "a": "Abberley, Worcester, Worcestershire WR6",
+  "t": "other",
+  "w": "granary",
+  "h": "Six-bedroom property with land",
+  "ll": [
+   52.23,
+   -2.382
+  ]
+ },
+ {
+  "id": "74642913",
+  "decision": "out",
+  "why": "Ordinary or modern house; keyword only in the area or description (card: £1,250,000 4 bed detached for sale Valentines, Stock, Ingatestone CM4)"
+ },
+ {
+  "id": "74643334",
+  "decision": "unsure",
+  "why": "Water tower alert; 1 bed terraced in Chester",
+  "p": "£235,000",
+  "b": "1",
+  "a": "Kimberley Terrace, Chester CH2",
+  "t": "tower",
+  "w": "water tower",
+  "h": "One-bedroom home in a water tower",
+  "ll": [
+   53.2181,
+   -2.8689
+  ]
+ },
+ {
+  "id": "74643911",
+  "decision": "out",
+  "why": "Ordinary or modern house; keyword only in the area or description (card: Guide price £1,200,000 4 bed detached for sale Bonnys Road, Reigate Heath, Reigate, Surrey RH2)"
+ },
+ {
+  "id": "74645280",
+  "decision": "out",
+  "why": "Ordinary or modern house; keyword only in the area or description (card: £1,250,000 4 bed town house for sale Goddard Place, Tuffnel Park N19)"
+ },
+ {
+  "id": "74645677",
+  "decision": "unsure",
+  "why": "Former chapel alert; 5 bed, no building name on the card",
+  "p": "£785,000",
+  "b": "5",
+  "a": "Great Lane, Shepton Beauchamp, Ilminster TA19",
+  "t": "chapel",
+  "w": "chapel",
+  "h": "Five-bedroom former chapel in a Somerset village",
+  "ll": [
+   50.935,
+   -2.916
+  ]
+ },
+ {
+  "id": "74646877",
+  "decision": "in",
+  "why": "Card address names the \"Bucklesham Sand Filter Building\"; 6 bed for £150,000 is odd, so may be a project",
+  "p": "£150,000",
+  "b": "6",
+  "a": "Bucklesham Sand Filter Building, Watermill Road, Bucklesham, Ipswich, Suffolk IP10",
+  "t": "works",
+  "w": "sand filter building, waterworks",
+  "h": "Former waterworks sand filter building with six bedrooms",
+  "ll": [
+   52.0189,
+   1.2701
+  ]
+ },
+ {
+  "id": "74648910",
+  "decision": "unsure",
+  "why": "Former mill alert; address \"The Red House\" sounds like a house",
+  "p": "£650,000",
+  "b": "5",
+  "a": "The Red House, 60 Halifax Road, Ripponden HX6",
+  "t": "mill",
+  "w": "mill",
+  "h": "Five-bedroom detached house linked to a mill",
+  "ll": [
+   53.6968,
+   -1.9274
+  ]
+ },
+ {
+  "id": "74649248",
+  "decision": "unsure",
+  "why": "Granary alert; 4 bed detached, £1.5m",
+  "p": "£1,500,000",
+  "b": "4",
+  "a": "Oxford Street, Ramsbury, Marlborough, Wiltshire SN8",
+  "t": "granary",
+  "w": "granary",
+  "h": "Four-bedroom granary conversion",
+  "ll": [
+   51.406,
+   -1.685
+  ]
+ },
+ {
+  "id": "74654504",
+  "decision": "unsure",
+  "why": "Former post office alert; Tuesday notes flagged it as plausible",
+  "p": "£750,000",
+  "b": "4",
+  "a": "Low Road, Tasburgh, Norwich NR15",
+  "t": "postoffice",
+  "w": "post office",
+  "h": "Four-bedroom former village post office",
+  "ll": [
+   52.503,
+   1.267
+  ]
+ },
+ {
+  "id": "74654557",
+  "decision": "out",
+  "why": "New build in a development named after an old building (card: From £2,390,000 6 bed detached for sale Thame Road, Tetsworth, Thame OX9)"
+ },
+ {
+  "id": "74657010",
+  "decision": "unsure",
+  "why": "Former mill alert; Chapel Lane address; Tuesday notes flagged a former mill here",
+  "p": "£665,000",
+  "b": "3",
+  "a": "Chapel Lane, New Bolingbroke, Boston PE22",
+  "t": "mill",
+  "w": "mill",
+  "h": "Former mill with three bedrooms",
+  "ll": [
+   53.051,
+   0.043
+  ]
+ },
+ {
+  "id": "74658689",
+  "decision": "out",
+  "why": "Ordinary or modern house; keyword only in the area or description (card: £1,000,000 2 bed end terrace for sale Hawley Mews, Chalk Farm, London NW1)"
+ },
+ {
+  "id": "74662578",
+  "decision": "unsure",
+  "why": "Granary alert; 3 bed semi",
+  "p": "£800,000",
+  "b": "3",
+  "a": "Whitmoor Lane, Guildford GU4",
+  "t": "granary",
+  "w": "granary",
+  "h": "Three-bedroom granary",
+  "ll": [
+   51.2433,
+   -0.54
+  ]
+ },
+ {
+  "id": "74662988",
+  "decision": "unsure",
+  "why": "Oast house alert; 10 bed country house",
+  "p": "£3,000,000",
+  "b": "10",
+  "a": "Eastbourne Road, South Godstone, Godstone RH9",
+  "t": "oast",
+  "w": "oast house",
+  "h": "Ten-bedroom country house with an oast",
+  "ll": [
+   51.236,
+   -0.062
+  ]
+ },
+ {
+  "id": "74665808",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £950,000 3 bed flat for sale St. Augustines Road, Camden, London NW1)"
+ },
+ {
+  "id": "74665828",
+  "decision": "out",
+  "why": "New build in a development named after an old building (card: From £325,000 3 bed semi detached for sale Parrock Road, Gravesend, Kent DA12)"
+ },
+ {
+  "id": "74666121",
+  "decision": "unsure",
+  "why": "Engine house alert; Cornish mining area",
+  "p": "£1,100,000",
+  "b": "5",
+  "a": "Quay Road, St. Agnes TR5",
+  "t": "works",
+  "w": "engine house",
+  "h": "Five-bedroom house by the quay",
+  "ll": [
+   50.31,
+   -5.198
+  ]
+ },
+ {
+  "id": "74666170",
+  "decision": "unsure",
+  "why": "Former public house alert; 2 bed terraced",
+  "p": "£260,000",
+  "b": "2",
+  "a": "Prospect Avenue, Attleborough NR17",
+  "t": "pub",
+  "w": "pub",
+  "h": "Two-bedroom former pub",
+  "ll": [
+   52.516,
+   0.995
+  ]
+ },
+ {
+  "id": "74666801",
+  "decision": "out",
+  "why": "Ordinary or modern house; keyword only in the area or description (card: Guide price £800,000 4 bed detached for sale River View, Stapleford, Cambridge CB22)"
+ },
+ {
+  "id": "74667315",
+  "decision": "out",
+  "why": "Ordinary or modern house; keyword only in the area or description (card: Guide price £180,000 3 bed terraced for sale Sunningdale Way, Bletchley, Milton Keynes MK3)"
+ },
+ {
+  "id": "74668244",
+  "decision": "unsure",
+  "why": "Converted church alert; 5 bed, £1.05m",
+  "p": "£1,050,000",
+  "b": "5",
+  "a": "Kersteman Road, Bristol BS6",
+  "t": "church",
+  "w": "church",
+  "h": "Five-bedroom converted church",
+  "ll": [
+   51.4708,
+   -2.6005
+  ]
+ },
+ {
+  "id": "74669188",
+  "decision": "unsure",
+  "why": "Church conversion alert; town house, likely one of several",
+  "p": "£300,000",
+  "b": "3",
+  "a": "Admiral Street, Princes Park, Liverpool. L8",
+  "t": "church",
+  "w": "church (part)",
+  "h": "Three-bedroom town house in a converted church",
+  "ll": [
+   53.3899,
+   -2.9638
+  ]
+ },
+ {
+  "id": "74670026",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £155,000 2 bed flat for sale School Street, Bromley Cross, Bolton BL7)"
+ },
+ {
+  "id": "74670296",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £660,000 2 bed flat for sale Arlington Road, London NW1)"
+ },
+ {
+  "id": "74670362",
+  "decision": "out",
+  "why": "Barn conversion (card: Guide price £450,000 3 bed barn conversion for sale Station Road, Weybourne, Holt NR25)"
+ },
+ {
+  "id": "74670501",
+  "decision": "unsure",
+  "why": "Watermill alert; 5 bed detached",
+  "p": "£1,150,000",
+  "b": "5",
+  "a": "Andover Road, Newbury RG14",
+  "t": "mill",
+  "w": "watermill",
+  "h": "Five-bedroom watermill",
+  "ll": [
+   51.4,
+   -1.323
+  ]
+ },
+ {
+  "id": "74670564",
+  "decision": "out",
+  "why": "Ordinary or modern house; keyword only in the area or description (card: Offers over £625,000 3 bed terraced for sale Blackhorse Lane, Walthamstow, London E17)"
+ },
+ {
+  "id": "74671080",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: Guide price £45,000 2 bed flat for sale St Hughes Lodge, 68 Armley Lodge Road, Leeds, West Yorkshire LS12)"
+ },
+ {
+  "id": "74671154",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £210,000 2 bed flat for sale Princess Street, Manchester M1)"
+ },
+ {
+  "id": "74671544",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £275,000 2 bed flat for sale Stanstead Abbotts, Stanstead Abbotts SG12)"
+ },
+ {
+  "id": "74671552",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £165,000 2 bed flat for sale Stanstead Abbotts, Stanstead Abbotts SG12)"
+ },
+ {
+  "id": "74671910",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: Guide price £185,000 23 bed block of flats for sale Marshalls Mill Dean Clough Mills, Cross Hills, Halifax, Calderdale H)"
+ },
+ {
+  "id": "74672340",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: Offers over £230,000 2 bed flat for sale Wapping Quay, Liverpool L3)"
+ },
+ {
+  "id": "74672387",
+  "decision": "out",
+  "why": "Ordinary or modern house; keyword only in the area or description (card: £520,000 2 bed terraced for sale The Square, Stock CM4)"
+ },
+ {
+  "id": "74673497",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £550,000 2 bed flat for sale Daneland Walk, London N17)"
+ },
+ {
+  "id": "74673511",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £450,000 2 bed flat for sale Kingfisher Heights, Waterside Way, London N17)"
+ },
+ {
+  "id": "74673584",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £350,000 1 bed flat for sale Honor Oak Park, Honor Oak SE23)"
+ },
+ {
+  "id": "74674103",
+  "decision": "out",
+  "why": "New build in a development named after an old building (card: £171,497 2 bed terraced for sale \"Tavy\" at Butt Lane, East Bridgford, Nottingham NG13)"
+ },
+ {
+  "id": "74675772",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £350,000 2 bed flat for sale 1-3 Barclay Court, Haywards Heath RH16)"
+ },
+ {
+  "id": "74675777",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £315,000 1 bed flat for sale 1-3 Barclay Court, Haywards Heath RH16)"
+ },
+ {
+  "id": "74676142",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: Offers over £500,000 2 bed flat for sale Edward Road, Walthamstow, London E17)"
+ },
+ {
+  "id": "74676182",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £1,100,000 2 bed flat for sale Pentonville Road, Islington N1)"
+ },
+ {
+  "id": "74676257",
+  "decision": "unsure",
+  "why": "Church conversion alert; £1.65m for 2 beds may be a large part of a church, or a flat",
+  "p": "£1,650,000",
+  "b": "2",
+  "a": "St. Dionis Road, Fulham SW6",
+  "t": "church",
+  "w": "church (part)",
+  "h": "Two-bedroom home in a converted church",
+  "ll": [
+   51.477,
+   -0.201
+  ]
+ },
+ {
+  "id": "74676258",
+  "decision": "unsure",
+  "why": "Church conversion alert; same building as 74676257",
+  "p": "£1,350,000",
+  "b": "2",
+  "a": "St. Dionis Road, Fulham SW6",
+  "t": "church",
+  "w": "church (part)",
+  "h": "Two-bedroom home in a converted church",
+  "ll": [
+   51.477,
+   -0.201
+  ]
+ },
+ {
+  "id": "74676449",
+  "decision": "unsure",
+  "why": "Former forge alert; 1 bed semi on Chapel Hill",
+  "p": "£225,000",
+  "b": "1",
+  "a": "Chapel Hill, Newquay TR7",
+  "t": "forge",
+  "w": "forge",
+  "h": "One-bedroom former forge",
+  "ll": [
+   50.414,
+   -5.074
+  ]
+ },
+ {
+  "id": "74676652",
+  "decision": "out",
+  "why": "Ordinary or modern house; keyword only in the area or description (card: Guide price £895,000 4 bed semi detached for sale Old High Street, Headington, Oxford, Oxfordshire OX3)"
+ },
+ {
+  "id": "74677003",
+  "decision": "out",
+  "why": "Ordinary or modern house; keyword only in the area or description (card: £760,000 4 bed detached for sale Hampden Meadows, Cuxham Road, Watlington, Oxfordshire OX49)"
+ },
+ {
+  "id": "74677149",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £500,000 2 bed maisonette for sale Maiden Lane, Kings Cross NW1)"
+ },
+ {
+  "id": "74678641",
+  "decision": "unsure",
+  "why": "Matched former church and Sunday school alerts; 4 bed terraced",
+  "p": "£399,950",
+  "b": "4",
+  "a": "Victoria Terrace, Jarrow NE32",
+  "t": "church",
+  "w": "church or Sunday school",
+  "h": "Four-bedroom former church",
+  "ll": [
+   54.967,
+   -1.484
+  ]
+ },
+ {
+  "id": "74678899",
+  "decision": "unsure",
+  "why": "Oast house alert; 4 bed semi (half an oast is fine)",
+  "p": "£750,000",
+  "b": "4",
+  "a": "Maidstone Road, Nettlestead, Maidstone ME18",
+  "t": "oast",
+  "w": "oast house",
+  "h": "Four-bedroom oast house",
+  "ll": [
+   51.242,
+   0.415
+  ]
+ },
+ {
+  "id": "74679100",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £140,000 2 bed flat for sale John Street, Wimblebury, Cannock WS12)"
+ },
+ {
+  "id": "74679759",
+  "decision": "unsure",
+  "why": "Telephone exchange alert; listed as land at £200,000",
+  "p": "£200,000",
+  "b": "",
+  "a": "Queens Road, Lydd TN29",
+  "t": "other",
+  "w": "telephone exchange",
+  "h": "Former telephone exchange site",
+  "ll": [
+   50.994,
+   0.932
+  ]
+ },
+ {
+  "id": "74681012",
+  "decision": "out",
+  "why": "Ordinary or modern house; keyword only in the area or description (card: £105,000 2 bed for sale Spencers Wood, Bromley Cross, Bolton BL7)"
+ },
+ {
+  "id": "74681027",
+  "decision": "out",
+  "why": "Ordinary house; keyword only in the street or area name (card: Guide price £215,000 3 bed terraced for sale Windmill Lane, Launceston PL15)"
+ },
+ {
+  "id": "74681055",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £1,695,000 2 bed flat for sale Amies Street, London SW11)"
+ },
+ {
+  "id": "74681818",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: Guide price £525,000 1 bed flat for sale Cabanel Place, London SE11)"
+ },
+ {
+  "id": "74682193",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £425,000 1 bed flat for sale Oakley Square, London NW1)"
+ },
+ {
+  "id": "74682382",
+  "decision": "unsure",
+  "why": "Converted church alert, 4 bed detached on Church Road; card does not say it is the church itself",
+  "p": "£900,000",
+  "b": "4",
+  "a": "Church Road, Dunton CM13",
+  "t": "church",
+  "w": "church",
+  "h": "Converted church with four bedrooms",
+  "ll": [
+   51.615,
+   0.3383
+  ]
+ },
+ {
+  "id": "74683038",
+  "decision": "out",
+  "why": "Park home, lodge or ordinary bungalow (card: £29,995 2 bed park home for sale Links Road, Amble, Morpeth NE65)"
+ },
+ {
+  "id": "74683042",
+  "decision": "out",
+  "why": "Park home, lodge or ordinary bungalow (card: £57,495 2 bed lodge for sale Links Road, Amble, Morpeth NE65)"
+ },
+ {
+  "id": "74683045",
+  "decision": "out",
+  "why": "Park home, lodge or ordinary bungalow (card: £114,995 3 bed lodge for sale Links Road, Amble, Morpeth NE65)"
+ },
+ {
+  "id": "74683681",
+  "decision": "unsure",
+  "why": "Converted coach house alert; 4 bed equestrian",
+  "p": "£950,000",
+  "b": "4",
+  "a": "East Farleigh, Maidstone, Kent ME15",
+  "t": "coach",
+  "w": "coach house",
+  "h": "Equestrian property with a converted coach house",
+  "ll": [
+   51.253,
+   0.534
+  ]
+ },
+ {
+  "id": "74684102",
+  "decision": "unsure",
+  "why": "Engine house alert; 3 bed semi",
+  "p": "£230,000",
+  "b": "3",
+  "a": "Green Lane, Belle Vue, Carlisle CA2",
+  "t": "works",
+  "w": "engine house",
+  "h": "Three-bedroom engine house",
+  "ll": [
+   54.8839,
+   -2.9514
+  ]
+ },
+ {
+  "id": "74684432",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: Offers over £475,000 2 bed flat for sale Park View, Bancroft, Hitchin SG5)"
+ },
+ {
+  "id": "74686337",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: Offers over £275,000 1 bed flat for sale London Road, London SW16)"
+ },
+ {
+  "id": "74686728",
+  "decision": "unsure",
+  "why": "Former mill alert; \"From\" price suggests a new home",
+  "p": "£1,400,000",
+  "b": "7",
+  "a": "Mill Way, Grantchester, Cambridge CB3",
+  "t": "mill",
+  "w": "mill",
+  "h": "Seven-bedroom house by the mill",
+  "ll": [
+   52.2138,
+   0.098
+  ]
+ },
+ {
+  "id": "74687013",
+  "decision": "out",
+  "why": "Land or development plot (card: Guide price £1,350,000 Reduced by £1,150,000 land for sale Brickfield Lane, Arkley, Hertfordshire EN5)"
+ },
+ {
+  "id": "74687539",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £490,000 2 bed flat for sale Oakfield Road, Clifton BS8)"
+ },
+ {
+  "id": "74687540",
+  "decision": "out",
+  "why": "Park home, lodge or ordinary bungalow (card: £300,000 3 bed bungalow for sale Windmill Hill Close, Ellington, Morpeth NE61)"
+ },
+ {
+  "id": "74687871",
+  "decision": "out",
+  "why": "New build in a development named after an old building (card: From £174,996 2 bed end terrace for sale \"Tavy End\" at Butt Lane, East Bridgford, Nottingham NG13)"
+ },
+ {
+  "id": "74688000",
+  "decision": "unsure",
+  "why": "Address \"Grammar School Yard\"; terraced, maybe one of several",
+  "p": "£185,000",
+  "b": "3",
+  "a": "4 Grammar School Yard, Church Lane, Banham, Norwich, Norfolk NR16",
+  "t": "school",
+  "w": "school (part)",
+  "h": "Three-bedroom home in a former grammar school",
+  "ll": [
+   52.473,
+   1.052
+  ]
+ },
+ {
+  "id": "74688126",
+  "decision": "out",
+  "why": "New build in a development named after an old building (card: From £440,000 1 bed flat for sale The Cliffs, Greenways, Ovingdean BN2)"
+ },
+ {
+  "id": "74688192",
+  "decision": "unsure",
+  "why": "Former school alert; 3 bed link detached",
+  "p": "£425,000",
+  "b": "3",
+  "a": "Kingston, Kingsbridge TQ7",
+  "t": "school",
+  "w": "school",
+  "h": "Three-bedroom former school",
+  "ll": [
+   50.283,
+   -3.784
+  ]
+ },
+ {
+  "id": "74689185",
+  "decision": "in",
+  "why": "Card address is \"The Old School\"",
+  "p": "£775,000",
+  "b": "4",
+  "a": "The Old School, Main Street, Farcet, Peterborough PE7",
+  "t": "school",
+  "w": "school",
+  "h": "Old village school, now a four-bedroom house",
+  "ll": [
+   52.536,
+   -0.211
+  ]
+ },
+ {
+  "id": "74689439",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: Offers over £235,000 2 bed flat for sale Stone Street, Cranbrook, Kent TN17)"
+ },
+ {
+  "id": "74689447",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: Offers over £235,000 2 bed flat for sale Stone Street, Cranbrook, Kent TN17)"
+ },
+ {
+  "id": "74689554",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £650,000 2 bed flat for sale Carlton Mansions, Anson Road, London N7)"
+ },
+ {
+  "id": "74689564",
+  "decision": "out",
+  "why": "Ordinary or modern house; keyword only in the area or description (card: £575,000 5 bed terraced for sale Fitzgerald Road, Bedminster BS3)"
+ },
+ {
+  "id": "74690371",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £105,000 1 bed flat for sale Holden Mill, Blackburn Road, Bolton BL1)"
+ },
+ {
+  "id": "74690406",
+  "decision": "out",
+  "why": "Ordinary or modern house; keyword only in the area or description (card: £450,000 2 bed terraced for sale Dunkerry Road, Bristol BS3)"
+ },
+ {
+  "id": "74690491",
+  "decision": "out",
+  "why": "Barn conversion (card: Offers over £650,000 3 bed barn conversion for sale Burnthouse Road, Great Tey Colchester Essex CO6)"
+ },
+ {
+  "id": "74690769",
+  "decision": "out",
+  "why": "Ordinary house; keyword only in the street or area name (card: £895,000 4 bed for sale Windmill Road, Brentford TW8)"
+ },
+ {
+  "id": "74690812",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £360,000 2 bed flat for sale Windmill Lane, Cheshunt, Waltham Cross EN8)"
+ },
+ {
+  "id": "74692052",
+  "decision": "out",
+  "why": "Ordinary or modern house; keyword only in the area or description (card: £475,000 3 bed cottage for sale Stable Cottage, Upper Hardres, Canterbury CT4)"
+ },
+ {
+  "id": "74692259",
+  "decision": "out",
+  "why": "Barn conversion (card: Guide price £1,400,000 5 bed barn conversion for sale London Colney, St. Albans, Hertfordshire AL2)"
+ },
+ {
+  "id": "74692728",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: Offers over £270,000 2 bed flat for sale Malthouse Drive, Grays RM17)"
+ },
+ {
+  "id": "74692752",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: Guide price £850,000 3 bed flat for sale Windmill Road, London SW18)"
+ },
+ {
+  "id": "74693084",
+  "decision": "unsure",
+  "why": "Address \"The Sergeants Mess\"; terraced, likely one of several",
+  "p": "£350,000",
+  "b": "3",
+  "a": "The Sergeants Mess, Royal Cavalry Gate, Dragoon Road, Colchester, Essex CO2",
+  "t": "other",
+  "w": "sergeants' mess",
+  "h": "Three-bedroom home in a former sergeants’ mess",
+  "ll": [
+   51.8695,
+   0.8939
+  ]
+ },
+ {
+  "id": "74693690",
+  "decision": "out",
+  "why": "Park home, lodge or ordinary bungalow (card: Guide price £500,000 3 bed bungalow for sale High Street, Swaffham Prior, Cambridgeshire CB25)"
+ },
+ {
+  "id": "74693875",
+  "decision": "out",
+  "why": "New build in a development named after an old building (card: From £450,000 2 bed flat for sale The Cliffs, Greenways, Ovingdean BN2)"
+ },
+ {
+  "id": "74693921",
+  "decision": "unsure",
+  "why": "Former public house alert; listed as land",
+  "p": "£295,000",
+  "b": "4",
+  "a": "Chorley Road, Westhoughton, Bolton, Greater Manchester BL5",
+  "t": "pub",
+  "w": "pub",
+  "h": "Former pub site with four bedrooms",
+  "ll": [
+   53.5481,
+   -2.5157
+  ]
+ },
+ {
+  "id": "74694453",
+  "decision": "out",
+  "why": "Flat or apartment within a larger building or development (card: £325,000 3 bed flat for sale Glasshouses, Harrogate HG3)"
+ },
+ {
+  "id": "74695993",
+  "decision": "unsure",
+  "why": "Former mill alert; 5 bed detached, £1.5m",
+  "p": "£1,500,000",
+  "b": "5",
+  "a": "Drifton Hill, West Kington, Wiltshire SN14",
+  "t": "mill",
+  "w": "mill",
+  "h": "Five-bedroom former mill in the Wiltshire countryside",
+  "ll": [
+   51.475,
+   -2.198
+  ]
+ },
+ {
+  "id": "74699070",
+  "decision": "out",
+  "why": "New build in a development named after an old building (card: £525,000 3 bed detached for sale \"The Watermill\" at Scaynes Hill Road, Lindfield RH16)"
+ },
+ {
+  "id": "74699071",
+  "decision": "out",
+  "why": "New build in a development named after an old building (card: £525,000 3 bed detached for sale \"The Watermill\" at Scaynes Hill Road, Lindfield RH16)"
+ }
+]
