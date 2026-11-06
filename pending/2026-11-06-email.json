@@ -1,69 +1,5 @@
 [
  {
-  "id": "69607680",
-  "p": "£18,500",
-  "b": "",
-  "a": "Wheal Ellen Mine, Porthtowan TR4",
-  "l": "2026-10-31",
-  "t": "works",
-  "w": "mine building",
-  "h": "Bungalow on an old mine site",
-  "ll": [
-   50.287,
-   -5.138
-  ],
-  "why": "EMAIL ONLY, page not read (unsure): Engine house alert; address names Wheal Ellen Mine; £18,500. Map pin is the postcode district centre, not the building",
-  "ph": null
- },
- {
-  "id": "72529122",
-  "p": "£780,000",
-  "b": "4",
-  "a": "Arlesey Road, Ickleford, Hitchin SG5",
-  "l": "2026-10-30",
-  "t": "chapel",
-  "w": "chapel",
-  "h": "Four-bedroom chapel conversion",
-  "ll": [
-   51.972,
-   -0.281
-  ],
-  "why": "EMAIL ONLY, page not read (unsure): Matched both chapel alerts; 4 bed detached. Map pin is the postcode district centre, not the building",
-  "ph": null
- },
- {
-  "id": "72555941",
-  "p": "£650,000",
-  "b": "3",
-  "a": "Forest Lane, High Ongar, Ongar, Essex CM5",
-  "l": "2026-11-04",
-  "t": "coach",
-  "w": "coach house",
-  "h": "Three-bedroom coach house conversion",
-  "ll": [
-   51.7222,
-   0.2483
-  ],
-  "why": "EMAIL ONLY, page not read (unsure): Converted coach house alert; 3 bed terraced. Map pin is the postcode district centre, not the building",
-  "ph": null
- },
- {
-  "id": "72849921",
-  "p": "£165,000",
-  "b": "2",
-  "a": "West Lane, Dolton, Winkleigh EX19",
-  "l": "2026-11-03",
-  "t": "chapel",
-  "w": "chapel",
-  "h": "Two-bedroom chapel conversion",
-  "ll": [
-   50.8771,
-   -4.0034
-  ],
-  "why": "EMAIL ONLY, page not read (unsure): Matched both chapel alerts; 2 bed semi-detached. Map pin is the postcode district centre, not the building",
-  "ph": null
- },
- {
   "id": "72964613",
   "p": "£750,000",
   "b": "5",
@@ -93,22 +29,6 @@
    0.2622
   ],
   "why": "EMAIL ONLY, page not read (unsure): Granary alert; 6 bed detached £1.35m. Map pin is the postcode district centre, not the building",
-  "ph": null
- },
- {
-  "id": "73713962",
-  "p": "£30,000",
-  "b": "",
-  "a": "Former Methodist Church, Leek Road, Quarnford, Buxton SK17",
-  "l": "2026-11-03",
-  "t": "chapel",
-  "w": "Methodist church",
-  "h": "Former Methodist church, likely a project",
-  "ll": [
-   53.245,
-   -1.882
-  ],
-  "why": "EMAIL ONLY, page not read (in): Card names it \"Former Methodist Church\"; guide £30,000 suggests unconverted or a project. Map pin is the postcode district centre, not the building",
   "ph": null
  },
  {

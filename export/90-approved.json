@@ -1680,5 +1680,47 @@
   "s": "grandly",
   "n": "",
   "g": ""
+ },
+ {
+  "id": "72529122",
+  "p": "£780,000",
+  "b": "4",
+  "a": "Arlesey Road, Ickleford, Hitchin SG5",
+  "l": "2026-10-30",
+  "t": "chapel",
+  "w": "chapel",
+  "h": "Four-bedroom chapel conversion",
+  "ll": [
+   51.974574,
+   -0.276404
+  ]
+ },
+ {
+  "id": "72849921",
+  "p": "£165,000",
+  "b": "2",
+  "a": "West Lane, Dolton, Winkleigh EX19",
+  "l": "2026-11-03",
+  "t": "chapel",
+  "w": "chapel",
+  "h": "Two-bedroom chapel conversion",
+  "ll": [
+   50.890812,
+   -4.035374
+  ]
+ },
+ {
+  "id": "73713962",
+  "p": "£30,000",
+  "b": "",
+  "a": "Former Methodist Church, Leek Road, Quarnford, Buxton SK17",
+  "l": "2026-11-03",
+  "t": "chapel",
+  "w": "Methodist church",
+  "h": "Former Methodist church, likely a project",
+  "ll": [
+   53.187275,
+   -1.948371
+  ]
  }
 ]
