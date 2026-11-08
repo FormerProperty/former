@@ -80,5 +80,12 @@
 "photo": true,
 "uri": "at://did:plc:4ja3gjgwqzh7acp737fv4fnk/app.bsky.feed.post/3mzqiifwttd2y",
 "price": 7950000
+},
+{
+"id": "68440313",
+"at": "2026-11-08T07:38",
+"photo": true,
+"uri": "at://did:plc:4ja3gjgwqzh7acp737fv4fnk/app.bsky.feed.post/3mzrvrcvgkn2h",
+"price": 3950000
 }
 ]
