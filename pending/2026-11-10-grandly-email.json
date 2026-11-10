@@ -58,35 +58,6 @@
   ]
  },
  {
-  "id": "74706085",
-  "p": "Guide price £7,000,000",
-  "b": "7",
-  "a": "Terrys Lane, Cookham, Maidenhead, Berkshire SL6",
-  "t": "country",
-  "nm": "",
-  "w": "",
-  "h": "Seven-bedroom country house near Cookham",
-  "ll": [
-   51.524,
-   -0.729
-  ],
-  "l": "",
-  "s": "grandly",
-  "card": 1,
-  "n": "",
-  "g": "",
-  "why": "EMAIL ONLY, page not read: Country house and acres alerts, 7 bed. Map pin is the postcode district centre, not the building",
-  "ph": [
-   "6690145",
-   "Claires Court",
-   "N Chadwick",
-   "2019",
-   "1",
-   "geophotos/06/69/01/6690145_d4283fd2",
-   0
-  ]
- },
- {
   "id": "74699755",
   "p": "Offers over £3,950,000",
   "b": "16",
@@ -156,35 +127,6 @@
   "g": "",
   "why": "EMAIL ONLY, page not read: Grade II listed alert, 12 bed. Map pin is the postcode district centre, not the building",
   "ph": null
- },
- {
-  "id": "74641880",
-  "p": "Guide price £2,950,000",
-  "b": "7",
-  "a": "Blackberry Lane, Lingfield, Surrey RH7",
-  "t": "country",
-  "nm": "",
-  "w": "",
-  "h": "Seven-bedroom country house near Lingfield",
-  "ll": [
-   51.1749,
-   -0.0184
-  ],
-  "l": "",
-  "s": "grandly",
-  "card": 1,
-  "n": "",
-  "g": "",
-  "why": "EMAIL ONLY, page not read: Acres, castle and country house alerts, 7 bed; 74641523 on the same lane may be the same house. Map pin is the postcode district centre, not the building",
-  "ph": [
-   "3690963",
-   "The Old Cage public house, Lingfield",
-   "Ian S",
-   "2013",
-   "3",
-   "geophotos/03/69/09/3690963_2f613d27",
-   0
-  ]
  },
  {
   "id": "74641523",
@@ -266,85 +208,6 @@
   "ph": null
  },
  {
-  "id": "74629256",
-  "p": "Guide price £2,300,000",
-  "b": "6",
-  "a": "Penwood, Highclere, Newbury, Berkshire RG20",
-  "t": "country",
-  "nm": "",
-  "w": "",
-  "h": "Six-bedroom country house near Highclere",
-  "ll": [
-   51.4035,
-   -1.3376
-  ],
-  "l": "",
-  "s": "grandly",
-  "card": 1,
-  "n": "",
-  "g": "",
-  "why": "EMAIL ONLY, page not read: Country house alert, 6 bed. Map pin is the postcode district centre, not the building",
-  "ph": null
- },
- {
-  "id": "74610397",
-  "p": "£2,250,000",
-  "b": "11",
-  "a": "Holmesfield, Dronfield S18",
-  "t": "hall",
-  "nm": "",
-  "w": "",
-  "h": "Eleven-bedroom listed house at Holmesfield",
-  "ll": [
-   53.2995,
-   -1.4746
-  ],
-  "l": "",
-  "s": "grandly",
-  "card": 1,
-  "n": "",
-  "g": "",
-  "why": "EMAIL ONLY, page not read: Grade II listed alert, 11 bed. Map pin is the postcode district centre, not the building",
-  "ph": [
-   "587904",
-   "Dronfield - Civic Hall",
-   "Alan Heardman",
-   "2007",
-   "0",
-   "photos/58/79/587904_c85aabd9",
-   0
-  ]
- },
- {
-  "id": "74705958",
-  "p": "Guide price £1,950,000",
-  "b": "6",
-  "a": "Frittenden, Cranbrook, Kent TN17",
-  "t": "country",
-  "nm": "",
-  "w": "",
-  "h": "Six-bedroom house near Frittenden",
-  "ll": [
-   51.0962,
-   0.5371
-  ],
-  "l": "",
-  "s": "grandly",
-  "card": 1,
-  "n": "",
-  "g": "",
-  "why": "EMAIL ONLY, page not read: Castle alert, 6 bed; may only mention a castle. Map pin is the postcode district centre, not the building",
-  "ph": [
-   "2295445",
-   "Waterloo House Tearooms",
-   "Oast House Archive",
-   "2011",
-   "1",
-   "geophotos/02/29/54/2295445_a06b49ae",
-   0
-  ]
- },
- {
   "id": "67586576",
   "p": "Offers over £1,950,000",
   "b": "34",
@@ -366,27 +229,6 @@
   "ph": null
  },
  {
-  "id": "74616999",
-  "p": "Guide price £1,750,000",
-  "b": "7",
-  "a": "Mill Street, Hastingwood, Harlow, Essex CM17",
-  "t": "manor",
-  "nm": "",
-  "w": "",
-  "h": "Seven-bedroom listed house at Hastingwood",
-  "ll": [
-   51.7735,
-   0.1462
-  ],
-  "l": "",
-  "s": "grandly",
-  "card": 1,
-  "n": "",
-  "g": "",
-  "why": "EMAIL ONLY, page not read: Grade II listed alert, 7 bed. Map pin is the postcode district centre, not the building",
-  "ph": null
- },
- {
   "id": "73050738",
   "p": "Guide price £1,500,000",
   "b": "6",
@@ -405,146 +247,6 @@
   "n": "",
   "g": "",
   "why": "EMAIL ONLY, page not read: Grade I alert, 6 bed; at £1.5m check it is the whole house. Map pin is the postcode district centre, not the building",
-  "ph": null
- },
- {
-  "id": "74711975",
-  "p": "Guide price £1,495,000",
-  "b": "6",
-  "a": "Overton Green, Smallwood, Sandbach CW11",
-  "t": "country",
-  "nm": "",
-  "w": "",
-  "h": "Six-bedroom country house near Sandbach",
-  "ll": [
-   53.1432,
-   -2.3677
-  ],
-  "l": "",
-  "s": "grandly",
-  "card": 1,
-  "n": "",
-  "g": "",
-  "why": "EMAIL ONLY, page not read: Country house alert, 6 bed. Map pin is the postcode district centre, not the building",
-  "ph": [
-   "7321480",
-   "Sandbach House, Crewe Road",
-   "Stephen Craven",
-   "2022",
-   "0",
-   "geophotos/07/32/14/7321480_8c6a6054",
-   0
-  ]
- },
- {
-  "id": "74668336",
-  "p": "Guide price £1,495,000",
-  "b": "7",
-  "a": "Leconfield Road, Leconfield, Beverley, East Riding Of Yorkshi HU17",
-  "t": "hall",
-  "nm": "",
-  "w": "",
-  "h": "Seven-bedroom Grade I house at Leconfield",
-  "ll": [
-   53.8462,
-   -0.4271
-  ],
-  "l": "",
-  "s": "grandly",
-  "card": 1,
-  "n": "",
-  "g": "",
-  "why": "EMAIL ONLY, page not read: Grade I alert, 7 bed; at £1.5m check it is the whole house. Map pin is the postcode district centre, not the building",
-  "ph": [
-   "4593188",
-   "House building on Wellington Road, Beverley",
-   "Ian S",
-   "2015",
-   "0",
-   "geophotos/04/59/31/4593188_26e1a15e",
-   0
-  ]
- },
- {
-  "id": "74712527",
-  "p": "Guide price £1,350,000",
-  "b": "6",
-  "a": "Corseley Road, Groombridge TN3",
-  "t": "country",
-  "nm": "",
-  "w": "",
-  "h": "Six-bedroom country house near Groombridge",
-  "ll": [
-   51.1208,
-   0.2482
-  ],
-  "l": "",
-  "s": "grandly",
-  "card": 1,
-  "n": "",
-  "g": "",
-  "why": "EMAIL ONLY, page not read: Country house alert, 6 bed. Map pin is the postcode district centre, not the building",
-  "ph": [
-   "4343553",
-   "Tudor Court",
-   "N Chadwick",
-   "2014",
-   "1",
-   "geophotos/04/34/35/4343553_b40ab2e8",
-   0
-  ]
- },
- {
-  "id": "74656542",
-  "p": "Offers over £1,250,000",
-  "b": "6",
-  "a": "Carron Lodge, St. Andrews, Fife KY16",
-  "t": "country",
-  "nm": "Carron Lodge",
-  "w": "",
-  "h": "Carron Lodge, a Category A house in St Andrews",
-  "ll": [
-   56.3427,
-   -2.824
-  ],
-  "l": "",
-  "s": "grandly",
-  "card": 1,
-  "n": "",
-  "g": "",
-  "why": "EMAIL ONLY, page not read: Category A alert, 6 bed. Map pin is the postcode district centre, not the building",
-  "ph": [
-   "c179778611",
-   "Carron Angus Cyril Oliver Lodge",
-   "Carron Angus Cyril Oliver Lodge",
-   "1909",
-   "",
-   "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Carron_Angus_Cyril_Oliver_Lodge.jpg/960px-Carron_Angus_Cyril_Oliver_Lodge.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   0,
-   "CC BY-SA 4.0",
-   "https://creativecommons.org/licenses/by-sa/4.0",
-   "https://commons.wikimedia.org/wiki/File:Carron_Angus_Cyril_Oliver_Lodge.jpg"
-  ]
- },
- {
-  "id": "74644383",
-  "p": "Guide price £1,200,000",
-  "b": "7",
-  "a": "Main Road, Little Glemham, Woodbridge, Suffolk IP13",
-  "t": "country",
-  "nm": "",
-  "w": "",
-  "h": "Seven-bedroom house with land at Little Glemham",
-  "ll": [
-   52.1897,
-   1.3207
-  ],
-  "l": "",
-  "s": "grandly",
-  "card": 1,
-  "n": "",
-  "g": "",
-  "why": "EMAIL ONLY, page not read: Acres alert, 7 bed. Map pin is the postcode district centre, not the building",
   "ph": null
  },
  {
