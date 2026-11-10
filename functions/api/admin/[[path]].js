@@ -88,6 +88,12 @@ export async function onRequest(ctx) {
         .bind(b.action === "approve" ? "approved" : "rejected", reason, id).run();
       return json({ ok: r.meta.changes > 0 });
     }
+    // "Look closer": a card judged from the alert email only goes to the visit queue; the next
+    // intake run opens its Zoopla page and sends it back here as a full card
+    if (b.type === "pending" && b.action === "closer") {
+      const r = await db.prepare("UPDATE pending SET status='closer', reason=NULL, decided=datetime('now') WHERE id=? AND status='pending' AND applied=0").bind(id).run();
+      return json({ ok: r.meta.changes > 0 });
+    }
     if (b.type === "pending" && b.action === "undo") {
       const r = await db.prepare("UPDATE pending SET status='pending', reason=NULL, decided=NULL WHERE id=? AND applied=0").bind(id).run();
       return json({ ok: r.meta.changes > 0, error: r.meta.changes ? undefined : "Already live, so it can no longer be undone here" });

@@ -72,6 +72,7 @@ section{margin-top:8px}
 .meta > span + span::before{content:"·";padding:0 8px;opacity:.5}
 .meta .price{color:var(--ink);font-weight:600}
 .why{margin:0;font:italic 15px/1.5 var(--serif);color:var(--muted)}
+.cardonly{margin:2px 0 0;color:var(--oxblood);font-weight:600}
 .reps{list-style:none;margin:0;padding:0;display:grid;gap:6px}
 .reps li{font-size:14.5px;padding-left:12px;border-left:2px solid var(--oxblood)}
 .reps b{font-weight:600}
@@ -320,6 +321,8 @@ async function setLocation(card){
 document.addEventListener('click', ev=>{ const b=ev.target.closest('button.loc-btn'); if(b) setLocation(b.closest('.item')); });
 document.addEventListener('keydown', ev=>{ if(ev.key==='Enter' && ev.target.matches('input.locin')){ ev.preventDefault(); setLocation(ev.target.closest('.item')); } });
 
+// Judged from the alert email only (no Zoopla page read yet): offer "Look closer"
+const isCard = d => !!d.card || /^EMAIL ONLY/i.test(d.why||'');
 // Pending rows use the judging format: id, p price, b beds, a address, t type, w was, n note, g flags, why
 function pendingCard(r){
   const d=r.data||{};
@@ -328,6 +331,7 @@ function pendingCard(r){
   return `<article class="item" data-id="${esc(r.id)}">
     <p class="was">${d.s==='grandly'?`<span class="sitetag">grandly.</span> ${esc(d.nm?d.nm+' · ':'')}${esc(d.w||'')}`:esc(formerly(d.w||'?'))}</p>
     <h2 class="place">${esc(d.a||r.id)}</h2>
+    ${isCard(d)?'<p class="small cardonly">From the alert email only: page not read yet.</p>':''}
     <div class="meta">${meta}</div>
     ${facts?`<div class="meta">${facts}</div>`:''}
     <div class="phbox" data-ll="${d.ll?esc(d.ll.join(',')):''}" data-nm="${esc(d.nm||'')}" data-site="${esc(d.s||'formerly')}">${photoBlock(d.ph, false)}</div>
@@ -341,6 +345,7 @@ function pendingCard(r){
       <a class="out" href="${zoopla(r.id)}" target="_blank" rel="noopener">Open on Zoopla ↗</a>
       <button class="act yes" data-type="pending" data-action="approve">Approve</button>
       <button class="act" data-type="pending" data-action="reject">Reject</button>
+      ${isCard(d)?'<button class="act closer" data-type="pending" data-action="closer" title="Claude opens the Zoopla page on the next run and sends it back as a full card, with the exact location and photos">Look closer</button>':''}
     </div>
     <div class="row"><input class="reason" placeholder="Reason for rejecting (optional)" maxlength="300" aria-label="Reason for rejecting"></div>
   </article>`;
@@ -440,7 +445,9 @@ async function load(){
   $('reports').innerHTML = byListing.size ? [...byListing].map(([id,reps])=>reportCard(id,reps)).join('') : '<p class="empty">No open reports.</p>';
 
   const rec=[];
-  q.recent.pending.forEach(r=>rec.push({at:r.decided, html: recentRow(r.status==='approved'?'Approved':'Rejected', r.id, r.data.a||r.id, `${r.status==='approved'?'Added':'Rejected'} ${when(r.decided)}${r.reason?' · '+r.reason:''}`, r.status==='approved', r.applied, 'pending')}));
+  q.recent.pending.forEach(r=>rec.push({at:r.decided, html: r.status==='closer'
+    ? recentRow('Look closer', r.id, r.data.a||r.id, `Queued ${when(r.decided)} for the next run to open on Zoopla`, true, false, 'pending').replace('tag ok">Approved','tag live">Look closer')
+    : recentRow(r.status==='approved'?'Approved':'Rejected', r.id, r.data.a||r.id, `${r.status==='approved'?'Added':'Rejected'} ${when(r.decided)}${r.reason?' · '+r.reason:''}`, r.status==='approved', r.applied, 'pending')}));
   q.recent.removals.forEach(r=>{ const l=LISTINGS.get(String(r.id)); rec.push({at:r.decided, html: recentRow('Taken down', r.id, l?l.place:r.id, `Taken down ${when(r.decided)} · ${r.reason||''}`, false, r.applied, 'removal')}); });
   q.recent.dismissed.forEach(r=>{ const l=LISTINGS.get(String(r.listing_id)); rec.push({at:r.decided, html: recentRow('Dismissed', r.listing_id, l?l.place:r.listing_id, `${r.n} report${r.n>1?'s':''} dismissed ${when(r.decided)}`, true, false, 'dismissal').replace('tag ok">Approved','tag live">Dismissed')}); });
   rec.sort((a,b)=>(b.at||'').localeCompare(a.at||''));
@@ -494,7 +501,7 @@ document.addEventListener('click', async ev=>{
       body:JSON.stringify({type:b.dataset.type,action:b.dataset.action,id,reason,...(headline!==undefined?{edits:{h:headline,...(usePhoto?{photo:usePhoto.checked}:{}),...(chosenPh?{ph:chosenPh}:{}),...(postNext?{social:'next'}:{}),...(newLl?{ll:newLl}:{})}}:{})})});
     const j=await r.json();
     if(!j.ok){ toast(j.error||'That did not work.'); card.querySelectorAll('button.act').forEach(x=>x.disabled=false); return; }
-    toast({approve:'Approved',reject:'Rejected',remove:'Will be taken down',dismiss:'Dismissed',undo:'Undone'}[b.dataset.action]);
+    toast({approve:'Approved',reject:'Rejected',closer:'Queued for a closer look on the next run',remove:'Will be taken down',dismiss:'Dismissed',undo:'Undone'}[b.dataset.action]);
     load();
   }catch(e){ toast('That did not send. Try again.'); card.querySelectorAll('button.act').forEach(x=>x.disabled=false); }
 });

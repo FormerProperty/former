@@ -90,6 +90,13 @@ def main():
     if prio != load(prio_path, {}):
         os.makedirs(os.path.dirname(prio_path), exist_ok=True)
         save(prio_path, prio)
+    # "Look closer" from the review page: the visit queue the intake reads first (Grandly first, then oldest)
+    visit = [{"id": str(x["id"]), "s": (x.get("data") or {}).get("s") or "formerly", "a": (x.get("data") or {}).get("a", ""),
+              "queued": x.get("decided")} for x in d.get("closer", [])]
+    visit.sort(key=lambda v: (v["s"] != "grandly", v["queued"] or ""))
+    visit_path = os.path.join(ROOT, "visit-queue.json")
+    if visit != load(visit_path, []):
+        save(visit_path, visit)
     approved = {str(x["id"]): x["data"] for x in d["approved"]}
     rejected = set(map(str, d["rejected"]))
     removals = {str(x["id"]): x["reason"] for x in d["removals"]}

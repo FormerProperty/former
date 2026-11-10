@@ -27,6 +27,36 @@ session: everything lands in the review queue at https://formerly.uk/review.
 - **Copyright:** read agents' descriptions to judge and summarise, but never copy their wording
   or photos. Headlines and notes are always our own words.
 
+## 0b. Card first, page only when asked (agreed with Tanya, 10 Nov 2026)
+
+Zoopla refuses our page requests after a handful of pages, so pages are now opened only for
+listings Tanya has asked about. Each run:
+
+1. **Visit queue first.** Read `visit-queue.json` (Tanya's "Look closer" clicks on the review page,
+   Grandly first, then oldest). Open those listing pages, **at most 8 Zoopla pages in the run in
+   all** (the homepage visit at the start does not count), one every 60 to 120 seconds, stopping
+   for the day at the first refusal. For each page read, judge it fully (section 3) and **replace
+   that id's card in its `pending/` file** with the full record (section 4, or the Grandly fields):
+   exact `ll` from the listing's map, our headline, the facts, and **no** `card` key and **no**
+   `ph` key (the sync then looks for photos with the exact location and returns the card to
+   Tanya's queue). If the page shows it does not qualify after all, keep it in the queue as a
+   full card with a `why` saying so, so Tanya can reject it. Ids not reached stay in the queue
+   for the next run.
+2. **New listings from the alert emails: card only.** Do not open their pages. Rule out the clear
+   noise from the card (new builds, flats in bigger buildings, street-name matches, barns,
+   anything outside the remit) into `judged-out.json` as before. Everything plausible goes to
+   `pending/<date>.json` as a card: the fields the card gives (`p`, `b`, `a`, `t`, `w`, a short
+   headline in our own words), `ll` from the postcode via `https://api.postcodes.io` (say in `why`
+   that the pin is the postcode or district centre), `"card": 1`, and `why` starting
+   `EMAIL ONLY, page not read:`. Tanya then approves it as it is, rejects it, or clicks
+   "Look closer".
+3. **No sweep searches** for now: they used up the page allowance on noise.
+4. If pages remain within the 8 after the visit queue, do not spend them on new cards; leave the
+   choice to Tanya.
+
+Sections 2 (collecting ids from the emails), 3 and 4 (how to judge and record) still apply; only
+*when* a page is opened has changed. Section 2's Friday sweep is suspended.
+
 ## 1. Get the repository
 
 Clone `FormerProperty/former` (add it to the session first if needed) and work on `main`.
