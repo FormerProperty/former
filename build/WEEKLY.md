@@ -66,11 +66,9 @@ Clone `FormerProperty/former` (add it to the session first if needed) and work o
 1. **Alert emails.** In Gmail search `from:zoopla newer_than:8d`. The emails are large, so
    fetch each thread in full (it is saved to a file) and parse the HTML with a script rather
    than reading it. Leave the emails as they are (do not mark them read or move them). What we learned about the format:
-   - **Grandly alerts are not ours (yet).** Since 1 November there are also alerts named
-     "grandly: …" (castles, manor houses, grade I listed and so on, for a planned sister site).
-     Skip any email whose subject or heading names a "grandly:" search, and do not add its ids to
-     `pending/judged-out.json`. A building in a "grandly:" email that is also a formerly. building
-     (a castle that became a school, say) will still turn up through the formerly. alerts or sweep.
+   - **Grandly alerts** ("grandly: …" in the subject or heading) belong to the Grandly section
+     below, not to formerly.: judge their cards there, and record outs in
+     `pending/grandly-judged-out.json`, never in formerly.'s `judged-out.json`.
    - Take only the listing links **before** the "Similar properties nearby" section, i.e.
      `/for-sale/details/<id>/?utm_campaign=...` links without `utm_content=similar_listing`.
      The "similar" ones are Zoopla's suggestions, not matches.
@@ -234,10 +232,10 @@ fewer than 5 (outside the Christmas and New Year lull), say so plainly and sugge
 Mention that the weekly email draft is built at 7pm on Friday from whatever has been approved by then. If something was taken down in error, Tanya can ask for it to be put back
 (set its `status.json` state to `live`).
 
-## Grandly (sister site, grandly.uk): Fridays only
+## Grandly (sister site, grandly.uk): Tuesdays and Fridays
 
 **Only if `build/grandly.json` has `"intake": true`.** Until then, skip this section entirely
-(and keep skipping "grandly:" alert emails, as in step 2).
+(and skip "grandly:" alert emails). It has been on since 10 November 2026.
 
 **Promise:** a house built to show status, that still reads as one. Great Britain (England,
 Scotland, Wales; not Northern Ireland, the Isle of Man or the Channel Islands).
@@ -264,9 +262,11 @@ listing. The same house is often listed twice by different agents: keep one (the
 listing) and note the other id in `why`.
 
 **Where candidates come from:** Zoopla alert emails named "grandly: …" (13 alerts, Great Britain),
-plus, if pages remain within the sitting's cap of 30, a few searches for the alert phrases. Grandly shares the
-cap with formerly.: judge formerly.'s candidates first.
-Zoopla refused pages after about 45 rapid searches on 31 October.
+handled card first exactly as in section 0b: rule out the clear noise from the card (new builds,
+flats, street-name matches, estates' lodges and plots) into `pending/grandly-judged-out.json`;
+queue the plausible ones as cards (`"card": 1`, `why` starting `EMAIL ONLY, page not read:`,
+`ll` from the postcode, `s`, and `nm` if the card names the house). No sweep searches. Grandly
+houses Tanya marks "Look closer" go to the front of the visit queue.
 
 **Record** each included house in the judging format (section 4), plus:
 

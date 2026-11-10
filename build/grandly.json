@@ -1,3 +1,7 @@
-{"intake": false,
- "note": "Set intake to true when Tanya says the Grandly intake should start (see build/WEEKLY.md, Grandly).",
- "on_launch": ["Tanya agreed 2026-11-01: when the first Grandly houses are approved, move Allington Castle (extras.json) to Grandly as a normal listing (s=grandly), and replace formerly.'s 'Not formerly., but…' card and email lead with 'From our sister site, grandly.' (a Grandly house, chosen like sister_card in build/build.py)."]}
+{
+ "intake": true,
+ "note": "Grandly intake on since 10 Nov 2026 (Tuesdays and Fridays, card first; see build/WEEKLY.md).",
+ "on_launch": [
+  "Tanya agreed 2026-11-01: when the first Grandly houses are approved, move Allington Castle (extras.json) to Grandly as a normal listing (s=grandly), and replace formerly.'s 'Not formerly., but…' card and email lead with 'From our sister site, grandly.' (a Grandly house, chosen like sister_card in build/build.py)."
+ ]
+}
