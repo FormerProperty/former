@@ -1,6 +1,21 @@
 {
  "runs": [
   {
+   "date": "2026-11-10",
+   "label": "Tuesday 10 November",
+   "checked": 112,
+   "queued": 8,
+   "left_out": 94,
+   "reasons": [
+    "46 new builds in developments named after old buildings",
+    "25 flats in larger buildings or developments",
+    "22 ordinary or modern houses (keyword only in the street, area or description)",
+    "1 barn conversion"
+   ],
+   "health": "",
+   "notes": "Alert emails since the last run (56 threads) gave 112 new ids; 94 ruled out from the cards alone. Zoopla returned a 403 challenge on the 10th page of the sitting, so Zoopla was stopped for the day after 8 listing pages. Left for the next run: 10 plausible cards (74700998 Pakenham, 74711292 Walthamstow warehouse, 74700621 St Agnes engine house, 73649716 Outwood, 74719218 Moor Row chapel, 74714946 Shoreditch warehouse, 72490809 Canterbury former inn, 74387593 Buntingford Station Yard, 74701392 St Just land, 73405364 Caterham). Price cuts recorded for 7 live listings (74361192, 74302937, 73149116, 74341370, 74329491, 74192464, 74340481). Listed date for 74118729 (Liskeard) is estimated, as it came in through a price cut."
+  },
+  {
    "date": "2026-11-06",
    "label": "Friday 6 November",
    "checked": 133,
