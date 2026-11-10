@@ -1722,5 +1722,75 @@
    53.187275,
    -1.948371
   ]
+ },
+ {
+  "id": "74075017",
+  "p": "£600,000",
+  "b": "5",
+  "a": "The Green, Tendring CO16",
+  "l": "2026-11-04",
+  "t": "chapel",
+  "w": "chapel",
+  "h": "Five-bedroom detached converted chapel",
+  "ll": [
+   51.889843,
+   1.109318
+  ]
+ },
+ {
+  "id": "74240866",
+  "p": "£1,200,000",
+  "b": "3",
+  "a": "Nunhead Grove, London SE15",
+  "l": "2026-11-03",
+  "t": "chapel",
+  "w": "chapel",
+  "h": "Three-bedroom converted chapel",
+  "ll": [
+   51.463239,
+   -0.056604
+  ]
+ },
+ {
+  "id": "74423942",
+  "p": "£375,000",
+  "b": "4",
+  "a": "Main Road, Shavington, Cheshire CW2",
+  "l": "2026-11-04",
+  "t": "school",
+  "w": "school (part)",
+  "h": "Four-bedroom town house in a former school",
+  "ll": [
+   53.062847,
+   -2.449084
+  ]
+ },
+ {
+  "id": "74645677",
+  "p": "£785,000",
+  "b": "5",
+  "a": "Great Lane, Shepton Beauchamp, Ilminster TA19",
+  "l": "2026-10-30",
+  "t": "chapel",
+  "w": "chapel",
+  "h": "Five-bedroom former chapel",
+  "ll": [
+   50.951184,
+   -2.852217
+  ]
+ },
+ {
+  "id": "74654504",
+  "p": "£750,000",
+  "b": "4",
+  "a": "Low Road, Tasburgh, Norwich NR15",
+  "l": "2026-11-02",
+  "t": "postoffice",
+  "w": "post office",
+  "h": "Four-bedroom former village post office",
+  "ll": [
+   52.503,
+   1.267
+  ]
  }
 ]
