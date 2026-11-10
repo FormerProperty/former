@@ -38,8 +38,10 @@ export async function onRequest({ request, env }) {
       // New candidates are added; ones still waiting pick up a photo suggestion added since
       stmts.push(db.prepare(`INSERT INTO pending (id, data, created) VALUES (?, ?, datetime('now'))
         ON CONFLICT(id) DO UPDATE SET data = excluded.data
-        WHERE pending.status = 'pending' AND json_type(excluded.data, '$.ph') IS NOT NULL
-          AND json_extract(pending.data, '$.ph[0]') IS NOT json_extract(excluded.data, '$.ph[0]')`).bind(id, JSON.stringify(item)));
+        WHERE pending.status = 'pending' AND ((json_type(excluded.data, '$.ph') IS NOT NULL
+          AND json_extract(pending.data, '$.ph[0]') IS NOT json_extract(excluded.data, '$.ph[0]'))
+          -- or the card was moved between formerly. and grandly.
+          OR IFNULL(json_extract(pending.data, '$.s'), 'formerly') IS NOT IFNULL(json_extract(excluded.data, '$.s'), 'formerly'))`).bind(id, JSON.stringify(item)));
       // A "Look closer" card comes back as a full card (page read, no "card" flag): it returns to the queue
       const isCard = item.card || /^EMAIL ONLY/i.test(String(item.why || ""));
       if (!isCard) stmts.push(db.prepare(`UPDATE pending SET data=?, status='pending', reason=NULL, decided=NULL

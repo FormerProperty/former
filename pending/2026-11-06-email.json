@@ -21,15 +21,17 @@
   "b": "6",
   "a": "Maynards Lane, Little Sampford, Saffron Walden CB10",
   "l": "2026-11-03",
-  "t": "granary",
-  "w": "granary",
-  "h": "Six-bedroom house with a granary",
+  "t": "country",
+  "w": "Country house",
+  "h": "Six-bedroom country house at Little Sampford",
   "ll": [
    52.0292,
    0.2622
   ],
-  "why": "EMAIL ONLY, page not read (unsure): Granary alert; 6 bed detached £1.35m. Map pin is the postcode district centre, not the building",
-  "ph": null
+  "why": "EMAIL ONLY, page not read: moved from formerly. to Grandly by Tanya (10 Nov). Map pin is the postcode district centre, not the building",
+  "s": "grandly",
+  "nm": "",
+  "card": 1
  },
  {
   "id": "74050551",
