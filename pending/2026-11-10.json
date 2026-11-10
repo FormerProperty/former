@@ -16,7 +16,16 @@
    53.158215,
    -0.095208
   ],
-  "why": "Listing describes a former church building with its main church space, chancel, arches and open roof still in place; guide price is an auction guide"
+  "why": "Listing describes a former church building with its main church space, chancel, arches and open roof still in place; guide price is an auction guide",
+  "ph": [
+   "3937948",
+   "St.Benedict's church",
+   "Richard Croft",
+   "2014",
+   "0",
+   "geophotos/03/93/79/3937948_6fe7917d",
+   0
+  ]
  },
  {
   "id": "74118729",
@@ -35,7 +44,16 @@
    50.453542,
    -4.46551
   ],
-  "why": "Grade II former NatWest bank sold as one freehold with all eight flats; came in through a price cut (now £900,000, down £300,000), listed date estimated from the id"
+  "why": "Grade II former NatWest bank sold as one freehold with all eight flats; came in through a price cut (now £900,000, down £300,000), listed date estimated from the id",
+  "ph": [
+   "7283070",
+   "Former bank, Windsor Place",
+   "Richard Croft",
+   "2022",
+   "2",
+   "geophotos/07/28/30/7283070_0fe74ca4",
+   0
+  ]
  },
  {
   "id": "74703395",
@@ -54,7 +72,16 @@
    50.968922,
    -3.095134
   ],
-  "why": "Former White Hart Inn sold whole with consent to convert into two semis and a cottage; check whether you list pubs with planning for several homes"
+  "why": "Former White Hart Inn sold whole with consent to convert into two semis and a cottage; check whether you list pubs with planning for several homes",
+  "ph": [
+   "1196231",
+   "White Hart Inn, Corfe",
+   "Derek Harper",
+   "2009",
+   "3",
+   "geophotos/01/19/62/1196231_846c50c9",
+   0
+  ]
  },
  {
   "id": "74728946",
@@ -71,7 +98,8 @@
    51.22703,
    1.401232
   ],
-  "why": "Listing says the house was originally the British School and calls it a former school; detached, freehold"
+  "why": "Listing says the house was originally the British School and calls it a former school; detached, freehold",
+  "ph": null
  },
  {
   "id": "74716723",
@@ -88,7 +116,8 @@
    52.682586,
    -0.021835
   ],
-  "why": "Described as a three-bedroom former chapel conversion, detached, chain free"
+  "why": "Described as a three-bedroom former chapel conversion, detached, chain free",
+  "ph": null
  },
  {
   "id": "74717540",
@@ -107,7 +136,8 @@
    49.970127,
    -5.204005
   ],
-  "why": "Chapel House, a former Methodist chapel converted in 1935; detached, freehold. Page shows 2,552 sq ft though the description says over 2,700"
+  "why": "Chapel House, a former Methodist chapel converted in 1935; detached, freehold. Page shows 2,552 sq ft though the description says over 2,700",
+  "ph": null
  },
  {
   "id": "74705059",
@@ -126,7 +156,16 @@
    51.290237,
    -0.316892
   ],
-  "why": "Whole freehold former chapel, vacant, with prior approval for 18 apartments and the works needing completion; Zoopla calls it a block of flats. Prior approval under permitted development suggests it may have been offices more recently"
+  "why": "Whole freehold former chapel, vacant, with prior approval for 18 apartments and the works needing completion; Zoopla calls it a block of flats. Prior approval under permitted development suggests it may have been offices more recently",
+  "ph": [
+   "6243917",
+   "Former chapel",
+   "Ian Capper",
+   "2019",
+   "1",
+   "geophotos/06/24/39/6243917_7bd4f19e",
+   0
+  ]
  },
  {
   "id": "74721859",
@@ -147,6 +186,15 @@
    50.986643,
    -1.508406
   ],
-  "why": "Sadlers Mill, a Grade II converted mill rebuilt in 1748; Zoopla calls it semi-detached and gives 2,837 to 4,332 sq ft, so check what is included"
+  "why": "Sadlers Mill, a Grade II converted mill rebuilt in 1748; Zoopla calls it semi-detached and gives 2,837 to 4,332 sq ft, so check what is included",
+  "ph": [
+   "301382",
+   "The Test Way at Saddler's Mill, Romsey",
+   "Peter Facey",
+   "2006",
+   "2",
+   "photos/30/13/301382_8fc0c503",
+   0
+  ]
  }
 ]
