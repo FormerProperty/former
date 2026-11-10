@@ -50,6 +50,18 @@ listings Tanya has asked about. Each run:
    that the pin is the postcode or district centre), `"card": 1`, and `why` starting
    `EMAIL ONLY, page not read:`. Tanya then approves it as it is, rejects it, or clicks
    "Look closer".
+   **Card-only rules (agreed with Tanya, 10 Nov 2026):**
+   - The headline states **only what the card shows** (price, beds, type, place, and any name in
+     the address). Never turn the alert's keyword into a fact: not "house with a water tower" but
+     "Four-bedroom detached house in Reading". The alert that caught it goes in `why`
+     ("matched the 'water tower' alert; card gives no detail").
+   - **A bare keyword match on an ordinary-looking house is ruled out, not queued.** If the card
+     shows a typical house (say a 2 to 5 bed detached, semi or terrace at an ordinary price for
+     the area) and nothing else on the card points to the remit, record it in `judged-out.json`
+     as "keyword match only, ordinary house on the card". Queue it only when something else on
+     the card supports it: a name in the address ("The Old Chapel", "Mill House" does not count),
+     an unusual property type (land, "other", commercial), a price far off the local norm, or a
+     phrase in the card's summary line when there is one.
 3. **No sweep searches** for now: they used up the page allowance on noise.
 4. If pages remain within the 8 after the visit queue, do not spend them on new cards; leave the
    choice to Tanya.
