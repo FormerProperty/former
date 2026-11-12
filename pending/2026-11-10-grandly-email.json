@@ -100,7 +100,8 @@
    51.0892,
    -0.610552
   ],
-  "why": "Page read: Grade II listed 16th-century house with 19th and 21st-century additions, over 5,300 sq ft, on 15.66 acres with a guest cottage and barns. The listing gives 6 to 9 bedrooms across the estate, so b is 6 for the house: check. Listed with about 15+ acres. Doubt: called a farm, so it may read as a farmhouse rather than a grand house"
+  "why": "Page read: Grade II listed 16th-century house with 19th and 21st-century additions, over 5,300 sq ft, on 15.66 acres with a guest cottage and barns. The listing gives 6 to 9 bedrooms across the estate, so b is 6 for the house: check. Listed with about 15+ acres. Doubt: called a farm, so it may read as a farmhouse rather than a grand house",
+  "ph": null
  },
  {
   "n": "Designed by J. W. Hugall; the servants' wing is gone and there are modern extensions",
@@ -123,7 +124,19 @@
    52.5276,
    -2.381
   ],
-  "why": "Page read: Stanmore Hall, Grade II listed (from the key features), 10 to 12 bedrooms, 17,189 sq ft, 8.72 acres; once part of the Whitmore family estate, by the architect J. W. Hugall. Listed, 7+ beds, named house with history. Doubt: much extended, with a leisure complex"
+  "why": "Page read: Stanmore Hall, Grade II listed (from the key features), 10 to 12 bedrooms, 17,189 sq ft, 8.72 acres; once part of the Whitmore family estate, by the architect J. W. Hugall. Listed, 7+ beds, named house with history. Doubt: much extended, with a leisure complex",
+  "ph": [
+   "c10344334",
+   "Holy Grail tapestry Stanmore Hall",
+   "Morris &amp; Co.",
+   "1898",
+   "",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Holy_Grail_tapestry_Stanmore_Hall.jpg/960px-Holy_Grail_tapestry_Stanmore_Hall.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   0,
+   "Public domain",
+   "",
+   "https://commons.wikimedia.org/wiki/File:Holy_Grail_tapestry_Stanmore_Hall.jpg"
+  ]
  },
  {
   "n": "",
@@ -146,7 +159,8 @@
    51.1616,
    -0.0126
   ],
-  "why": "DOES NOT QUALIFY, page read: seven to nine bedrooms including an annexe, 3.65 acres, no listing mentioned. Not listed and well short of 20 acres. Reject (74641880 on the same lane may be the same house, not checked)"
+  "why": "DOES NOT QUALIFY, page read: seven to nine bedrooms including an annexe, 3.65 acres, no listing mentioned. Not listed and well short of 20 acres. Reject (74641880 on the same lane may be the same house, not checked)",
+  "ph": null
  },
  {
   "n": "",
@@ -169,7 +183,19 @@
    50.860406,
    -2.003568
   ],
-  "why": "DOES NOT QUALIFY, page read: six-bedroom house of 1898, about 5,145 sq ft, nearly 4 acres; the listing says it is not listed. Short of the land and listing tests. Reject"
+  "why": "DOES NOT QUALIFY, page read: six-bedroom house of 1898, about 5,145 sq ft, nearly 4 acres; the listing says it is not listed. Short of the land and listing tests. Reject",
+  "ph": [
+   "c11041591",
+   "Freshwater Little Mead bus stop",
+   "Arriva436",
+   "2010",
+   "",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Freshwater_Little_Mead_bus_stop.JPG/960px-Freshwater_Little_Mead_bus_stop.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   0,
+   "CC BY 3.0",
+   "https://creativecommons.org/licenses/by/3.0",
+   "https://commons.wikimedia.org/wiki/File:Freshwater_Little_Mead_bus_stop.JPG"
+  ]
  },
  {
   "n": "",
@@ -191,7 +217,8 @@
    53.000613,
    -2.501568
   ],
-  "why": "DOES NOT QUALIFY, page read: a contemporary seven-bedroom house on 7.5 acres, not listed and no history given; the 'manor' match was the name only. Reject"
+  "why": "DOES NOT QUALIFY, page read: a contemporary seven-bedroom house on 7.5 acres, not listed and no history given; the 'manor' match was the name only. Reject",
+  "ph": null
  },
  {
   "n": "Lately a language school, with classrooms still in the house and 11.61 acres",
@@ -215,7 +242,19 @@
    51.423354,
    -2.264592
   ],
-  "why": "Page read: Grade II* manor built 1620, private house until 1948, then hotel, offices and a language school until 2020; main house c.9,500 sq ft with 9 bedrooms (34 across all buildings, so b is 9). Listed and 7+ beds, a named house. Doubt: it still has classrooms and a commercial kitchen"
+  "why": "Page read: Grade II* manor built 1620, private house until 1948, then hotel, offices and a language school until 2020; main house c.9,500 sq ft with 9 bedrooms (34 across all buildings, so b is 9). Listed and 7+ beds, a named house. Doubt: it still has classrooms and a commercial kitchen",
+  "ph": [
+   "c124477504",
+   "17th century Chapel at Cheney Court (51942409364)",
+   "gailhampshire",
+   "2022",
+   "",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/17th_century_Chapel_at_Cheney_Court_%2851942409364%29.jpg/960px-17th_century_Chapel_at_Cheney_Court_%2851942409364%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   0,
+   "CC BY 2.0",
+   "https://creativecommons.org/licenses/by/2.0",
+   "https://commons.wikimedia.org/wiki/File:17th_century_Chapel_at_Cheney_Court_(51942409364).jpg"
+  ]
  },
  {
   "n": "",
@@ -238,7 +277,16 @@
    51.393838,
    -2.346407
   ],
-  "why": "Page read: whole freehold house over five floors, about 7,072 sq ft, six bedrooms plus a self-contained lower ground floor flat, in a Grade I listed Georgian terrace; city townhouse rule (Grade I, 5+ beds)"
+  "why": "Page read: whole freehold house over five floors, about 7,072 sq ft, six bedrooms plus a self-contained lower ground floor flat, in a Grade I listed Georgian terrace; city townhouse rule (Grade I, 5+ beds)",
+  "ph": [
+   "5329324",
+   "Grosvenor Place Terrace",
+   "N Chadwick",
+   "2016",
+   "0",
+   "geophotos/05/32/93/5329324_cb38695d",
+   0
+  ]
  },
  {
   "n": "",
@@ -259,6 +307,15 @@
    50.74229,
    -3.588472
   ],
-  "why": "DOES NOT QUALIFY, page read: a six-bedroom farmhouse needing modernisation with a bungalow and farm buildings on 23.75 acres (a further 44.76 acres available); no listing, castle or grand house mentioned. Reject"
+  "why": "DOES NOT QUALIFY, page read: a six-bedroom farmhouse needing modernisation with a bungalow and farm buildings on 23.75 acres (a further 44.76 acres available); no listing, castle or grand house mentioned. Reject",
+  "ph": [
+   "2817267",
+   "House and barn at Rowhorn House Farm",
+   "David Smith",
+   "2012",
+   "3",
+   "geophotos/02/81/72/2817267_0f2179a2",
+   0
+  ]
  }
 ]
