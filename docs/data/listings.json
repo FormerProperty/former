@@ -25,7 +25,7 @@
   "works": "Industrial and civic",
   "other": "Other"
  },
- "count": 572,
+ "count": 573,
  "listings": [
   {
    "site": "formerly",
@@ -93,6 +93,43 @@
    "lat": 53.062847,
    "lng": -2.449084,
    "added": "2026-11-10"
+  },
+  {
+   "site": "formerly",
+   "name": "",
+   "id": "74678899",
+   "url": "https://www.zoopla.co.uk/for-sale/details/74678899/",
+   "source": "Zoopla",
+   "type": "oast",
+   "was": "oast house",
+   "label": "Formerly an oast house",
+   "os": "Oast",
+   "note": "",
+   "headline": "Four-bedroom oast house",
+   "sqft": null,
+   "plot": "",
+   "grade": "",
+   "built": "",
+   "place": "Maidstone Road, Nettlestead, Maidstone",
+   "postcode": "ME18",
+   "county": "Kent",
+   "region": "South East",
+   "price": 750000,
+   "priceText": "£750,000",
+   "beds": 4,
+   "listed": "2026-11-04",
+   "badges": [],
+   "photo": {
+    "id": "1737407",
+    "title": "Oast House at Green Farm, Maidstone Road, Nettlestead, Kent",
+    "author": "Oast House Archive",
+    "year": "2010",
+    "src": "photos/1737407.jpg",
+    "thumb": "https://s3.geograph.org.uk/geophotos/01/73/74/1737407_15233737_213x160.jpg"
+   },
+   "lat": 51.234477,
+   "lng": 0.409072,
+   "added": "2026-11-14"
   },
   {
    "site": "formerly",
