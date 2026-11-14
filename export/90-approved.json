@@ -1820,5 +1820,359 @@
    51.234477,
    0.409072
   ]
+ },
+ {
+  "id": "74682382",
+  "p": "£900,000",
+  "b": "4",
+  "a": "Church Road, Dunton CM13",
+  "l": "2026-11-04",
+  "t": "church",
+  "w": "church",
+  "h": "Converted church with four bedrooms",
+  "ll": [
+   51.569284,
+   0.385405
+  ]
+ },
+ {
+  "id": "74689185",
+  "p": "£775,000",
+  "b": "4",
+  "a": "The Old School, Main Street, Farcet, Peterborough PE7",
+  "l": "2026-11-05",
+  "t": "school",
+  "w": "school",
+  "h": "Old village school, now a four-bedroom house",
+  "ll": [
+   52.536,
+   -0.211
+  ]
+ },
+ {
+  "id": "74695993",
+  "p": "£1,500,000",
+  "b": "5",
+  "a": "Drifton Hill, West Kington, Wiltshire SN14",
+  "l": "2026-11-06",
+  "t": "mill",
+  "w": "mill",
+  "h": "Five-bedroom detached former mill",
+  "ll": [
+   51.493654,
+   -2.278539
+  ]
+ },
+ {
+  "id": "74700978",
+  "p": "£10,000",
+  "b": "",
+  "a": "St Benedicts Church, Church Lane, Wood Enderby, Boston PE22",
+  "l": "2026-11-06",
+  "au": 1,
+  "t": "church",
+  "w": "church, unconverted",
+  "n": "Auction on 18 November, in open countryside on a generous plot",
+  "g": "Auction|Project",
+  "h": "Unconverted village church with arches and open roof",
+  "ag": "Under The Hammer",
+  "ll": [
+   53.158215,
+   -0.095208
+  ]
+ },
+ {
+  "id": "74118729",
+  "p": "£900,000",
+  "b": "11",
+  "a": "Dean Street, Liskeard, Cornwall PL14",
+  "l": "2026-10-02",
+  "t": "bank",
+  "w": "bank, Grade II",
+  "n": "The whole building, Trehawke House, converted into eight separately titled flats now let as holiday apartments",
+  "h": "Listed town bank now eight holiday apartments",
+  "sq": 4749,
+  "gr": "II",
+  "ag": "Bradleys Estate Agents - Liskeard",
+  "ll": [
+   50.453542,
+   -4.46551
+  ]
+ },
+ {
+  "id": "74703395",
+  "p": "£350,000",
+  "b": "6",
+  "a": "The White Hart Inn, Pitminster Road, Corfe, Taunton, Somerset TA3",
+  "l": "2026-11-06",
+  "au": 1,
+  "t": "pub",
+  "w": "pub, unconverted",
+  "n": "Auction on 9 December, with planning for three homes and the old skittle alley and car park",
+  "g": "Auction|Project",
+  "h": "Village inn with planning for three homes",
+  "ag": "Auction House South West",
+  "ll": [
+   50.968922,
+   -3.095134
+  ]
+ },
+ {
+  "id": "74728946",
+  "p": "£1,000,000",
+  "b": "5",
+  "a": "Duke Street, Deal CT14",
+  "l": "2026-11-10",
+  "t": "school",
+  "w": "school (the British School)",
+  "n": "Detached, in the conservation area a short walk from the seafront",
+  "h": "The town's old British School, now a five-bedroom home",
+  "ag": "Yopa",
+  "ll": [
+   51.22703,
+   1.401232
+  ]
+ },
+ {
+  "id": "74716723",
+  "p": "£269,995",
+  "b": "3",
+  "a": "Hillgate, Gedney Hill PE12",
+  "l": "2026-11-09",
+  "t": "chapel",
+  "w": "chapel",
+  "n": "Detached, with a courtyard garden and parking",
+  "h": "Village chapel with arched windows and exposed beams",
+  "ag": "Lets Get you Moving.co.uk",
+  "ll": [
+   52.682605,
+   -0.021819
+  ]
+ },
+ {
+  "id": "74717540",
+  "p": "£595,000",
+  "b": "4",
+  "a": "The Lizard, Helston TR12",
+  "l": "2026-11-09",
+  "t": "chapel",
+  "w": "Methodist chapel, mid 1800s",
+  "n": "Chapel House, with the chapel's old cart house as possible annexe",
+  "h": "Methodist chapel that became a wartime officers' club",
+  "sq": 2552,
+  "bt": "mid 1800s",
+  "ag": "Laskowski & Co",
+  "ll": [
+   49.970127,
+   -5.204005
+  ]
+ },
+ {
+  "id": "74705059",
+  "p": "£2,300,000",
+  "b": "",
+  "a": "Reigate Road, Leatherhead KT22",
+  "l": "2026-11-06",
+  "au": 1,
+  "t": "chapel",
+  "w": "chapel, part converted",
+  "n": "Auction on 24 November, sold by receivers with prior approval for 18 flats, conversion unfinished",
+  "g": "Auction|Project",
+  "h": "Part-converted chapel with consent for 18 flats",
+  "ag": "Savills - National Auctions",
+  "ll": [
+   51.290237,
+   -0.316892
+  ]
+ },
+ {
+  "id": "74721859",
+  "p": "£1,475,000",
+  "b": "5",
+  "a": "The Causeway, Romsey, Hampshire SO51",
+  "l": "2026-11-09",
+  "t": "mill",
+  "w": "watermill, Grade II, 1748",
+  "n": "Sadlers Mill, on the River Test with fishing rights and a paddock",
+  "h": "Palmerston's riverside mill on the Test with private fishing",
+  "sq": 2837,
+  "ac": "0.6 acres",
+  "gr": "II",
+  "bt": "1748",
+  "ag": "Savills - Winchester",
+  "ll": [
+   50.986031,
+   -1.506525
+  ]
+ },
+ {
+  "n": "",
+  "g": "",
+  "s": "grandly",
+  "id": "74675927",
+  "p": "Guide price £3,250,000",
+  "b": "6",
+  "a": "Fisher Lane, Chiddingfold, Godalming, Surrey GU8",
+  "l": "2026-11-04",
+  "t": "country",
+  "nm": "Fisher Lane Farm",
+  "w": "16th-century timber-framed country house, Grade II listed",
+  "h": "Half-timbered Tudor house with cottage, barns and woodland",
+  "sq": 5323,
+  "ac": "15.66 acres",
+  "gr": "II",
+  "bt": "16th century",
+  "ag": "Knight Frank - Country Department Sales",
+  "ll": [
+   51.088654,
+   -0.609207
+  ]
+ },
+ {
+  "n": "Designed by J. W. Hugall; the servants' wing is gone and there are modern extensions",
+  "g": "",
+  "s": "grandly",
+  "id": "74672379",
+  "p": "Guide price £2,995,000",
+  "b": "12",
+  "a": "Stourbridge Road, Stanmore, Bridgnorth, Shropshire WV15",
+  "l": "2026-11-03",
+  "t": "hall",
+  "nm": "Stanmore Hall",
+  "w": "Georgian country house, Grade II listed",
+  "h": "Former Whitmore family hall with a pillared Georgian front",
+  "sq": 17189,
+  "ac": "8.72 acres",
+  "gr": "II",
+  "ag": "Knight Frank - Shrewsbury Sales",
+  "ll": [
+   52.5276,
+   -2.381
+  ]
+ },
+ {
+  "n": "",
+  "g": "",
+  "s": "grandly",
+  "id": "74641523",
+  "p": "Guide price £2,950,000",
+  "b": "9",
+  "a": "Blackberry Lane, Lingfield, Surrey RH7",
+  "l": "2026-10-30",
+  "t": "country",
+  "nm": "",
+  "w": "Edwardian country house, c.1908",
+  "h": "Edwardian house of about 1908 with annexe and paddock",
+  "sq": 4140,
+  "ac": "3.65 acres",
+  "bt": "c.1908",
+  "ag": "Knight Frank - Tunbridge Wells Sales",
+  "ll": [
+   51.1616,
+   -0.0126
+  ]
+ },
+ {
+  "n": "Lately a language school, with classrooms still in the house and 11.61 acres",
+  "g": "Project",
+  "s": "grandly",
+  "id": "67586576",
+  "p": "Offers over £1,950,000",
+  "b": "9",
+  "a": "Box, Ditteridge, Wiltshire SN13",
+  "l": "2026-11-06",
+  "t": "manor",
+  "nm": "Cheney Court",
+  "w": "Jacobean manor house of 1620, Grade II* listed",
+  "h": "Jacobean manor of 1620 with mullioned windows and carved fireplaces",
+  "sq": 9497,
+  "ac": "11.61 acres",
+  "gr": "II*",
+  "bt": "1620",
+  "ag": "Knight Frank - Bath Sales",
+  "ll": [
+   51.423354,
+   -2.264592
+  ]
+ },
+ {
+  "id": "66901130",
+  "p": "£165,000",
+  "b": "2",
+  "a": "North Street, Digby, Lincoln LN4",
+  "l": "2026-11-10",
+  "t": "chapel",
+  "h": "Two-bedroom property on North Street, Digby",
+  "w": "",
+  "n": "",
+  "g": "",
+  "ll": [
+   53.1489,
+   -0.3812
+  ]
+ },
+ {
+  "id": "74757500",
+  "p": "£190,000",
+  "b": "2",
+  "a": "Reading Street, Tenterden TN30",
+  "l": "2026-11-12",
+  "t": "school",
+  "h": "Two-bedroom detached house at Reading Street, Tenterden",
+  "w": "",
+  "n": "",
+  "g": "",
+  "ll": [
+   51.0627,
+   0.6967
+  ]
+ },
+ {
+  "id": "65374725",
+  "p": "£725,000",
+  "b": "8",
+  "a": "Orcop, Hereford HR2",
+  "l": "2026-11-13",
+  "t": "school",
+  "h": "Eight-bedroom property at Orcop",
+  "w": "",
+  "n": "",
+  "g": "",
+  "ll": [
+   51.932254,
+   -2.767428
+  ]
+ },
+ {
+  "id": "74764369",
+  "p": "Guide price £30,000",
+  "b": "",
+  "a": "Eldon Arms, Eldon Terrace, Ferryhill DL17",
+  "l": "2026-11-13",
+  "t": "pub",
+  "h": "The Eldon Arms, a detached building in Ferryhill",
+  "w": "",
+  "n": "",
+  "g": "",
+  "ll": [
+   54.681732,
+   -1.532655
+  ]
+ },
+ {
+  "id": "74767960",
+  "p": "Guide price £695,000",
+  "b": "7",
+  "a": "High Street, Ixworth, Bury St. Edmunds IP31",
+  "l": "2026-11-13",
+  "t": "mill",
+  "h": "Seven-bedroom detached house on Ixworth High Street",
+  "w": "",
+  "n": "",
+  "g": "",
+  "ll": [
+   52.2974,
+   0.831791
+  ]
  }
 ]
