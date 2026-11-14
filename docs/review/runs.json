@@ -2,21 +2,21 @@
  "runs": [
   {
    "date": "2026-11-14",
-   "label": "Saturday 14 November",
-   "checked": 104,
+   "label": "Saturday 14 November (Friday catch-up)",
+   "checked": 116,
    "queued": 11,
-   "left_out": 93,
+   "left_out": 105,
    "reasons": [
     "39 flats in larger buildings or developments",
     "37 ordinary houses with only the alert keyword to go on",
+    "16 new builds or plots (12 of them Zoopla new-homes listings)",
     "8 ordinary houses on streets named after mills, schools and the like",
-    "4 new builds or plots",
     "3 houses in farmstead or barn groups",
     "1 park home",
     "1 duplicate of a live listing (The Water Tower, SE11)"
    ],
    "health": "Zoopla refused the first listing page after the homepage (403), so none of the 7 \"Look closer\" listings could be read; they wait for the next run.",
-   "notes": "Alert emails since 10 November (83 threads; no grandly: emails this week) gave 94 new ids, and 10 plausible cards left over from 10 November had not been recorded, so they were judged now: 104 in all. All 11 queued are cards from the email only, with the pin at the postcode district centre. Price cuts recorded for 6 live listings (70375938, 74424261, 73164932, 72929533, 74518234, 73501540). Three price-cut emails had no listing link (Gillard Road, Brixham; Mary Tavy land; Dean Street, Liskeard) and were skipped. Ruled out but worth a thought: two Outwood houses on the windmill alert (74766732 Outwood Common, 73649716 Gayhouse Lane), and two Redan Street W14 houses on church alerts (74746655, 74759267), probably parts of one church conversion."
+   "notes": "Alert emails since 10 November (83 threads; no grandly: emails this week) gave 106 new ids (12 of them new-homes listings, all new builds), and 10 plausible cards left over from 10 November had not been recorded, so they were judged now: 116 in all. All 11 queued are cards from the email only, with the pin at the postcode district centre. Price cuts recorded for 6 live listings (70375938, 74424261, 73164932, 72929533, 74518234, 73501540). Three price-cut emails had no listing link (Gillard Road, Brixham; Mary Tavy land; Dean Street, Liskeard) and were skipped. Ruled out but worth a thought: two Outwood houses on the windmill alert (74766732 Outwood Common, 73649716 Gayhouse Lane), and two Redan Street W14 houses on church alerts (74746655, 74759267), probably parts of one church conversion."
   },
   {
    "date": "2026-11-10",
