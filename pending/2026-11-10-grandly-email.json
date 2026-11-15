@@ -4,78 +4,66 @@
   "p": "£23,950,000",
   "b": "8",
   "a": "Totteridge Green, Totteridge, London N20",
-  "t": "mansion",
-  "nm": "",
-  "w": "",
-  "h": "House with land at Totteridge Green",
-  "ll": [
-   51.6292,
-   -0.1743
-  ],
-  "l": "",
+  "l": "2026-11-06",
   "s": "grandly",
-  "card": 1,
-  "n": "",
+  "nm": "Grovelands",
+  "t": "mansion",
+  "w": "Detached house in 11.5 acres, not stated as listed",
+  "h": "Gated house in eleven and a half acres",
+  "n": "With pool, bowling lane and a three-bedroom gate house",
   "g": "",
-  "why": "EMAIL ONLY, page not read: Acres alert, 8 bed; Totteridge houses at this price are often modern. Map pin is the postcode district centre, not the building",
-  "ph": [
-   "391220",
-   "Barnet House",
-   "Martin Addison",
-   "2007",
-   "0",
-   "photos/39/12/391220_592f48a4",
-   0
-  ]
+  "ac": "11.5 acres",
+  "ag": "Statons - Hadley Wood",
+  "ll": [
+   51.628345,
+   -0.196933
+  ],
+  "why": "DOES NOT QUALIFY, page read: not listed, 11.5 acres (short of about 20), interiors described as bespoke contemporary, no history given. Suggest reject"
  },
  {
   "id": "74672385",
   "p": "Guide price £21,750,000",
   "b": "7",
   "a": "Kensington Square, London W8",
-  "t": "townhouse",
-  "nm": "",
-  "w": "",
-  "h": "Seven-bedroom listed house on Kensington Square",
-  "ll": [
-   51.5012,
-   -0.1943
-  ],
-  "l": "",
+  "l": "2026-11-03",
   "s": "grandly",
-  "card": 1,
-  "n": "",
+  "nm": "",
+  "t": "townhouse",
+  "w": "Period townhouse on London's oldest square (built from 1692), Grade II listed",
+  "h": "Composer Hubert Parry's former home, with blue plaque",
+  "n": "With a south-facing garden and access to the private square",
   "g": "",
-  "why": "EMAIL ONLY, page not read: Grade II listed alert, 7 bed. Map pin is the postcode district centre, not the building",
-  "ph": [
-   "6853403",
-   "Rat & Radish, Japan House",
-   "A J Paxton",
-   "2020",
-   "3",
-   "geophotos/06/85/34/6853403_248f0917",
-   0
-  ]
+  "sq": 6679,
+  "gr": "II",
+  "bt": "from 1692",
+  "ag": "Savills - Kensington",
+  "ll": [
+   51.500307,
+   -0.189693
+  ],
+  "why": "Page read: Grade II listed, 7 beds, 6,679 sq ft, freehold whole house; blue plaque for Sir Hubert Parry, who lived here; original panelling and principal staircase. Meets 'listed and 7+ bedrooms' and has recorded history"
  },
  {
   "id": "74699755",
   "p": "Offers over £3,950,000",
   "b": "16",
   "a": "Glenborrodale, Acharacle, Highland PH36",
-  "t": "castle",
-  "nm": "",
-  "w": "",
-  "h": "Sixteen-bedroom house at Glenborrodale, Ardnamurchan",
-  "ll": [
-   56.7212,
-   -5.8496
-  ],
-  "l": "",
+  "l": "2026-11-06",
   "s": "grandly",
-  "card": 1,
-  "n": "",
+  "nm": "",
+  "t": "castle",
+  "w": "Edwardian Scots Baronial castle, Category A listed",
+  "h": "Edwardian Baronial castle with turret and roof terrace",
+  "n": "With a three-bedroom gate lodge",
   "g": "",
-  "why": "EMAIL ONLY, page not read: Category A and castle alerts, 16 bed; probably Glenborrodale Castle. Map pin is the postcode district centre, not the building",
-  "ph": null
+  "sq": 16608,
+  "gr": "A",
+  "bt": "Edwardian",
+  "ag": "Savills - Glasgow",
+  "ll": [
+   56.678476,
+   -5.910195
+  ],
+  "why": "Page read: A-listed Scots Baronial castle, 16 beds (15 en-suite guest suites), panelled reception rooms, turret room, gate lodge, grazing land and woodland; acreage not read. Probably Glenborrodale Castle but the page excerpt read did not name it, so nm left blank"
  }
 ]

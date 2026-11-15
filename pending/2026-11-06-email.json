@@ -12,43 +12,51 @@
    51.7381,
    -2.2211
   ],
-  "why": "EMAIL ONLY, page not read (unsure): Former post office alert; 5 bed semi on High Street. Map pin is the postcode district centre, not the building",
-  "ph": null
+  "why": "LISTING GONE, page not read: Zoopla now sends this id to a search page for High Street, South Woodchester, so it has been withdrawn or sold. Suggest reject"
  },
  {
   "id": "73623567",
-  "p": "£1,350,000",
+  "p": "Guide price £1,350,000",
   "b": "6",
   "a": "Maynards Lane, Little Sampford, Saffron Walden CB10",
   "l": "2026-11-03",
-  "t": "country",
-  "w": "Country house",
-  "h": "Six-bedroom country house at Little Sampford",
-  "ll": [
-   52.0292,
-   0.2622
-  ],
-  "why": "EMAIL ONLY, page not read: moved from formerly. to Grandly by Tanya (10 Nov). Map pin is the postcode district centre, not the building",
   "s": "grandly",
-  "nm": "",
-  "card": 1,
-  "ph": null
+  "nm": "Maynards",
+  "t": "country",
+  "w": "Farmhouse of 1670, Grade II listed",
+  "h": "Moated 1670 farmhouse in nearly five acres",
+  "n": "With formal gardens, meadows and an integral annexe",
+  "g": "",
+  "sq": 4613,
+  "ac": "nearly 5 acres",
+  "gr": "II",
+  "bt": "1670",
+  "ag": "Cheffins - Saffron Walden",
+  "ll": [
+   51.989959,
+   0.412517
+  ],
+  "why": "PROBABLY DOES NOT QUALIFY, page read: Grade II farmhouse of 1670, 6 beds, nearly 5 acres with a historic moat; under 7 beds and 15 acres, no recorded history beyond the date. The moat is the only case for it (moated house). Suggest reject unless you think the moat earns it"
  },
  {
   "id": "74641011",
-  "p": "£415,000",
+  "p": "Guide price £415,000",
   "b": "2",
   "a": "The Old Engine House, Lavenham CO10",
   "l": "2026-10-30",
   "t": "works",
-  "w": "engine house",
-  "h": "Old engine house with two bedrooms",
+  "w": "engine house of a Victorian mill and maltings, Grade II",
+  "h": "Victorian mill engine house turned detached cottage",
+  "n": "The only detached home in the converted Bakers Mill complex",
+  "g": "",
+  "gr": "II",
+  "bt": "late 19th century",
+  "ag": "Chapman Stickels",
   "ll": [
-   52.0586,
-   0.7215
+   52.109261,
+   0.797914
   ],
-  "why": "EMAIL ONLY, page not read (in): Card address is \"The Old Engine House\". Map pin is the postcode district centre, not the building",
-  "ph": null
+  "why": "Page read: built to house the engine powering the roller mill of a late 19th-century mill and maltings, converted in the 1980s; detached and freehold, so a whole building, not a flat"
  },
  {
   "id": "74646877",
@@ -56,14 +64,18 @@
   "b": "6",
   "a": "Bucklesham Sand Filter Building, Watermill Road, Bucklesham, Ipswich, Suffolk IP10",
   "l": "2026-10-30",
+  "au": 1,
   "t": "works",
-  "w": "sand filter building, waterworks",
-  "h": "Former waterworks sand filter building with six bedrooms",
+  "w": "waterworks sand filter building, unconverted",
+  "h": "Waterworks filter building with consent for a six-bedroom home",
+  "n": "About 1.1 acres; the separate laboratory building is to be demolished",
+  "g": "Project|Auction",
+  "ac": "1.1 acres",
+  "ag": "Allsop LLP",
   "ll": [
-   52.0189,
-   1.2701
+   52.029035,
+   1.309983
   ],
-  "why": "EMAIL ONLY, page not read (in): Card address names the \"Bucklesham Sand Filter Building\"; 6 bed for £150,000 is odd, so may be a project. Map pin is the postcode district centre, not the building",
-  "ph": null
+  "why": "Page read: auction lot 298 on 18 Nov 2026 (this Wednesday). Planning for change of use of the sand filter building to one home (six en-suite bedrooms, cellar, roof terrace); only the old laboratory building goes. Building age not stated"
  }
 ]
