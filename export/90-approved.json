@@ -2174,5 +2174,68 @@
    52.2974,
    0.831791
   ]
+ },
+ {
+  "id": "74646877",
+  "p": "£150,000",
+  "b": "6",
+  "a": "Bucklesham Sand Filter Building, Watermill Road, Bucklesham, Ipswich, Suffolk IP10",
+  "l": "2026-10-30",
+  "au": 1,
+  "t": "works",
+  "w": "waterworks sand filter building, unconverted",
+  "h": "Waterworks filter building with consent for a six-bedroom home",
+  "n": "About 1.1 acres; the separate laboratory building is to be demolished",
+  "g": "Project|Auction",
+  "ac": "1.1 acres",
+  "ag": "Allsop LLP",
+  "ll": [
+   52.029035,
+   1.309983
+  ]
+ },
+ {
+  "id": "74672385",
+  "p": "Guide price £21,750,000",
+  "b": "7",
+  "a": "Kensington Square, London W8",
+  "l": "2026-11-03",
+  "s": "grandly",
+  "nm": "",
+  "t": "townhouse",
+  "w": "Period townhouse on London's oldest square (built from 1692), Grade II listed",
+  "h": "Composer Hubert Parry's former home, with blue plaque",
+  "n": "With a south-facing garden and access to the private square",
+  "g": "",
+  "sq": 6679,
+  "gr": "II",
+  "bt": "from 1692",
+  "ag": "Savills - Kensington",
+  "ll": [
+   51.500307,
+   -0.189693
+  ]
+ },
+ {
+  "id": "74699755",
+  "p": "Offers over £3,950,000",
+  "b": "16",
+  "a": "Glenborrodale, Acharacle, Highland PH36",
+  "l": "2026-11-06",
+  "s": "grandly",
+  "nm": "",
+  "t": "castle",
+  "w": "Edwardian Scots Baronial castle, Category A listed",
+  "h": "Edwardian Baronial castle with turret and roof terrace",
+  "n": "With a three-bedroom gate lodge",
+  "g": "",
+  "sq": 16608,
+  "gr": "A",
+  "bt": "Edwardian",
+  "ag": "Savills - Glasgow",
+  "ll": [
+   56.678476,
+   -5.910195
+  ]
  }
 ]
