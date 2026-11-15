@@ -12,7 +12,8 @@
    51.7381,
    -2.2211
   ],
-  "why": "LISTING GONE, page not read: Zoopla now sends this id to a search page for High Street, South Woodchester, so it has been withdrawn or sold. Suggest reject"
+  "why": "LISTING GONE, page not read: Zoopla now sends this id to a search page for High Street, South Woodchester, so it has been withdrawn or sold. Suggest reject",
+  "ph": null
  },
  {
   "id": "73623567",
@@ -36,7 +37,19 @@
    51.989959,
    0.412517
   ],
-  "why": "PROBABLY DOES NOT QUALIFY, page read: Grade II farmhouse of 1670, 6 beds, nearly 5 acres with a historic moat; under 7 beds and 15 acres, no recorded history beyond the date. The moat is the only case for it (moated house). Suggest reject unless you think the moat earns it"
+  "why": "PROBABLY DOES NOT QUALIFY, page read: Grade II farmhouse of 1670, 6 beds, nearly 5 acres with a historic moat; under 7 beds and 15 acres, no recorded history beyond the date. The moat is the only case for it (moated house). Suggest reject unless you think the moat earns it",
+  "ph": [
+   "c162386583",
+   "Maynards",
+   "Lajmmoore",
+   "2025",
+   "",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/Maynards.jpg/960px-Maynards.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   0,
+   "CC BY-SA 4.0",
+   "https://creativecommons.org/licenses/by-sa/4.0",
+   "https://commons.wikimedia.org/wiki/File:Maynards.jpg"
+  ]
  },
  {
   "id": "74641011",
@@ -56,7 +69,8 @@
    52.109261,
    0.797914
   ],
-  "why": "Page read: built to house the engine powering the roller mill of a late 19th-century mill and maltings, converted in the 1980s; detached and freehold, so a whole building, not a flat"
+  "why": "Page read: built to house the engine powering the roller mill of a late 19th-century mill and maltings, converted in the 1980s; detached and freehold, so a whole building, not a flat",
+  "ph": null
  },
  {
   "id": "74646877",
@@ -76,6 +90,15 @@
    52.029035,
    1.309983
   ],
-  "why": "Page read: auction lot 298 on 18 Nov 2026 (this Wednesday). Planning for change of use of the sand filter building to one home (six en-suite bedrooms, cellar, roof terrace); only the old laboratory building goes. Building age not stated"
+  "why": "Page read: auction lot 298 on 18 Nov 2026 (this Wednesday). Planning for change of use of the sand filter building to one home (six en-suite bedrooms, cellar, roof terrace); only the old laboratory building goes. Building age not stated",
+  "ph": [
+   "2633335",
+   "Anglian Water Bucklesham River Intake Works",
+   "Geographer",
+   "2011",
+   "3",
+   "geophotos/02/63/33/2633335_2ee245fe",
+   0
+  ]
  }
 ]
