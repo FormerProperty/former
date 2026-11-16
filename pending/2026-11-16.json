@@ -36,5 +36,23 @@
    -0.885
   ],
   "ph": null
+ },
+ {
+  "id": "74774069",
+  "p": "Guide price £350,000",
+  "b": "3",
+  "a": "The Granary, Hadleigh IP7",
+  "l": "2026-11-16",
+  "t": "granary",
+  "h": "Three-bedroom terraced house at The Granary, Hadleigh",
+  "why": "EMAIL ONLY, page not read: matched the 'granary' and 'mill conversion' alerts; the address names The Granary, but the card calls it terraced, so it may be one of several homes in a converted granary rather than a substantial part of it. Pin is the approximate town centre from our own lookup (the postcode service was not reachable this run), not the building",
+  "w": "",
+  "n": "",
+  "g": "",
+  "card": 1,
+  "ll": [
+   52.044,
+   0.955
+  ]
  }
 ]
