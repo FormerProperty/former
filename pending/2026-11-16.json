@@ -1,0 +1,38 @@
+[
+ {
+  "id": "74770673",
+  "p": "£850,000",
+  "b": "5",
+  "a": "Church End, Willington, Bedford MK44",
+  "l": "2026-11-14",
+  "t": "granary",
+  "h": "Five-bedroom end-terrace house at Church End, Willington",
+  "why": "EMAIL ONLY, page not read: matched the 'granary' alert; the card gives a 5-bed end terrace at £850,000, high for an end terrace in a village, which may point to a conversion, though it could be part of a farm or barn group. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
+  "w": "",
+  "n": "",
+  "g": "",
+  "card": 1,
+  "ll": [
+   52.1365,
+   -0.383
+  ]
+ },
+ {
+  "id": "74773138",
+  "p": "£800,000",
+  "b": "5",
+  "a": "Hatchwood Mill, Winnersh, Wokingham RG41",
+  "l": "2026-11-15",
+  "t": "mill",
+  "h": "Five-bedroom detached house at Hatchwood Mill, Winnersh",
+  "why": "EMAIL ONLY, page not read: matched the 'windmill' alert; the address names Hatchwood Mill, but the card does not say whether this is the mill building or a house beside it (a mill house would not qualify). Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
+  "w": "",
+  "n": "",
+  "g": "",
+  "card": 1,
+  "ll": [
+   51.433,
+   -0.885
+  ]
+ }
+]

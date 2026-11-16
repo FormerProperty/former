@@ -1,6 +1,22 @@
 {
  "runs": [
   {
+   "date": "2026-11-16",
+   "label": "Monday 16 November",
+   "checked": 29,
+   "queued": 11,
+   "left_out": 18,
+   "reasons": [
+    "Grandly: 9 ordinary houses with only the alert keyword to go on",
+    "Grandly: 3 likely guest houses, hotels or multi-let blocks",
+    "Grandly: 2 new-homes listings",
+    "Grandly: 1 seafront terrace where 'castle' came from the town",
+    "Grandly: 1 part of a divided hall, 1 barn group, 1 listing with no bedrooms"
+   ],
+   "health": "Only 2 new formerly. listings this run (most alert emails since Friday had already been judged on Saturday).",
+   "notes": "The visit queue was empty, so no Zoopla pages were opened. Alert emails since 13 November (21 threads, including 50 weekly summaries that arrived on 15 November) gave 30 ids not yet seen; one (74767189 Seaview) had already been reviewed, leaving 29: 2 formerly. and 27 grandly. All 11 queued (2 formerly., 9 grandly.) are cards from the email only. The postcode service was not reachable from this run, so each pin is our own approximate village or district centre. Price cuts in these emails were for listings already ruled out or already recorded. Ruled out but worth a thought: 74750827 (The Mint, Rye, 10 beds at £2.75m), which might be an old inn for formerly."
+  },
+  {
    "date": "2026-11-14",
    "label": "Saturday 14 November (Friday catch-up)",
    "checked": 116,
