@@ -1,6 +1,23 @@
 {
  "runs": [
   {
+   "date": "2026-11-20",
+   "label": "Friday 20 November",
+   "checked": 87,
+   "queued": 15,
+   "left_out": 72,
+   "reasons": [
+    "28 flats in larger buildings",
+    "26 ordinary houses with only the alert keyword to go on",
+    "6 street-name matches",
+    "5 likely new builds named after the old use",
+    "4 farmhouses where the match is probably an outbuilding",
+    "1 barn conversion, 1 plot of land, 1 holiday chalet"
+   ],
+   "health": "",
+   "notes": "The visit queue was empty, so no Zoopla pages were opened and Chrome was not needed. Alert emails since 16 November (76 threads, all formerly.; no grandly: emails arrived) gave 107 listing ids, 87 not yet seen. All 15 queued are cards from the email only. The postcode service was not reachable from this run, so each pin is our own approximate village or district centre. Price cuts recorded for 6 listings already on the site. Two pairs worth looking at together: the Ryeford semis (74795229, 74796404) and the Cemetery Road, Sheffield houses (74812689, 74812692), each pair possibly one converted building."
+  },
+  {
    "date": "2026-11-16",
    "label": "Monday 16 November",
    "checked": 30,

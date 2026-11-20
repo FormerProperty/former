@@ -1,0 +1,272 @@
+[
+ {
+  "id": "68147104",
+  "p": "Guide price £1,295,000",
+  "b": "5",
+  "a": "The Old Granary, Reepham Road, Little Witchingham, Norwich NR9",
+  "l": "2026-11-20",
+  "t": "granary",
+  "h": "Five-bedroom semi-detached house at The Old Granary, Little Witchingham",
+  "why": "EMAIL ONLY, page not read: matched the 'granary' alert (price reduced by £105,000); the address names The Old Granary, so it may be the granary itself or part of it, though it could be one of a converted farm group. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
+  "w": "",
+  "n": "",
+  "g": "",
+  "card": 1,
+  "ll": [
+   52.745,
+   1.105
+  ]
+ },
+ {
+  "id": "70091291",
+  "p": "£595,000",
+  "b": "4",
+  "a": "7 High Mill, Shaw Mills, Harrogate HG3",
+  "l": "2026-11-17",
+  "t": "mill",
+  "h": "Four-bedroom detached house at High Mill, Shaw Mills",
+  "why": "EMAIL ONLY, page not read: matched the 'mill conversion' alert; the address is 7 High Mill, which suggests one unit of a converted mill group, but the card does not say whether it is part of the mill building or a newer house. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
+  "w": "",
+  "n": "",
+  "g": "",
+  "card": 1,
+  "ll": [
+   54.057,
+   -1.633
+  ]
+ },
+ {
+  "id": "74378116",
+  "p": "£525,000",
+  "b": "4",
+  "a": "Buttway Lane, Cliffe ME3",
+  "l": "2026-11-19",
+  "t": "school",
+  "h": "Four-bedroom property on Buttway Lane, Cliffe",
+  "why": "EMAIL ONLY, page not read: matched the 'former school' alert (price reduced by £50,000); the card gives no property type, which sometimes means a building that is not a standard house; card gives no other detail. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
+  "w": "",
+  "n": "",
+  "g": "",
+  "card": 1,
+  "ll": [
+   51.462,
+   0.497
+  ]
+ },
+ {
+  "id": "74784865",
+  "p": "Guide price £5,000",
+  "b": "2",
+  "a": "34 - 36 Second Street, Horden, Peterlee, County Durham SR8",
+  "l": "2026-11-17",
+  "t": "pub",
+  "h": "Two-bedroom property at 34 to 36 Second Street, Horden",
+  "why": "EMAIL ONLY, page not read: matched the 'former public house' alert; the card calls it a 2-bed flat but gives a double street number and a guide price of £5,000, which may mean the whole building at auction; it may equally be a flat in a bigger building. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
+  "w": "",
+  "n": "",
+  "g": "",
+  "card": 1,
+  "ll": [
+   54.763,
+   -1.313
+  ]
+ },
+ {
+  "id": "74785218",
+  "p": "Guide price £395,000",
+  "b": "2",
+  "a": "The Crawley Inn, Crawley OX29",
+  "l": "2026-11-17",
+  "t": "pub",
+  "h": "Two-bedroom end-terrace at The Crawley Inn, Crawley",
+  "why": "EMAIL ONLY, page not read: matched both 'former pub' and 'former public house' alerts; the address names The Crawley Inn, so it is likely part of the old inn, though it may be one of several homes made from it. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
+  "w": "",
+  "n": "",
+  "g": "",
+  "card": 1,
+  "ll": [
+   51.806,
+   -1.504
+  ]
+ },
+ {
+  "id": "74787489",
+  "p": "Guide price £675,000",
+  "b": "7",
+  "a": "Constitution Hill, Norwich NR3",
+  "l": "2026-11-17",
+  "t": "pub",
+  "h": "Seven-bedroom detached house on Constitution Hill, Norwich",
+  "why": "EMAIL ONLY, page not read: matched the 'former public house' alert; seven bedrooms at £675,000 is unusual for a house here, which may point to a former pub; card gives no other detail. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
+  "w": "",
+  "n": "",
+  "g": "",
+  "card": 1,
+  "ll": [
+   52.647,
+   1.296
+  ]
+ },
+ {
+  "id": "74788091",
+  "p": "Offers over £375,000",
+  "b": "1",
+  "a": "Lowden Road, London SE24",
+  "l": "2026-11-17",
+  "t": "coach",
+  "h": "One-bedroom terraced house on Lowden Road, Herne Hill",
+  "why": "EMAIL ONLY, page not read: matched the 'converted coach house' alert; a one-bedroom terraced house is an unusual type and fits a mews coach house, but the card gives no other detail. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
+  "w": "",
+  "n": "",
+  "g": "",
+  "card": 1,
+  "ll": [
+   51.459,
+   -0.1
+  ]
+ },
+ {
+  "id": "74795229",
+  "p": "Guide price £395,000",
+  "b": "3",
+  "a": "Ryeford, Ross-On-Wye, Herefordshire HR9",
+  "l": "2026-11-18",
+  "t": "church",
+  "h": "Three-bedroom semi-detached house at Ryeford",
+  "why": "EMAIL ONLY, page not read: matched the 'church conversion' alert; a second Ryeford semi (74796404) matched the 'former chapel' alert in the same week, so the pair may be the two halves of a converted chapel. Card gives no other detail. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
+  "w": "",
+  "n": "",
+  "g": "",
+  "card": 1,
+  "ll": [
+   51.906,
+   -2.548
+  ]
+ },
+ {
+  "id": "74796404",
+  "p": "Guide price £440,000",
+  "b": "3",
+  "a": "Ryeford, Ross-On-Wye, Herefordshire HR9",
+  "l": "2026-11-18",
+  "t": "chapel",
+  "h": "Three-bedroom semi-detached house at Ryeford",
+  "why": "EMAIL ONLY, page not read: matched the 'former chapel' alert; a second Ryeford semi (74795229) matched the 'church conversion' alert in the same week, so the pair may be the two halves of a converted chapel. Card gives no other detail. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
+  "w": "",
+  "n": "",
+  "g": "",
+  "card": 1,
+  "ll": [
+   51.906,
+   -2.548
+  ]
+ },
+ {
+  "id": "74795542",
+  "p": "Guide price £575,000",
+  "b": "3",
+  "a": "The Granary, Hadleigh Road, Elmsett IP7",
+  "l": "2026-11-18",
+  "t": "granary",
+  "h": "Three-bedroom chalet at The Granary, Elmsett",
+  "why": "EMAIL ONLY, page not read: matched the 'granary' alert; the address names The Granary, Hadleigh Road. Not the same as 74774069 (The Granary, Hadleigh, £350,000, queued on 16 November) on the card's price, but worth checking they are not linked. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
+  "w": "",
+  "n": "",
+  "g": "",
+  "card": 1,
+  "ll": [
+   52.088,
+   0.995
+  ]
+ },
+ {
+  "id": "74799391",
+  "p": "£270,000",
+  "b": "3",
+  "a": "Old Chapel House, Tirril, Eden Valley CA10",
+  "l": "2026-11-18",
+  "t": "chapel",
+  "h": "Three-bedroom detached house at Old Chapel House, Tirril",
+  "why": "EMAIL ONLY, page not read: matched the 'chapel conversion' and 'former chapel' alerts; the address names Old Chapel House, which may be the chapel itself or a house beside it. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
+  "w": "",
+  "n": "",
+  "g": "",
+  "card": 1,
+  "ll": [
+   54.64,
+   -2.777
+  ]
+ },
+ {
+  "id": "74803539",
+  "p": "Guide price £150,000",
+  "b": "7",
+  "a": "17 High Street, Waddesdon, Aylesbury, Buckinghamshire HP18",
+  "l": "2026-11-19",
+  "t": "other",
+  "h": "Seven-bedroom terraced house on the High Street, Waddesdon",
+  "why": "EMAIL ONLY, page not read: matched the 'windmill' alert, which is probably not the reason; but a seven-bedroom terraced house at a guide price of £150,000 is far off the local norm and may be a former inn or shop, or a share or auction lot. Card gives no other detail. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
+  "w": "",
+  "n": "",
+  "g": "",
+  "card": 1,
+  "ll": [
+   51.845,
+   -0.92
+  ]
+ },
+ {
+  "id": "74803677",
+  "p": "Guide price £210,000",
+  "b": "4",
+  "a": "The Old Chapel, Polbathic, Torpoint, Cornwall PL11",
+  "l": "2026-11-19",
+  "t": "chapel",
+  "h": "Four-bedroom end-terrace at The Old Chapel, Polbathic",
+  "why": "EMAIL ONLY, page not read: matched the 'former chapel' alert, and a 'sunday school' price-cut email (reduced by £65,000); the address names The Old Chapel. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
+  "w": "",
+  "n": "",
+  "g": "",
+  "card": 1,
+  "ll": [
+   50.392,
+   -4.307
+  ]
+ },
+ {
+  "id": "74812689",
+  "p": "Guide price £375,000",
+  "b": "3",
+  "a": "Cemetery Road, Sheffield, South Yorkshire S11",
+  "l": "2026-11-20",
+  "t": "pub",
+  "h": "Three-bedroom terraced house on Cemetery Road, Sheffield",
+  "why": "EMAIL ONLY, page not read: matched the 'former public house' alert; a 4-bed end terrace on the same road (74812692) matched the same alert the same day, so the two may be homes made from one former pub. Card gives no other detail. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
+  "w": "",
+  "n": "",
+  "g": "",
+  "card": 1,
+  "ll": [
+   53.369,
+   -1.483
+  ]
+ },
+ {
+  "id": "74812692",
+  "p": "Guide price £395,000",
+  "b": "4",
+  "a": "Cemetery Road, Sheffield, South Yorkshire S11",
+  "l": "2026-11-20",
+  "t": "pub",
+  "h": "Four-bedroom end-terrace on Cemetery Road, Sheffield",
+  "why": "EMAIL ONLY, page not read: matched the 'former public house' alert; a 3-bed terraced house on the same road (74812689) matched the same alert the same day, so the two may be homes made from one former pub. Card gives no other detail. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
+  "w": "",
+  "n": "",
+  "g": "",
+  "card": 1,
+  "ll": [
+   53.369,
+   -1.483
+  ]
+ }
+]
