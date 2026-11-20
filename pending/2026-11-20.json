@@ -1,43 +1,5 @@
 [
  {
-  "id": "68147104",
-  "p": "Guide price £1,295,000",
-  "b": "5",
-  "a": "The Old Granary, Reepham Road, Little Witchingham, Norwich NR9",
-  "l": "2026-11-20",
-  "t": "granary",
-  "h": "Five-bedroom semi-detached house at The Old Granary, Little Witchingham",
-  "why": "EMAIL ONLY, page not read: matched the 'granary' alert (price reduced by £105,000); the address names The Old Granary, so it may be the granary itself or part of it, though it could be one of a converted farm group. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
-  "w": "",
-  "n": "",
-  "g": "",
-  "card": 1,
-  "ll": [
-   52.745,
-   1.105
-  ],
-  "ph": null
- },
- {
-  "id": "70091291",
-  "p": "£595,000",
-  "b": "4",
-  "a": "7 High Mill, Shaw Mills, Harrogate HG3",
-  "l": "2026-11-17",
-  "t": "mill",
-  "h": "Four-bedroom detached house at High Mill, Shaw Mills",
-  "why": "EMAIL ONLY, page not read: matched the 'mill conversion' alert; the address is 7 High Mill, which suggests one unit of a converted mill group, but the card does not say whether it is part of the mill building or a newer house. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
-  "w": "",
-  "n": "",
-  "g": "",
-  "card": 1,
-  "ll": [
-   54.057,
-   -1.633
-  ],
-  "ph": null
- },
- {
   "id": "74378116",
   "p": "£525,000",
   "b": "4",
@@ -65,52 +27,6 @@
   ]
  },
  {
-  "id": "74784865",
-  "p": "Guide price £5,000",
-  "b": "2",
-  "a": "34 - 36 Second Street, Horden, Peterlee, County Durham SR8",
-  "l": "2026-11-17",
-  "t": "pub",
-  "h": "Two-bedroom property at 34 to 36 Second Street, Horden",
-  "why": "EMAIL ONLY, page not read: matched the 'former public house' alert; the card calls it a 2-bed flat but gives a double street number and a guide price of £5,000, which may mean the whole building at auction; it may equally be a flat in a bigger building. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
-  "w": "",
-  "n": "",
-  "g": "",
-  "card": 1,
-  "ll": [
-   54.763,
-   -1.313
-  ],
-  "ph": null
- },
- {
-  "id": "74785218",
-  "p": "Guide price £395,000",
-  "b": "2",
-  "a": "The Crawley Inn, Crawley OX29",
-  "l": "2026-11-17",
-  "t": "pub",
-  "h": "Two-bedroom end-terrace at The Crawley Inn, Crawley",
-  "why": "EMAIL ONLY, page not read: matched both 'former pub' and 'former public house' alerts; the address names The Crawley Inn, so it is likely part of the old inn, though it may be one of several homes made from it. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
-  "w": "",
-  "n": "",
-  "g": "",
-  "card": 1,
-  "ll": [
-   51.806,
-   -1.504
-  ],
-  "ph": [
-   "6798169",
-   "Crawley Inn, Foxburrow Lane",
-   "Vieve Forward",
-   "2021",
-   "1",
-   "geophotos/06/79/81/6798169_183919f8",
-   0
-  ]
- },
- {
   "id": "74787489",
   "p": "Guide price £675,000",
   "b": "7",
@@ -126,25 +42,6 @@
   "ll": [
    52.647,
    1.296
-  ],
-  "ph": null
- },
- {
-  "id": "74788091",
-  "p": "Offers over £375,000",
-  "b": "1",
-  "a": "Lowden Road, London SE24",
-  "l": "2026-11-17",
-  "t": "coach",
-  "h": "One-bedroom terraced house on Lowden Road, Herne Hill",
-  "why": "EMAIL ONLY, page not read: matched the 'converted coach house' alert; a one-bedroom terraced house is an unusual type and fits a mews coach house, but the card gives no other detail. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
-  "w": "",
-  "n": "",
-  "g": "",
-  "card": 1,
-  "ll": [
-   51.459,
-   -0.1
   ],
   "ph": null
  },
@@ -187,25 +84,6 @@
   "ph": null
  },
  {
-  "id": "74795542",
-  "p": "Guide price £575,000",
-  "b": "3",
-  "a": "The Granary, Hadleigh Road, Elmsett IP7",
-  "l": "2026-11-18",
-  "t": "granary",
-  "h": "Three-bedroom chalet at The Granary, Elmsett",
-  "why": "EMAIL ONLY, page not read: matched the 'granary' alert; the address names The Granary, Hadleigh Road. Not the same as 74774069 (The Granary, Hadleigh, £350,000, queued on 16 November) on the card's price, but worth checking they are not linked. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
-  "w": "",
-  "n": "",
-  "g": "",
-  "card": 1,
-  "ll": [
-   52.088,
-   0.995
-  ],
-  "ph": null
- },
- {
   "id": "74799391",
   "p": "£270,000",
   "b": "3",
@@ -221,25 +99,6 @@
   "ll": [
    54.64,
    -2.777
-  ],
-  "ph": null
- },
- {
-  "id": "74803539",
-  "p": "Guide price £150,000",
-  "b": "7",
-  "a": "17 High Street, Waddesdon, Aylesbury, Buckinghamshire HP18",
-  "l": "2026-11-19",
-  "t": "other",
-  "h": "Seven-bedroom terraced house on the High Street, Waddesdon",
-  "why": "EMAIL ONLY, page not read: matched the 'windmill' alert, which is probably not the reason; but a seven-bedroom terraced house at a guide price of £150,000 is far off the local norm and may be a former inn or shop, or a share or auction lot. Card gives no other detail. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
-  "w": "",
-  "n": "",
-  "g": "",
-  "card": 1,
-  "ll": [
-   51.845,
-   -0.92
   ],
   "ph": null
  },
@@ -261,59 +120,5 @@
    -4.307
   ],
   "ph": null
- },
- {
-  "id": "74812689",
-  "p": "Guide price £375,000",
-  "b": "3",
-  "a": "Cemetery Road, Sheffield, South Yorkshire S11",
-  "l": "2026-11-20",
-  "t": "pub",
-  "h": "Three-bedroom terraced house on Cemetery Road, Sheffield",
-  "why": "EMAIL ONLY, page not read: matched the 'former public house' alert; a 4-bed end terrace on the same road (74812692) matched the same alert the same day, so the two may be homes made from one former pub. Card gives no other detail. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
-  "w": "",
-  "n": "",
-  "g": "",
-  "card": 1,
-  "ll": [
-   53.369,
-   -1.483
-  ],
-  "ph": [
-   "3242810",
-   "\"The Vine Inn\", Cemetery Road, Sheffield",
-   "Neil Theasby",
-   "2012",
-   "2",
-   "geophotos/03/24/28/3242810_31ba67e4",
-   0
-  ]
- },
- {
-  "id": "74812692",
-  "p": "Guide price £395,000",
-  "b": "4",
-  "a": "Cemetery Road, Sheffield, South Yorkshire S11",
-  "l": "2026-11-20",
-  "t": "pub",
-  "h": "Four-bedroom end-terrace on Cemetery Road, Sheffield",
-  "why": "EMAIL ONLY, page not read: matched the 'former public house' alert; a 3-bed terraced house on the same road (74812689) matched the same alert the same day, so the two may be homes made from one former pub. Card gives no other detail. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
-  "w": "",
-  "n": "",
-  "g": "",
-  "card": 1,
-  "ll": [
-   53.369,
-   -1.483
-  ],
-  "ph": [
-   "3242810",
-   "\"The Vine Inn\", Cemetery Road, Sheffield",
-   "Neil Theasby",
-   "2012",
-   "2",
-   "geophotos/03/24/28/3242810_31ba67e4",
-   0
-  ]
  }
 ]
