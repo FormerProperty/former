@@ -5,17 +5,18 @@
   "b": "5",
   "a": "Church End, Willington, Bedford MK44",
   "l": "2026-11-14",
-  "t": "granary",
-  "h": "Five-bedroom end-terrace house at Church End, Willington",
-  "why": "EMAIL ONLY, page not read: matched the 'granary' alert; the card gives a 5-bed end terrace at £850,000, high for an end terrace in a village, which may point to a conversion, though it could be part of a farm or barn group. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
-  "w": "",
-  "n": "",
+  "t": "other",
+  "w": "Former stables",
+  "n": "With a vaulted lounge, an annexe and about a quarter of an acre",
   "g": "",
-  "card": 1,
+  "h": "Former stables turned five-bedroom home with vaulted lounge",
+  "sq": 2509,
+  "ac": "0.24 acres",
+  "ag": "Lane & Holmes",
   "ll": [
-   52.1365,
-   -0.383
+   52.137329,
+   -0.385446
   ],
-  "ph": null
+  "why": "Page read 22 Nov: the listing describes it as a characterful family home, formerly stables, freehold end terrace of 2,509 sq ft on about 0.24 acres. Stables were not built for living in, so it fits the remit, though it may be one unit of a converted stable range rather than the whole building; the description beyond the key features was not read in full. Matched the 'granary' alert, but the listing says stables, not granary"
  }
 ]
