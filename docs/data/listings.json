@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20",
+ "updated": "2026-11-22",
  "types": {
   "chapel": "Chapels",
   "church": "Churches",
@@ -25,8 +25,38 @@
   "works": "Industrial and civic",
   "other": "Other"
  },
- "count": 590,
+ "count": 591,
  "listings": [
+  {
+   "site": "formerly",
+   "name": "",
+   "id": "74770673",
+   "url": "https://www.zoopla.co.uk/for-sale/details/74770673/",
+   "source": "Zoopla",
+   "type": "other",
+   "was": "Former stables",
+   "label": "Formerly the Former stables",
+   "os": "Bldg",
+   "note": "With a vaulted lounge, an annexe and about a quarter of an acre",
+   "headline": "Former stables turned five-bedroom home with vaulted lounge",
+   "sqft": 2509,
+   "plot": "0.24 acres",
+   "grade": "",
+   "built": "",
+   "place": "Church End, Willington, Bedford",
+   "postcode": "MK44",
+   "county": "Buckinghamshire",
+   "region": "South East",
+   "price": 850000,
+   "priceText": "£850,000",
+   "beds": 5,
+   "listed": "2026-11-14",
+   "badges": [],
+   "photo": null,
+   "lat": 52.135977,
+   "lng": -0.386395,
+   "added": "2026-11-22"
+  },
   {
    "site": "formerly",
    "name": "",
