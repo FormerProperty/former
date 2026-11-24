@@ -6,25 +6,16 @@
   "a": "Buttway Lane, Cliffe ME3",
   "l": "2026-11-19",
   "t": "school",
-  "h": "Four-bedroom property on Buttway Lane, Cliffe",
-  "why": "EMAIL ONLY, page not read: matched the 'former school' alert (price reduced by £50,000); the card gives no property type, which sometimes means a building that is not a standard house; card gives no other detail. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
-  "w": "",
-  "n": "",
+  "w": "school house",
+  "n": "With a cellar and a 24-foot vaulted lounge",
   "g": "",
-  "card": 1,
+  "h": "Village school house with a vaulted lounge and cellars",
+  "ag": "Wards - Strood",
   "ll": [
-   51.462,
-   0.497
+   51.46104,
+   0.49607
   ],
-  "ph": [
-   "2320632",
-   "The former Infants' School, Cliffe",
-   "N Chadwick",
-   "2011",
-   "0",
-   "geophotos/02/32/06/2320632_3933c290",
-   0
-  ]
+  "why": "Page read: described as a 'former school house' with a 24-foot vaulted lounge/diner, a basement of cellars and four bedrooms, freehold, price reduced on 19 November. Doubt: 'school house' can mean the schoolmaster's house rather than the schoolroom; the vaulted lounge suggests the school itself, but the listing does not say so plainly"
  },
  {
   "id": "74787489",
@@ -33,17 +24,17 @@
   "a": "Constitution Hill, Norwich NR3",
   "l": "2026-11-17",
   "t": "pub",
-  "h": "Seven-bedroom detached house on Constitution Hill, Norwich",
-  "why": "EMAIL ONLY, page not read: matched the 'former public house' alert; seven bedrooms at £675,000 is unusual for a house here, which may point to a former pub; card gives no other detail. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
-  "w": "",
-  "n": "",
+  "w": "public house",
+  "n": "With a self-contained annexe, roof terrace, cellar and a neighbouring plot with planning",
   "g": "",
-  "card": 1,
+  "h": "Seven-bedroom former pub with annexe and roof terrace",
+  "sq": 3137,
+  "ag": "Minors & Brady",
   "ll": [
-   52.647,
-   1.296
+   52.649114,
+   1.300337
   ],
-  "ph": null
+  "why": "Page read: described as a substantial former public house converted to a home, freehold, about 3,137 sq ft, with a self-contained annexe, cellar, roof terrace, and an adjacent plot with full planning permission (guide £675,000 to £700,000)"
  },
  {
   "id": "74795229",
@@ -52,17 +43,16 @@
   "a": "Ryeford, Ross-On-Wye, Herefordshire HR9",
   "l": "2026-11-18",
   "t": "church",
-  "h": "Three-bedroom semi-detached house at Ryeford",
-  "why": "EMAIL ONLY, page not read: matched the 'church conversion' alert; a second Ryeford semi (74796404) matched the 'former chapel' alert in the same week, so the pair may be the two halves of a converted chapel. Card gives no other detail. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
-  "w": "",
-  "n": "",
-  "g": "",
-  "card": 1,
+  "w": "church, unconverted",
+  "n": "With planning permission to make two three-bedroom homes",
+  "g": "Project",
+  "h": "Stone church in industrial use, with planning for two homes",
+  "ag": "Richard Butler Sales & Lettings",
   "ll": [
-   51.906,
-   -2.548
+   51.900644,
+   -2.523411
   ],
-  "ph": null
+  "why": "Page read: the whole former Ryeford Church, now used for industrial storage, sold with planning permission for two three-bedroom homes (planning refs P253509/F etc.). Same agent and planning set as 74796404 (the Old Chapel and Manse Cottage next door): two separate sales"
  },
  {
   "id": "74796404",
@@ -71,36 +61,34 @@
   "a": "Ryeford, Ross-On-Wye, Herefordshire HR9",
   "l": "2026-11-18",
   "t": "chapel",
-  "h": "Three-bedroom semi-detached house at Ryeford",
-  "why": "EMAIL ONLY, page not read: matched the 'former chapel' alert; a second Ryeford semi (74795229) matched the 'church conversion' alert in the same week, so the pair may be the two halves of a converted chapel. Card gives no other detail. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
-  "w": "",
-  "n": "",
-  "g": "",
-  "card": 1,
+  "w": "chapel, with its manse",
+  "n": "Sold with the adjoining Manse Cottage and planning for two homes",
+  "g": "Project",
+  "h": "Stone chapel and its manse, with planning for two homes",
+  "ag": "Richard Butler Sales & Lettings",
   "ll": [
-   51.906,
-   -2.548
+   51.900644,
+   -2.523411
   ],
-  "ph": null
+  "why": "Page read: the Old Chapel building and the adjoining Manse Cottage sold together, with planning permission for two three-bedroom homes; the chapel keeps original features. Same agent and planning set as 74795229 (Ryeford Church next door): two separate sales. The manse was always a house, but the chapel is a substantial part"
  },
  {
   "id": "74799391",
-  "p": "£270,000",
+  "p": "£250,000",
   "b": "3",
   "a": "Old Chapel House, Tirril, Eden Valley CA10",
   "l": "2026-11-18",
   "t": "chapel",
-  "h": "Three-bedroom detached house at Old Chapel House, Tirril",
-  "why": "EMAIL ONLY, page not read: matched the 'chapel conversion' and 'former chapel' alerts; the address names Old Chapel House, which may be the chapel itself or a house beside it. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
-  "w": "",
-  "n": "",
-  "g": "",
-  "card": 1,
+  "w": "chapel, converted 1980",
+  "n": "Needs modernising",
+  "g": "Project",
+  "h": "Chapel with stained glass on three sides of its sitting room",
+  "ag": "David Britton Estates",
   "ll": [
-   54.64,
-   -2.777
+   54.632214,
+   -2.76953
   ],
-  "ph": null
+  "why": "Page read: the chapel itself, converted to a house in 1980, keeping many stained glass windows; upside-down layout with the sitting room above; ready for modernisation. Price now £250,000 (was £270,000 on the card)"
  },
  {
   "id": "74803677",

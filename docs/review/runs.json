@@ -1,6 +1,21 @@
 {
  "runs": [
   {
+   "date": "2026-11-24",
+   "label": "Tuesday 24 November",
+   "checked": 67,
+   "queued": 9,
+   "left_out": 58,
+   "reasons": [
+    "21 likely new builds (developer house types and new-estate plots)",
+    "17 flats in larger buildings",
+    "15 ordinary houses with only the alert keyword to go on",
+    "5 street-name or place-name matches"
+   ],
+   "health": "Only 4 new cards from the alert emails this run (below the usual 10 to 15), almost all the rest being new builds and flats. Worth a glance that the alerts are still working as expected.",
+   "notes": "Look closer: 5 of the 6 queued pages read (Cliffe school house, Norwich former pub, Ryeford church, Ryeford chapel and manse, Tirril chapel) and back in the queue as full records; Zoopla did not refuse any page. Chrome then dropped out before the sixth page, so 74803677 (The Old Chapel, Polbathic) stays in the visit queue; note it has the same price, place and £65,000 cut as live listing 71453071 (Polbathic chapel), so it may be a relisting. Alert emails since 20 November (53 threads, all formerly.; no grandly: emails) gave 91 listing ids, 62 not yet seen: 4 queued as email-only cards with the pin at the postcode district centre, 58 ruled out. Price cuts recorded for 3 live listings (74078237, 74001742, 74482535)."
+  },
+  {
    "date": "2026-11-20",
    "label": "Friday 20 November",
    "checked": 87,

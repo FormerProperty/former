@@ -1,0 +1,74 @@
+[
+ {
+  "id": "74819474",
+  "p": "£1,450,000",
+  "b": "5",
+  "a": "Provender Oast, Provender Lane, Faversham ME13",
+  "l": "2026-11-20",
+  "t": "oast",
+  "h": "Five-bedroom detached house at Provender Oast, Faversham",
+  "why": "EMAIL ONLY, page not read: matched the 'oast house' alert; the address names Provender Oast, which may be the oast itself or a house beside it. Card gives no other detail. Pin is the postcode district centre (from postcodes.io), not the building",
+  "ll": [
+   51.304244,
+   0.894609
+  ],
+  "w": "",
+  "n": "",
+  "g": "",
+  "card": 1
+ },
+ {
+  "id": "74829194",
+  "p": "£595,000",
+  "b": "3",
+  "a": "Church Walk, Glossop SK13",
+  "l": "2026-11-23",
+  "t": "school",
+  "h": "Three-bedroom end-terrace on Church Walk, Glossop",
+  "why": "EMAIL ONLY, page not read: matched the 'former school' alert; £595,000 is far above the usual price for a three-bedroom end-terrace in Glossop, which may point to a converted school. Card gives no other detail. Pin is the postcode district centre (from postcodes.io), not the building",
+  "ll": [
+   53.448688,
+   -1.964366
+  ],
+  "w": "",
+  "n": "",
+  "g": "",
+  "card": 1
+ },
+ {
+  "id": "74830317",
+  "p": "£1,000,000",
+  "b": "7",
+  "a": "Shottenden Road, Molash CT4",
+  "l": "2026-11-23",
+  "t": "oast",
+  "h": "Seven-bedroom semi-detached house in Molash",
+  "why": "EMAIL ONLY, page not read: matched the 'oast house' alert; seven bedrooms in a semi-detached house is unusual and may be half of a converted oast. Card gives no other detail. Pin is the postcode district centre (from postcodes.io), not the building",
+  "ll": [
+   51.223377,
+   1.065049
+  ],
+  "w": "",
+  "n": "",
+  "g": "",
+  "card": 1
+ },
+ {
+  "id": "74834220",
+  "p": "Offers over £600,000",
+  "b": "8",
+  "a": "North Street, Emsworth PO10",
+  "l": "2026-11-23",
+  "t": "pub",
+  "h": "Eight-bedroom terraced house on North Street, Emsworth",
+  "why": "EMAIL ONLY, page not read: matched the 'former public house' alert; eight bedrooms in a terraced house on a town street is unusual and may point to an old inn. Card gives no other detail. Pin is the postcode district centre (from postcodes.io), not the building",
+  "ll": [
+   50.852361,
+   -0.928619
+  ],
+  "w": "",
+  "n": "",
+  "g": "",
+  "card": 1
+ }
+]
