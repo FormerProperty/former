@@ -2310,5 +2310,123 @@
    52.135977,
    -0.386395
   ]
+ },
+ {
+  "id": "74378116",
+  "p": "£525,000",
+  "b": "4",
+  "a": "Buttway Lane, Cliffe ME3",
+  "l": "2026-11-19",
+  "t": "school",
+  "w": "school house",
+  "n": "With a cellar and a 24-foot vaulted lounge",
+  "g": "",
+  "h": "Village school house with a vaulted lounge and cellars",
+  "ag": "Wards - Strood",
+  "ll": [
+   51.46104,
+   0.49607
+  ]
+ },
+ {
+  "id": "74787489",
+  "p": "Guide price £675,000",
+  "b": "7",
+  "a": "Constitution Hill, Norwich NR3",
+  "l": "2026-11-17",
+  "t": "pub",
+  "w": "public house",
+  "n": "With a self-contained annexe, roof terrace, cellar and a neighbouring plot with planning",
+  "g": "",
+  "h": "Seven-bedroom former pub with annexe and roof terrace",
+  "sq": 3137,
+  "ag": "Minors & Brady",
+  "ll": [
+   52.649114,
+   1.300337
+  ]
+ },
+ {
+  "id": "74795229",
+  "p": "Guide price £395,000",
+  "b": "3",
+  "a": "Ryeford, Ross-On-Wye, Herefordshire HR9",
+  "l": "2026-11-18",
+  "t": "church",
+  "w": "church, unconverted",
+  "n": "With planning permission to make two three-bedroom homes",
+  "g": "Project",
+  "h": "Stone church in industrial use, with planning for two homes",
+  "ag": "Richard Butler Sales & Lettings",
+  "ll": [
+   51.901127,
+   -2.523358
+  ]
+ },
+ {
+  "id": "74796404",
+  "p": "Guide price £440,000",
+  "b": "3",
+  "a": "Ryeford, Ross-On-Wye, Herefordshire HR9",
+  "l": "2026-11-18",
+  "t": "chapel",
+  "w": "chapel, with its manse",
+  "n": "Sold with the adjoining Manse Cottage and planning for two homes",
+  "g": "Project",
+  "h": "Stone chapel and its manse, with planning for two homes",
+  "ag": "Richard Butler Sales & Lettings",
+  "ll": [
+   51.900644,
+   -2.523411
+  ]
+ },
+ {
+  "id": "74799391",
+  "p": "£250,000",
+  "b": "3",
+  "a": "Old Chapel House, Tirril, Eden Valley CA10",
+  "l": "2026-11-18",
+  "t": "chapel",
+  "w": "chapel, converted 1980",
+  "n": "Needs modernising",
+  "g": "Project",
+  "h": "Chapel with stained glass on three sides of its sitting room",
+  "ag": "David Britton Estates",
+  "ll": [
+   54.632214,
+   -2.76953
+  ]
+ },
+ {
+  "id": "74829194",
+  "p": "£595,000",
+  "b": "3",
+  "a": "Church Walk, Glossop SK13",
+  "l": "2026-11-23",
+  "t": "school",
+  "h": "Three-bedroom end-terrace on Church Walk, Glossop",
+  "ll": [
+   53.448688,
+   -1.964366
+  ],
+  "w": "",
+  "n": "",
+  "g": ""
+ },
+ {
+  "id": "74834220",
+  "p": "Offers over £600,000",
+  "b": "8",
+  "a": "North Street, Emsworth PO10",
+  "l": "2026-11-23",
+  "t": "pub",
+  "h": "Eight-bedroom terraced house on North Street, Emsworth",
+  "ll": [
+   50.852361,
+   -0.928619
+  ],
+  "w": "",
+  "n": "",
+  "g": ""
  }
 ]
