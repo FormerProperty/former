@@ -590,5 +590,12 @@
 "photo": false,
 "uri": "at://did:plc:b4m4gyzzowyh4klr6q7czdpy/app.bsky.feed.post/3n35q5fdpnz2b",
 "price": 595000
+},
+{
+"id": "74799391",
+"at": "2026-11-26T17:40",
+"photo": true,
+"uri": "at://did:plc:b4m4gyzzowyh4klr6q7czdpy/app.bsky.feed.post/3n3a7rkasxw2j",
+"price": 250000
 }
 ]
