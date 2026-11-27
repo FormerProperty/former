@@ -5,17 +5,17 @@
   "b": "4",
   "a": "The Old Chapel, Polbathic, Torpoint, Cornwall PL11",
   "l": "2026-11-19",
+  "au": 1,
   "t": "chapel",
-  "h": "Four-bedroom end-terrace at The Old Chapel, Polbathic",
-  "why": "EMAIL ONLY, page not read: matched the 'former chapel' alert, and a 'sunday school' price-cut email (reduced by £65,000); the address names The Old Chapel. Pin is the approximate village or district centre from our own lookup (the postcode service was not reachable this run), not the building",
-  "w": "",
-  "n": "",
-  "g": "",
-  "card": 1,
+  "w": "chapel and Sunday school",
+  "n": "Auction on 10 December 2026; extant planning for a garage and roof garden",
+  "g": "Project|Auction",
+  "h": "Part-renovated chapel and Sunday school with galleried sitting room",
+  "ag": "Countrywide Property Auctions - South West",
   "ll": [
-   50.392,
-   -4.307
+   50.388824,
+   -4.327419
   ],
-  "ph": null
+  "why": "Page read: described as a former chapel and Sunday school, part way through renovation, freehold, whole building. Probably the same building as live listing 71453071 (Polbathic chapel, same £210,000 guide and map pin within about 10 m), so likely a relisting: reject this one, or approve it and retire 71453071"
  }
 ]

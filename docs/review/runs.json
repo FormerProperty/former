@@ -1,6 +1,22 @@
 {
  "runs": [
   {
+   "date": "2026-11-27",
+   "label": "Friday 27 November",
+   "checked": 51,
+   "queued": 6,
+   "left_out": 45,
+   "reasons": [
+    "22 flats in larger buildings or developments",
+    "16 ordinary houses with only the alert keyword to go on",
+    "4 street-name matches",
+    "2 likely single units of larger conversions",
+    "1 barn conversion"
+   ],
+   "health": "",
+   "notes": "Look closer: 1 page read (74803677, The Old Chapel, Polbathic) and back in the queue as a full record; it is very probably the same building as live listing 71453071 (same guide price, map pin within about 10 m), so likely a relisting. Zoopla did not refuse the page; the visit queue is now empty. Alert emails since 24 November (59 threads, 86 emails, all formerly.; no grandly: emails) gave 64 listing ids, 51 not yet seen: 6 queued as email-only cards with the pin at an approximate district centre (the postcode service was not reachable), 45 ruled out. Price cuts recorded for 2 live listings (71346080, 74570124)."
+  },
+  {
    "date": "2026-11-24",
    "label": "Tuesday 24 November",
    "checked": 67,
