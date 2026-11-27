@@ -2428,5 +2428,71 @@
   "w": "",
   "n": "",
   "g": ""
+ },
+ {
+  "id": "74803677",
+  "p": "Guide price £210,000",
+  "b": "4",
+  "a": "The Old Chapel, Polbathic, Torpoint, Cornwall PL11",
+  "l": "2026-11-19",
+  "au": 1,
+  "t": "chapel",
+  "w": "chapel and Sunday school",
+  "n": "Auction on 10 December 2026; extant planning for a garage and roof garden",
+  "g": "Project|Auction",
+  "h": "Part-renovated chapel and Sunday school with galleried sitting room",
+  "ag": "Countrywide Property Auctions - South West",
+  "ll": [
+   50.388824,
+   -4.327419
+  ]
+ },
+ {
+  "id": "74852252",
+  "p": "Guide price £35,000",
+  "b": "",
+  "a": "68 Boutport Street, Barnstaple, Devon EX31",
+  "l": "2026-11-25",
+  "t": "other",
+  "h": "Terraced building at 68 Boutport Street, Barnstaple",
+  "w": "",
+  "n": "",
+  "g": "",
+  "ll": [
+   51.0812,
+   -4.057
+  ]
+ },
+ {
+  "id": "74860161",
+  "p": "£5,090,400",
+  "b": "",
+  "a": "Nihaan House, Culmore Road, London SE15",
+  "l": "2026-11-26",
+  "t": "other",
+  "h": "Nihaan House, a whole building in Peckham",
+  "w": "",
+  "n": "",
+  "g": "",
+  "ll": [
+   51.48,
+   -0.056
+  ]
+ },
+ {
+  "id": "74852369",
+  "p": "Guide price £480,000",
+  "b": "2",
+  "a": "The Granary, Cowstead Farm, Cowstead Road, Stockbury, Sittingbourne, Kent ME9",
+  "l": "2026-11-25",
+  "t": "granary",
+  "h": "Two-bedroom detached house at The Granary, Cowstead Farm",
+  "w": "",
+  "n": "",
+  "g": "",
+  "ll": [
+   51.322,
+   0.645
+  ]
  }
 ]
